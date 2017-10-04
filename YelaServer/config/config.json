@@ -1,0 +1,20 @@
+{
+    "database": {
+        "dbname": "YelaShopDB",
+        "username": "huynguyen",
+        "password": null,
+        "host": "localhost",
+        "dialect": "mysql",
+        "min": 0,
+        "max": 1000,
+        "idle": 10000
+    },
+    "port": 3000,
+    "storageProductPath": "./public/client/images/product/",
+    "storageSliderPath": "./public/client/images/slider/",
+    "yelaEmail": {
+        "email": "helloworldcoffeeshop@gmail.com",
+        "password": "kimyen2209"
+    },
+    "tokenSecrectKey": "yelashop"
+}

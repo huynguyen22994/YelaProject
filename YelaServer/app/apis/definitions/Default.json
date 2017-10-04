@@ -1,0 +1,226 @@
+{
+    "definitions": {
+        "Product": {
+            "type": "object",
+            "properties": {
+                "productId": {
+                "type": "integer",
+                "description": "Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles."
+                },
+                "name": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "price": {
+                "type": "number",
+                "description": "Price of Coffee."
+                },
+                "originalImg": {
+                "type": "string",
+                "description": "Image Name of Coffee"
+                },
+                "linkImg": {
+                "type": "string",
+                "description": "link image of Coffee"
+                },
+                "discribe": {
+                "type": "string",
+                "description": "Discribe of Coffee"
+                },
+                "productTypeId": {
+                "type": "string",
+                "description": "Discribe of Coffee"
+                },
+                "productStatus": {
+                "type":"string",
+                "description": "Discribe of Coffee"
+                },
+                "quantity": {
+                "type":"integer",
+                "description": "Discribe of Coffee"
+                },
+                "brandId": {
+                "type":"integer",
+                "description": "Discribe of Coffee"
+                }
+            }
+            },
+        "Category": {
+            "type": "object",
+            "properties": {
+                "categoryId": {
+                "type": "integer",
+                "description": "Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles."
+                },
+                "name": {
+                "type": "string",
+                "description": "Name of Coffee."
+                }
+            }
+            },
+        "ProductType": {
+            "type": "object",
+            "properties": {
+                "productTypeId": {
+                "type": "integer",
+                "description": "Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles."
+                },
+                "name": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "categoryId": {
+                "type": "integer",
+                "description": "Name of Coffee."
+                }
+            }
+            },
+        "Customer": {
+            "type": "object",
+            "properties": {
+                "customerId": {
+                "type": "integer",
+                "description": "Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles."
+                },
+                "lastName": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "firstName": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "email": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "password": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "address": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "avatarLink": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "phoneNumber": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "birthDay": {
+                "type": "string",
+                "description": "Name of Coffee."
+                }
+            }
+            },
+        "Login": {
+            "type": "object",
+            "properties": {
+                "email": {
+                "type": "string",
+                "description": "Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles."
+                },
+                "password": {
+                "type": "string",
+                "description": "Name of Coffee."
+                }
+            }
+            },
+        "Brand": {
+            "type": "object",
+            "properties": {
+                "brandId": {
+                "type": "integer",
+                "description": "Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles."
+                },
+                "name": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "info": {
+                "type": "string",
+                "description": "Name of Coffee."
+                }
+            }
+            },
+        "Slider": {
+            "type": "object",
+            "properties": {
+                "sliderId": {
+                "type": "integer",
+                "description": "Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles."
+                },
+                "imgSlider1": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "imgSlider2": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "imgSlider3": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "imgPrice1": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "imgPrice2": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "imgPrice3": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "title1": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "title2": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "title3": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "info1": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "info2": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "info3": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "status": {
+                "type": "string",
+                "description": "Name of Coffee."
+                }
+            }
+            },
+        "Error": {
+            "type": "object",
+            "properties": {
+                "code": {
+                "type": "integer",
+                "format": "int32"
+                },
+                "message": {
+                "type": "string"
+                },
+                "fields": {
+                "type": "string"
+                }
+            }
+        }
+    }
+}

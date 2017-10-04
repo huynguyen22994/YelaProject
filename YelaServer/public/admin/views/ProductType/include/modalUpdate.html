@@ -1,0 +1,29 @@
+	<div class="modal fade" id="modalDetail" role="dialog">
+		<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title"><b>Cập Nhật Loại Sản Phẩm</b></h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-6 col-md-offset-2">
+						<p class="h4"><b>Tên Loại Sản Phẩm: </b>
+							<input type="text" class="form-control" ng-model="ProductType.name" />
+						</p>						
+						<p class="h4"><b>Ngày Tạo: </b>
+							<input type="text" ng-disabled="true" class="form-control" ng-model="ProductType.createdAt | date" />
+						</p>
+						<p class="h4"><b>Ngày Cập Nhật: </b>
+							<input type="text" ng-disabled="true" class="form-control" ng-model="ProductType.updatedAt | date" />
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-primary" ng-click="updateProductType()" data-dismiss="modal">Cập Nhật</button>
+			<button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+			</div>
+		</div>
+		</div>
+	</div>

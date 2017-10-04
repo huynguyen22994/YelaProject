@@ -1,0 +1,1 @@
+{"version":3,"sources":["app.module.js"],"names":["angular","module"],"mappings":";;AAAA,CAAC,YAAW;AACR;;AAEAA,YAAQC,MAAR,CAAe,iBAAf,EAAkC,EAAlC;AAGH,CAND","file":"app.module.js","sourcesContent":["(function() {\r\n    'use strict';\r\n\r\n    angular.module('YelaApplication', [\r\n        \r\n    ]);\r\n})();"]}

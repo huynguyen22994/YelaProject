@@ -1,0 +1,47 @@
+  <div class="modal fade" id="updateProduct" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Sửa Sản Phẩm</h4>
+        </div>
+        <div class="modal-body">
+        <div class="form-style-5">
+		  <input type="text" name="field1" placeholder="Product Name *"  ng-model="Product.name" />
+		  <input type="text" name="field1" placeholder="Product Price *"  ng-model="Product.price" />
+		  <label for="job">Loại Sản Phẩm:</label>
+			<select id="job" ng-options="productType.name for productType in productTypes" ng-model="changeProductType">
+			</select>   
+		  <label>Image:</label>
+		  <!-- Drop Image -->
+			<div ng-if="isChangeImgName">
+				<p><i>Image :</i> <b ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</b></p>
+			</div>
+			<div>
+				<div>
+					<img class="img-rounded coffeeImg" src="{{realImgLink}}" class="coffeeImg" />
+				</div>
+                <!--<div class="button btn-danger" ngf-select ng-model="file" ngf-multiple="false">Select Image</div>-->
+                <div class="button btn-info btn-sm" ngf-select="upload($files, optionEnum.change)" ngf-multiple="true" ng-click="toggleImage()">Đổi Ảnh</div>
+                <div ng-if="changeImage">
+                    <b>{{process}}%</b>
+                    <pre><img src="/images/loading/process.jpg" width="{{process}}%" height="10px" /></pre>
+                </div>
+			</div>
+		  <div class="h4">Discribe:</div>
+			<form name="ckeditor">
+				<textarea name="editor1" id="editor2" rows="10" cols="80" ng-model="Product.discribe"></textarea>
+				<script>
+					// Replace the textarea id="editor1" with a CKEditor
+					// instance, using default configuration.
+					CKEDITOR.replace( 'editor2' );
+				</script>
+			</form>
+        </div>
+        <div class="modal-footer">
+		  <button type="button" class="btn btn-primary" ng-click="updateProduct()" data-dismiss="modal">Cập Nhật</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+        </div>
+      </div>
+    </div>
+  </div>

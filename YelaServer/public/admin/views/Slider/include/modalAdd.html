@@ -1,0 +1,131 @@
+  <div class="modal fade" id="addSlider" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Thêm Mới Nhóm Slider</h4>
+        </div>
+        <div class="modal-body">
+        <div class="form-style-5">
+            <div class="row">
+              <div class="col-sm-4">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="email">Ảnh Slider 1:</label>
+                    <div class="col-sm-10">
+                      <button class="button btn-danger btn-sm" ngf-select="getImgeUpload($file, 'ImgSlider1')" ngf-multiple="false">Chọn..</button>
+                      <button class="button btn-danger btn-sm" ng-click="UploadImage('ImgSlider1')">Upload</button>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="pwd">Ảnh Giá:</label>
+                    <div class="col-sm-10">          
+                      <button class="button btn-danger btn-sm" ngf-select="getImgeUpload($file, 'ImgPrice1')" ngf-multiple="false">Chọn..</button>
+                      <button class="button btn-danger btn-sm" ng-click="UploadImage('ImgPrice1')">Upload</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-sm-8">
+                <div class="col-sm-6">
+                  <img class="img-responsive img-rounded sliderImg" src="{{ImgLink}}{{newSlider.imgSlider1}}" />
+                  <p>Tên Slider 1: {{ImgSlider1.name}}</p>
+                </div>
+                <div class="col-sm-6">
+                  <img class="img-responsive img-rounded sliderImg" src="{{ImgLink}}{{newSlider.imgPrice1}}" />
+                  <p>Tên Slider 1: {{ImgPrice1.name}}</p>
+                </div>               
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <label>Tiêu Đề</label>
+                <input type="text" placeholder="Nhập Tiêu Đề *" ng-model="newSlider.title1" />
+                <label>Nội Dung</label>
+                <textarea placeholder="Nhập Nội Dung *" ng-model="newSlider.info1"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="email">Ảnh Slider 2:</label>
+                    <div class="col-sm-10">
+                      <button class="button btn-danger btn-sm" ngf-select="getImgeUpload($file, 'ImgSlider2')" ngf-multiple="false">Chọn..</button>
+                      <button class="button btn-danger btn-sm" ng-click="UploadImage('ImgSlider2')">Upload</button>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="pwd">Ảnh Giá:</label>
+                    <div class="col-sm-10">          
+                      <button class="button btn-danger btn-sm" ngf-select="getImgeUpload($file, 'ImgPrice2')" ngf-multiple="false">Chọn..</button>
+                      <button class="button btn-danger btn-sm" ng-click="UploadImage('ImgPrice2')">Upload</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-sm-8">
+                <div class="col-sm-6">
+                  <img class="img-responsive img-rounded sliderImg" src="{{ImgLink}}{{newSlider.imgSlider2}}" />
+                  <p>Tên Slider 2: {{ImgSlider2.name}}</p>
+                </div>
+                <div class="col-sm-6">
+                  <img class="img-responsive img-rounded sliderImg" src="{{ImgLink}}{{newSlider.imgPrice2}}" />
+                  <p>Tên Giá 2: {{ImgPrice2.name}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <label>Tiêu Đề</label>
+                <input type="text" placeholder="Nhập Tiêu Đề *" ng-model="newSlider.title2" />
+                <label>Nội Dung</label>
+                <textarea placeholder="Nhập Nội Dung *" ng-model="newSlider.info2"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="email">Ảnh Slider 3:</label>
+                    <div class="col-sm-10">
+                      <button class="button btn-danger btn-sm" ngf-select="getImgeUpload($file, 'ImgSlider3')" ngf-multiple="false">Chọn..</button>
+                      <button class="button btn-danger btn-sm" ng-click="UploadImage('ImgSlider3')">Upload</button>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="pwd">Ảnh Giá:</label>
+                    <div class="col-sm-10">          
+                      <button class="button btn-danger btn-sm" ngf-select="getImgeUpload($file, 'ImgPrice3')" ngf-multiple="false">Chọn..</button>
+                      <button class="button btn-danger btn-sm" ng-click="UploadImage('ImgPrice3')">Upload</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-sm-8">
+                <div class="col-sm-6">
+                  <img class="img-responsive img-rounded sliderImg" src="{{ImgLink}}{{newSlider.imgSlider3}}" />
+                  <p>Tên Slider 3: {{ImgSlider3.name}}</p>
+                </div>
+                <div class="col-sm-6">
+                  <img class="img-responsive img-rounded sliderImg" src="{{ImgLink}}{{newSlider.imgPrice3}}" />
+                  <p>Tên Giá 3: {{ImgPrice3.name}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <label>Tiêu Đề</label>
+                <input type="text" placeholder="Nhập Tiêu Đề *" ng-model="newSlider.title3" />
+                <label>Nội Dung</label>
+                <textarea placeholder="Nhập Nội Dung *" ng-model="newSlider.info3"></textarea>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+		  <button type="button" class="btn btn-primary" ng-click="createSlider()" data-dismiss="modal">Add</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

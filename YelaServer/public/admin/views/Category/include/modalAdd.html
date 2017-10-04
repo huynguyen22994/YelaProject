@@ -1,0 +1,19 @@
+  <div class="modal fade" id="addCategory" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Thêm Mới Danh Mục</h4>
+        </div>
+        <div class="modal-body">
+        <div class="form-style-5">
+		      <input type="text" placeholder="Tên Danh Mục *"  ng-model="newCategory.name" />
+        </div>
+        </div>
+        <div class="modal-footer">
+		  <button type="button" class="btn btn-primary" ng-click="createCategory()" data-dismiss="modal">Add</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

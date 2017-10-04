@@ -1,0 +1,123 @@
+<div class="row" ng-init="initialization()">
+	<div id="breadcrumb" class="col-xs-12">
+		<a href="#" class="show-sidebar">
+			<i class="fa fa-bars"></i>
+		</a>
+		<ol class="breadcrumb pull-left">
+			<li><a href="#">Trang Chủ</a></li>
+			<li><a href="#">Quản Lý Dữ Liệu</a></li>
+			<li><a href="#">Danh Mục</a></li>
+		</ol>
+		<div id="social" class="pull-right">
+			<a href="#"><i class="fa fa-google-plus"></i></a>
+			<a href="#"><i class="fa fa-facebook"></i></a>
+			<a href="#"><i class="fa fa-twitter"></i></a>
+			<a href="#"><i class="fa fa-linkedin"></i></a>
+			<a href="#"><i class="fa fa-youtube"></i></a>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12">
+		<div class="box">
+			<div class="box-header">
+				<div class="box-name">
+					<i class="fa fa-usd"></i>
+					<span>The World's billionaries</span>
+				</div>
+				<div class="box-icons">
+					<a class="collapse-link">
+						<i class="fa fa-chevron-up"></i>
+					</a>
+					<a class="expand-link">
+						<i class="fa fa-expand"></i>
+					</a>
+					<a class="close-link">
+						<i class="fa fa-times"></i>
+					</a>
+				</div>
+				<div class="no-move"></div>
+			</div>
+			<div class="box-content no-padding">
+				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
+					<thead>
+						<tr>
+							<th>Hình 1</th>
+							<th>Tiêu Đề 1</th>
+							<th>Hình 2</th>
+							<th>Tiêu Đề 2</th>
+							<th>Hình 3</th>
+							<th>Tiêu Đề 3</th>
+							<th>Slider Hiển Thị</th>
+							<th>
+								<button type="button" class="btn btn-info" data-toggle="modal" data-target="#addSlider" >Thêm Nhóm Thanh Trượt</button>
+								<button type="button" class="btn btn-warning" >Làm Mới</button>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<form>
+						<!-- Start list -->
+						<tr ng-repeat="slider in sliders">
+							<td><img class="img-rounded" src="{{ImgLink}}{{slider.imgSlider1}}" /></td>
+							<td>{{slider.title1}}</td>
+							<td><img class="img-rounded" src="{{ImgLink}}{{slider.imgSlider2}}" /></td>
+							<td>{{slider.title2}}</td>
+							<td><img class="img-rounded" src="{{ImgLink}}{{slider.imgSlider3}}" /></td>
+							<td>{{slider.title3}}</td>
+							<td>				
+								<input type="radio" ng-model="enableSlider" ng-value="slider"> Chọn						
+							</td>
+							<td><button type="button" class="btn btn-primary" ng-click="detailSlider(slider.sliderId)" data-toggle="modal" data-target="#updateSlider">Sửa</button>
+							<button class="btn btn-danger" ng-click="deleteSlider(slider.sliderId)">Xóa</button></td>
+						</tr>
+						<!-- End list -->
+						</form>
+					</tbody>
+					<tfoot>
+						<tr>
+							<th>Hình 1</th>
+							<th>Tiêu Đề 1</th>
+							<th>Hình 2</th>
+							<th>Tiêu Đề 2</th>
+							<th>Hình 3</th>
+							<th>Tiêu Đề 3</th>
+							<th>Slider Hiển Thị</th>
+							<th>
+								<button type="button" class="btn btn-info" data-toggle="modal" data-target="#addSlider" >Thêm Nhóm Thanh Trượt</button>
+							</th>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	</div>
+<!-- Modal UpdateCategory -->
+	<!--<div ng-include="'views/Category/include/modalUpdate.html'"></div>-->
+<!--Modal-->
+<!-- Modal AddCategory -->
+	<div ng-include="'views/Slider/include/modalAdd.html'"></div>
+<!--Modal-->
+</div>
+
+<!--<script type="text/javascript">
+// Run Datables plugin and create 3 variants of settings
+function AllTables(){
+	TestTable1();
+	TestTable2();
+	TestTable3();
+	LoadSelect2Script(MakeSelect2);
+}
+function MakeSelect2(){
+	$('select').select2();
+	$('.dataTables_filter').each(function(){
+		$(this).find('label input[type=text]').attr('placeholder', 'Search');
+	});
+}
+$(document).ready(function() {
+	// Load Datatables and run plugin on tables 
+	LoadDataTablesScripts(AllTables);
+	// Add Drag-n-Drop feature
+	WinMove();
+});
+</script>-->

@@ -1,0 +1,58 @@
+  <div class="modal fade" id="addProduct" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Thêm Mới Sản Phẩm</h4>
+        </div>
+        <div class="modal-body">
+        <div class="form-style-5">
+		  <input type="text" name="field1" placeholder="Tên Sản Phẩm *"  ng-model="newProduct.name" />
+		  <input type="text" name="field1" placeholder="Giá Sản Phẩm *"  ng-model="newProduct.price" />
+			<input type="text" name="field1" placeholder="Số Lượng Sản Phẩm *"  ng-model="newProduct.quantity" />
+			<label for="job">Tình Trạng Sản Phẩm:</label>
+			<select id="job" ng-model="productStatus.model">
+				<option value="" ng-repeat="option in productStatus.productStatusOption" ng-value="option.value">{{option.name}}</option>
+			</select>  
+		  <label for="job">Loại Sản Phẩm:</label>
+			<select id="job" ng-model="selectedProductType" ng-options="productType.name for productType in productTypes">
+				<option value="">-- Chọn Loại Sản Phẩm --</option>
+			</select>   
+			<label>Nhãn Hiệu:</label>
+			<select id="job" ng-model="selectedBrand" ng-options="brand.name for brand in brands">
+				<option value="">-- Chọn Nhãn Hiệu --</option>
+			</select> 
+		  <label>Ảnh Sản Phẩm:</label>
+		  <!-- Drop Image -->
+			<div class="button btn-danger" ngf-select="getImgeUpload($files)" ngf-multiple="false">Chọn..</div>
+			<!--<div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"  accept="image/*,application/pdf" 
+			ngf-pattern="'image/*'">Drop images here or click to upload</div>
+			<div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>-->
+			<div ng-if="isImgName">
+				<p><i>Tên Ảnh :</i> <b ng-repeat="f in imageUpload" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</b></p>
+			</div>
+			<div ng-if="isUpload">
+				<div>
+					<img class="img-rounded coffeeImg" src="{{realImgLink}}" />
+				</div>
+				<b>{{process}}%</b>
+				<pre><img src="/images/loading/process.jpg" width="{{process}}%" height="10px" /></pre>
+			</div>
+		  <div class="h4">Mô Tả:</div>
+			<div ckeditor="options" ng-model="newProduct.discribe"></div>
+			<!--<form name="ckeditor">
+				<textarea name="editor1" id="editor1" rows="10" cols="80" ng-model="newProduct.discribe"></textarea>
+				<script>
+					// Replace the textarea id="editor1" with a CKEditor
+					// instance, using default configuration.
+					CKEDITOR.replace( 'editor1' );
+				</script>
+			</form>-->
+        </div>
+        <div class="modal-footer">
+		  <button type="button" class="btn btn-primary" ng-click="createProduct(selectedProductType, selectedBrand)" data-dismiss="modal">Add</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

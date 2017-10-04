@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Home | E-Shopper</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/prettyPhoto.css" rel="stylesheet">
+    <link href="css/price-range.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+	<link href="css/main.css" rel="stylesheet">
+	<link href="css/responsive.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->       
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+</head><!--/head-->
+
+<body ng-app="YelaApp" ng-controller="RootCtrl" ng-init="initialization()">
+	<div id="fb-root"></div>
+	<script>
+		(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9&appId=375782316127685";
+		fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+	
+	<header id="header"><!--header-->
+		<div class="header_top"><!--header_top-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="contactinfo">
+							<ul class="nav nav-pills">
+								<li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a>
+								</li>
+								<li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+								<slide-show></slide-show>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="social-icons pull-right">
+							<ul class="nav navbar-nav">
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<!--<li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
+								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+								<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header_top-->
+		
+		<div class="header-middle"><!--header-middle-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="logo pull-left">
+							<a href="index.html"><img src="images/home/logo.png" alt="" /></a>
+						</div>
+						<div class="btn-group pull-right">
+							<div class="btn-group" ng-controller="TranslateController">
+								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
+									{{ 'BUTTON_TRANSLATE' | translate }}
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a ng-click="changeLanguage('vi')">{{ 'BUTTON_VIETNAM' | translate }}</a></li>
+									<li><a ng-click="changeLanguage('en')">{{ 'BUTTON_ENGLISH' | translate }}</a></li>
+								</ul>
+							</div>
+							
+							<div class="btn-group">
+								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
+									{{ 'BUTTON_DOLLAR' | translate }}
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a href="#">{{ 'BUTTON_USD' | translate }}</a></li>
+									<li><a href="#">{{ 'BUTTON_VND' | translate }}</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-8">
+						<div class="shop-menu pull-right">
+							<ul class="nav navbar-nav">
+								<li ng-if="customerLogined"><a href="#"><i class="fa fa-user"></i> {{ 'ACCOUNT' | translate }}</a></li>
+								<li><a href="#"><i class="fa fa-star"></i> {{ 'WISHLIST' | translate }}</a></li>
+								<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> {{ 'CHECKOUT' | translate }}</a></li>
+								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> {{ 'CART' | translate }}</a></li>
+								<li ng-if="!customerLogined"><a href="#/login"><i class="fa fa-lock"></i> {{ 'LOGIN' | translate }}</a></li>
+								<li class="dropdown" ng-if="customerLogined">
+									<a class="dropdown-toggle account" data-toggle="dropdown">
+										<div>
+											Xin Chào
+											<img ng-if="!customerHasImg" src="/images/loading/user.png" class="img-circle avatar" alt="avatar" />
+											<img ng-if="customerHasImg" src="{{currentSession.avatarLink}}" class="img-circle avatar" alt="avatar" />
+										</div>
+										<i class="fa fa-angle-down pull-right"></i>
+										<div class="pull-right">
+											<span>{{FullName}}</span>
+										</div>
+									</a>
+									<ul class="dropdown-menu">
+										<li>
+											<a href="#">
+												<i class="fa fa-user"></i>
+												<span>Profile</span>
+											</a>
+										</li>
+										<li>
+											<a href="ajax/page_messages.html" class="ajax-link">
+												<i class="fa fa-envelope"></i>
+												<span>Messages</span>
+											</a>
+										</li>
+										<li>
+											<a href="ajax/gallery_simple.html" class="ajax-link">
+												<i class="fa fa-picture-o"></i>
+												<span>Albums</span>
+											</a>
+										</li>
+										<li>
+											<a href="ajax/calendar.html" class="ajax-link">
+												<i class="fa fa-tasks"></i>
+												<span>Tasks</span>
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<i class="fa fa-cog"></i>
+												<span>Settings</span>
+											</a>
+										</li>
+										<li>
+											<a ng-click="logout()">
+												<i class="fa fa-power-off"></i>
+												<span>Logout</span>
+											</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-middle-->
+	
+		<div class="header-bottom"><!--header-bottom-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-9">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+						<div class="mainmenu pull-left">
+							<ul class="nav navbar-nav collapse navbar-collapse">
+								<li><a href="index.html" class="active">Trang Chủ</a></li>
+								<li class="dropdown"><a href="#">Mỹ Phẩm</a></li> 
+								<li class="dropdown"><a href="#">Túi - Ví</a></li>
+								<li class="dropdown"><a href="#">Quần Áo</a></li>
+								<li class="dropdown"><a href="#">Thức Ăn</a></li>
+								<li class="dropdown dropdown-large"><a href="#">Linh Tinh<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="shop.html">Products</a></li>
+										<li><a href="product-details.html">Product Details</a></li> 
+										<li><a href="checkout.html">Checkout</a></li> 
+										<li><a href="cart.html">Cart</a></li> 
+										<li><a href="login.html">Login</a></li> 
+                                    </ul>
+                                </li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="search_box pull-right">
+							<input type="text" placeholder="{{ 'SEARCH' | translate }}"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-bottom-->
+	</header><!--/header-->
+	
+	<div ng-view></div>
+	
+	<footer id="footer"><!--Footer-->
+		<div class="footer-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-2">
+						<div class="address">
+							<img src="images/home/map.png" alt="" />
+							<p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
+						</div>
+					</div>
+					<div class="col-sm-7">
+						<div class="col-sm-3">
+							<div class="video-gallery text-center">
+								<a href="#">
+									<div class="iframe-img">
+										<img src="images/home/iframe1.png" alt="" />
+									</div>
+									<div class="overlay-icon">
+										<i class="fa fa-play-circle-o"></i>
+									</div>
+								</a>
+								<p>Circle of Hands</p>
+								<h2>24 DEC 2014</h2>
+							</div>
+						</div>
+						
+						<div class="col-sm-3">
+							<div class="video-gallery text-center">
+								<a href="#">
+									<div class="iframe-img">
+										<img src="images/home/iframe2.png" alt="" />
+									</div>
+									<div class="overlay-icon">
+										<i class="fa fa-play-circle-o"></i>
+									</div>
+								</a>
+								<p>Circle of Hands</p>
+								<h2>24 DEC 2014</h2>
+							</div>
+						</div>
+						
+						<div class="col-sm-3">
+							<div class="video-gallery text-center">
+								<a href="#">
+									<div class="iframe-img">
+										<img src="images/home/iframe3.png" alt="" />
+									</div>
+									<div class="overlay-icon">
+										<i class="fa fa-play-circle-o"></i>
+									</div>
+								</a>
+								<p>Circle of Hands</p>
+								<h2>24 DEC 2014</h2>
+							</div>
+						</div>
+						
+						<div class="col-sm-3">
+							<div class="video-gallery text-center">
+								<a href="#">
+									<div class="iframe-img">
+										<img src="images/home/iframe4.png" alt="" />
+									</div>
+									<div class="overlay-icon">
+										<i class="fa fa-play-circle-o"></i>
+									</div>
+								</a>
+								<p>Circle of Hands</p>
+								<h2>24 DEC 2014</h2>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="address">
+							<div class="fb-page" data-href="https://www.facebook.com/Yela-Shop-1845648855687460/" data-tabs="timeline" data-width="270" data-height="200" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Yela-Shop-1845648855687460/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Yela-Shop-1845648855687460/">Yela Shop</a></blockquote></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="footer-widget">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-2">
+						<div class="single-widget">
+							<h2>{{ 'SERVICE' | translate }}</h2>
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="#">{{ 'CONTACT_US' | translate }}</a></li>
+								<li><a href="#">{{ 'ODER_STATUS' | translate }}</a></li>
+								<li><a href="#">{{ 'ONLINE_HELP' | translate }}</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<div class="single-widget">
+							<h2>{{ 'QUOCK_SHOP' | translate }}</h2>
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="#">T-Shirt</a></li>
+								<li><a href="#">Mens</a></li>
+								<li><a href="#">Womens</a></li>
+								<li><a href="#">Gift Cards</a></li>
+								<li><a href="#">Shoes</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<div class="single-widget">
+							<h2>{{ 'ABOUT_SHOPPER' | translate }}</h2>
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="#">{{ 'SHOP_INFORMATION' | translate }}</a></li>
+								<li><a href="#">{{ 'STORE_LOCATION' | translate }}</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<!--code here-->
+					</div>
+					<div class="col-sm-3 col-sm-offset-1">
+						<div class="single-widget">
+							<h2>About Shopper</h2>
+							<form action="#" class="searchform">
+								<input type="text" placeholder="Your email address" />
+								<button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
+								<p>Get the most recent updates from <br />our site and be updated your self...</p>
+								<div class="fb-send" data-href="https://www.facebook.com/Yela-Shop-1845648855687460/"></div>
+								<div class="fb-share-button" data-href="https://www.facebook.com/Yela-Shop-1845648855687460/" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2FYela-Shop-1845648855687460%2F&amp;src=sdkpreparse">Chia sẻ</a></div>
+							</form>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row">
+					<p class="pull-left">Copyright © 2017 Yela-SHOP Inc. All rights reserved.</p>
+				</div>
+			</div>
+		</div>
+		
+	</footer><!--/Footer-->
+	
+
+  
+    <script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.scrollUp.min.js"></script>
+	<script src="js/price-range.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+    <script src="js/main.js"></script>
+	<!-- AngularJS -->
+	<script src="/vendor/angularjs/angular.min.js"></script>
+    <script src="/vendor/angularjs/angular-resource.js"></script>
+    <script src="/vendor/angularjs/angular-route.min.js"></script>
+	<script src="/vendor/angularjs/angular-translate.js"></script>
+	<script src="/vendor/angular-jwt//dist/angular-jwt.js"></script>
+	<script src="/vendor/angular-sanitize/angular-sanitize.js"></script>
+    <script src="/script/controllers/app.js"></script>
+	<script src="/script/translate/translate.js"></script>
+	<script src="/admin/script/config/config.js" ></script>
+	<script src="/admin/script/config/apis.js" ></script>
+	<script src="/script/services/valueService.js"></script>
+    <script src="/script/services/service.js"></script>
+	<script src="/script/controllers/rootCtrl.js"></script>
+    <script src="/script/controllers/homeCtrl.js"></script>
+	<script src="/script/controllers/loginCtrl.js"></script>
+	<script src="/script/controllers/detailCtrl.js"></script>
+    <script src="/script/controllers/contactCtrl.js"></script>
+		<script src="/components/ylSlideShow/ylslideshow.component.js"></script>
+
+	<!--Login Google Facebook-->
+    <script src="/script/googlefacebook/login.js"></script>
+
+    <script type="text/javascript">
+        (function(){
+            var p = document.createElement('script');
+            p.type = 'text/javascript';
+            p.async = true;
+            p.src = 'https://apis.google.com/js/client.js?onload=onLoadFunction';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(p, s);
+        })();
+    </script>
+</body>
+</html>

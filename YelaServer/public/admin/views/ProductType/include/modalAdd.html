@@ -1,0 +1,22 @@
+  <div class="modal fade" id="addProduct" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Thêm Mới Loại Sản Phẩm</h4>
+        </div>
+        <div class="modal-body">
+        <div class="form-style-5">
+		  <input type="text" name="field1" placeholder="Tên Loại Sản Phẩm *"  ng-model="newProductType.name" />
+		  <label for="job">Danh Mục:</label>  
+            <select id="job" ng-model="selectedCategory" ng-options="category.name for category in categories">
+				<option value="">-- Chọn Danh Mục --</option>
+			</select> 
+        </div>
+        <div class="modal-footer">
+		  <button type="button" class="btn btn-primary" ng-click="createProductType(selectedCategory)" data-dismiss="modal">Thêm</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+        </div>
+      </div>
+    </div>
+  </div>

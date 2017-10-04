@@ -1,0 +1,8 @@
+YelaServer/node_modules
+YelaWebApp/node_modules
+YelaWebApp/bower_components
+YelaServer/npm-debug.log
+YelaServer/thumb.db
+YelaWebApp/npm-debug.log
+.idea
+.idea/*
