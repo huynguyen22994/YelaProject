@@ -11,7 +11,7 @@ var session = require('express-session');
 var config = fs.readFileSync('./config/config.json');
 var configDB = JSON.parse(config.toString());
 
-app.set('port', process.env.PORT || configDB.port);
+app.set('port', process.argv[2] || configDB.port);
 
 app.use(session({
     secret: 'keyboard cat',
@@ -35,9 +35,9 @@ app.use(function (req, res, next) {
     next()
 });
 
-app.use('/', express.static(__dirname + '/public/client'));
-app.use('/admin', express.static(__dirname + '/public/admin'));
-app.use('/components', express.static(__dirname + '/public/components'));
+// app.use('/', express.static(__dirname + '/public/client'));
+// app.use('/admin', express.static(__dirname + '/public/admin'));
+// app.use('/components', express.static(__dirname + '/public/components'));
 // app.use('/upload', express.static(__dirname));
 
 app.use('/contact', contact);

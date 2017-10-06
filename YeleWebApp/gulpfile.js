@@ -10,7 +10,7 @@ const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
 let dev = true;
-
+//////////////////////////////////////
 gulp.task('styles', () => {
   return gulp.src('appClient/styles/*.scss')
     .pipe($.plumber())
@@ -48,6 +48,7 @@ gulp.task('lint', () => {
   return lint('appClient/scripts/**/*.js')
     .pipe(gulp.dest('appClient/scripts'));
 });
+
 gulp.task('lint:test', () => {
   return lint('test/spec/**/*.js')
     .pipe(gulp.dest('test/spec'));
@@ -55,7 +56,7 @@ gulp.task('lint:test', () => {
 
 gulp.task('html', ['styles', 'scripts'], () => {
   return gulp.src('appClient/*.html')
-    .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
+    .pipe($.useref({searchPath: ['.tmp', 'appClient', '.']}))
     .pipe($.if(/\.js$/, $.uglify({compress: {drop_console: true}})))
     .pipe($.if(/\.css$/, $.cssnano({safe: true, autoprefixer: false})))
     .pipe($.if(/\.html$/, $.htmlmin({
@@ -96,9 +97,10 @@ gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
 gulp.task('serve', () => {
   runSequence(['clean', 'wiredep'], ['styles', 'scripts', 'fonts'], () => {
-    browserSync.init({
+      browserSync.init({
+      startPath: '/',
       notify: false,
-      port: 9000,
+      port: 8080,
       server: {
         baseDir: ['.tmp', 'appClient'],
         routes: {
@@ -123,7 +125,7 @@ gulp.task('serve', () => {
 gulp.task('serve:dist', ['default'], () => {
   browserSync.init({
     notify: false,
-    port: 9000,
+    port: 8080,
     server: {
       baseDir: ['dist']
     }
@@ -133,7 +135,7 @@ gulp.task('serve:dist', ['default'], () => {
 gulp.task('serve:test', ['scripts'], () => {
   browserSync.init({
     notify: false,
-    port: 9000,
+    port: 8080,
     ui: false,
     server: {
       baseDir: 'test',
@@ -168,6 +170,13 @@ gulp.task('wiredep', () => {
 
 gulp.task('build', ['lint', 'html', 'images', 'fonts', 'extras'], () => {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
+});
+
+gulp.task('default', () => {
+    return new Promise(resolve => {
+        dev = false;
+        runSequence(['clean', 'wiredep'], 'build', resolve);
+    });
 });
 
 ///////////////////////////
@@ -208,7 +217,7 @@ gulp.task('lintAdmin:test', () => {
 
 gulp.task('htmlAdmin', ['stylesAdmin', 'scriptsAdmin'], () => {
   return gulp.src('appAdmin/*.html')
-    .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
+    .pipe($.useref({searchPath: ['.tmp', 'appAdmin', '.']}))
     .pipe($.if(/\.js$/, $.uglify({compress: {drop_console: true}})))
     .pipe($.if(/\.css$/, $.cssnano({safe: true, autoprefixer: false})))
     .pipe($.if(/\.html$/, $.htmlmin({
@@ -249,13 +258,15 @@ gulp.task('cleanAdmin', del.bind(null, ['.tmp', 'dist']));
 
 gulp.task('serveAdmin', () => {
   runSequence(['cleanAdmin', 'wiredepAdmin'], ['stylesAdmin', 'scriptsAdmin', 'fontsAdmin'], () => {
-    browserSync.init({
+      browserSync.init({
+      startPath: '/admin',
       notify: false,
-      port: 9000,
+      port: 8080,
       server: {
-        baseDir: ['.tmp', 'appAdmin'],
+        baseDir: ['.tmp'],
         routes: {
-          '/bower_components': 'bower_components'
+            '/bower_components': 'bower_components',
+            '/admin': 'appAdmin'  
         }
       }
     });
@@ -274,9 +285,10 @@ gulp.task('serveAdmin', () => {
 });
 
 gulp.task('serveAdmin:dist', ['defaultAdmin'], () => {
-  browserSync.init({
+    browserSync.init({
+    startPath: '/admin',
     notify: false,
-    port: 9000,
+    port: 8080,
     server: {
       baseDir: ['dist']
     }
@@ -284,18 +296,19 @@ gulp.task('serveAdmin:dist', ['defaultAdmin'], () => {
 });
 
 gulp.task('serveAdmin:test', ['scriptsAdmin'], () => {
-  browserSync.init({
-    notify: false,
-    port: 9000,
-    ui: false,
-    server: {
-      baseDir: 'test',
-      routes: {
-        '/scripts': '.tmp/scripts',
-        '/bower_components': 'bower_components'
-      }
-    }
-  });
+    browserSync.init({
+        startPath: '/admin',
+        notify: false,
+        port: 8080,
+        ui: false,
+        server: {
+        baseDir: 'test',
+        routes: {
+            '/scripts': '.tmp/scripts',
+            '/bower_components': 'bower_components'
+        }
+        }
+    });
 
   gulp.watch('appAdmin/scripts/**/*.js', ['scriptsAdmin']);
   gulp.watch(['test/spec/**/*.js', 'test/index.html']).on('change', reload);
@@ -316,27 +329,17 @@ gulp.task('wiredepAdmin', () => {
       exclude: ['bootstrap-sass'],
       ignorePath: /^(\.\.\/)*\.\./
     }))
-    .pipe(gulp.dest('appClient'));
+    .pipe(gulp.dest('appAdmin'));
 });
 
 gulp.task('buildAdmin', ['lintAdmin', 'htmlAdmin', 'imagesAdmin', 'fontsAdmin', 'extrasAdmin'], () => {
   return gulp.src('dist/**/*').pipe($.size({title: 'buildAdmin', gzip: true}));
 });
 
-///////////
-
 gulp.task('defaultAdmin', () => {
   return new Promise(resolve => {
     dev = false;
     runSequence(['cleanAdmin', 'wiredepAdmin'], 'buildAdmin', resolve);
-  });
-});
-
-
-gulp.task('default', () => {
-  return new Promise(resolve => {
-    dev = false;
-    runSequence(['clean', 'wiredep'], 'build', resolve);
   });
 });
 

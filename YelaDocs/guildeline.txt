@@ -1,3 +1,35 @@
+require: nodejs, npm, bower, xampp
+	nodejs: https://nodejs.org/en/
+	bower: npm install -g bower
+	xampp: https://www.apachefriends.org/download.html
 1. installation:
+	. YelaServer
+		. npm install
+		. bower install
+		. Create Database:
+				. Open Xampp -> Start: Apache, MySQL
+				. Go to http://localhost/phpmyadmin/ -> create database with name YelaShopDB
+				. Come back YelaServer folder 
+					-> run: node initModels.js
+					-> run:	node app/models/relationship.js
+	. YelaWebApp
+		. npm install
+		. bower install
 2. Gitignore:
+	update later
 3. runapp:
+	. YelaServer
+		2 way to start server
+			1. node server.js (start server with default port: 3000)
+			2. node server.js <port> (start server with option port)
+				example: node server.js 8000
+	. YelaWebApp
+		2 way to start website
+			1. live edit (with this way can't get data from server, just for edit css, html): 
+					.for Client: gulp serve
+					.for Admin: gulp serveAdmin
+			2. run with server node and proxy to host server have 2 ways:
+					1. node server.js (proxy default http://localhost:3000)
+					2. node server.js <proxy> (option proxy)
+						example: node server.js http://localhost:8000
+		start with  http://localhost:8080

@@ -12,22 +12,18 @@
         // Creates:
         //
         var directive = {
-            bindToController: true,
             controller: ControllerController,
-            controllerAs: 'vm',
-            link: link,
             restrict: 'EA',
             scope: {
+                config: '='
             },
             templateUrl: '/components/ylNavBar/ylnavbar.directive.html'
         };
         return directive;
         
-        function link(scope, element, attrs) {
-        }
     }
     /* @ngInject */
-    function ControllerController () {
-        
+    function ControllerController ($scope) {
+        console.log($scope.config);
     }
 })();

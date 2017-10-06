@@ -8,7 +8,20 @@
     ControllerController.$inject = [];
     function ControllerController() {
         var vm = this;
-        vm.test = 'ahihi';
+        vm.navBarConfig = {
+            appTitle: 'Yela Admin',
+            appTitleUrl: '/',
+            menus: [
+                {
+                    name: 'Product Management',
+                    url: '',
+                    subMenu: [
+
+                    ]
+                }
+            ]
+        };
+        
 
         activate();
 
