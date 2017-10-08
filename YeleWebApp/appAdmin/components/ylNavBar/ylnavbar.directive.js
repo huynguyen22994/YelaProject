@@ -17,13 +17,18 @@
             scope: {
                 config: '='
             },
-            templateUrl: '/components/ylNavBar/ylnavbar.directive.html'
+            templateUrl: '/admin/components/ylNavBar/ylnavbar.directive.html'
         };
         return directive;
         
     }
     /* @ngInject */
     function ControllerController ($scope) {
-        console.log($scope.config);
+
+        $scope.isSubMenu = isSubMenu;
+
+        function isSubMenu(menu) {
+            return (angular.isArray(menu.apps) && menu.apps.length !== 0) ? true : false;  
+        };
     }
 })();

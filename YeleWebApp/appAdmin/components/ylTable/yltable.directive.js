@@ -2,8 +2,8 @@
     'use strict';
 
     angular
-        .module('YelaSkeleton', ['YelaSidebar', 'YlTable'])
-        .directive('ylSkeleton', Directive);
+        .module('YlTable', [])
+        .directive('ylTable', Directive);
 
     Directive.$inject = [];
     function Directive() {
@@ -16,15 +16,14 @@
             controllerAs: 'vm',
             restrict: 'EA',
             scope: {
-                sidebarConfig: '='
             },
-            templateUrl: '/admin/components/ylSkeleton/ylskeleton.directive.html'
+            templateUrl: '/admin/components/ylTable/yltable.directive.html'
         };
         return directive;
-        
+
     }
     /* @ngInject */
     function ControllerController ($scope) {
-        //console.log($scope.sidebarConfig);
+        
     }
 })();

@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <base href="/">
 
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
@@ -15,13 +16,13 @@
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
 
     <!-- MetisMenu CSS -->
-    <link rel="stylesheet" href="/styles/metisMenu/metisMenu.css">
+    <link rel="stylesheet" href="/admin/styles/metisMenu/metisMenu.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/styles/css/sb-admin-2.css">
+    <link rel="stylesheet" href="/admin/styles/css/sb-admin-2.css">
 
     <!-- Morris Charts CSS -->
-    <link rel="stylesheet" href="/styles/morrisjs/morris.css">
+    <link rel="stylesheet" href="/admin/styles/morrisjs/morris.css">
 
     <!-- Custom Fonts -->
     <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css">
@@ -45,7 +46,8 @@
         </nav>
          <!-- /Navigation -->
 
-         <yl-skeleton></yl-skeleton>
+         <!--<yl-skeleton></yl-skeleton>-->
+         <div ng-view></div>
 
     </div>
     <!-- /#wrapper -->
@@ -57,26 +59,35 @@
     <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="/styles/metisMenu/metisMenu.min.js"></script>
+    <script src="/admin/styles/metisMenu/metisMenu.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="/styles/raphael/raphael.min.js"></script>
-    <script src="/styles/morrisjs/morris.min.js"></script>
-    <script src="/styles/data/morris-data.js"></script>
+    <script src="/admin/styles/raphael/raphael.min.js"></script>
+    <script src="/admin/styles/morrisjs/morris.min.js"></script>
+    <script src="/admin/styles/data/morris-data.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="/styles/js/sb-admin-2.js"></script>
+    <script src="/admin/styles/js/sb-admin-2.js"></script>
 
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-route/angular-route.js"></script>
 
-    <script src="scripts/app.module.js"></script>
-    <script src="scripts/app.bootstrap.js"></script>
-    <script src="scripts/app.controller.js"></script>
+    <script src="/admin/scripts/app.module.js"></script>
+    <script src="/admin/scripts/app.bootstrap.js"></script>
+    <script src="/admin/scripts/app.constant.js"></script>
+    <script src="/admin/scripts/app.controller.js"></script>
      <!--<script src="scripts/app.route.js"></script>-->
-     <script src="components/ylNavBar/ylnavbar.directive.js"></script>
-     <script src="components/ylSideBar/ylsidebar.directive.js"></script>
-     <script src="components/ylSkeleton/ylskeleton.directive.js"></script>
+     <script src="/admin/components/ylNavBar/ylnavbar.directive.js"></script>
+     <script src="/admin/components/ylSideBar/ylsidebar.directive.js"></script>
+     <script src="/admin/components/ylTable/yltable.directive.js"></script>
+     <script src="/admin/components/ylSkeleton/ylskeleton.directive.js"></script>
+     <!-- productMgmt -->
+     <script src="/admin/scripts/productManagement/productMgmt.module.js"></script>
+     <script src="/admin/scripts/productManagement/productMgmt.constant.js"></script>
+     <script src="/admin/scripts/productManagement/productMgmt.route.js"></script>
+     <script src="/admin/scripts/productManagement/productMgmt.service.js"></script>
+     <script src="/admin/scripts/productManagement/productMgmt.controller.js"></script>
+     <script src="/admin/scripts/productManagement/productMgmt.directive.js"></script>
 
 </body>
 

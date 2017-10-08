@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('YelaApplication')
+        .module('YelaSidebar', [])
         .directive('ylSideBar', Directive);
 
     Directive.$inject = [];
@@ -12,22 +12,19 @@
         // Creates:
         //
         var directive = {
-            bindToController: true,
             controller: ControllerController,
             controllerAs: 'vm',
-            link: link,
             restrict: 'EA',
             scope: {
+                config: '='
             },
-            templateUrl: '/components/ylSideBar/ylsidebar.directive.html'
+            templateUrl: '/admin/components/ylSideBar/ylsidebar.directive.html'
         };
         return directive;
-        
-        function link(scope, element, attrs) {
-        }
+
     }
     /* @ngInject */
-    function ControllerController () {
-        
+    function ControllerController ($scope) {
+        console.log($scope.config);
     }
 })();
