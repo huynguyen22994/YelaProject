@@ -5,23 +5,16 @@
         .module('YelaApplication')
         .controller('IndexController', ControllerController);
 
-    ControllerController.$inject = [];
-    function ControllerController() {
+    ControllerController.$inject = ['ylConstant'];
+    function ControllerController(ylConstant) {
         var vm = this;
         vm.navBarConfig = {
-            appTitle: 'Yela Admin',
-            appTitleUrl: '/',
-            menus: [
-                {
-                    name: 'Product Management',
-                    url: '',
-                    subMenu: [
-
-                    ]
-                }
+            appTitle: ylConstant.appTitle,
+            menus: ylConstant.ylAppMenu,
+            setting: [
+                
             ]
-        };
-        
+        }      
 
         activate();
 
