@@ -43,7 +43,14 @@
                     name: 'User Management',
                     url: '',
                     apps: [
-                        
+                        {
+                            name: 'User',
+                            url: ''
+                        },
+                        {
+                            name: 'ChatBox Management',
+                            url: ''
+                        }
                     ]
                 }
             ]

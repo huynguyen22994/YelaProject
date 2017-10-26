@@ -7,7 +7,7 @@
 
     configFunction.$inject = ['$routeProvider', '$locationProvider', 'productMgmtConstant'];
     function configFunction($routeProvider, $locationProvider, productMgmtConstant) {
-        let urlParams = productMgmtConstant.appUrl.productMgmt.routeUrl + '/:id';
+        let urlParams = productMgmtConstant.appUrl.productMgmt.routeUrl + '/:route';
 
         $routeProvider
             .when(productMgmtConstant.appUrl.productMgmt.routeUrl, {
@@ -15,6 +15,9 @@
             })
             .when(urlParams, {
                 templateUrl: productMgmtConstant.appUrl.productMgmt.templateUrl,
+                // resolve: {
+                //     routeHome: checkState($routeParams)
+                // }
             });
         $locationProvider.html5Mode(true);
     };

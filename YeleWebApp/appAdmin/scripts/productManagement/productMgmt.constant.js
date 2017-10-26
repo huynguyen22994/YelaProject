@@ -6,38 +6,52 @@
         appUrl: {
             productMgmt: {
                 routeUrl: '/productManagement',
-                templateUrl: '/admin/scripts/productManagement/productMgmt.html'
+                templateUrl: 'productMgmt.html'
             }
         },
-        sideBar: {
-            title: '',
-            apps: [
-                {
-                    name: 'Product',
+        productMgmt: {
+            title: 'ProductMgmt',
+            home: {
+                id: 'home',
+                name: 'Home',
+                templateUrl: 'admin/scripts/productManagement/home/home.html',
+                iconClass: '',
+                url: '/productManagement/home'
+            },
+            product: {
+                id: 'product',
+                name: 'Product',
+                templateUrl: '',
+                iconClass: 'fa fa-bar-chart-o fa-fw',
+                url: '/productManagement/product',
+                comestic: {
+                    id: 'comestic',
+                    name: 'Comestic',
                     templateUrl: '',
-                    apps: [
-                        {
-                            name: 'Comestic',
-                            templateUrl: ''
-                        },
-                        {
-                            name: 'Food',
-                            templateUrl: ''
-                        }
-                    ]
+                    url: '/productManagement/product/comestic'
                 },
-                {
-                    name: 'Product Type',
+                food: {
+                    id: 'food',
+                    name: 'Food',
                     templateUrl: '',
-                    apps: [
-
-                    ]
-                },
-                {
-                    name: 'Category',
-                    templateUrl: ''
+                    url: '/productManagement/prduct/comestic'
                 }
-            ]
+                
+            },
+            producttype: {
+                id: 'producttype',
+                name: 'Product Type',
+                templateUrl: 'admin/scripts/productManagement/producttype/producttype.html',
+                iconClass: '',
+                url: '/productManagement/producttype'
+            },
+            category: {
+                id: 'category',
+                name: 'Category',
+                templateUrl: 'admin/scripts/productManagement/category/category.html',
+                iconClass: '',
+                url: '/productManagement/category'
+            }
         }
     });
 })();

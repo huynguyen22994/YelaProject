@@ -4,16 +4,6 @@
 
         <!-- page-wrapper -->
         <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h3 class="page-header">Dashboard</h3>
-                    <div class="pull-right" style="margin-bottom: 1%">
-                        <button class="btn btn-danger">test</button>
-                    </div>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <yl-table></yl-table>
+            <div ng-include="currentState.templateUrl"></div>
         </div>
         <!-- /#page-wrapper -->

@@ -3,6 +3,8 @@
 
     angular.module('YelaApplication.productManagement', [
         'ngRoute',
-        'YelaSkeleton'
+        'YelaSkeleton',
+        'YelaState',
+        'YelaApplication.productManagement.home'
     ]);
 })();

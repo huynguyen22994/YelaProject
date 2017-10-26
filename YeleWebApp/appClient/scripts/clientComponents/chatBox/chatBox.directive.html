@@ -1,0 +1,34 @@
+    <link rel="stylesheet" href="scripts/clientComponents/chatBox/chatBox.css">
+    <script src="scripts/clientComponents/chatBox/chatBox.jquery.js"></script>
+    
+    <div class="chatbox chatbox--tray chatbox--empty">
+        <div class="chatbox__title">
+            <h5><a href="#"> {{cus}}</a></h5>
+            <button class="chatbox__title__tray">
+                <span></span>
+            </button>
+            <button class="chatbox__title__close">
+                <span>
+                    <svg viewBox="0 0 12 12" width="12px" height="12px">
+                        <line stroke="#FFFFFF" x1="11.75" y1="0.25" x2="0.25" y2="11.75"></line>
+                        <line stroke="#FFFFFF" x1="11.75" y1="11.75" x2="0.25" y2="0.25"></line>
+                    </svg>
+                </span>
+            </button>
+        </div>
+        <div class="chatbox__body" id="chatBoxs">
+        </div>
+        <form class="chatbox__credentials">
+            <div class="form-group">
+                <label for="inputName">Name:</label>
+                <input type="text" ng-model="customer.name" class="form-control" id="inputName" required>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail">Email:</label>
+                <input type="email" ng-model="customer.email" class="form-control" id="inputEmail" required>
+            </div>
+            <button ng-click="enterChat()" class="btn btn-success btn-block">Enter Chat</button>
+        </form>
+        <textarea class="chatbox__message" ng-model="message" placeholder="Write something interesting"></textarea>
+        <button ng-click="sendChat()">Send</button>
+    </div>

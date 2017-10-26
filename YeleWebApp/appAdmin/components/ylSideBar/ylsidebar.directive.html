@@ -13,8 +13,8 @@
                             <!-- /input-group -->
                         </li>
                         <li ng-repeat="link in config.apps">
-                            <a ng-href="{{link.url}}"><i class="fa fa-bar-chart-o fa-fw"></i> {{link.name}}<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                            <a ng-href="" ng-class="link.active" ng-click="toggleSubSideBar(link)"><i ng-class="link.iconClass"></i> {{link.name}}<span class="fa arrow" ng-if="isSubSidebar(link)"></span></a>
+                            <ul class="nav nav-second-level" ng-if="toogle">
                                 <li ng-repeat="sublink in link.apps">
                                     <a ng-href="">{{sublink.name}}</a>
                                 </li>
