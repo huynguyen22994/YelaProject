@@ -120,5 +120,12 @@
             socket.emit('cusSendChat', { customer: $scope.customer, role: 'customer', chat: $scope.message });
             $scope.message = '';
         };
+
+        $('#mesageCustomer').keypress(function(e) {
+            if(e.which == 13) {
+                $(this).blur();
+                $scope.sendChat();
+            }
+        });
     };
 })();

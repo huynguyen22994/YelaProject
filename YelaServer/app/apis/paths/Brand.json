@@ -2,8 +2,8 @@
     "paths": {
         "/brand": {
             "get": {
-                "summary": "Product Types",
-                "description": "This is test Apis Book",
+                "summary": "Get all brands",
+                "description": "This is a API to get all brand",
                 "operationId": "getBrands",
                 "responses": {
                         "200": {
@@ -22,8 +22,8 @@
                 "x-swagger-router-controller": "DefaultCtrl"
             },
             "post": {
-                "summary": "create new coffee",
-                "description": "input a new coffee to insert CoffeeDB",
+                "summary": "Create a new Brand",
+                "description": "Input a Brand object with some properties below",
                 "operationId": "createBrand",
                  "parameters": [
                     {
@@ -53,8 +53,8 @@
                 "x-swagger-router-controller": "DefaultCtrl"
             },
             "put": {
-                "summary": "create new coffee",
-                "description": "input a new coffee to insert CoffeeDB",
+                "summary": "Update a Brand",
+                "description": "Input a Brand edited with id to edit",
                 "operationId": "updateBrand",
                  "parameters": [
                     {
@@ -84,8 +84,8 @@
                 "x-swagger-router-controller": "DefaultCtrl"
             },
             "delete": {
-                "summary": "Product Types",
-                "description": "This is test Apis Book",
+                "summary": "Delete a Brand",
+                "description": "Input a pram Brand ID to delete",
                 "operationId": "deleteBrand",
                 "parameters": [
                     {
@@ -115,8 +115,8 @@
         },
         "/brand/one": {
             "get": {
-                "summary": "Product Types",
-                "description": "This is test Apis Book",
+                "summary": "Get onew Brand",
+                "description": "Input BrandId to get",
                 "operationId": "getOneBrand",
                 "parameters": [
                     {

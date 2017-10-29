@@ -25,7 +25,7 @@
     }
     /* @ngInject */
     function ControllerController ($scope, $location) {
-        console.log($scope.config);
+        //console.log($scope.config);
         $scope.isSubSidebar = isSubSidebar;
         $scope.toggleSubSideBar = toggleSubSideBar;
         $scope.routeUrl = routeUrl;

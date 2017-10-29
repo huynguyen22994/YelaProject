@@ -26,7 +26,7 @@
     }
     /* @ngInject */
     function ControllerController ($scope) {
-        console.log($scope.sidebarConfig);
+        //console.log($scope.sidebarConfig);
 
         activate();
         function activate() {

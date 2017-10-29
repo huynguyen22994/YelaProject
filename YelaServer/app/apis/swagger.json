@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Hello World Coffee APIs",
+    "title": "Yela Project APIs",
     "version": "1.0.0"
   },
   "host": "localhost:3000",

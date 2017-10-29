@@ -7,7 +7,7 @@
             ylAppMenu: [
                 {
                     name: 'Product Management',
-                    url: 'productManagement',
+                    url: '#!/productManagement',
                     apps: [
                         {
                             name: 'Product',

@@ -2,6 +2,7 @@
     'use strict';
 
     angular.module('YelaApplication', [
-        'YelaApplication.productManagement'
+        'YelaApplication.ProductMgmt',
+        'YelaApplication.UserManagement'
     ]);
 })();
