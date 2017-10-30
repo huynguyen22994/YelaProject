@@ -1,44 +1,60 @@
-            <div class="row">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Striped Rows
-                    </div>
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.table-responsive -->
-                    </div>
-                    <!-- /.panel-body -->
-                </div>
-            </div>
+
+    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+        <thead>
+            <tr>    
+                <th ng-if="hasCheckBox"><input type="checkbox" ng-model="config.checkBoxOptions.checkAll" value="" ng-click="config.checkBoxOptions.toggleCheckAll()"></th>
+                <th ng-if="items[0].numberIndex">
+                    Index
+                </th>
+                <th ng-repeat="label in config.arrayColumnLabel" ng-i18next>{{::label}}</th>
+            </tr> 
+        </thead>
+        <tbody>
+            <tr ng-repeat="song in items" 
+                ng-show="hasResult"
+                ng-click="config.trClick(song)"
+            >
+                <td
+                    ng-if="hasCheckBox"
+                >
+                    <input 
+                        type="checkbox" 
+                        value="" 
+                        ng-model="song.checked" 
+                        ng-click="config.checkBoxOptions.toggleCheckOne(song); $event.stopPropagation();">
+                </td>   
+                <td ng-if="items[0].numberIndex">
+                    {{::song.numberIndex}}
+                </td>                            
+                <td 
+                    ng-repeat="content in config.arrayColumnContent">
+                        {{::song[content]}}
+                        <img ng-if="content.image && song[content.url]" ng-src="{{song[content.url]}}" class="img-responsive img-circle" alt="Cinque Terre" width="50" height="50"> 
+                        <img ng-if="content.image && !song[content.url]" ng-src="/images/no-image.png" class="img-responsive img-circle" alt="Cinque Terre" width="50" height="50"> 
+                </td> 
+                <td>
+                    <button type="button" 
+                            ng-repeat="buttonName in config.arrayActions" 
+                            ng-hide="buttonName.hide(song)" 
+                            ng-disabled="buttonName.disabled(song)" 
+                            ng-click="buttonName.action(song); $event.stopPropagation();" 
+                            ng-class="buttonName.className" 
+                            aria-label="Left Align" 
+                            ng-i18next="[title]{{buttonName.tooltipTitle}}"
+                            style="margin-right:5px"
+                            tooltip>
+                            <i ng-class="buttonName.iconClass" aria-hidden="true"></i> 
+                            <!-- <b ng-i18next>{{buttonName.buttonName}}</b> -->
+                    </button>
+                </td>
+                    
+            </tr>
+            <tr ng-show="!hasResult">
+                <td class="no-result">
+                    <label ng-class="noResultClass"> 
+                        <i>No Result...</i> 
+                    </label>
+                </td>
+            </tr> 
+        </tbody>
+    </table>

@@ -1,0 +1,18 @@
+<div class="panelDetail">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class="title">   
+                   <a ng-click="config.headerClick()">Detail <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                </h5>
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="form-group" ng-repeat="item in config.items">
+                        <label>{{item.label}}:</label>
+                        <input ng-if="!item.isImg" type="text" class="form-control" ng-disabled="true" ng-model="itemDetail[item.queryModel]">
+                        <img ng-if="item.isImg" ng-src="{{itemDetail[item.queryModel]}}" class="img-responsive img-rounded">
+                    </div>
+                </form>
+            </div>
+    </div>
+</div>

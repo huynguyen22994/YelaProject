@@ -2,6 +2,9 @@
     'use strict';
 
     angular.module('YelaApplication.ProductMgmt', [
-        'ngRoute'
+        'ngRoute',
+        'YlTable',
+        'ylButtonHeader',
+        'YlFormDetail'
     ]);
 })();
