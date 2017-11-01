@@ -5,6 +5,8 @@
         'ngRoute',
         'YlTable',
         'ylButtonHeader',
-        'YlFormDetail'
+        'YlFormDetail',
+        'YlPaging',
+        'YlTooltip'
     ]);
 })();

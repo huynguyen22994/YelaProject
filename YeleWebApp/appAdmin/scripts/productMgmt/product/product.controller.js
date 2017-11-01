@@ -5,14 +5,15 @@
         .module('YelaApplication.ProductMgmt')
         .controller('ProductController', ControllerController);
 
-    ControllerController.$inject = ['products', '$scope', '$window', '$location'];
-    function ControllerController(products, $scope, $window, $location) {
+    ControllerController.$inject = ['products', '$scope', '$window', '$location', 'PagerService'];
+    function ControllerController(products, $scope, $window, $location, PagerService) {
         var vm = this;
         vm.hasResult = (products.data.count === 0) ? false : true;
         vm.products = products.data.products;
         vm.classForTable = 'col-md-12 col-sm-12 col-lg-12';
         vm.classForDetail = '';
         vm.productDetail = {};
+        vm.pager = {};
         vm.configTable = {
             arrayColumnLabel: ['Hình Ảnh', 'Tên', 'Tình Trạng', 'Mô Tả', 'Số Lượng', 'Hành Động'],
             arrayColumnContent: [{ image: true, url: 'songPicture' }, 'name', 'productStatus', 'discribe', 'quantity'],
@@ -61,6 +62,10 @@
                 getSongDetail(item);
             }
         };
+        vm.pageCustomize = {
+            currentPage: 1,
+            size: '10'
+        }
 
         vm.configButtonHeader = {
             arrayButton: [
@@ -162,8 +167,11 @@
         //     $scope.$digest();
         // };
 
-        function activate () {
-
+        function activate() {
+            if (Array.isArray(vm.products)) {
+                vm.pager = PagerService.getPager();   
+                vm.productsFilted = vm.products.slice(vm.pager.startIndex, vm.pager.endIndex);
+            }
         };
 
         function showDetail () {

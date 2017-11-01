@@ -1,3 +1,8 @@
+    <style>
+        tbody tr:hover {
+            cursor: pointer
+        }
+    </style>
 
     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
         <thead>
@@ -42,6 +47,7 @@
                             aria-label="Left Align" 
                             ng-i18next="[title]{{buttonName.tooltipTitle}}"
                             style="margin-right:5px"
+                            title="i18next"
                             tooltip>
                             <i ng-class="buttonName.iconClass" aria-hidden="true"></i> 
                             <!-- <b ng-i18next>{{buttonName.buttonName}}</b> -->

@@ -1,0 +1,61 @@
+                    
+<div class="row" ng-if="hasResult" resize>
+    <div class="col-md-11 col-md-11 col-sm-11 col-xs-11">
+        <div class="page-nation">
+            <ul ng-if="pager.pages.length" class="pagination pagination-large">
+                <li 
+                    ng-class="{disabled:pager.currentPage === 1}"    
+                >   
+                    <a 
+                        ng-click="setPaging(1, pageCustomizeSize.size)"
+                        title="first"
+                        tooltip    
+                    >first </a>
+                </li>
+                <li 
+                    ng-class="{disabled:pager.currentPage === 1}"
+                    ng-if="width >= widthResponsive"     
+                >
+                    <a ng-click="setPaging(pager.currentPage - 1, pageCustomizeSize.size)"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+                </li>
+                <li ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}">
+                    <a ng-click="setPaging(page, pageCustomizeSize.size)">{{::page}}</a>
+                </li>
+                <li 
+                    ng-class="{disabled:pager.currentPage === pager.totalPages}"
+                    ng-if="width >= widthResponsive"     
+                >
+                    <a ng-click="setPaging(pager.currentPage + 1, pageCustomizeSize.size)"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                </li>
+                <li 
+                    ng-class="{disabled:pager.currentPage === pager.totalPages}"
+                >
+                    <a ng-click="setPaging(pager.totalPages, pageCustomizeSize.size)"
+                        title="last"
+                        tooltip
+                    >last</a>
+                </li>
+            </ul>
+        </div>  
+    </div>
+
+    <!-- Drop down-->
+    <div class="col-md-1 col-md-1 col-sm-1 col-xs-1" ng-if="pageCustomize">
+        <select ng-if="pager.pages.length"
+            class="form-control" 
+            ng-model="pageCustomize.size" 
+            ng-change="selectItemNumber(pageCustomize.currentPage, pageCustomize.size)"
+            title="i18next"
+            tooltip
+        >
+            <option 
+                ng-repeat="dropNumber in pageDropNumber" 
+                value="{{::dropNumber.id}}"
+            >
+                {{::dropNumber.name}}
+            </option>
+        </select>
+    </div>
+    <!-- Drop down -->
+    
+</div>

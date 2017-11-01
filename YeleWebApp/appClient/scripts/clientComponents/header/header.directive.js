@@ -42,7 +42,9 @@
     'use strict';
 
     angular
-        .module('HeaderApp', [])
+        .module('HeaderApp', [
+            'jm.i18next'
+        ])
         .directive('headerApp', Directive);
 
     Directive.$inject = [];
@@ -60,8 +62,9 @@
         
     }
     /* @ngInject */
-    function ControllerController ($scope) {
+    function ControllerController ($scope, $i18next) {
         var vm = this;
+        vm.changeLanguage = changeLanguage;
         vm.config = {
             headerTop: {
                 left: [
@@ -96,6 +99,11 @@
                     
                 ]
             }
+        };
+
+        function changeLanguage(key) {
+            console.log('change');
+            $i18next.changeLanguage(key);
         };
     }
 })();

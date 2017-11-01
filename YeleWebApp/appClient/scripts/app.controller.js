@@ -5,15 +5,15 @@
         .module('YelaAppClient')
         .controller('ClientController', ControllerController);
 
-    ControllerController.$inject = [];
-    function ControllerController() {
+    ControllerController.$inject = ['$i18next'];
+    function ControllerController($i18next) {
         var vm = this;
-        vm.test = 'ddsf';
 
         activate();
 
         ////////////////
 
-        function activate() { }
+        function activate() { };
+
     }
 })();

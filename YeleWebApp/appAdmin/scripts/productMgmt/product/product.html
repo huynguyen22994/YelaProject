@@ -19,7 +19,8 @@
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <yl-table config="vm.configTable" array="vm.products" has-result="vm.hasResult"></yl-table> 
+                    <yl-table config="vm.configTable" array="vm.productsFilted" has-result="vm.hasResult"></yl-table> 
+                    <yl-paging array-obj="vm.products" array-filter="vm.productsFilted" page-customize="vm.pageCustomize"></yl-paging>
                 </div>
                 <!-- /.panel-body -->
             </div>
