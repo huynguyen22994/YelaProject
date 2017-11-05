@@ -74,7 +74,7 @@
 
             $scope.hasCheckBox = ($scope.config.checkBoxOptions) ? true : false;
 
-            //$scope.noResultClass = ($window.innerWidth >= ValueConfig.responsiveConfig.width) ? 'no-result-lable' : 'no-result-lable-mobile';
+            $scope.noResultClass = ($window.innerWidth >= 400) ? 'no-result-lable' : 'no-result-lable-mobile';
         
         };
 

@@ -90,6 +90,10 @@ module.exports.getProductTypebyCategoryId = (req, res, next) => {
     ProductTypeCtrl.getProductTypebyCategoryId(req, res, next);
 };
 
+module.exports.searchProductType = (req, res, next) => {
+    ProductTypeCtrl.searchProductType(req, res, next);
+};
+
 // Customer
 module.exports.createCustomer = (req, res, next) => {
     CustomerCtrl.createCustomer(req, res, next);

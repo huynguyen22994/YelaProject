@@ -8,12 +8,9 @@
         return {
             restrict: 'EA',
             scope: {
-                // pager: '=',
-                // pageCustomizeSize: '=',
-                // hasResult: '='
-                arrayObj: '=',
-                arrayFilter: '=',
-                pageCustomize: '='
+                pager: '=',
+                pageCustomizeSize: '=',
+                hasResult: '='
             },
             templateUrl: '/admin/components/ylPaging/ylpaging.html',
             controller: PagingController
@@ -24,7 +21,7 @@
 
     function PagingController($scope, PagerService) {
 
-        $scope.setPaging = setPage;
+        //$scope.pageDropNumber = ValueConfig.pageDropNumber;
         $scope.pageDropNumber = [
             { 
                 id: 1,
@@ -48,37 +45,29 @@
             }
         ];
         $scope.selectItemNumber = selectItemNumber;
+        // $scope.widthResponsive = ValueConfig.responsiveConfig.width;
         $scope.widthResponsive = 400;
+        $scope.$watch('pager', watchSetPage);
+
+        function watchSetPage(newValue, oldValue) {
+            if(newValue){
+                console.log(newValue);
+           } else {
+               //$scope.routeCreateSong = null;
+           }
+        };
 
         activate();
         function activate() {
-            // if($scope.pager.setPage) {
-            //     $scope.setPaging = $scope.pager.setPage;
-            // } else {
-            //     setPageDefault();
-            // }
-            $scope.pager = PagerService.getPager($scope.arrayObj.length, $scope.pageCustomize.currentPage, $scope.pageCustomize.size);
-            setPage(1);
+            if($scope.pager.setPage) {
+                $scope.setPaging = $scope.pager.setPage;
+            } else {
+                setPageDefault();
+            }
         };
 
         function setPageDefault(page) {
             console.log('please define setPage function in pager');
-        };
-
-        function setPage(page, pageSize = $scope.pageCustomize.size) {
-            $scope.pageCustomize.size = pageSize;
-            $scope.pageCustomize.currentPage = page;
-            if(page < 1 || page > $scope.pager.totalPages) {
-                return;
-            }
-            if(Array.isArray($scope.arrayObj)) {
-                $scope.hasResult = true;
-                $scope.pager = PagerService.getPager($scope.arrayObj.length, page, pageSize);
-                $scope.arrayFilter = $scope.arrayObj.slice($scope.pager.startIndex, $scope.pager.endIndex);
-                //songCtrl.items = songCtrl.songList.songs.slice(songCtrl.pager.startIndex, songCtrl.pager.endIndex);
-            } else {
-                $scope.hasResult = false;
-            }
         };
 
         function selectItemNumber(current, number) {
@@ -88,6 +77,5 @@
                 return;
             }         
         };
-
     }
 })();

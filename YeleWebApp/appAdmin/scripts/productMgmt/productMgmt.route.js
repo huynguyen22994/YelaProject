@@ -29,6 +29,16 @@
                 templateUrl: '/admin/scripts/productMgmt/product/create/create.html',
                 controller: 'ProductCreateController',
                 controllerAs: 'vm',
+            })
+            .when('/productMgmt/producttype', {
+                templateUrl: '/admin/scripts/productMgmt/producttype/producttype.html',
+                controller: 'ProducttypeCreateController',
+                controllerAs: 'vm',
+                resolve: {
+                    producttypes: ['ProducttypeService', function (ProducttypeService) {
+                        return ProducttypeService.getAllProducttypes();
+                    }]
+                }
             });
     };
 })();

@@ -3,6 +3,7 @@
 
     angular.module('YelaApplication', [
         'YelaApplication.ProductMgmt',
-        'YelaApplication.UserManagement'
+        'YelaApplication.UserManagement',
+        'jm.i18next'
     ]);
 })();

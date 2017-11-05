@@ -2,7 +2,7 @@
     'use strict';
     angular
         .module('YlResize', [])
-        .directive('ylresize', resizeFunction);
+        .directive('resize', resizeFunction);
 
     function resizeFunction($window) {
         return {

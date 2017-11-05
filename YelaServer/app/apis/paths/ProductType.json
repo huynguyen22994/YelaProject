@@ -174,6 +174,37 @@
                     },
                 "x-swagger-router-controller": "DefaultCtrl"
             }
+        },
+        "/producttype/search": {
+            "get": {
+                "summary": "Product Types",
+                "description": "This is test Apis Book",
+                "operationId": "searchProductType",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "key",
+                        "description": "Coffee object that needs to be added to the CoffeeDB",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                        "200": {
+                            "description": "template file",
+                            "schema": {
+                                "$ref": "#/definitions/ProductType"
+                            }
+                        },
+                        "default": {
+                            "description": "unexpected error",
+                            "schema": {
+                                "$ref": "#/definitions/Error"
+                            }
+                        }
+                    },
+                "x-swagger-router-controller": "DefaultCtrl"
+            }
         }
     }
 }

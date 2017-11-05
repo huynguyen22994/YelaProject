@@ -301,7 +301,7 @@
                                     <a href="#!/productMgmt/product">Sản Phẩm</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Loại Sản Phẩm</a>
+                                    <a href="#!/productMgmt/producttype">Loại Sản Phẩm</a>
                                 </li>
                                 <li>
                                     <a href="morris.html">Chủ Đề</a>
@@ -420,6 +420,11 @@
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-route/angular-route.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-socket-io/0.7.0/socket.js"></script>
+    <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script> 
+    <script src="/bower_components/i18next/i18next.js"></script>
+	<script src="/bower_components/i18next-xhr-backend/i18nextXHRBackend.js"></script>
+	<script src="/bower_components/ng-i18next/dist/ng-i18next.js"></script>
+	<script src="/admin/translate/translate.js"></script>
 
     <script src="/admin/components/ylSocket/ylSocket.js"></script>
     <script src="/admin/components/ylTooltip/yltooltip.directive.js"></script>
@@ -428,6 +433,7 @@
     <script src="/admin/components/ylFormDetail/ylformdetail.directive.js"></script>
     <script src="/admin/components/ylPaging/ylpaging.directive.js"></script>
     <script src="/admin/components/ylPaging/ylpaging.service.js"></script>
+    <script src="/admin/components/ylResize/ylresize.directive.js"></script>
 
     <script src="/admin/scripts/app.module.js"></script>
     <script src="/admin/scripts/app.bootstrap.js"></script> 
@@ -437,8 +443,13 @@
     <script src="/admin/scripts/productMgmt/productMgmt.module.js"></script>
     <script src="/admin/scripts/productMgmt/productMgmt.route.js"></script>
     <script src="/admin/scripts/productMgmt/home/home.controller.js"></script>
+    <!-- product -->
     <script src="/admin/scripts/productMgmt/product/product.service.js"></script>
     <script src="/admin/scripts/productMgmt/product/product.controller.js"></script>
+    <!-- producttype -->
+    <script src="/admin/scripts/productMgmt/producttype/producttype.service.js"></script>
+    <script src="/admin/scripts/productMgmt/producttype/producttype.controller.js"></script>
+
      <script src="/admin/scripts/userMgmt/userMgmt.module.js"></script>
     <script src="/admin/scripts/userMgmt/userMgmt.route.js"></script> 
     <script src="/admin/scripts/userMgmt/contact/contact.controller.js"></script>

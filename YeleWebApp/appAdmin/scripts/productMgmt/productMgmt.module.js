@@ -7,6 +7,7 @@
         'ylButtonHeader',
         'YlFormDetail',
         'YlPaging',
-        'YlTooltip'
+        'YlTooltip',
+        'YlResize'
     ]);
 })();
