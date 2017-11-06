@@ -5,10 +5,16 @@
         .module('YelaApplication')
         .controller('IndexController', ControllerController);
 
-    ControllerController.$inject = [];
-    function ControllerController() {
+    ControllerController.$inject = ['ylConstant'];
+    function ControllerController(ylConstant) {
         var vm = this;
-        vm.test = 'ahihi';
+        vm.navBarConfig = {
+            appTitle: ylConstant.appTitle,
+            menus: ylConstant.ylAppMenu,
+            setting: [
+                
+            ]
+        }      
 
         activate();
 

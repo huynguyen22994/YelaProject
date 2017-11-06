@@ -131,3 +131,19 @@ module.exports.getProductTypebyCategoryId = (req, res, next) => {
         console.log(err);
     });
 };
+
+module.exports.searchProductType = (req, res, next) => {
+    var key = req.query.key;
+    models.ProductType.findAndCountAll({
+        where: {
+            name: {
+                $like: `%${key}%`
+            }
+        }
+    }).then(function (result) {
+        res.json(result);
+    }).catch(function (err) {
+        res.statusCode = 400;
+        res.end();
+    });
+};

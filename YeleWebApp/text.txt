@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+
+    <!-- MetisMenu CSS -->
+    <link rel="stylesheet" href="/admin/styles/metisMenu/metisMenu.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/admin/styles/css/sb-admin-2.css">
+
+    <!-- Morris Charts CSS -->
+    <link rel="stylesheet" href="/admin/styles/morrisjs/morris.css">
+
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body ng-controller="IndexController as vm">
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <yl-nav-bar config="vm.navBarConfig"></yl-nav-bar>
+        </nav>
+         <!-- /Navigation -->
+
+         <!--<yl-skeleton></yl-skeleton>-->
+         <div ng-view></div>
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/admin/styles/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="/admin/styles/raphael/raphael.min.js"></script>
+    <script src="/admin/styles/morrisjs/morris.min.js"></script>
+    <script src="/admin/styles/data/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/admin/styles/js/sb-admin-2.js"></script>
+
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+
+    <script src="/admin/scripts/app.module.js"></script>
+    <script src="/admin/scripts/app.bootstrap.js"></script>
+    <script src="/admin/scripts/app.constant.js"></script>
+    <script src="/admin/scripts/app.controller.js"></script>
+     <!--<script src="scripts/app.route.js"></script>-->
+     <script src="/admin/components/ylState/ylState.js"></script>
+     <script src="/admin/components/ylNavBar/ylnavbar.directive.js"></script>
+     <script src="/admin/components/ylSideBar/ylsidebar.directive.js"></script>
+     <script src="/admin/components/ylTable/yltable.directive.js"></script>
+     <script src="/admin/components/ylSkeleton/ylskeleton.directive.js"></script>
+     <!-- productMgmt -->
+     <script src="/admin/scripts/productManagement/productMgmt.module.js"></script>
+     <script src="/admin/scripts/productManagement/productMgmt.constant.js"></script>
+     <script src="/admin/scripts/productManagement/productMgmt.template.js"></script>
+     <script src="/admin/scripts/productManagement/productMgmt.route.js"></script>
+     <script src="/admin/scripts/productManagement/productMgmt.service.js"></script>
+     <script src="/admin/scripts/productManagement/productMgmt.controller.js"></script>
+     <!--<script src="/admin/scripts/productManagement/productMgmt.directive.js"></script>-->
+
+     <!-- productMgmt Home -->
+     <script src="/admin/scripts/productManagement/home/home.module.js"></script>
+     <script src="/admin/scripts/productManagement/home/home.service.js"></script>
+     <script src="/admin/scripts/productManagement/home/home.controller.js"></script>
+     <script src="/admin/scripts/productManagement/home/home.directive.js"></script>
+
+</body>
+
+</html>

@@ -12,22 +12,23 @@
         // Creates:
         //
         var directive = {
-            bindToController: true,
             controller: ControllerController,
-            controllerAs: 'vm',
-            link: link,
             restrict: 'EA',
             scope: {
+                config: '='
             },
-            templateUrl: '/components/ylNavBar/ylnavbar.directive.html'
+            templateUrl: '/admin/components/ylNavBar/ylnavbar.directive.html'
         };
         return directive;
         
-        function link(scope, element, attrs) {
-        }
     }
     /* @ngInject */
-    function ControllerController () {
-        
+    function ControllerController ($scope) {
+
+        $scope.isSubMenu = isSubMenu;
+
+        function isSubMenu(menu) {
+            return (angular.isArray(menu.apps) && menu.apps.length !== 0) ? true : false;  
+        };
     }
 })();

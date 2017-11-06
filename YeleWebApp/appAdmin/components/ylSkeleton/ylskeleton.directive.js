@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('YelaApplication')
+        .module('YelaSkeleton', ['YelaSidebar', 'YlTable'])
         .directive('ylSkeleton', Directive);
 
     Directive.$inject = [];
@@ -12,22 +12,33 @@
         // Creates:
         //
         var directive = {
-            bindToController: true,
             controller: ControllerController,
             controllerAs: 'vm',
-            link: link,
             restrict: 'EA',
             scope: {
+                sidebarConfig: '=',
+                currentState: '='
             },
-            templateUrl: '/components/ylSkeleton/ylskeleton.directive.html'
+            templateUrl: '/admin/components/ylSkeleton/ylskeleton.directive.html'
         };
         return directive;
         
-        function link(scope, element, attrs) {
-        }
     }
     /* @ngInject */
-    function ControllerController () {
-        
+    function ControllerController ($scope) {
+        //console.log($scope.sidebarConfig);
+
+        activate();
+        function activate() {
+            if (angular.isArray($scope.sidebarConfig.apps)) {
+                $scope.sidebarConfig.apps.forEach(function (state) {
+                    if (state.name === $scope.currentState.name) {
+                        state.active = 'active';
+                    } else {
+                        state.active = '';
+                    }
+                });
+            }    
+        }
     }
 })();

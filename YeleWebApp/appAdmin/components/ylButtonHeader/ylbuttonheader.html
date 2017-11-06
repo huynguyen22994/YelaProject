@@ -1,0 +1,47 @@
+                <div class="text-right" ng-if="config" style="display:flex; flex-direction:row">
+
+                    <div style="width:80%">
+                        <button type="button" 
+                            ng-repeat="button in config.arrayButton" 
+                            ng-class="button.className" 
+                            ng-disabled="button.disabled()" 
+                            ng-click="button.action()"
+                            aria-label="Left Align" 
+                            ng-i18next="[title]{{::button.tooltipTitle}}" 
+                            ng-init="buttonShow=false" 
+                            ng-mouseover="buttonShow=true"
+                            ng-mouseleave="buttonShow=false"
+                            style="margin-right:5px"
+                            tooltip>
+                            <i class="{{::button.iconClass}}" aria-hidden="true"></i>
+                            <b ng-if="buttonShow" ng-i18next="{{button.buttonName}}"></b>     
+                        </button>
+                    </div>
+
+                    <div style="width:20%">
+                        <input type="text" 
+                        ng-if="config.arrayInput"
+                        ng-show="showSearchInput"
+                        ng-repeat="input in config.arrayInput" 
+                            ng-class="input.className" 
+                            ng-init="arrayModel[input.modelName] = list.searchText"
+                            ng-model="arrayModel[input.modelName]" 
+                            ng-change="input.change(arrayModel[input.modelName])" 
+                            ng-model-options="input.modelOptions"                        
+                            ng-i18next="[placeholder]{{input.placeholder}};[title]{{::input.tooltipTitle}}" 
+                        tooltip/>
+
+                        <button
+                            type="button"
+                            ng-if="config.arrayInput"
+                            ng-show="showIconSearch"
+                            class="btn btn-info"
+                            ng-click="toggleSearchInput()"
+                            title="toggle search field"
+                        tooltip>
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                    </div>
+
+<!-- songList.searchText -->
+                </div>

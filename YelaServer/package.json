@@ -19,6 +19,7 @@
     "ng-file-upload": "^12.2.13",
     "nodemailer": "^3.0.2",
     "sequelize": "^3.30.4",
+    "socket.io": "^2.0.3",
     "swagger-tools": "^0.10.1",
     "underscore": "^1.8.3"
   },

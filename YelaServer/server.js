@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var http = require('http').createServer(app);
+var io = require('socket.io').listen(http);
 var swagger = require('swagger-tools');
 var fs = require('fs');
 var contact = require('./app/routes/contact.js');
@@ -10,8 +11,9 @@ var parseurl = require('parseurl');
 var session = require('express-session');
 var config = fs.readFileSync('./config/config.json');
 var configDB = JSON.parse(config.toString());
+var socket = require('./app/socket/chat.socket.js');
 
-app.set('port', process.env.PORT || configDB.port);
+app.set('port', process.argv[2] || configDB.port);
 
 app.use(session({
     secret: 'keyboard cat',
@@ -35,10 +37,10 @@ app.use(function (req, res, next) {
     next()
 });
 
-app.use('/', express.static(__dirname + '/public/client'));
-app.use('/admin', express.static(__dirname + '/public/admin'));
-app.use('/components', express.static(__dirname + '/public/components'));
-// app.use('/upload', express.static(__dirname));
+ app.use('/', express.static(__dirname + '/public/client'));
+ app.use('/admin', express.static(__dirname + '/public/admin'));
+ app.use('/components', express.static(__dirname + '/public/components'));
+ app.use('/upload', express.static(__dirname));
 
 app.use('/contact', contact);
 app.use('/api', upload);
@@ -94,5 +96,7 @@ swagger.initializeMiddleware(swaggerObj, (middleware) => {
         console.log(`link: http://localhost:${app.get('port')}/api-docs => Resource Listing JSON`)
     });
 });
+
+socket.initialize(io);
 
 exports = module.exports = app;
