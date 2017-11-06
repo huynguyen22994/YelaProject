@@ -14,31 +14,6 @@
                 templateUrl: '/admin/scripts/productMgmt/home/home.html',
                 controller: 'HomeController',
                 controllerAs: 'vm'
-            })
-            .when('/productMgmt/product', {
-                templateUrl: '/admin/scripts/productMgmt/product/product.html',
-                controller: 'ProductController',
-                controllerAs: 'vm',
-                resolve: {
-                    products: ['ProductService', function (ProductService) {
-                        return ProductService.getAllProducts();
-                    }]
-                }
-            })
-            .when('/productMgmt/product/create', {
-                templateUrl: '/admin/scripts/productMgmt/product/create/create.html',
-                controller: 'ProductCreateController',
-                controllerAs: 'vm',
-            })
-            .when('/productMgmt/producttype', {
-                templateUrl: '/admin/scripts/productMgmt/producttype/producttype.html',
-                controller: 'ProducttypeCreateController',
-                controllerAs: 'vm',
-                resolve: {
-                    producttypes: ['ProducttypeService', function (ProducttypeService) {
-                        return ProducttypeService.getAllProducttypes();
-                    }]
-                }
             });
     };
 })();

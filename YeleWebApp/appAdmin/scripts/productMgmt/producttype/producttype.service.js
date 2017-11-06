@@ -10,7 +10,8 @@
         var service = {
             getAllProducttypes: getAllProducttypes,
             deleteProducttype: deleteProducttype,
-            searchProducttype: searchProducttype
+            searchProducttype: searchProducttype,
+            getAllCategories: getAllCategories
         };
         
         return service;
@@ -48,6 +49,17 @@
                 params: {
                     key: key
                 }
+            }).then(function (res) {
+                return res;
+            }).catch(function (err) {
+                return err;
+            });
+        };
+
+        function getAllCategories() {
+            return $http({
+                url: '/api/category',
+                method: 'GET'
             }).then(function (res) {
                 return res;
             }).catch(function (err) {

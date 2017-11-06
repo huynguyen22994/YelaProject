@@ -3,7 +3,7 @@
 
     angular
         .module('YelaApplication.ProductMgmt')
-        .controller('ProducttypeCreateController', ControllerController);
+        .controller('ProducttypeController', ControllerController);
 
     ControllerController.$inject = ['producttypes', '$scope', '$window', '$location', 'PagerService', 'ProducttypeService'];
     function ControllerController(producttypes, $scope, $window, $location, PagerService, ProducttypeService) {
@@ -29,7 +29,7 @@
             arrayActions: [
                 {
                     buttonName: 'button_edit',
-                    className: 'btn btn-primary',
+                    className: 'btn btn-default',
                     iconClass: 'fa fa-pencil-square-o',
                     tooltipTitle: 'tooltip_edit_asong',
                     action(song) {
@@ -39,7 +39,7 @@
                 },
                 {
                     buttonName: 'button_delete',
-                    className: 'btn btn-danger',
+                    className: 'btn btn-default',
                     iconClass: 'fa fa-trash-o',
                     tooltipTitle: 'tooltip_delete_asong',
                     disabled(item) {
@@ -67,7 +67,7 @@
             arrayButton: [
                 {
                     buttonName: 'button_refresh',
-                    className: 'btn btn-warning',
+                    className: 'btn btn-default',
                     iconClass: 'fa fa-refresh',
                     tooltipTitle: 'tooltip_refresh',
                     action() {
@@ -76,17 +76,17 @@
                 },
                 {
                     buttonName: 'button_add',
-                    className: 'btn btn-success',
+                    className: 'btn btn-default',
                     iconClass: 'fa fa-plus',
                     tooltipTitle: 'tooltip_add',
                     action() {
                         //songCtrl.routeStateManager(songCtrl.stateSong, songCtrl.routeCreateSongState);
-                        $location.path('/productMgmt/product/create');
+                        $location.path('/productMgmt/producttype/create');
                     }
                 },
                 {
                     buttonName: 'button_delete',
-                    className: 'btn btn-danger',
+                    className: 'btn btn-default',
                     iconClass: 'fa fa-trash-o',
                     tooltipTitle: 'tooltip_multidelete_song',
                     disabled() {
