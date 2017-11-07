@@ -8,13 +8,9 @@
                             ng-click="button.action()"
                             aria-label="Left Align" 
                             ng-i18next="[title]{{::button.tooltipTitle}}" 
-                            ng-init="buttonShow=false" 
-                            ng-mouseover="buttonShow=true"
-                            ng-mouseleave="buttonShow=false"
                             style="margin-right:5px"
                             tooltip>
-                            <i class="{{::button.iconClass}}" aria-hidden="true"></i>
-                            <b ng-if="buttonShow" ng-i18next="{{button.buttonName}}"></b>     
+                            <i class="{{::button.iconClass}}" aria-hidden="true"></i>    
                         </button>
                     </div>
 

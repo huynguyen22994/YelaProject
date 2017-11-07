@@ -11,7 +11,8 @@
             getAllProducttypes: getAllProducttypes,
             deleteProducttype: deleteProducttype,
             searchProducttype: searchProducttype,
-            getAllCategories: getAllCategories
+            getAllCategories: getAllCategories,
+            createProducttype: createProducttype
         };
         
         return service;
@@ -60,6 +61,18 @@
             return $http({
                 url: '/api/category',
                 method: 'GET'
+            }).then(function (res) {
+                return res;
+            }).catch(function (err) {
+                return err;
+            });
+        };
+
+        function createProducttype(data) {
+            return $http({
+                url: '/api/producttype',
+                method: 'POST',
+                data: data
             }).then(function (res) {
                 return res;
             }).catch(function (err) {
