@@ -1,7 +1,7 @@
 {
     "database": {
         "dbname": "YelaShopDB",
-        "username": "huynguyen",
+        "username": "root",
         "password": null,
         "host": "localhost",
         "dialect": "mysql",

@@ -431,3 +431,9 @@ table.dataTable thead .sorting:after {
     border-left-width: 0;
   }
 }
+
+.no-result {
+  font-style: none;
+  font-size: 14px;
+  opacity: .4;
+}
