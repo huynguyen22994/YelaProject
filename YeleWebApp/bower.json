@@ -12,7 +12,9 @@
     "i18next": "^10.0.7",
     "ng-i18next": "^1.0.4",
     "i18next-xhr-backend": "^1.4.3",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "angular-toastr": "^2.1.1",
+    "angular-bootstrap": "^2.5.0"
   },
   "overrides": {
     "bootstrap-sass": {

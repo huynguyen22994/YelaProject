@@ -5,8 +5,8 @@
         .module('YelaApplication.ProductMgmt')
         .controller('ProducttypeController', ControllerController);
 
-    ControllerController.$inject = ['producttypes', '$scope', '$window', '$location', 'PagerService', 'ProducttypeService'];
-    function ControllerController(producttypes, $scope, $window, $location, PagerService, ProducttypeService) {
+    ControllerController.$inject = ['producttypes', '$scope', '$window', '$location', 'PagerService', 'ProducttypeService', 'toastr'];
+    function ControllerController(producttypes, $scope, $window, $location, PagerService, ProducttypeService, toastr) {
         var vm = this;
         vm.classForTable = 'col-md-12 col-sm-12 col-lg-12';
         vm.classForDetail = '';
@@ -32,9 +32,10 @@
                     className: 'btn btn-default',
                     iconClass: 'fa fa-pencil-square-o',
                     tooltipTitle: 'tooltip_edit_asong',
-                    action(song) {
+                    action(item) {
+                        console.log(item);
+                        $location.path('/productMgmt/producttype/edit/' + item.productTypeId);
                         //songCtrl.routeStateManager(songCtrl.stateSong, songCtrl.routeEditSongState + song.songID)
-                        console.log('1');
                     }
                 },
                 {
@@ -46,7 +47,20 @@
                         return (item.productsCount > 0) ? true : false; 
                     },
                     action(item) {
-                        deleteProducttype(item);
+                        // deleteProducttype(item);
+                        var modalOptions = {
+                            closeButtonText: 'Cancel',
+                            actionButtonText: 'Delete Customer',
+                            headerText: 'Delete ' + custName + '?',
+                            bodyText: 'Are you sure you want to delete this customer?'
+                        };
+
+                        ylDialogService.showModal({}, modalOptions).then(function (result) {
+                            // dataService.deleteCustomer($scope.customer.id).then(function () {
+                            //     $location.path('/customers');
+                            // }, processError);
+                            console.log(result);
+                        });
                     }
                 }
             ],

@@ -8,6 +8,7 @@
         'YlFormDetail',
         'YlPaging',
         'YlTooltip',
-        'YlResize'
+        'YlResize',
+        'YlDialog'
     ]);
 })();
