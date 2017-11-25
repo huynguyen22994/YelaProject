@@ -9,7 +9,7 @@
 
     Service.$inject = ['$rootScope'];
     function Service($rootScope) {
-        var socket = io.connect('http://localhost:9000');
+        var socket = io.connect('http://localhost:3000');
         return {
           on: function (eventName, callback) {
             socket.on(eventName, function () {  

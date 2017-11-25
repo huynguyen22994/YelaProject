@@ -13,17 +13,20 @@
             .when('/productMgmt/product', {
                 templateUrl: '/admin/scripts/productMgmt/product/product.html',
                 controller: 'ProductController',
-                controllerAs: 'vm',
-                resolve: {
-                    products: ['ProductService', function (ProductService) {
-                        return ProductService.getAllProducts();
-                    }]
-                }
+                controllerAs: 'vm'
             })
-            .when('/productMgmt/product/create', {
-                templateUrl: '/admin/scripts/productMgmt/product/create/create.html',
+            .when('/productMgmt/product/edit/:id', {
+                templateUrl: '/admin/scripts/productMgmt/product/editCreate/editCreate.template.html',
                 controller: 'ProductCreateController',
                 controllerAs: 'vm',
+                routeId: 'edit'
+            })
+            .when('/productMgmt/product/create', {
+                templateUrl: '/admin/scripts/productMgmt/product/editCreate/editCreate.template.html',
+                controller: 'ProductCreateController',
+                controllerAs: 'vm',
+                routeId: 'create'
             });
+        
     };
 })();

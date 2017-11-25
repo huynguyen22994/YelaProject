@@ -5,7 +5,15 @@
     angular.module('YlDialog', [
         'ui.bootstrap'
     ])
- 
+    .provider('$modal', function() {
+        var $modalProvider = {
+            options: {
+                animation: true,
+                backdrop: true, //can also be false or 'static'
+                keyboard: true
+            },
+        }
+    })    
         .service('ylDialogService', ['$modal',
     function ($modal) {
 
@@ -55,15 +63,6 @@
             return $modal.open(tempModalDefaults).result;
         };
 
-            }])
-        .provider('$modal', function() {
-        var $modalProvider = {
-            options: {
-                animation: true,
-                backdrop: true, //can also be false or 'static'
-                keyboard: true
-            },
-        }
-    })   
+    }]);
 })();
 

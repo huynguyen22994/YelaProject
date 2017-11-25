@@ -11,7 +11,7 @@ module.exports.getProducts = (req, res, next) => {
             result.rows.forEach((product) => {
                 responses.products.push(product.dataValues);
             });
-            res.end(JSON.stringify(responses));
+            res.json(responses);
         },
         (err) => {
             console.log(err);
@@ -50,7 +50,7 @@ module.exports.updateProduct = (req, res, next) => {
     if (product) {
         models.Product.findById(product.productId)
             .then((p) => {
-                if (p.linkImg == product.linkImg) {
+                if (p.dataValues.linkImg === product.linkImg) {
                     models.Product.update(
                         {
                             name: product.name,
@@ -115,11 +115,13 @@ module.exports.deleteProduct = (req, res, next) => {
         }, {
             force: true    
         }).then((result) => {
-            if (result == 0) {
+            if (result === 0) {
                 res.statusCode = 400;
                 res.end();
             } else {
-                fs.unlinkSync(linkImg);
+                if (linkImg) {
+                    fs.unlinkSync(linkImg);
+                }
                 res.end("delete success");
             }
         }, (err) => {
@@ -208,4 +210,20 @@ module.exports.getProductBrandProTypeByProductId = (req, res, next) => {
             res.statusCode = 400;
             res.end();
         });
+};
+
+module.exports.searchProduct = (req, res, next) => {
+    var key = req.query.key;
+    models.Product.findAndCountAll({
+        where: {
+            name: {
+                $like: `%${key}%`
+            }
+        }
+    }).then(function (result) {
+        res.json(result);
+    }).catch(function (err) {
+        res.statusCode = 400;
+        res.end();
+    });
 };

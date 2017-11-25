@@ -19,15 +19,15 @@
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <yl-table config="vm.configTable" array="vm.productsFilted" has-result="vm.hasResult"></yl-table> 
-                    <yl-paging array-obj="vm.products" array-filter="vm.productsFilted" page-customize="vm.pageCustomize"></yl-paging>
+                    <yl-table config="vm.configTable" array="vm.items" has-result="vm.hasResult"></yl-table> 
+                    <yl-paging pager="vm.pager" page-customize-size="vm.pageCustomize" has-result="vm.hasResult"></yl-paging>
                 </div>
                 <!-- /.panel-body -->
             </div>
         <!-- /.panel -->
         </div>
         <div ng-if="vm.isShowDetail();" ng-class="vm.classForDetail">
-            <yl-form-detail item-detail="vm.productDetail" config="vm.configFormDetail"></yl-form-detail>
+            <yl-form-detail item-detail="vm.producttypeDetail" config="vm.configFormDetail"></yl-form-detail>
         </div>
     </div>
 </div>

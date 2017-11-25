@@ -5,8 +5,8 @@
         .module('YelaApplication.ProductMgmt')
         .controller('ProducttypeController', ControllerController);
 
-    ControllerController.$inject = ['producttypes', '$scope', '$window', '$location', 'PagerService', 'ProducttypeService', 'toastr'];
-    function ControllerController(producttypes, $scope, $window, $location, PagerService, ProducttypeService, toastr) {
+    ControllerController.$inject = ['producttypes', '$scope', '$window', '$location', 'PagerService', 'ProducttypeService', 'toastr', '$mdDialog'];
+    function ControllerController(producttypes, $scope, $window, $location, PagerService, ProducttypeService, toastr, $mdDialog) {
         var vm = this;
         vm.classForTable = 'col-md-12 col-sm-12 col-lg-12';
         vm.classForDetail = '';
@@ -46,20 +46,18 @@
                     disabled(item) {
                         return (item.productsCount > 0) ? true : false; 
                     },
-                    action(item) {
-                        // deleteProducttype(item);
-                        var modalOptions = {
-                            closeButtonText: 'Cancel',
-                            actionButtonText: 'Delete Customer',
-                            headerText: 'Delete ' + custName + '?',
-                            bodyText: 'Are you sure you want to delete this customer?'
-                        };
+                    action(item, ev) {
+                        var confirm = $mdDialog.confirm()
+                            .title('Bạn có muốn xóa loại sản phẩm này?')
+                            .textContent('All of the banks have agreed to forgive you your debts.')
+                            .targetEvent(ev)
+                            .ok('Delete')
+                            .cancel('Cancel');
 
-                        ylDialogService.showModal({}, modalOptions).then(function (result) {
-                            // dataService.deleteCustomer($scope.customer.id).then(function () {
-                            //     $location.path('/customers');
-                            // }, processError);
-                            console.log(result);
+                        $mdDialog.show(confirm).then(function() {
+                            deleteProducttype(item);
+                        }, function() {
+                            console.log('cancel');
                         });
                     }
                 }

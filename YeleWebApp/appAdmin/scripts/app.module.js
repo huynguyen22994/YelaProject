@@ -5,7 +5,10 @@
         'YelaApplication.ProductMgmt',
         'YelaApplication.UserManagement',
         'jm.i18next',
-        'toastr'
+        'toastr',
+        'ngMaterial',
+        'ngFileUpload',
+        'ngImgCrop'
     ]);
 })();
 

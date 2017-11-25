@@ -21,7 +21,7 @@ module.exports.getProductType = (req, res, next) => {
                     canDelete: canDelete
                 }
             });
-            res.end(JSON.stringify(responses));
+            res.json(responses);
         });
 };
 
