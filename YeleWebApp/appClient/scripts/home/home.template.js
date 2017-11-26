@@ -19,12 +19,12 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <sidebar></sidebar>
+                                    <sidebar brand-data="vm.brands"></sidebar>
                                 </div>
                                 <div class="col-sm-9 padding-right">
-                                    <features-item></features-item>
+                                    <features-item array-data="vm.productFreatures"></features-item>
                                     <tab></tab>    
-                                    <recommend-product></recommend-product>        
+                                    <recommend-product array-data="vm.productBestsellers" config="vm.recommendProductConfig"></recommend-product>  
                                 </div>
                             </div>
                         </div>

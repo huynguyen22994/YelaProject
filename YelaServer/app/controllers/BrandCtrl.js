@@ -21,7 +21,7 @@ module.exports.getBrands = (req, res, next) => {
                     ProductCount: brand.ProductCount
                 }
             });
-            res.end(JSON.stringify(responses));
+            res.json(responses);
         });
 };
 

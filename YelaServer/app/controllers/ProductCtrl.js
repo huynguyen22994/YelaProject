@@ -185,15 +185,16 @@ module.exports.getProductNew = (req, res, next) => {
 
 module.exports.getProductBestseller = (req, res, next) => {
     var offset = parseInt(req.query.offset);
+    var limit =  parseInt(req.query.limit);
     models.Product.findAndCountAll({
         where: {
             productStatus: 'bestseller'
         },
         offset: offset,
-        limit: 3
+        limit: limit
     })
         .then((result) => {
-            res.end(JSON.stringify(result));
+            res.json(result);
         }, (err) => {
             res.statusCode = 400;
             res.end();

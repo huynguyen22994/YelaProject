@@ -11,7 +11,8 @@
             getAllProduct: getAllProduct,
             getProductFreatures: getProductFreatures,
             getProductNews: getProductNews,
-            getProductBestsellers: getProductBestsellers
+            getProductBestsellers: getProductBestsellers,
+            getBrands: getBrands
         };
         
         return service;
@@ -48,9 +49,24 @@
             });
         };
 
-        function getProductBestsellers() {
+        function getProductBestsellers(offset, limit) {
             return $http({
                 url: '/api/productbestseller',
+                method: 'GET',
+                params: {
+                    offset: offset,
+                    limit: limit
+                }
+            }).then(function (res) {
+                return res;
+            }).catch(function (err) {
+                return err;
+            });
+        };
+
+        function getBrands() {
+            return $http({
+                url: '/api/brand',
                 method: 'GET'
             }).then(function (res) {
                 return res;
