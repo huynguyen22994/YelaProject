@@ -12,7 +12,8 @@
             getProductFreatures: getProductFreatures,
             getProductNews: getProductNews,
             getProductBestsellers: getProductBestsellers,
-            getBrands: getBrands
+            getBrands: getBrands,
+            getCategories: getCategories
         };
         
         return service;
@@ -67,6 +68,17 @@
         function getBrands() {
             return $http({
                 url: '/api/brand',
+                method: 'GET'
+            }).then(function (res) {
+                return res;
+            }).catch(function (err) {
+                return err;
+            });
+        };
+
+        function getCategories() {
+            return $http({
+                url: '/api/category/producttype',
                 method: 'GET'
             }).then(function (res) {
                 return res;

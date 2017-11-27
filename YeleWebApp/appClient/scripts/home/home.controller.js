@@ -34,6 +34,7 @@
 
         async function activate() {
             await loadBrands();
+            await loadCategories();
             await loadProductFreatures();
             vm.productNews = await loadProductNews();
             await loadProductBestsellers(vm.offsetRecommendProduct, vm.limitRecommendProduct);
@@ -84,6 +85,19 @@
                     .then(function (brands) {
                         vm.brands = brands.data;
                         resolve(brands.data);
+                    }).catch(function (err) {
+                        console.log(err);
+                        reject(err);
+                    });
+            });
+        };
+
+        function loadCategories() {
+            return new Promise((resolve, reject) => {
+                HomeService.getCategories()
+                    .then(function (categories) {
+                        vm.categories = categories.data;
+                        resolve(categories.data);
                     }).catch(function (err) {
                         console.log(err);
                         reject(err);

@@ -69,6 +69,10 @@ module.exports.deleteCategory = (req, res, next) => {
     CategoryCtrl.deleteCategory(req, res, next);
 };
 
+module.exports.getCategoryProductTye = (req, res, next) => {
+    CategoryCtrl.getCategoryProductTye(req, res, next);
+};
+
 // Product Type
 module.exports.getProductType = (req, res, next) => {
     ProductTypeCtrl.getProductType(req, res, next);
