@@ -40,7 +40,11 @@
                 id: 'prominentest',
                 name: 'Nổi bật'
             }
-        ]
+        ];
+
+        vm.isSelectedBrand = isSelectedBrand;
+        vm.isSelectedProducttype = isSelectedProducttype;
+        vm.isSelectedStatus = isSelectedStatus;
 
         activate();
 
@@ -219,6 +223,18 @@
 
         function cancel() {
             $location.path('/productMgmt/product');
+        };
+
+        function isSelectedStatus() {
+            return vm.ProductStatus.id ? true : false;
+        };
+
+        function isSelectedBrand() {
+            return vm.Brand.brandId ? true : false;
+        };
+
+        function isSelectedProducttype() {
+            return vm.Producttype.productTypeId ? true : false;
         };
     }
 })();

@@ -149,6 +149,22 @@
                 "summary": "Product Types",
                 "description": "This is test Apis Book",
                 "operationId": "getProductFreature",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Coffee object that needs to be added to the CoffeeDB",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Coffee object that needs to be added to the CoffeeDB",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
                 "responses": {
                         "200": {
                             "description": "template file",

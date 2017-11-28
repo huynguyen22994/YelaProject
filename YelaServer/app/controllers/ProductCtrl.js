@@ -151,15 +151,17 @@ module.exports.getOneProduct = (req, res, next) => {
 };
 
 module.exports.getProductFreature = (req, res, next) => {
+    var offset = parseInt(req.query.offset);
+    var limit =  parseInt(req.query.limit);
     models.Product.findAndCountAll({
     where: {
         productStatus: 'prominentest'
     },
-    //offset: 10,
-    limit: 9
+    offset: offset,
+    limit: limit
     })
     .then((result) => {
-        res.end(JSON.stringify(result));
+        res.json(result);
     }, (err) => {
         res.statusCode = 400;
         res.end();

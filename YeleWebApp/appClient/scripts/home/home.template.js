@@ -22,7 +22,7 @@
                                     <sidebar brand-data="vm.brands" category-data="vm.categories"></sidebar>
                                 </div>
                                 <div class="col-sm-9 padding-right">
-                                    <features-item array-data="vm.productFreatures"></features-item>
+                                    <features-item array-data="vm.productFreatures" config="vm.featureProductConfig"></features-item>
                                     <tab></tab>    
                                     <recommend-product array-data="vm.productBestsellers" config="vm.recommendProductConfig"></recommend-product>  
                                 </div>
