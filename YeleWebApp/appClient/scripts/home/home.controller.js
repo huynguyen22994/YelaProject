@@ -10,21 +10,42 @@
         var vm = this;
         vm.offsetRecommendProduct = 0;
         vm.limitRecommendProduct = 4;
-        vm.totalProductBestsellers = 0;
+        vm.RecommendProduct = {
+            offset: 0,
+            limit: 4,
+            total: 0
+        };
+        vm.FeatureProduct = {
+            offset: 0,
+            limit: 9,
+            total: 0
+        };
         vm.recommendProductConfig = {
             disableLeftButton: function () {
-                return (vm.offsetRecommendProduct === 0) ? true : false;
+                return (vm.RecommendProduct.offset === 0) ? true : false;
             },
             disableRightButton: function() {
-                return (vm.totalProductBestsellers <= vm.offsetRecommendProduct) ? true : false;
+                return (vm.RecommendProduct.total <= vm.RecommendProduct.offset) ? true : false;
             },
             leftButton: function () {
-                vm.offsetRecommendProduct = vm.offsetRecommendProduct - vm.limitRecommendProduct;
-                changeProductBestsellers(vm.offsetRecommendProduct, vm.limitRecommendProduct);
+                vm.RecommendProduct.offset = vm.RecommendProduct.offset - vm.RecommendProduct.limit;
+                changeProductBestsellers(vm.RecommendProduct.offset, vm.RecommendProduct.limit);
             },
             rightButton: function () {
-                vm.offsetRecommendProduct = vm.offsetRecommendProduct + vm.limitRecommendProduct;
-                changeProductBestsellers(vm.offsetRecommendProduct, vm.limitRecommendProduct);
+                vm.RecommendProduct.offset = vm.RecommendProduct.offset + vm.RecommendProduct.limit;
+                changeProductBestsellers(vm.RecommendProduct.offset, vm.RecommendProduct.limit);
+            }
+        };
+
+        vm.featureProductConfig = {
+            totalItems: 0,
+            currentPage: 1,
+            changePage: function (offset, limit, currentPage) {
+                this.currentPage = currentPage;
+                change(offset, limit);
+                async function change(offset, limit) {
+                    await loadProductFreatures(offset, limit);
+                };
             }
         };
 
@@ -35,15 +56,17 @@
         async function activate() {
             await loadBrands();
             await loadCategories();
-            await loadProductFreatures();
+            await loadProductFreatures(vm.FeatureProduct.offset, vm.FeatureProduct.limit);
             vm.productNews = await loadProductNews();
-            await loadProductBestsellers(vm.offsetRecommendProduct, vm.limitRecommendProduct);
+            await loadProductBestsellers(vm.RecommendProduct.offset, vm.RecommendProduct.limit);
          };
 
-        function loadProductFreatures() {
+        function loadProductFreatures(offset, limit) {
             return new Promise((resolve, reject) => {
-                HomeService.getProductFreatures()
+                HomeService.getProductFreatures(offset, limit)
                     .then(function (productFreatures) {
+                        vm.featureProductConfig.totalItems = productFreatures.data.count;
+                        vm.FeatureProduct.total = productFreatures.data.count;
                         vm.productFreatures = productFreatures.data.rows;
                         resolve(productFreatures.data);
                     }).catch(function (err) {
@@ -69,7 +92,7 @@
             return new Promise((resolve, reject) => {
                 HomeService.getProductBestsellers(offset, limit)
                     .then(function (productBestsellers) {
-                        vm.totalProductBestsellers = productBestsellers.data.count;
+                        vm.RecommendProduct.total = productBestsellers.data.count;
                         vm.productBestsellers = productBestsellers.data.rows;
                         resolve(productBestsellers.data);
                     }).catch(function (err) {

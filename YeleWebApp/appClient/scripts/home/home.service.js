@@ -28,10 +28,14 @@
             ]
         };
 
-        function getProductFreatures() {
+        function getProductFreatures(offset, limit) {
             return $http({
                 url: '/api/productfreatures',
-                method: 'GET'
+                method: 'GET',
+                params: {
+                    offset: offset,
+                    limit: limit
+                }
             }).then(function (res) {
                 return res;
             }).catch(function (err) {
