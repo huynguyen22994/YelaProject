@@ -21,7 +21,7 @@ module.exports.getCategory = (req, res, next) => {
                     productTypeCount: category.ProductTypeCount
                 }
             });
-            res.end(JSON.stringify(responses));
+            res.json(responses);
         });
 };
 
@@ -109,17 +109,44 @@ module.exports.deleteCategory = (req, res, next) => {
 };
 
 module.exports.getCategoryProductTye = (req, res, next) => {
-models.sequelize.query('SELECT categories.categoryId, categories.name, producttypes.name as test FROM categories, producttypes WHERE categories.categoryId = producttypes.categoryId')
-    .spread((result) => {
-        var id = '';
-        _.map(result, (category) => {
+    var quey = "SELECT * FROM categories";
+    var quey1 = "select category.*, producttype.* from categories as category inner join producttypes as producttype on producttype.categoryId = category.categoryId";
+    var query2 = "SELECT * FROM producttypes";
 
-            return {
+    var promise1 = new Promise((resolve, reject) => {
+        models.sequelize.query(quey)
+            .spread((result) => {
+                resolve(result);
+            }, (err) => {
+                reject(err);
+            });
+    });  
 
-            }            
-        });
-    }, (err) => {
+    promise1.then(function (categories) {
+        models.sequelize.query(query2)
+            .spread((producttypes) => {
+                var responses = _.map(categories, function (category) {
+                    let categoryRes = {
+                        categoryId: category.categoryId,
+                        name: category.name,
+                        createdAt: category.createdAt,
+                        updatedAt: category.updatedAt,
+                        producttypes: []
+                    }
+                    categoryRes.producttypes = _.filter(producttypes, function (producttype) {
+                        return producttype.categoryId === category.categoryId;
+                    });
+                    return categoryRes
+                });
+                res.json(responses);
+            }, (err) => {
+                console.log(err);
+                res.statusCode = 400;
+                res.end()
+            });
+    }).catch(function (err) {
+        console.log(err);
         res.statusCode = 400;
         res.end()
-    })
+    })    
 };

@@ -44,6 +44,10 @@ module.exports.getProductBrandProTypeByProductId = (req, res, next) => {
     ProductCtrl.getProductBrandProTypeByProductId(req, res, next);
 };
 
+module.exports.searchProduct = (req, res, next) => {
+    ProductCtrl.searchProduct(req, res, next);
+};
+
 // Categories
 module.exports.getCategory = (req, res, next) => {
     CategoryCtrl.getCategory(req, res, next);
@@ -63,6 +67,10 @@ module.exports.getOneCategory = (req, res, next) => {
 
 module.exports.deleteCategory = (req, res, next) => {
     CategoryCtrl.deleteCategory(req, res, next);
+};
+
+module.exports.getCategoryProductTye = (req, res, next) => {
+    CategoryCtrl.getCategoryProductTye(req, res, next);
 };
 
 // Product Type

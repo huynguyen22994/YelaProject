@@ -15,11 +15,13 @@
             controllerAs: 'vm',
             restrict: 'EA',
             scope: {
+                brandData: '=',
+                categoryData: '='
             },
             template: `
                 <div class="left-sidebar">
-                    <category></category>
-                    <brand></brand>
+                    <category category-data="categoryData"></category>
+                    <brand brand-data="brandData"></brand>
                     <div class="price-range"><!--price-range-->
                         <h2>Price Range</h2>
                         <div class="well text-center">

@@ -1,4 +1,13 @@
-(function() {
+/*
+    params: config (obj):
+    exp: var config = {
+        query: {
+
+        }
+    }
+*/
+
+(function () {
     'use strict';
 
     angular
@@ -12,6 +21,8 @@
             controllerAs: 'vm',
             restrict: 'EA',
             scope: {
+                config: '=',
+                data: '='
             },
             //templateUrl: '/components/productItem/productItem.directive.html'
             template: `
@@ -19,19 +30,19 @@
                     <div class="product-image-wrapper">
                         <div class="single-products">
                             <div class="productinfo text-center">
-                                <img src="images/home/product4.jpg" alt="" />
-                                <h2>$56</h2>
-                                <p>Easy Polo Black Edition</p>
+                                <img ng-src="{{baseUrl}}{{data['linkImg']}}" alt="" />
+                                <h2>{{data['price']}} VND</h2>
+                                <p>{{data['name']}}</p>
                                 <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                             </div>
                             <div class="product-overlay">
                                 <div class="overlay-content">
-                                    <h2>$56</h2>
+                                    <h2>{{data['price']}} VND</h2>
                                     <p>Easy Polo Black Edition</p>
                                     <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                 </div>
                             </div>
-                            <img src="images/home/new.png" class="new" alt="" />
+                            <!-- <img src="images/home/new.png" class="new" alt="" /> -->
                         </div>
                         <div class="choose">
                             <ul class="nav nav-pills nav-justified">
@@ -47,8 +58,7 @@
         
     }
     /* @ngInject */
-    function ControllerController ($scope) {
-        var vm = this;
-
+    function ControllerController($scope, clientConstant) {
+        $scope.baseUrl = `${clientConstant.serverUrl}/`;
     }
 })();

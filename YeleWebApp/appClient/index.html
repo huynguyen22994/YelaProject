@@ -25,6 +25,7 @@
 </head><!--/head-->
 
 <body ng-controller="ClientController as vm">
+	<div id="fb-root"></div>
 	<chat-box></chat-box> 
     <header-app></header-app>
 	
@@ -101,9 +102,11 @@
 
     <script src="scripts/app.module.js"></script>
     <script src="scripts/app.bootstrap.js"></script>
+	<script src="scripts/app.constant.js"></script>
 	<script src="scripts/app.controller.js"></script>
 	<script src="scripts/home/home.module.js"></script>
 	<script src="scripts/home/home.service.js"></script>
+	<script src="scripts/home/home.template.js"></script>
 	<script src="scripts/home/home.route.js"></script> 
 	<script src="scripts/home/home.controller.js"></script>   
 	<script src="scripts/login/login.module.js"></script>
@@ -113,6 +116,14 @@
 	<script src="scripts/cart/cart.route.js"></script>
 	<script src="scripts/blog/blog.module.js"></script>
 	<script src="scripts/blog/blog.route.js"></script>-->
+	<script>(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.11&appId=375782316127685';
+		fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
 
 </body>
 </html>

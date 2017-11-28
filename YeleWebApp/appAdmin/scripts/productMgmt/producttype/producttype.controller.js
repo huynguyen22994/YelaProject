@@ -5,8 +5,8 @@
         .module('YelaApplication.ProductMgmt')
         .controller('ProducttypeController', ControllerController);
 
-    ControllerController.$inject = ['producttypes', '$scope', '$window', '$location', 'PagerService', 'ProducttypeService'];
-    function ControllerController(producttypes, $scope, $window, $location, PagerService, ProducttypeService) {
+    ControllerController.$inject = ['producttypes', '$scope', '$window', '$location', 'PagerService', 'ProducttypeService', 'toastr', '$mdDialog'];
+    function ControllerController(producttypes, $scope, $window, $location, PagerService, ProducttypeService, toastr, $mdDialog) {
         var vm = this;
         vm.classForTable = 'col-md-12 col-sm-12 col-lg-12';
         vm.classForDetail = '';
@@ -32,9 +32,10 @@
                     className: 'btn btn-default',
                     iconClass: 'fa fa-pencil-square-o',
                     tooltipTitle: 'tooltip_edit_asong',
-                    action(song) {
+                    action(item) {
+                        console.log(item);
+                        $location.path('/productMgmt/producttype/edit/' + item.productTypeId);
                         //songCtrl.routeStateManager(songCtrl.stateSong, songCtrl.routeEditSongState + song.songID)
-                        console.log('1');
                     }
                 },
                 {
@@ -45,8 +46,19 @@
                     disabled(item) {
                         return (item.productsCount > 0) ? true : false; 
                     },
-                    action(item) {
-                        deleteProducttype(item);
+                    action(item, ev) {
+                        var confirm = $mdDialog.confirm()
+                            .title('Bạn có muốn xóa loại sản phẩm này?')
+                            .textContent('All of the banks have agreed to forgive you your debts.')
+                            .targetEvent(ev)
+                            .ok('Delete')
+                            .cancel('Cancel');
+
+                        $mdDialog.show(confirm).then(function() {
+                            deleteProducttype(item);
+                        }, function() {
+                            console.log('cancel');
+                        });
                     }
                 }
             ],

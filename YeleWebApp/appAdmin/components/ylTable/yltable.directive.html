@@ -34,15 +34,15 @@
                 <td 
                     ng-repeat="content in config.arrayColumnContent">
                         {{::song[content]}}
-                        <img ng-if="content.image && song[content.url]" ng-src="{{song[content.url]}}" class="img-responsive img-circle" alt="Cinque Terre" width="50" height="50"> 
-                        <img ng-if="content.image && !song[content.url]" ng-src="/images/no-image.png" class="img-responsive img-circle" alt="Cinque Terre" width="50" height="50"> 
+                        <img ng-if="content.image && song[content.url]" ng-src="{{content.baseUrlForImg}}{{song[content.url]}}" class="img-responsive img-thumbnail" alt="Cinque Terre" width="50" height="50"> 
+                        <img ng-if="content.image && !song[content.url]" ng-src="/images/no-image.png" class="img-responsive img-thumbnail" alt="No Img" width="50" height="50"> 
                 </td> 
                 <td>
                     <button type="button" 
                             ng-repeat="buttonName in config.arrayActions" 
                             ng-hide="buttonName.hide(song)" 
                             ng-disabled="buttonName.disabled(song)" 
-                            ng-click="buttonName.action(song); $event.stopPropagation();" 
+                            ng-click="buttonName.action(song, $event); $event.stopPropagation();" 
                             ng-class="buttonName.className" 
                             aria-label="Left Align" 
                             ng-i18next="[title]{{buttonName.tooltipTitle}}"
@@ -56,7 +56,7 @@
                     
             </tr>
             <tr ng-show="!hasResult">
-                <td class="no-result">
+                <td colspan="7" class="text-center no-result">
                     <label ng-class="noResultClass"> 
                         <i>No Result...</i> 
                     </label>

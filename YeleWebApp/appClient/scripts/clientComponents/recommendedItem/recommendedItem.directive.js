@@ -14,6 +14,8 @@
             controllerAs: 'vm',
             restrict: 'EA',
             scope: {
+                arrayData: '=',
+                config: '='
             },
             //templateUrl: '/components/recommendedItem/recommendedItem.directive.html'
             template: `
@@ -22,22 +24,13 @@
                     <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="item active">	
-                                    <product-item></product-item>
-                                    <product-item></product-item>
-                                    <product-item></product-item>
-                                    <product-item></product-item>
-                            </div>
-                            <div class="item">	
-                                    <product-item></product-item>
-                                    <product-item></product-item>
-                                    <product-item></product-item>
-                                    <product-item></product-item>
+                                <product-item ng-repeat="data in arrayData" data="data" ></product-item>
                             </div>
                         </div>
-                        <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                        <a class="left recommended-item-control" ng-hide="config.disableLeftButton()" ng-click="config.leftButton()" data-slide="prev">
                             <i class="fa fa-angle-left"></i>
                         </a>
-                        <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                        <a class="right recommended-item-control" ng-hide="config.disableRightButton()" ng-click="config.rightButton()" data-slide="next">
                             <i class="fa fa-angle-right"></i>
                         </a>			
                     </div>

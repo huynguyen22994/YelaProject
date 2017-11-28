@@ -11,7 +11,10 @@
             getAllProducttypes: getAllProducttypes,
             deleteProducttype: deleteProducttype,
             searchProducttype: searchProducttype,
-            getAllCategories: getAllCategories
+            getAllCategories: getAllCategories,
+            createProducttype: createProducttype,
+            getProducttypeById: getProducttypeById,
+            editProducttype: editProducttype
         };
         
         return service;
@@ -66,5 +69,43 @@
                 return err;
             });
         };
+
+        function createProducttype(data) {
+            return $http({
+                url: '/api/producttype',
+                method: 'POST',
+                data: data
+            }).then(function (res) {
+                return res;
+            }).catch(function (err) {
+                return err;
+            });
+        };
+
+        function getProducttypeById(productTypeId) {
+            return $http({
+                url: '/api/producttype/one',
+                method: 'GET',
+                params: {
+                    productTypeId: productTypeId
+                }
+            }).then(function (res) {
+                return res;
+            }).catch(function (err) {
+                return err;
+            });
+        };
+
+        function editProducttype(data) {
+            return $http({
+                url: '/api/producttype',
+                method: 'PUT',
+                data: data
+            }).then(function (res) {
+                return res;
+            }).catch(function (err) {
+                return err;
+            });
+        }
     }
 })();

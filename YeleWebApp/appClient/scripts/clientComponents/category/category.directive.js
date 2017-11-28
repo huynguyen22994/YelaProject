@@ -12,28 +12,27 @@
             controllerAs: 'vm',
             restrict: 'EA',
             scope: {
+                categoryData: '='
             },
             //templateUrl: '/components/category/category.directive.html'
             template: `
                 <h2>Category</h2>
                 <div class="panel-group category-products" id="accordian"><!--category-productsr-->
-                    <div class="panel panel-default">
+                    <div class="panel panel-default" ng-repeat="category in categoryData">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
-                                    <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                    Sportswear
+                                <a data-toggle="collapse" data-parent="#accordian" href="#{{ category.categoryId }}">
+                                    <span ng-if="category.producttypes.length > 0" class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                    {{ category.name }}
                                 </a>
                             </h4>
                         </div>
-                        <div id="sportswear" class="panel-collapse collapse">
+                        <div id="{{ category.categoryId }}" class="panel-collapse collapse" ng-if="category.producttypes.length > 0">
                             <div class="panel-body">
                                 <ul>
-                                    <li><a href="#">Nike </a></li>
-                                    <li><a href="#">Under Armour </a></li>
-                                    <li><a href="#">Adidas </a></li>
-                                    <li><a href="#">Puma</a></li>
-                                    <li><a href="#">ASICS </a></li>
+                                    <li ng-repeat="producttype in category.producttypes">
+                                        <a href="#">{{ producttype.name }}</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

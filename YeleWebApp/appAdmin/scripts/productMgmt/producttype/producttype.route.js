@@ -28,7 +28,19 @@
                     categories: ['ProducttypeService', function (ProducttypeService) {
                         return ProducttypeService.getAllCategories();
                     }]
-                }
+                },
+                routeId: 'create'
+            })
+            .when('/productMgmt/producttype/edit/:id', {
+                templateUrl: '/admin/scripts/productMgmt/producttype/editCreate/editCreate.template.html',
+                controller: 'ProducttypeEditCreateController',
+                controllerAs: 'vm',
+                resolve: {
+                    categories: ['ProducttypeService', function (ProducttypeService) {
+                        return ProducttypeService.getAllCategories();
+                    }]
+                },
+                routeId: 'edit'
             });
     };
 })();
