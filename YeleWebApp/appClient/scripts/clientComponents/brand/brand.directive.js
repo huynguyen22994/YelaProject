@@ -19,7 +19,7 @@
                     <h2>Brands</h2>
                     <div class="brands-name">
                         <ul class="nav nav-pills nav-stacked">
-                            <li ng-repeat="brand in brandData"><a href="#"> <span class="pull-right">({{brand.ProductCount}})</span>{{brand.name}}</a></li>
+                            <li ng-repeat="brand in brandData"><a href="#!/shop"> <span class="pull-right">({{brand.ProductCount}})</span>{{brand.name}}</a></li>
                         </ul>
                     </div>
                 </div><!--/brands_products-->

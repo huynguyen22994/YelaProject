@@ -230,3 +230,24 @@ module.exports.searchProduct = (req, res, next) => {
         res.end();
     });
 };
+
+module.exports.getProductWithOffset = (req, res, next) => {
+    var offset = parseInt(req.query.offset);
+    var limit =  parseInt(req.query.limit);
+    models.Product.findAndCountAll({
+        offset: offset,
+        limit: limit
+    }).then((result) => {
+            let responses = {
+                count: result.count,
+                products: []
+            }
+            result.rows.forEach((product) => {
+                responses.products.push(product.dataValues);
+            });
+            res.json(responses);
+        },
+        (err) => {
+            console.log(err);
+        })
+};

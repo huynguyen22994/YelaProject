@@ -26,13 +26,13 @@
             <div class="pagination-area">
                 <ul class="pagination">
                     <li ng-class="{disabled:vm.pageTotal === 1}">
-                        <a ng-click="config.changePage(0, arrayData.length, 1)"><i class="fa fa-angle-double-left"></i></a>
+                        <a ng-click="config.changePage(0, config.limit, 1)"><i class="fa fa-angle-double-left"></i></a>
                     </li>
                     <li ng-repeat="page in vm.pageArray">
                         <a ng-click="config.changePage(page.offset, page.limit, page.page)" ng-class="{active:page.page === config.currentPage}"> {{ page.page }} </a>
                     </li>
                     <li ng-class="{disabled:vm.pageTotal === 1}">
-                        <a ng-click="config.changePage((vm.pageTotal * arrayData.length) - 1, arrayData.length, vm.pageTotal)"><i class="fa fa-angle-double-right"></i></a>
+                        <a ng-click="config.changePage((vm.pageTotal  - 1) * config.limit, config.limit, vm.pageTotal)"><i class="fa fa-angle-double-right"></i></a>
                     </li>
                 </ul>
             </div>
@@ -45,18 +45,22 @@
     function ControllerController ($scope) {
         var vm = this;
         vm.pageArray = [];        
-
+        var flag = false;
+        
         $scope.$watch('arrayData.length', function (newValue, oldValue) {
             if (newValue !== oldValue) {
-                if ($scope.config) {
-                    vm.pageTotal = Math.ceil($scope.config.totalItems / $scope.arrayData.length);
-                    for (let i = 1; i <= vm.pageTotal; i++) {
-                        let pageObj = {
-                            offset: i * $scope.arrayData.length - 1,
-                            limit: $scope.arrayData.length,
-                            page: i
+                if (!flag) {
+                    if ($scope.config) {
+                        vm.pageTotal = Math.ceil($scope.config.totalItems / $scope.arrayData.length);
+                        for (let i = 1; i <= vm.pageTotal; i++) {
+                            let pageObj = {
+                                offset: (i - 1) * $scope.config.limit,
+                                limit: $scope.config.limit,
+                                page: i
+                            };
+                            vm.pageArray.push(pageObj);
                         };
-                        vm.pageArray.push(pageObj);
+                        flag = true;
                     };
                 };
             }
