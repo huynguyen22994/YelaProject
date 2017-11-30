@@ -4,6 +4,7 @@
     angular.module('YelaAppClient', [
         'YelaAppClient.Home',
         'YelaAppClient.Login',
+        'YelaAppClient.Shop',
         'YelaChatBox',
         'Brand',
         'Category',

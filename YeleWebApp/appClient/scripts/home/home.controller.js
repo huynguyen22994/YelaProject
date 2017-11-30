@@ -17,7 +17,7 @@
         };
         vm.FeatureProduct = {
             offset: 0,
-            limit: 9,
+            limit: 2,
             total: 0
         };
         vm.recommendProductConfig = {
@@ -40,6 +40,7 @@
         vm.featureProductConfig = {
             totalItems: 0,
             currentPage: 1,
+            limit: vm.FeatureProduct.limit,
             changePage: function (offset, limit, currentPage) {
                 this.currentPage = currentPage;
                 change(offset, limit);

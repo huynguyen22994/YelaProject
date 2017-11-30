@@ -30,19 +30,21 @@
                     <div class="product-image-wrapper">
                         <div class="single-products">
                             <div class="productinfo text-center">
-                                <img ng-src="{{baseUrl}}{{data['linkImg']}}" alt="" />
-                                <h2>{{data['price']}} VND</h2>
+                                <div style="cursor:pointer" ng-click="config.viewDetail(data)">
+                                    <img ng-src="{{baseUrl}}{{data['linkImg']}}" alt="" />
+                                </div>
+                                <h4>{{data['price']}}</h4>
                                 <p>{{data['name']}}</p>
                                 <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                             </div>
-                            <div class="product-overlay">
+                            <div ng-if="config.overlay" class="product-overlay">
                                 <div class="overlay-content">
                                     <h2>{{data['price']}} VND</h2>
                                     <p>Easy Polo Black Edition</p>
                                     <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                 </div>
                             </div>
-                            <!-- <img src="images/home/new.png" class="new" alt="" /> -->
+                            <img ng-if="config.new" src="images/home/new.png" class="new" alt="" />
                         </div>
                         <div class="choose">
                             <ul class="nav nav-pills nav-justified">
@@ -60,5 +62,9 @@
     /* @ngInject */
     function ControllerController($scope, clientConstant) {
         $scope.baseUrl = `${clientConstant.serverUrl}/`;
+
+        if (!angular.isFunction($scope.config.viewDetail)) {
+            $scope.config.viewDetail = angular.noop;
+        };
     }
 })();
