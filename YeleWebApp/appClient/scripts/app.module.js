@@ -5,6 +5,7 @@
         'YelaAppClient.Home',
         'YelaAppClient.Login',
         'YelaAppClient.Shop',
+        'YelaAppClient.Detail',
         'YelaChatBox',
         'Brand',
         'Category',
