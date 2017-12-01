@@ -63,8 +63,10 @@
     function ControllerController($scope, clientConstant) {
         $scope.baseUrl = `${clientConstant.serverUrl}/`;
 
-        if (!angular.isFunction($scope.config.viewDetail)) {
-            $scope.config.viewDetail = angular.noop;
+        if ($scope.config) {
+            if (!angular.isFunction($scope.config.viewDetail)) {
+                $scope.config.viewDetail = angular.noop;
+            };   
         };
     }
 })();

@@ -5,8 +5,8 @@
         .module('YelaAppClient.Shop')
         .controller('ShopController', ControllerController);
 
-    ControllerController.$inject = ['ShopService', 'clientConstant'];
-    function ControllerController(ShopService, clientConstant) {
+    ControllerController.$inject = ['ShopService', 'clientConstant', '$location'];
+    function ControllerController(ShopService, clientConstant, $location) {
         var vm = this;
         vm.Product = {
             offset: 0,
@@ -18,6 +18,7 @@
             //overlay: true,
             viewDetail: function (item) {
                 console.log(item);
+                $location.path(`/detail/${item.productId}`);
             }
         };
 
