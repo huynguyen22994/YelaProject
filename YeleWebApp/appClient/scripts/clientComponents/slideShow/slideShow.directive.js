@@ -30,7 +30,7 @@
                             <p class="textSlideShow">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                             <button type="button" class="btn btn-default get textSlideShow">Get it now</button>
                             <div class="textSlideShow">Caption Three</div> -->
-                            <img src="images/home/girl1.jpg" class="girl img-responsive" alt="" />
+                            <img src="images/home/slide.PNG" class="girl img-responsive" alt="" />
                             <img src="images/home/pricing.png"  class="pricing" alt="" />
                         </div>
                     </div>        
