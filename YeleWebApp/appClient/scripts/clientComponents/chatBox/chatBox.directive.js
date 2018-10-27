@@ -43,7 +43,7 @@
             //$scope.chatBoxs.push({ name: admin, role: role, chat: mes });
             $('#chatBoxs').append(`
             <div class="chatbox__body__message chatbox__body__message--left">
-                <img src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" alt="Picture">
+                <img src="images/shop/administrator.png" alt="Picture">
                 <b> ${admin}</b>
                 <p> ${mes}</p>
             </div>
@@ -56,7 +56,7 @@
                 if (chat.role === 'admin') {
                     $('#chatBoxs').append(`
                         <div class="chatbox__body__message chatbox__body__message--left">
-                            <img src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" alt="Picture">
+                            <img src="images/shop/administrator.png" alt="Picture">
                             <b> ${chat.name}</b>
                             <p> ${chat.chat}</p>
                         </div>
@@ -64,7 +64,7 @@
                 } else {
                     $('#chatBoxs').append(`
                         <div class="chatbox__body__message chatbox__body__message--right">
-                            <img src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" alt="Picture">
+                            <img src="images/shop/customer.png" alt="Picture">
                             <b> ${chat.name}</b>
                             <p> ${chat.chat}</p>
                         </div>
@@ -77,7 +77,7 @@
             if (role === 'admin') {
                 $('#chatBoxs').append(`
                 <div class="chatbox__body__message chatbox__body__message--left">
-                    <img src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" alt="Picture">
+                    <img src="images/shop/administrator.png" alt="Picture">
                     <b> ${customer}</b>
                     <p> ${message}</p>
                 </div>
@@ -85,7 +85,7 @@
             } else {
                 $('#chatBoxs').append(`
                 <div class="chatbox__body__message chatbox__body__message--right">
-                    <img src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" alt="Picture">
+                    <img src="images/shop/customer.png" alt="Picture">
                     <b> ${customer}</b>
                     <p> ${message}</p>
                 </div>
@@ -112,19 +112,23 @@
         $scope.sendChat = function () {
             $('#chatBoxs').append(`
                 <div class="chatbox__body__message chatbox__body__message--right">
-                    <img src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" alt="Picture">
+                    <img src="images/shop/customer.png" alt="Picture">
                     <b> ${$scope.customer.name}</b>
                     <p> ${$scope.message}</p>
                 </div>
             `)
             socket.emit('cusSendChat', { customer: $scope.customer, role: 'customer', chat: $scope.message });
-            $scope.message = '';
+            $scope.$apply(function () {
+                $scope.message = '';
+            });
         };
 
         $('#mesageCustomer').keypress(function(e) {
             if(e.which == 13) {
-                $(this).blur();
-                $scope.sendChat();
+                //$(this).blur();
+                if($scope.message) {
+                    $scope.sendChat();
+                }
             }
         });
     };

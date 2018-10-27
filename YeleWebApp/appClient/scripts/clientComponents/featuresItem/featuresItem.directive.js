@@ -20,7 +20,7 @@
             //templateUrl: '/components/featuresItem/featuresItem.directive.html'
             template: `
             <div class="features_items">
-                <h2 class="title text-center">Features Items</h2>
+                <h2 class="title text-center">{{ 'featuresFood' | i18next }}</h2>
                 <product-item ng-repeat="data in arrayData" data="data" ></product-item>
             </div>
             <div class="pagination-area">

@@ -2,5 +2,22 @@
     "translate": "Translate",
     "vietnameese": "Vietnammese",
     "english": "English",
-    "home": "Home"
+    "home": "Home",
+    "foods": "Foods",
+    "blog": "Blog",
+    "contact": "Contact",
+    "search": "Search",
+    "searchFood": "Search Food",
+    "wishlist": "Wishlist",
+    "checkout": "Checkout",
+    "cart": "Cart",
+    "brands": "Brands",
+    "category": "Category",
+    "featuresFood": "Features Foods",
+    "recommendedFood": "Recommended Foods",
+    "messenger": "Messenger",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "send": "Send"
 }

@@ -16,7 +16,7 @@
             },
             //templateUrl: '/components/category/category.directive.html'
             template: `
-                <h2>Category</h2>
+                <h2>{{ 'category' | i18next}}</h2>
                 <div class="panel-group category-products" id="accordian"><!--category-productsr-->
                     <div class="panel panel-default" ng-repeat="category in categoryData">
                         <div class="panel-heading">

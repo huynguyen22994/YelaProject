@@ -16,7 +16,7 @@
             },
             template: `
                 <div class="brands_products"><!--brands_products-->
-                    <h2>Brands</h2>
+                    <h2>{{ 'brands' | i18next}}</h2>
                     <div class="brands-name">
                         <ul class="nav nav-pills nav-stacked">
                             <li ng-repeat="brand in brandData"><a href="#!/shop"> <span class="pull-right">({{brand.ProductCount}})</span>{{brand.name}}</a></li>

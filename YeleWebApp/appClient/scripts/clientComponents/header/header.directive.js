@@ -68,8 +68,8 @@
         vm.config = {
             headerTop: {
                 left: [
-                    { iconClass: 'fa fa-phone', label: '+2 95 01 88 821', href: function () {  return 'aa'} },
-                    { iconClass: 'fa fa-envelope', label: 'mail@gmail.com', href: function () { return 'test'; } }
+                    { iconClass: 'fa fa-phone', label: '0933990004', href: function () {  return 'aa'} },
+                    { iconClass: 'fa fa-envelope', label: 'foodtech@gmail.com', href: function () { return 'test'; } }
                 ],
                 right: [
                     { iconClass: 'fa fa-facebook', href: function () { return 'string'; } },
@@ -84,11 +84,11 @@
     
                 ],
                 right: [
-                    { iconClass: 'fa fa-user', label: 'Account', href: function () { return 'string'; } },
-                    { iconClass: 'fa fa-star', label: 'Wishlist', href: function () { return 'string'; } },
-                    { iconClass: 'fa fa-crosshairs', label: 'Checkout', href: function () { return 'string'; } },
-                    { iconClass: 'fa fa-shopping-cart', label: 'Cart', href: function () { return '#!/cart'; } },
-                    { iconClass: 'fa fa-lock', label: 'Login', href: function () { return '#!/login'; } },
+                    // { iconClass: 'fa fa-user', label: 'Account', href: function () { return 'string'; } },
+                    { iconClass: 'fa fa-star', label: 'wishlist', href: function () { return 'string'; } },
+                    { iconClass: 'fa fa-crosshairs', label: 'checkout', href: function () { return 'string'; } },
+                    { iconClass: 'fa fa-shopping-cart', label: 'cart', href: function () { return '#!/cart'; } },
+                    // { iconClass: 'fa fa-lock', label: 'Login', href: function () { return '#!/login'; } },
                 ]
             },
             headerBottom: {

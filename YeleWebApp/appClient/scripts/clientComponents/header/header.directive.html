@@ -45,7 +45,7 @@
             <div class="col-sm-8">
                 <div class="shop-menu pull-right">
                     <ul class="nav navbar-nav">
-                        <li ng-repeat="rightItemMiddle in vm.config.headerMiddle.right"><a ng-href="{{rightItemMiddle.href()}}" ><i ng-class="rightItemMiddle.iconClass"></i> {{rightItemMiddle.label}}</a></li>
+                        <li ng-repeat="rightItemMiddle in vm.config.headerMiddle.right"><a ng-href="{{rightItemMiddle.href()}}" ><i ng-class="rightItemMiddle.iconClass"></i> {{ rightItemMiddle.label | i18next}}</a></li>
                     </ul>
                 </div>
             </div>
@@ -68,22 +68,21 @@
                 <div class="mainmenu pull-left">
                     <ul class="nav navbar-nav collapse navbar-collapse">
                         <li><a href="/" class="active" ng-i18next="home"></a></li>
-                        <li><a href="#!/shop">Shop</a>
+                        <li><a href="#!/shop">{{ 'foods' | i18next }}</a>
                         </li> 
-                        <li class="dropdown"><a href="#!/blog">Blog<i class="fa fa-angle-down"></i></a>
+                        <li class="dropdown"><a href="#!/blog">{{ 'blog' | i18next }}<i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">
                                 <li><a href="#!/blog">Blog List</a></li>
                                 <li><a href="#!/blogSingle">Blog Single</a></li>
                             </ul>
                         </li> 
-                        <li><a href="404.html">404</a></li>
-                        <li><a href="contact-us.html">Contact</a></li>
+                        <li><a href="contact-us.html">{{ 'contact' | i18next }}</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="search_box pull-right">
-                    <input type="text" placeholder="Search"/>
+                    <input type="text" placeholder="{{ 'searchFood' | i18next}}"/>
                 </div>
             </div>
         </div>
