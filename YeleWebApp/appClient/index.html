@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta name="author" content="">
+	<meta name="author" content="">
+	<base href="/">
     <title>Home | E-Shopper</title>
     <link href="styles/css/bootstrap.min.css" rel="stylesheet">
     <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -13,6 +14,8 @@
     <link href="styles/css/animate.css" rel="stylesheet">
 	<link href="styles/css/main.css" rel="stylesheet">
 	<link href="styles/css/responsive.css" rel="stylesheet">
+
+	<link href="scripts/clientComponents/spinnerLoading/spinnerLoading.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -25,6 +28,23 @@
 </head><!--/head-->
 
 <body ng-controller="ClientController as vm">
+	<!--Spinner Loading-->
+	<div ng-if="!vm.spinnerHide" class="container" id="loader-warpper">
+		<div class="row">
+			<div id="loader">
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="lading"></div>
+			</div>
+		</div>
+	</div>
+	<!--End Spinner Loading-->
 	<div id="fb-root"></div>
 	<chat-box></chat-box> 
     <header-app></header-app>
@@ -101,7 +121,8 @@
 	<script src="scripts/clientComponents/socialButton/socialButton.directive.js"></script>
 
     <script src="scripts/app.module.js"></script>
-    <script src="scripts/app.bootstrap.js"></script>
+	<script src="scripts/app.bootstrap.js"></script>
+	<script src="scripts/app.config.js"></script>
 	<script src="scripts/app.constant.js"></script>
 	<script src="scripts/app.controller.js"></script>
 	<script src="scripts/home/home.module.js"></script>
