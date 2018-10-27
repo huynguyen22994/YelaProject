@@ -5,15 +5,19 @@
         .module('YelaAppClient')
         .controller('ClientController', ControllerController);
 
-    ControllerController.$inject = ['$i18next'];
-    function ControllerController($i18next) {
+    ControllerController.$inject = ['$i18next', '$timeout'];
+    function ControllerController($, $timeout) {
         var vm = this;
 
         activate();
 
         ////////////////
 
-        function activate() { };
+        function activate() { 
+            $timeout(function() {
+                vm.spinnerHide = true;
+            }, 3000);
+        };
 
     }
 })();
