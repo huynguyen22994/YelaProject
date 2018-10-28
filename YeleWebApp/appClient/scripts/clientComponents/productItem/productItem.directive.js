@@ -35,20 +35,20 @@
                                 </div>
                                 <h4>{{data['price']}}</h4>
                                 <p>{{data['name']}}</p>
-                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{ 'addToCart' | i18next }}</a>
                             </div>
                             <div ng-if="config.overlay" class="product-overlay">
                                 <div class="overlay-content">
                                     <h2>{{data['price']}} VND</h2>
                                     <p>Easy Polo Black Edition</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{ 'addToCart' | i18next }}</a>
                                 </div>
                             </div>
                             <img ng-if="config.new" src="images/home/new.png" class="new" alt="" />
                         </div>
-                        <div class="choose">
+                        <div class="choose" ng-if="false"> <!-- should enable when user login -->
                             <ul class="nav nav-pills nav-justified">
-                                <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                                <li><a href="#"><i class="fa fa-plus-square"></i>{{ 'addToWishlist' | i18next }}</a></li>
                                 <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
                             </ul>
                         </div>

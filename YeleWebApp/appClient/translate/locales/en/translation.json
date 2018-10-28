@@ -21,5 +21,10 @@
     "phone": "Phone",
     "send": "Send",
     "materials": "Materials",
-    "products": "Products"
+    "products": "Products",
+    "addToCart": "Add To Cart",
+    "addToWishlist": "Add to wishlist",
+    "posts": "Posts",
+    "newPosts": "New Posts",
+    "view": "View"
 }
