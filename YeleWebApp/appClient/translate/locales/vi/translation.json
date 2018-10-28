@@ -4,7 +4,7 @@
     "english": "Tiêng Anh",
     "home": "Trang Chủ",
     "foods": "Món Ăn",
-    "blog": "Cách Làm Món Ăn Ngon",
+    "blog": "Nấu Ăn",
     "contact": "Liên Hệ",
     "search": "Tìm Kiếm",
     "searchFood": "Tìm Kiếm Món Ăn",
@@ -19,5 +19,7 @@
     "name": "Tên",
     "email": "Email",
     "phone": "SĐT",
-    "send": "Gửi"
+    "send": "Gửi",
+    "materials": "Nguyên Liệu",
+    "products": "Sản Phẩm"
 }

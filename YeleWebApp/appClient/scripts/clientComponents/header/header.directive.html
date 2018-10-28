@@ -67,16 +67,14 @@
                 </div>
                 <div class="mainmenu pull-left">
                     <ul class="nav navbar-nav collapse navbar-collapse">
-                        <li><a href="/" class="active" ng-i18next="home"></a></li>
-                        <li><a href="#!/shop">{{ 'foods' | i18next }}</a>
-                        </li> 
-                        <li class="dropdown"><a href="#!/blog">{{ 'blog' | i18next }}<i class="fa fa-angle-down"></i></a>
-                            <ul role="menu" class="sub-menu">
-                                <li><a href="#!/blog">Blog List</a></li>
-                                <li><a href="#!/blogSingle">Blog Single</a></li>
+                        <li ng-repeat="leftHeaderBottom in vm.config.headerBottom.left">
+                            <a ng-click="vm.onHeaderBottom(leftHeaderBottom.id)" href="{{ leftHeaderBottom.href() }}" ng-class="{'active': leftHeaderBottom.isChoosen }"> {{ leftHeaderBottom.label | i18next }} <i ng-if="leftHeaderBottom.subItems" class="fa fa-angle-down"></i></a>
+                            <ul ng-if="leftHeaderBottom.subItems" role="menu" class="sub-menu">
+                                <li ng-repeat="subItem in leftHeaderBottom.subItems">
+                                    <a href="{{subItem.href() }}">{{ subItem.label | i18next }}</a>
+                                </li>
                             </ul>
-                        </li> 
-                        <li><a href="contact-us.html">{{ 'contact' | i18next }}</a></li>
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -19,5 +19,7 @@
     "name": "Name",
     "email": "Email",
     "phone": "Phone",
-    "send": "Send"
+    "send": "Send",
+    "materials": "Materials",
+    "products": "Products"
 }

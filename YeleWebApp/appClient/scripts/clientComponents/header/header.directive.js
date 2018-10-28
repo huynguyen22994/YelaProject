@@ -65,6 +65,7 @@
     function ControllerController ($scope, $i18next) {
         var vm = this;
         vm.changeLanguage = changeLanguage;
+        vm.onHeaderBottom = onHeaderBottom;
         vm.config = {
             headerTop: {
                 left: [
@@ -93,7 +94,15 @@
             },
             headerBottom: {
                 left: [
-    
+                    {id: 'homePage', label: 'home', href: function () { return '/'; }, isChoosen: true },
+                    {id: 'foodsPage', label: 'foods', href: function () { return '#!/foods'; }, isChoosen: false },
+                    {id: 'materialsPage', label: 'materials', href: function () { return '#!/materials'; }, isChoosen: false },
+                    {id: 'blogPage', label: 'blog', href: function () { return '#!/blog'; }, isChoosen: false, subItems: [
+                        { label: 'Blog List', href: function () { return '#!/blog'; }},
+                        { label: 'Blog Single', href: function () { return '#!/blogSingle'; }}
+                    ] },
+                    {id: 'contactPage', label: 'contact', href: function () { return '#!/contact'; }, isChoosen: false },
+                    {id: 'productPage', label: 'products', href: function () { return '#!/shop'; }, isChoosen: false }
                 ],
                 right: [
                     
@@ -104,6 +113,18 @@
         function changeLanguage(key) {
             console.log('change');
             $i18next.changeLanguage(key);
+        };
+
+        function onHeaderBottom(key) {
+            if(angular.isArray(vm.config.headerBottom.left)) {
+                angular.forEach(vm.config.headerBottom.left, function(menu) {
+                    if(menu.id === key) {
+                        menu.isChoosen = true;
+                    } else {
+                        menu.isChoosen = false;
+                    }
+                })
+            }
         };
     }
 })();
