@@ -30,11 +30,11 @@ app.use('/bower_components', express.static(__dirname + '/bower_components'))
 
 app.use('/api', jsonPlaceholderProxy);
 
-http.listen(app.get('port'), () => {
-    console.log(`link: http://localhost:${app.get('port')}/api/... => Apis of YelaApp`);
-    console.log(`link: ${process.argv[2] || proxyConfig.target}/docs => Document Apis of YelaApp`);
-    console.log(`link: ${process.argv[2] || proxyConfig.target}/api-docs => Resource Listing JSON of Swagger Server`)
+http.listen(app.get('port'), function() {
+    console.log('link: http://localhost:' + app.get('port') + '/api/... => Apis of YelaApp');
+    console.log('link:' + process.argv[2] || proxyConfig.target + '/docs => Document Apis of YelaApp');
+    console.log('link:' + process.argv[2] || proxyConfig.target + '/api-docs => Resource Listing JSON of Swagger Server')
 });
-require('opn')(`http://localhost:${app.get('port')}`)
+require('opn')('http://localhost:' + app.get('port'))
 
 exports = module.exports = app;
