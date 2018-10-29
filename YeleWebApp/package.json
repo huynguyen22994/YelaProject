@@ -7,8 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "dev": "node server.js",
-    "build": "next build",
-    "postinstall": "chmod -R +x node_modules/next/dist/bin/next-* && npm run build"
+    "build": "next build"
   },
   "keywords": [
     "example",
@@ -17,7 +16,7 @@
   "author": "Huy Nguyen",
   "license": "MIT",
   "engines": {
-    "yarn": "0.28.4",
+    "npm": "5.4.0",
     "node": "4.1.1"
   },
   "devDependencies": {
