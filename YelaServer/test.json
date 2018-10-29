@@ -1,0 +1,14 @@
+{
+    "deploy": {
+        "dbname": "sql12263403",
+        "username": "sql12263403",
+        "password": "zQwZVpb7be",
+        "host": "sql12.freemysqlhosting.net"
+    },
+    "local": {
+        "dbname": "YelaShopDB",
+        "username": "root",
+        "password": null,
+        "host": "localhost",
+    }
+}

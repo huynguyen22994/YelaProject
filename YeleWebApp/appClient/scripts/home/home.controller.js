@@ -17,7 +17,7 @@
         };
         vm.FeatureProduct = {
             offset: 0,
-            limit: 2,
+            limit: 12,
             total: 0
         };
         vm.recommendProductConfig = {

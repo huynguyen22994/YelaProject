@@ -58,7 +58,10 @@ module.exports.updateProduct = (req, res, next) => {
                             originalImg: product.originalImg,
                             linkImg: product.linkImg,
                             discribe: product.discribe,
-                            productTypeId: product.productTypeId
+                            productTypeId: product.productTypeId,
+                            productStatus: product.productStatus,
+                            quantity: product.quantity,
+                            brandId: product.brandId
                         },
                         {
                             where: {
