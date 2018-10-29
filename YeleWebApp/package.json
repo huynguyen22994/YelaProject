@@ -5,7 +5,8 @@
   "main": "web.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "postinstall": "bower install && bower update"
   },
   "keywords": [
     "example",
@@ -14,7 +15,6 @@
   "author": "Huy Nguyen",
   "license": "MIT",
   "engines": {
-    "npm": "5.4.0",
     "yarn": "0.28.4",
     "node": "4.1.1"
   },
