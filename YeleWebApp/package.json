@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "postinstall": "chmod -R u+x node_modules/next/dist/bin"
+    "postinstall": "chmod -R u+x"
   },
   "keywords": [
     "example",
