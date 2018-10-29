@@ -2,7 +2,7 @@
   "private": true,
   "engines": {
     "yarn": "0.28.4",
-    "node": "0.10.x"
+    "node": "8.7.0"
   },
   "devDependencies": {
     "babel-core": "^6.4.0",
