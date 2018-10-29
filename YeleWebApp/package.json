@@ -1,8 +1,21 @@
 {
-  "private": true,
+  "name": "foodtech",
+  "version": "1.0.0",
+  "description": "This is foodtech.",
+  "main": "web.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "example",
+    "heroku"
+  ],
+  "author": "Huy Nguyen",
+  "license": "MIT",
   "engines": {
     "yarn": "0.28.4",
-    "node": "8.7.0"
+    "node": "4.1.1"
   },
   "devDependencies": {
     "babel-core": "^6.4.0",
@@ -53,8 +66,5 @@
     "node-sass": "^4.5.3",
     "request": "<=2.81.0",
     "shrinkwrap": "^0.4.0"
-  },
-  "scripts": {
-    "start": "node server.js"
   }
 }
