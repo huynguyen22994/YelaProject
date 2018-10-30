@@ -81,6 +81,8 @@ var options = {
     controllers: __dirname + '/app/controllers'
 };
 
+var port = app.get('port') || process.env.PORT;
+
 swagger.initializeMiddleware(swaggerObj, (middleware) => {
     app.use(middleware.swaggerMetadata());
     app.use(middleware.swaggerSecurity({
@@ -91,7 +93,7 @@ swagger.initializeMiddleware(swaggerObj, (middleware) => {
     app.use(middleware.swaggerRouter(options));
     app.use(middleware.swaggerUi());
 
-    http.listen(app.get('port'),() => {
+    http.listen(port,() => {
         console.log(`link: http://localhost:${app.get('port')}/api/... => Apis of DoraemonCare`);
         console.log(`link: http://localhost:${app.get('port')}/docs => Document Apis`);
         console.log(`link: http://localhost:${app.get('port')}/api-docs => Resource Listing JSON`)
