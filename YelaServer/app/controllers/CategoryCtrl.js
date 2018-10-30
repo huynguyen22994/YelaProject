@@ -3,26 +3,45 @@ var async = require('async');
 var _ = require('underscore');
 
 module.exports.getCategory = (req, res, next) => {
-    models.sequelize.query("SELECT ca.*, (SELECT COUNT(*) FROM producttypes pro WHERE pro.categoryId=ca.categoryId) AS ProductTypeCount FROM categories AS ca ORDER BY ca.categoryId DESC")
-        .spread((result, metadate) => {
-            var responses = _.map(result, (category) => {
-                var canDelete = false;
-                if (category.ProductTypeCount == 0) {
-                    canDelete = true;
-                } else {
-                    canDelete = false;
-                }
+    models.Category.findAndCountAll()
+        .then((result) => {
+            var responses = _.map(result.rows, (categoryData) => {
+                var category = categoryData.dataValues;
                 return {
                     categoryId: category.categoryId,
                     name: category.name,
                     createdAt: category.createdAt,
                     updatedAt: category.updatedAt,
-                    canDelete: canDelete,
-                    productTypeCount: category.ProductTypeCount
+                    canDelete: true,
+                    productTypeCount: 0
                 }
-            });
+            })
             res.json(responses);
-        });
+        },
+        (err) => {
+            console.log(err);
+        })
+
+    // models.sequelize.query("SELECT ca.*, (SELECT COUNT(*) FROM producttypes pro WHERE pro.categoryId=ca.categoryId) AS ProductTypeCount FROM categories AS ca ORDER BY ca.categoryId DESC")
+    //     .spread((result, metadate) => {
+    //         var responses = _.map(result, (category) => {
+    //             var canDelete = false;
+    //             if (category.ProductTypeCount == 0) {
+    //                 canDelete = true;
+    //             } else {
+    //                 canDelete = false;
+    //             }
+    //             return {
+    //                 categoryId: category.categoryId,
+    //                 name: category.name,
+    //                 createdAt: category.createdAt,
+    //                 updatedAt: category.updatedAt,
+    //                 canDelete: canDelete,
+    //                 productTypeCount: category.ProductTypeCount
+    //             }
+    //         });
+    //         res.json(responses);
+    //     });
 };
 
 module.exports.createCategory = (req, res, next) => {
@@ -109,23 +128,21 @@ module.exports.deleteCategory = (req, res, next) => {
 };
 
 module.exports.getCategoryProductTye = (req, res, next) => {
-    var quey = "SELECT * FROM categories";
-    var quey1 = "select category.*, producttype.* from categories as category inner join producttypes as producttype on producttype.categoryId = category.categoryId";
-    var query2 = "SELECT * FROM producttypes";
-
     var promise1 = new Promise((resolve, reject) => {
-        models.sequelize.query(quey)
-            .spread((result) => {
-                resolve(result);
-            }, (err) => {
+        models.Category.findAndCountAll()
+            .then((result) => {
+                resolve(result.rows);
+            },
+            (err) => {
                 reject(err);
             });
     });  
-
     promise1.then(function (categories) {
-        models.sequelize.query(query2)
-            .spread((producttypes) => {
-                var responses = _.map(categories, function (category) {
+        models.ProductType.findAndCountAll()
+            .then((result) => {
+                var producttypes = result.rows;
+                var responses = _.map(categories, function (categoryData) {
+                    var category = categoryData.dataValues;
                     let categoryRes = {
                         categoryId: category.categoryId,
                         name: category.name,
@@ -134,16 +151,17 @@ module.exports.getCategoryProductTye = (req, res, next) => {
                         producttypes: []
                     }
                     categoryRes.producttypes = _.filter(producttypes, function (producttype) {
-                        return producttype.categoryId === category.categoryId;
+                        return producttype.dataValues.categoryId === category.categoryId;
                     });
                     return categoryRes
                 });
                 res.json(responses);
-            }, (err) => {
+            },
+            (err) => {
                 console.log(err);
                 res.statusCode = 400;
                 res.end()
-            });
+            });   
     }).catch(function (err) {
         console.log(err);
         res.statusCode = 400;

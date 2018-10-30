@@ -3,28 +3,46 @@ var async = require('async');
 var _ = require('underscore');
 
 module.exports.getBrands = (req, res, next) => {
-    models.sequelize.query("SELECT br.*, (SELECT COUNT(*) FROM products pro WHERE pro.brandId=br.brandId) AS ProductCount FROM brands AS br ORDER BY br.brandId DESC")
-        .spread((result, metadata) => {
-            var responses = _.map(result, (brand) => {
-                var canDelete = false;
-                if (brand.ProductCount == 0) {
-                    canDelete = true;
-                } else {
-                    canDelete = false;
-                }
+
+    models.Brand.findAndCountAll()
+        .then((result) => {
+            var responses = _.map(result.rows, (brand) => {
+                var data = brand.dataValues;
                 return {
-                    brandId: brand.brandId,
-                    name: brand.name,
-                    info: brand.info,
-                    createdAt: brand.createdAt,
-                    updatedAt: brand.updatedAt,
-                    ProductCount: brand.ProductCount
+                    brandId: data.brandId,
+                    name: data.name,
+                    info: data.info,
+                    createdAt: data.createdAt,
+                    updatedAt: data.updatedAt,
+                    ProductCount: 0
                 }
-            });
+            })
             res.json(responses);
-        }, (err) => {
-            res.json(err);
-        });
+        },
+        (err) => {
+            console.log(err);
+        })
+
+    // models.sequelize.query("SELECT br.*, (SELECT COUNT(*) FROM products pro WHERE pro.brandId=br.brandId) AS ProductCount FROM Brand AS br ORDER BY br.brandId DESC")
+    //     .spread((result, metadata) => {
+    //         var responses = _.map(result, (brand) => {
+    //             var canDelete = false;
+    //             if (brand.ProductCount == 0) {
+    //                 canDelete = true;
+    //             } else {
+    //                 canDelete = false;
+    //             }
+    //             return {
+    //                 brandId: brand.brandId,
+    //                 name: brand.name,
+    //                 info: brand.info,
+    //                 createdAt: brand.createdAt,
+    //                 updatedAt: brand.updatedAt,
+    //                 ProductCount: brand.ProductCount
+    //             }
+    //         });
+    //         res.json(responses);
+    //     });
 };
 
 module.exports.createBrand = (req, res, next) => {
