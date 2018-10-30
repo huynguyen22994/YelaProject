@@ -22,6 +22,8 @@ module.exports.getBrands = (req, res, next) => {
                 }
             });
             res.json(responses);
+        }, (err) => {
+            res.json(err);
         });
 };
 
