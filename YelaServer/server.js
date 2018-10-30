@@ -81,7 +81,7 @@ var options = {
     controllers: __dirname + '/app/controllers'
 };
 
-var port = app.get('port') || process.env.PORT;
+var port = process.env.PORT || app.get('port');
 
 swagger.initializeMiddleware(swaggerObj, (middleware) => {
     app.use(middleware.swaggerMetadata());
