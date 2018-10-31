@@ -3,6 +3,6 @@
 
     angular.module('YelaAppClient')
         .constant('clientConstant', {
-            serverUrl: 'http://foodtechserver.herokuapp.com'
+            serverUrl: ''
     });
 })();
