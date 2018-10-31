@@ -4,5 +4,6 @@ YeleWebApp/bower_components
 YelaServer/npm-debug.log
 YelaServer/thumb.db
 YelaWebApp/npm-debug.log
+YelaServer/bower_components
 .idea
 .idea/*

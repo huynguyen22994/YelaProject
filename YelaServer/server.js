@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var cors = require('cors');
 var http = require('http').createServer(app);
 var io = require('socket.io').listen(http);
 var swagger = require('swagger-tools');
@@ -12,6 +13,9 @@ var session = require('express-session');
 var config = fs.readFileSync('./config/config.json');
 var configDB = JSON.parse(config.toString());
 var socket = require('./app/socket/chat.socket.js');
+
+app.use(cors());
+app.options('*', cors());
 
 app.set('port', process.argv[2] || configDB.port);
 
@@ -36,10 +40,12 @@ app.use(function (req, res, next) {
 
     next()
 });
-
- app.use('/', express.static(__dirname + '/public/client'));
- app.use('/admin', express.static(__dirname + '/public/admin'));
+ app.use('/', express.static(__dirname + '/public/appClient'));
+ app.use('/admin', express.static(__dirname + '/public/appAdmin'));
+ app.use('/client-debug.html', express.static(__dirname + '/public/client'));
+ app.use('/admin-debug.html', express.static(__dirname + '/public/admin'));
  app.use('/components', express.static(__dirname + '/public/components'));
+ app.use('/bower_components', express.static(__dirname + '/bower_components'));
 //  app.use('/upload', express.static(__dirname));
  app.use('/upload', express.static(__dirname + '/upload'));
 
