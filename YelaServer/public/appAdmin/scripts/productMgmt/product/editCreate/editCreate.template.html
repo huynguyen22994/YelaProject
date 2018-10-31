@@ -1,0 +1,164 @@
+<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-header">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h2>Tạo Mới Sản Phẩm</h2>                 
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <div class="row">
+                <form class="form-horizontal" name="form" novalidate>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Tạo mới sản phẩm
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-9 col-sm-9">
+                                    <div class="form-group has-success has-feedback">
+                                        <label class="control-label col-sm-2" for="productname">*Tên Sản Phẩm: </label>
+                                        <div class="col-sm-10">
+                                             <input class="form-control" ng-model="vm.Product.name" id="productname" placeholder="Enter product name" name="productname" required>  
+                                            <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="form.productname.$dirty && form.productname.$valid"></span>
+                                            <span class="help-block" ng-messages="form.productname.$error" ng-if="form.productname.$dirty">
+                                                <span ng-show="form.productname.$error.required" ng-message="required">không được bỏ trống.</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-success has-feedback">
+                                        <label class="control-label col-sm-2" for="price">*Giá: </label>
+                                        <div class="col-sm-10">
+                                             <input class="form-control" ng-model="vm.Product.price" id="price" placeholder="Enter product name" name="price" required>  
+                                            <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="form.price.$dirty && form.price.$valid"></span>
+                                            <span class="help-block" ng-messages="form.price.$error" ng-if="form.price.$dirty">
+                                                <span ng-show="form.price.$error.required" ng-message="required">không được bỏ trống.</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-success has-feedback">
+                                        <label class="control-label col-sm-2" for="quantity">Số Lượng: </label>
+                                        <div class="col-sm-10">
+                                             <input class="form-control" ng-model="vm.Product.quantity" id="quantity" placeholder="Enter product name" name="quantity" required>  
+                                            <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="form.quantity.$dirty && form.quantity.$valid"></span>
+                                            <span class="help-block" ng-messages="form.quantity.$error" ng-if="form.quantity.$dirty">
+                                                <span ng-show="form.quantity.$error.required" ng-message="required">không được bỏ trống.</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-success has-feedback">
+                                        <label class="control-label col-sm-2" for="discribe">Mô Tả: </label>
+                                        <div class="col-sm-10">
+                                             <input class="form-control" ng-model="vm.Product.discribe" id="discribe" placeholder="Enter product name" name="discribe" required>  
+                                            <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="form.discribe.$dirty && form.discribe.$valid"></span>
+                                            <span class="help-block" ng-messages="form.discribe.$error" ng-if="form.discribe.$dirty">
+                                                <span ng-show="form.discribe.$error.required" ng-message="required">không được bỏ trống.</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-success has-feedback">
+                                        <label class="control-label col-sm-2" for="artist">*Tình Trạng </label>
+                                        <div class="col-sm-10">          
+                                            <select 
+                                                name="statusSelect" 
+                                                id="statusSelect" 
+                                                class="form-control" 
+                                                ng-options="option.name for option in vm.productStatus track by option.id" 
+                                                ng-model="vm.ProductStatus" required>
+                                            </select>
+                                            <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="form.statusSelect.$dirty && form.statusSelect.$valid"></span>
+                                        </div>
+                                    </div> 
+                                    <div class="form-group has-success has-feedback">
+                                        <label class="control-label col-sm-2" for="artist">*Nhãn Hiệu </label>
+                                        <div class="col-sm-10">          
+                                            <select 
+                                                name="brandSelect" 
+                                                id="brandSelect" 
+                                                class="form-control" 
+                                                ng-options="option.name for option in vm.brands track by option.brandId" 
+                                                ng-model="vm.Brand" required>
+                                            </select>
+                                            <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="form.brandSelect.$dirty && form.brandSelect.$valid"></span>
+                                        </div>
+                                    </div> 
+                                    <div class="form-group has-success has-feedback">
+                                        <label class="control-label col-sm-2" for="artist">*Loại Sản Phẩm </label>
+                                        <div class="col-sm-10">          
+                                            <select 
+                                                name="producttypeSelect" 
+                                                id="producttypeSelect" 
+                                                class="form-control" 
+                                                ng-options="option.name for option in vm.producttypes track by option.productTypeId" 
+                                                ng-model="vm.Producttype" required>
+                                            </select>
+                                            <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="form.producttypeSelect.$dirty && form.producttypeSelect.$valid"></span>
+                                        </div>
+                                    </div> 
+                                    <div class="form-group has-success has-feedback">
+                                        <label class="control-label col-sm-2" for="artist">Chọn Hình Sản Phẩm: </label>
+                                        <div class="col-sm-10">          
+                                            <div class="col-md-4 col-sm-12">
+                                                <button class="btn btn-info" ngf-select ng-model="picFile" accept="image/*">
+                                                    Select Image
+                                                </button>                                            
+                                                <span ng-if="picFile.name">{{picFile.name}}</span>
+                                                <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+                                <div class="col-md-3 col-sm-3">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <img ng-src="{{vm.croppedDataUrl}}" class="img-thumbnail" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <label>Chỉnh Ảnh:</label>
+                                            <div class="crop-image-class">
+                                                <span ngf-drop ng-model="picFile" ngf-pattern="image/*"
+                                                    class="cropArea">
+                                                    <img-crop image="picFile  | ngfDataUrl"                 
+                                                    result-image="vm.croppedDataUrl">
+                                                    </img-crop>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <div class="form-group">        
+                                 <div class="col-sm-offset-2 col-sm-10">
+                                    <a class="btn btn-default pull-right" 
+                                        ng-click="vm.cancel()"
+                                        >
+                                        <i class="fa fa-ban" aria-hidden="true"></i>
+                                        <b>{{'cancel' | i18next}}</b>
+                                    </a>
+                                    <button type="submit" ng-if="vm.isCreate()"
+                                        ng-disabled="!form.$dirty || (form.$dirty && form.$invalid)" 
+                                        class="btn btn-primary pull-right" 
+                                        ng-click="vm.create(vm.croppedDataUrl, picFile.name)">
+                                        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                        <b>{{'button_create' | i18next}}</b>
+                                    </button>   
+                                    <button type="submit" ng-if="vm.isEdit()"
+                                        ng-disabled="!form.$dirty || (form.$dirty && form.$invalid)" 
+                                        class="btn btn-primary pull-right" 
+                                        ng-click="vm.edit(vm.croppedDataUrl, picFile.name)">
+                                        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                        <b>{{'button_edit' | i18next}}</b>
+                                    </button>          
+                                </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+        </div>
+    </div>

@@ -1,0 +1,37 @@
+    <link rel="stylesheet" href="scripts/clientComponents/chatBox/chatBox.css">
+    <script src="scripts/clientComponents/chatBox/chatBox.jquery.js"></script>
+    
+    <div class="chatbox chatbox--tray chatbox--empty">
+        <div class="chatbox__title">
+            <h5><a href="#"> {{ 'messenger' | i18next}}</a></h5>
+            <button class="chatbox__title__tray">
+                <span></span>
+            </button>
+            <button class="chatbox__title__close">
+                <span>
+                    <svg viewBox="0 0 12 12" width="12px" height="12px">
+                        <line stroke="#FFFFFF" x1="11.75" y1="0.25" x2="0.25" y2="11.75"></line>
+                        <line stroke="#FFFFFF" x1="11.75" y1="11.75" x2="0.25" y2="0.25"></line>
+                    </svg>
+                </span>
+            </button>
+        </div>
+        <div class="chatbox__body" id="chatBoxs">
+        </div>
+        <form class="chatbox__credentials">
+            <div class="form-group">
+                <label for="inputName">*{{ 'name' | i18next }}</label>
+                <input type="text" ng-model="customer.name" class="form-control" id="inputName" required>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail">*{{ 'email' | i18next }}:</label>
+                <input type="email" ng-model="customer.email" class="form-control" id="inputEmail" required>
+            </div>
+            <!-- <div class="form-group">
+                <label for="inputPhone">{{ 'phone' | i18next }}:</label>
+                <input type="number" ng-model="customer.phone" class="form-control" id="inputPhone">
+            </div> -->
+            <button ng-click="enterChat()" class="btn btn-success btn-block">{{ 'send' | i18next}}</button>
+        </form>
+        <textarea class="chatbox__message" id="mesageCustomer" ng-model="message" placeholder="Write something interesting"></textarea>
+    </div>

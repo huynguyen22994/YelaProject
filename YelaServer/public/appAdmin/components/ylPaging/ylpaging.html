@@ -1,0 +1,64 @@
+         <link rel="stylesheet" href="/admin/components/ylPaging/ylpaging.css">  
+         
+                <div class="row" ng-if="hasResult" resize>
+                    <div class="col-md-6 col-sm-9 col-xs-9">
+                        <div class="page-nation">
+                            <ul ng-if="pager.pages.length" class="pagination pagination-large">
+                                <li 
+                                    ng-class="{disabled:pager.currentPage === 1}"
+                                    ng-if="width >= widthResponsive"    
+                                >   
+                                    <a 
+                                        ng-click="setPaging(1, pageCustomizeSize.size)"
+                                        title="{{'tooltip_first_page' | i18next}}"
+                                        tooltip    
+                                    >{{'first' | i18next}}</a>
+                                </li>
+                                <li 
+                                    ng-class="{disabled:pager.currentPage === 1}"
+                                    ng-if="width >= widthResponsive"     
+                                >
+                                    <a ng-click="setPaging(pager.currentPage - 1, pageCustomizeSize.size)"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+                                </li>
+                                <li ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}">
+                                    <a ng-click="setPaging(page, pageCustomizeSize.size)">{{::page}}</a>
+                                </li>
+                                <li 
+                                    ng-class="{disabled:pager.currentPage === pager.totalPages}"
+                                    ng-if="width >= widthResponsive"     
+                                >
+                                    <a ng-click="setPaging(pager.currentPage + 1, pageCustomizeSize.size)"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                                </li>
+                                <li 
+                                    ng-class="{disabled:pager.currentPage === pager.totalPages}"
+                                    ng-if="width >= widthResponsive" 
+                                >
+                                    <a ng-click="setPaging(pager.totalPages, pageCustomizeSize.size)"
+                                        title="{{'tooltip_last_page' | i18next}}"
+                                        tooltip
+                                    >{{'last' | i18next}}</a>
+                                </li>
+                            </ul>
+                        </div>  
+                    </div>
+
+                    <!-- Drop down-->
+                    <div class="col-md-offset-11 col-sm-offset-9 col-xs-offset-9" ng-if="pageCustomizeSize">
+                        <select ng-if="pager.pages.length"
+                            class="dropdown-setpage" 
+                            ng-model="pageCustomizeSize.size" 
+                            ng-change="selectItemNumber(pageCustomizeSize.currentPage, pageCustomizeSize.size)"
+                            title="{{'tooltip_choose_page_item' | i18next }}"
+                            tooltip
+                        >
+                            <option 
+                                ng-repeat="dropNumber in pageDropNumber" 
+                                value="{{::dropNumber.id}}"
+                            >
+                                {{::dropNumber.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <!-- Drop down -->
+                    
+                </div>

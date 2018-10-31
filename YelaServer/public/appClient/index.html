@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+	<meta name="author" content="">
+	<!-- <base href="/"> -->
+    <title>F | FoodTech</title>
+    <link href="styles/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="styles/css/prettyPhoto.css" rel="stylesheet">
+    <link href="styles/css/price-range.css" rel="stylesheet">
+    <link href="styles/css/animate.css" rel="stylesheet">
+	<link href="styles/css/main.css" rel="stylesheet">
+	<link href="styles/css/responsive.css" rel="stylesheet">
+
+	<link href="scripts/clientComponents/spinnerLoading/spinnerLoading.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->       
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+</head><!--/head-->
+
+<body ng-controller="ClientController as vm">
+	<!--Spinner Loading-->
+	<div ng-if="!vm.spinnerHide" class="container" id="loader-warpper">
+		<div class="row">
+			<div id="loader">
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="lading"></div>
+			</div>
+		</div>
+	</div>
+	<!--End Spinner Loading-->
+	<div id="fb-root"></div>
+	<chat-box></chat-box> 
+    <header-app></header-app>
+	
+	<ng-view></ng-view>
+
+	<!-- <section id="slider">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+                    <slide-show></slide-show>
+				</div>
+			</div>
+		</div>
+	</section> -->
+	
+	<!-- <section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+
+                    <sidebar></sidebar>
+
+				</div>
+				
+				<div class="col-sm-9 padding-right">
+
+                    <features-item></features-item>
+					
+                    <tab></tab>
+					
+                    <recommend-product></recommend-product>
+					
+				</div>
+			</div>
+		</div>
+	</section> -->
+	
+    <footer-app></footer-app>
+    
+    <social-button></social-button>
+	
+
+  
+    <script src="styles/js/jquery.js"></script>
+	<script src="styles/js/bootstrap.min.js"></script>
+	<script src="styles/js/jquery.scrollUp.min.js"></script>
+	<script src="styles/js/price-range.js"></script>
+    <script src="styles/js/jquery.prettyPhoto.js"></script>
+    <script src="styles/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular-route.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-socket-io/0.7.0/socket.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.7.5/angular-sanitize.min.js"></script> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/12.0.0/i18next.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-xhr-backend/1.5.1/i18nextXHRBackend.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-i18next/1.0.4/ng-i18next.min.js"></script>
+
+	<script src="translate/translate.js"></script>
+
+	<script src="admin/components/ylSocket/ylSocket.js"></script>
+	<script src="scripts/clientComponents/chatBox/chatBox.directive.js"></script>
+	<script src="scripts/clientComponents/slideShow/slideShow.directive.js"></script>
+	<script src="scripts/clientComponents/productItem/productItem.directive.js"></script>
+	<script src="scripts/clientComponents/header/header.directive.js"></script>
+	<script src="scripts/clientComponents/footer/footer.directive.js"></script>
+	<script src="scripts/clientComponents/category/category.directive.js"></script>
+	<script src="scripts/clientComponents/brand/brand.directive.js"></script>
+	<script src="scripts/clientComponents/sidebar/sidebar.directive.js"></script>
+	<script src="scripts/clientComponents/tab/tab.directive.js"></script>
+	<script src="scripts/clientComponents/recommendedItem/recommendedItem.directive.js"></script>
+	<script src="scripts/clientComponents/featuresItem/featuresItem.directive.js"></script>
+	<script src="scripts/clientComponents/socialButton/socialButton.directive.js"></script>
+
+    <script src="scripts/app.module.js"></script>
+	<script src="scripts/app.bootstrap.js"></script>
+	<script src="scripts/app.config.js"></script>
+	<script src="scripts/app.constant.js"></script>
+	<script src="scripts/app.controller.js"></script>
+	<!--home-->
+	<script src="scripts/home/home.module.js"></script>
+	<script src="scripts/home/home.service.js"></script>
+	<script src="scripts/home/home.template.js"></script>
+	<script src="scripts/home/home.route.js"></script> 
+	<script src="scripts/home/home.controller.js"></script>  
+	<!--shop-->
+	<script src="scripts/shop/shop.module.js"></script>
+	<script src="scripts/shop/shop.service.js"></script>
+	<script src="scripts/shop/shop.template.js"></script>
+	<script src="scripts/shop/shop.route.js"></script>
+	<script src="scripts/shop/shop.controller.js"></script>
+	<!--detail-->
+	<script src="scripts/detail/detail.module.js"></script>
+	<script src="scripts/detail/detail.service.js"></script>
+	<script src="scripts/detail/detail.template.js"></script>
+	<script src="scripts/detail/detail.route.js"></script>
+	<script src="scripts/detail/detail.controller.js"></script>
+	<!--login--> 
+	<script src="scripts/login/login.module.js"></script>
+	<script src="scripts/login/login.route.js"></script>
+	<script src="scripts/login/login.controller.js"></script>
+	<!--<script src="scripts/cart/cart.module.js"></script>
+	<script src="scripts/cart/cart.route.js"></script>
+	<script src="scripts/blog/blog.module.js"></script>
+	<script src="scripts/blog/blog.route.js"></script>-->
+	<script>(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.11&appId=375782316127685';
+		fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+
+</body>
+</html>

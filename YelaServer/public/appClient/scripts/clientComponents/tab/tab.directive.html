@@ -1,0 +1,25 @@
+<div class="category-tab"><!--category-tab-->
+    <div class="col-sm-12">
+        <ul class="nav nav-tabs">
+            <li ng-repeat="tab in vm.tabMenuConfig.tabs" ng-class="{'active': tab.isChoosen}">
+                <a ng-click="vm.onChooseTab(tab.id)" href="{{ tab.id }}" data-toggle="tab">{{ tab.label | i18next }}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-content">
+        <div ng-repeat="tabContent in vm.tabMenuConfig.tabs" class="tab-pane fade" ng-class="{'active in': tabContent.isChoosen}" id="{{ tabContent.id }}" >
+            <div ng-repeat="content in tabContent.items" class="col-sm-3">
+                <div class="product-image-wrapper">
+                    <div class="single-products">
+                        <div class="productinfo text-center">
+                            <img src="{{ content.image }}" alt="" />
+                            <h5>{{ content.label }}</h5>
+                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>{{ 'view' | i18next }}</a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--/category-tab-->
