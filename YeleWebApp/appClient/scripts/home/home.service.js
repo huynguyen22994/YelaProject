@@ -71,7 +71,7 @@
 
         function getBrands() {
             return $http({
-                url: '/api/brand',
+                url: 'https://foodtechserver.herokuapp.com/api/brand',
                 method: 'GET'
             }).then(function (res) {
                 return res;
