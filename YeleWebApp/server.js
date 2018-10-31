@@ -7,7 +7,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 
 var proxyConfig = {
-    target: 'http://localhost:3000'
+    target: 'https://thefoodtech.herokuapp.com'
 }
 
 //var proxyContent = ['api']; // add something
