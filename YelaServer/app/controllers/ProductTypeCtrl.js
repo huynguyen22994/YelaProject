@@ -2,27 +2,48 @@ var models = require('../models');
 var _ = require('underscore');
 
 module.exports.getProductType = (req, res, next) => {
-    models.sequelize.query("SELECT proty.*, (SELECT COUNT(*) FROM products pro WHERE pro.productTypeId=proty.productTypeId) AS productsCount FROM producttypes AS proty ORDER BY proty.productTypeId DESC")
-        .spread((result, metadata) => {
-            var responses = _.map(result, (productType) => {
-                var canDelete = false;
-                if (productType.productsCount == 0) {
-                    canDelete = true;
-                } else {
-                    canDelete = false;
-                }
-                return {
-                    productTypeId: productType.productTypeId,
-                    name: productType.name,
-                    categoryId: productType.categoryId,
-                    createdAt: productType.createdAt,
-                    updatedAt: productType.updatedAt,
-                    productsCount: productType.productsCount,
-                    canDelete: canDelete
-                }
-            });
-            res.json(responses);
-        });
+
+    models.ProductType.findAndCountAll()
+    .then((result) => {
+        var responses = _.map(result.rows, (productType) => {
+            var data = productType.dataValues;
+            return {
+                productTypeId: data.productTypeId,
+                name: data.name,
+                categoryId: data.categoryId,
+                createdAt: data.createdAt,
+                updatedAt: data.updatedAt,
+                productsCount: 0,
+                canDelete: true
+            }
+        })
+        res.json(responses);
+    },
+    (err) => {
+        console.log(err);
+    })
+
+    // models.sequelize.query("SELECT proty.*, (SELECT COUNT(*) FROM products pro WHERE pro.productTypeId=proty.productTypeId) AS productsCount FROM producttypes AS proty ORDER BY proty.productTypeId DESC")
+    //     .spread((result, metadata) => {
+    //         var responses = _.map(result, (productType) => {
+    //             var canDelete = false;
+    //             if (productType.productsCount == 0) {
+    //                 canDelete = true;
+    //             } else {
+    //                 canDelete = false;
+    //             }
+    //             return {
+    //                 productTypeId: productType.productTypeId,
+    //                 name: productType.name,
+    //                 categoryId: productType.categoryId,
+    //                 createdAt: productType.createdAt,
+    //                 updatedAt: productType.updatedAt,
+    //                 productsCount: productType.productsCount,
+    //                 canDelete: canDelete
+    //             }
+    //         });
+    //         res.json(responses);
+    //     });
 };
 
 module.exports.createProductType = (req, res, next) => {
