@@ -21,7 +21,7 @@
             template: `
             <div class="features_items">
                 <h2 class="title text-center">{{ 'featuresFood' | i18next }}</h2>
-                <product-item ng-repeat="data in arrayData" data="data" ></product-item>
+                <product-item ng-repeat="data in arrayData" data="data" config="vm.productItemConfig"></product-item>
             </div>
             <div class="pagination-area">
                 <ul class="pagination">
@@ -42,10 +42,16 @@
         
     }
     /* @ngInject */
-    function ControllerController ($scope) {
+    function ControllerController ($scope, $location) {
         var vm = this;
         vm.pageArray = [];        
         var flag = false;
+
+        vm.productItemConfig = {
+            viewDetail: function (item) {
+                $location.path(`/detail/${item.productId}`);
+            }
+        }
         
         $scope.$watch('arrayData.length', function (newValue, oldValue) {
             if (newValue !== oldValue) {

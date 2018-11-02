@@ -24,7 +24,7 @@
                     <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="item active">	
-                                <product-item ng-repeat="data in arrayData" data="data" ></product-item>
+                                <product-item ng-repeat="data in arrayData" data="data" config="vm.productItemConfig"></product-item>
                             </div>
                         </div>
                         <a class="left recommended-item-control" ng-hide="config.disableLeftButton()" ng-click="config.leftButton()" data-slide="prev">
@@ -41,8 +41,12 @@
         
     }
     /* @ngInject */
-    function ControllerController ($scope) {
+    function ControllerController ($scope, $location) {
         var vm = this;
-
+        vm.productItemConfig = {
+            viewDetail: function (item) {
+                $location.path(`/detail/${item.productId}`);
+            }
+        }
     }
 })();

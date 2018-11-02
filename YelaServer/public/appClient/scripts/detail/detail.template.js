@@ -54,23 +54,23 @@
                                             <div class="product-information"><!--/product-information-->
                                                 <img src="images/product-details/new.jpg" class="newarrival" alt="" />
                                                 <h2>{{vm.product.name}}</h2>
-                                                <p>Web ID: 1089772</p>
+                                                <!--<p>Web ID: 1089772</p>-->
                                                 <p>
                                                     <span>
                                                         <span>{{vm.product.price}}</span>
                                                     </span>
                                                 </p>
                                                 <span>
-                                                    <label>Quantity:</label>
+                                                    <label>{{ 'quantity' | i18next }}:</label>
                                                     <input type="text" value="1" />
                                                     <button type="button" class="btn btn-fefault cart">
                                                         <i class="fa fa-shopping-cart"></i>
                                                         Add to cart
                                                     </button>
                                                 </span>
-                                                <p><b>Availability:</b> In Stock</p>
-                                                <p><b>Condition:</b> New</p>
-                                                <p><b>Brand:</b> E-SHOPPER</p>
+                                                <p><b>{{ 'status' | i18next }}:</b> Còn</p>
+                                                <p><b>{{ 'type' | i18next }}:</b> {{vm.product.productStatus}}</p>
+                                                <p><b>{{ 'discribe' | i18next }}:</b> {{vm.product.discribe}}</p>
                                                 <a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
                                             </div><!--/product-information-->
                                         </div>

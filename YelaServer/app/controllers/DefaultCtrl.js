@@ -52,6 +52,10 @@ module.exports.getProductWithOffset = (req, res, next) => {
     ProductCtrl.getProductWithOffset(req, res, next);
 };
 
+module.exports.getProductByProductType = (req, res, next) => {
+    ProductCtrl.getProductByProductType(req, res, next);
+};
+
 // Categories
 module.exports.getCategory = (req, res, next) => {
     CategoryCtrl.getCategory(req, res, next);

@@ -254,3 +254,22 @@ module.exports.getProductWithOffset = (req, res, next) => {
             console.log(err);
         })
 };
+
+module.exports.getProductByProductType = (req, res, next) => {
+    var offset = parseInt(req.query.offset);
+    var limit =  parseInt(req.query.limit);
+    var productTypeId = req.query.productTypeId;
+    models.Product.findAndCountAll({
+    where: {
+        productTypeId: productTypeId
+    },
+    offset: offset,
+    limit: limit
+    })
+    .then((result) => {
+        res.json(result);
+    }, (err) => {
+        res.statusCode = 400;
+        res.end();
+    });
+};

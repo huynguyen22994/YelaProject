@@ -6,6 +6,7 @@
         'YelaAppClient.Login',
         'YelaAppClient.Shop',
         'YelaAppClient.Detail',
+        'YelaAppClient.FoodByType',
         'YelaChatBox',
         'Brand',
         'Category',

@@ -9,7 +9,7 @@ body {
   
   .share-buttons {
     position: fixed;
-    width: 200px;
+    width: 100px;
     top: 30%;
     z-index: 1001;
   }
