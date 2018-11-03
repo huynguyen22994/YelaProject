@@ -23,7 +23,7 @@
                     <category category-data="categoryData"></category>
                     <brand brand-data="brandData"></brand>                    
                     <div class="shipping text-center"><!--shipping-->
-                        <img src="images/home/shipping.jpg" alt="" />
+                        <img src="images/home/banner.png" alt="" />
                     </div><!--/shipping-->
                 </div>
             `

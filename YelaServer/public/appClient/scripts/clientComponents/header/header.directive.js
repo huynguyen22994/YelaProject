@@ -74,9 +74,7 @@
                 ],
                 right: [
                     { iconClass: 'fa fa-facebook', href: function () { return 'string'; } },
-                    {iconClass: 'fa fa-twitter', href: function () { return 'string'; } },
-                    {iconClass: 'fa fa-linkedin', href: function () { return 'string'; } },
-                    {iconClass: 'fa fa-dribbble', href: function () { return 'string'; } },
+                    {iconClass: 'fa fa-instagram', href: function () { return 'string'; } },
                     {iconClass: 'fa fa-google-plus', href: function () { return 'string'; } },
                 ]
             },
