@@ -13,7 +13,11 @@
                                 </div>
                                 <div class="col-sm-9 padding-right">
 					                <div class="features_items">
-						                <h2 class="title text-center">{{ vm.productType.name }}</h2>
+                                        <h2 class="title text-center">{{ vm.productType.name }}</h2>
+                                        <div ng-if="vm.isLoading">
+                                            <div class="foodtech-loader"></div>
+                                            <div class="foodtech-loader-backdrop"></div>
+                                        </div>
                                         <product-item ng-repeat="data in vm.products" data="data" config="vm.productItemConfig" ></product-item>
                                     </div>
                                     <div class="pagination-area">

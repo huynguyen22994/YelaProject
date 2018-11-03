@@ -640,7 +640,7 @@ ul.sub-menu {
 
 .control-carousel {
   position: absolute;
-  top: 50%;
+  top: 40%;
   font-size: 60px;
   color: #C2C2C1;
 }
@@ -2517,4 +2517,38 @@ h2.title {
   color: #ff8080;
 }
 
+/* food spinner */
+.foodtech-loader {
+  position: absolute;
+  margin-left: 40%;
+  z-index: 1000;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #ff8080;
+  width: 80px;
+  height: 80px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
 
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.foodtech-loader-backdrop {
+  position: absolute;
+  background-color: #ffff;
+  z-index: 945;
+  width: 100%;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0
+}

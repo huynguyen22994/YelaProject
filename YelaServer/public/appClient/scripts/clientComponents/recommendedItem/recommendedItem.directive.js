@@ -20,6 +20,10 @@
             //templateUrl: '/components/recommendedItem/recommendedItem.directive.html'
             template: `
                 <div class="recommended_items"><!--recommended_items-->
+                    <div ng-if="config.isLoading">
+                        <div class="foodtech-loader"></div>
+                        <div class="foodtech-loader-backdrop"></div>
+                    </div>
                     <h2 class="title text-center">{{ 'recommendedFood' | i18next }}</h2>
                     <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">

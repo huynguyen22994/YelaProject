@@ -21,6 +21,7 @@
             total: 0
         };
         vm.recommendProductConfig = {
+            isLoading: true,
             disableLeftButton: function () {
                 return (vm.RecommendProduct.offset === 0) ? true : false;
             },
@@ -38,6 +39,7 @@
         };
 
         vm.featureProductConfig = {
+            isLoading: true,
             totalItems: 0,
             currentPage: 1,
             limit: vm.FeatureProduct.limit,
@@ -69,6 +71,7 @@
                         vm.featureProductConfig.totalItems = productFreatures.data.count;
                         vm.FeatureProduct.total = productFreatures.data.count;
                         vm.productFreatures = productFreatures.data.rows;
+                        vm.recommendProductConfig.isLoading = false;
                         resolve(productFreatures.data);
                     }).catch(function (err) {
                         console.log(err);
@@ -95,6 +98,7 @@
                     .then(function (productBestsellers) {
                         vm.RecommendProduct.total = productBestsellers.data.count;
                         vm.productBestsellers = productBestsellers.data.rows;
+                        vm.featureProductConfig.isLoading = false;
                         resolve(productBestsellers.data);
                     }).catch(function (err) {
                         console.log(err);

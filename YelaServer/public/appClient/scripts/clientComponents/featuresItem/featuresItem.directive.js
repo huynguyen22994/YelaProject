@@ -20,6 +20,10 @@
             //templateUrl: '/components/featuresItem/featuresItem.directive.html'
             template: `
             <div class="features_items">
+                <div ng-if="config.isLoading">
+                    <div class="foodtech-loader"></div>
+                    <div class="foodtech-loader-backdrop"></div>
+                </div>
                 <h2 class="title text-center">{{ 'featuresFood' | i18next }}</h2>
                 <product-item ng-repeat="data in arrayData" data="data" config="vm.productItemConfig"></product-item>
             </div>

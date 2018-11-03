@@ -8,6 +8,7 @@
     ControllerController.$inject = ['ShopService', 'clientConstant', '$location'];
     function ControllerController(ShopService, clientConstant, $location) {
         var vm = this;
+        vm.isLoading = true;
         vm.Product = {
             offset: 0,
             limit: 12
@@ -68,6 +69,7 @@
                         if (isLoadNew) {
                             setPage(products.data.count, products.data.products.length, vm.Product.limit)  
                         };
+                        vm.isLoading = false;
                         resolve(products.data.products);
                     }).catch(function (err) {
                         console.log(err);

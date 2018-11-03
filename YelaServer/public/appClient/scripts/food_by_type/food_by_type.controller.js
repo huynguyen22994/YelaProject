@@ -9,6 +9,7 @@
     function ControllerController(FoodTypeService, clientConstant, $location, $route) {
         var vm = this;
         let productTypeId = $route.current.params.id;
+        vm.isLoading = true;
         vm.Product = {
             offset: 0,
             limit: 12
@@ -83,6 +84,7 @@
                         if (isLoadNew) {
                             setPage(products.data.count, products.data.rows.length, vm.Product.limit)  
                         };
+                        vm.isLoading = false;
                         resolve(products.data.rows);
                     }).catch(function (err) {
                         console.log(err);

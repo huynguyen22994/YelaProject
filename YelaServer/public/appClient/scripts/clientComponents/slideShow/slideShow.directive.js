@@ -16,7 +16,7 @@
             },
             //templateUrl: 'components/silideShow/slideShow.directive.html'
             template: `
-            <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+            <div id="slider-carousel" class="carousel slide" data-ride="carousel" style="position: initial">
                 <ol class="carousel-indicators">
                     <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
                     <li data-target="#slider-carousel" data-slide-to="1"></li>
@@ -31,11 +31,28 @@
                             <button type="button" class="btn btn-default get textSlideShow">Get it now</button>
                             <div class="textSlideShow">Caption Three</div> -->
                             <img src="images/home/slide.PNG" class="girl img-responsive" alt="" />
-                            <img src="images/home/pricing.png"  class="pricing" alt="" />
                         </div>
-                    </div>        
+                    </div>      
+                    <div class="item">
+                        <div class="col-sm-4">
+                            <h1><span>F |</span> Food Tech</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                        </div>
+                        <div class="col-sm-8">
+                            <img src="images/home/slide2.PNG" class="girl img-responsive" alt="" />
+                        </div>
+                    </div>  
+                    <div class="item">
+                        <div class="col-sm-4">
+                            <h1><span>F </span>| Food Tech</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                        </div>
+                        <div class="col-sm-8">
+                            <img src="images/home/slide3.PNG" class="girl img-responsive" alt="" />
+                        </div>
+                    </div>
                 </div>
-                <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev" style="margin-left: 8%">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">

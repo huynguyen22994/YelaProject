@@ -12,7 +12,11 @@
                                     <sidebar brand-data="vm.brands" category-data="vm.categories"></sidebar>
                                 </div>
                                 <div class="col-sm-9 padding-right">
-					                <div class="features_items">
+                                    <div class="features_items">
+                                        <div ng-if="vm.isLoading">
+                                            <div class="foodtech-loader"></div>
+                                            <div class="foodtech-loader-backdrop"></div>
+                                        </div>
 						                <h2 class="title text-center">Tất Cả Sản Phẩm</h2>
                                         <product-item ng-repeat="data in vm.products" data="data" config="vm.productItemConfig" ></product-item>
                                     </div>
