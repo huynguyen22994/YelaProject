@@ -17,7 +17,7 @@
             //templateUrl: 'components/silideShow/slideShow.directive.html'
             template: `
             <div id="slider-carousel" class="carousel slide" data-ride="carousel" style="position: initial">
-                <ol class="carousel-indicators">
+                <ol class="carousel-indicators" style="width: 69%">
                     <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
                     <li data-target="#slider-carousel" data-slide-to="1"></li>
                     <li data-target="#slider-carousel" data-slide-to="2"></li>
@@ -39,7 +39,7 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                         </div>
                         <div class="col-sm-8">
-                            <img src="images/home/slide2.PNG" class="girl img-responsive" alt="" />
+                            <img src="images/home/slide2.PNG" class="girl img-responsive" style="padding-top: 75px" alt="" />
                         </div>
                     </div>  
                     <div class="item">
