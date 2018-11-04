@@ -2552,3 +2552,9 @@ h2.title {
   right: 0;
   bottom: 0
 }
+
+#map {
+  width: 360px;
+  height: 130px;
+  position: relative;
+}

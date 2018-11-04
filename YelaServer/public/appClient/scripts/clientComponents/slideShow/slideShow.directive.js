@@ -25,6 +25,15 @@
                 
                 <div class="carousel-inner">
                     <div class="item active">
+                        <div class="col-sm-4">
+                            <h1><span>F </span>| Food Tech</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                        </div>
+                        <div class="col-sm-8">
+                            <img src="images/home/slide3.PNG" class="girl img-responsive" alt="" />
+                        </div>
+                    </div>
+                    <div class="item">
                         <div class="col-sm-12">
                             <!-- <h2 class="brandSlideShow">Free E-Commerce Template</h2>
                             <p class="textSlideShow">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
@@ -42,15 +51,6 @@
                             <img src="images/home/slide2.PNG" class="girl img-responsive" style="padding-top: 75px" alt="" />
                         </div>
                     </div>  
-                    <div class="item">
-                        <div class="col-sm-4">
-                            <h1><span>F </span>| Food Tech</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                        </div>
-                        <div class="col-sm-8">
-                            <img src="images/home/slide3.PNG" class="girl img-responsive" alt="" />
-                        </div>
-                    </div>
                 </div>
                 <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev" style="margin-left: 8%">
                     <i class="fa fa-angle-left"></i>

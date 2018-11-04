@@ -87,7 +87,7 @@
                     { iconClass: 'fa fa-star', label: 'wishlist', href: function () { return 'string'; } },
                     { iconClass: 'fa fa-crosshairs', label: 'checkout', href: function () { return 'string'; } },
                     { iconClass: 'fa fa-shopping-cart', label: 'cart', href: function () { return '#!/cart'; } },
-                    // { iconClass: 'fa fa-lock', label: 'Login', href: function () { return '#!/login'; } },
+                    { iconClass: 'fa fa-lock', label: 'Login', href: function () { return '#!/login'; } },
                 ]
             },
             headerBottom: {

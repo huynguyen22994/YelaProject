@@ -5,6 +5,7 @@ var CustomerCtrl = require('./CustomerCtrl');
 var LoginCtrl = require('./LoginCtrl');
 var BrandCtrl = require('./BrandCtrl');
 var SliderCtrl = require('./SliderCtrl');
+var BlogCtrl = require('./BlogCtrl');
 var async = require('async');
 
 // Products
@@ -197,4 +198,25 @@ module.exports.deleteSlider = (req, res, next) => {
 
 module.exports.getSilderEnable = (req, res, next) => {
     SliderCtrl.getSilderEnable(req, res, next);
+};
+
+// Blog
+module.exports.getBlogs = (req, res, next) => {
+    BlogCtrl.getBlogs(req, res, next);
+};
+
+module.exports.createBlog = (req, res, next) => {
+    BlogCtrl.createBlog(req, res, next);
+};
+
+module.exports.updateBlog = (req, res, next) => {
+    BlogCtrl.updateBlog(req, res, next);
+};
+
+module.exports.deleteBlog = (req, res, next) => {
+    BlogCtrl.deleteBlog(req, res, next);
+};
+
+module.exports.getOneBlog = (req, res, next) => {
+    BlogCtrl.getOneBlog(req, res, next);
 };

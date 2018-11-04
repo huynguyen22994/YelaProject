@@ -24,7 +24,21 @@
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+	<script>
+		var map;
+		function initMap() {
+			setTimeout(function() {
+				map = new google.maps.Map(document.getElementById('map'), {
+				center: {
+					lat: 10.848469, 
+					lng: 106.637527
+				},
+				zoom: 8
+				});
+			}, 2000);
+		}
+	</script>
 </head><!--/head-->
 
 <body ng-controller="ClientController as vm">
@@ -86,7 +100,6 @@
     <footer-app></footer-app>
     
     <social-button></social-button>
-	
 
   
     <script src="styles/js/jquery.js"></script>
@@ -165,6 +178,8 @@
 		fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
 	</script>
+
+	<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlwdeQyEcDwuDVui9r8z3-TQ51LO8pU-U&callback=initMap"></script>
 
 </body>
 </html>

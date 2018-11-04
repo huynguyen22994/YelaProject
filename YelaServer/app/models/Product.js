@@ -42,6 +42,10 @@ module.exports = function(sequelize, Sequelize) {
         brandId: {
             type: Sequelize.UUID,
             allowNull: false
+        },
+        type: {
+            type: Sequelize.ENUM('food', 'resource', 'drink', 'cake'),
+            allowNull: true
         }
     }, {
         charset: 'utf8',

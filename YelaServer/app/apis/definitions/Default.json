@@ -146,6 +146,27 @@
                 }
             }
             },
+        "Blog": {
+            "type": "object",
+            "properties": {
+                "blogId": {
+                "type": "integer",
+                "description": "Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles."
+                },
+                "title": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "description": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "imageLink": {
+                "type": "string",
+                "description": "link image of blog"
+                }
+            }
+        },
         "Slider": {
             "type": "object",
             "properties": {
