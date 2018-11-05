@@ -6,6 +6,7 @@ var LoginCtrl = require('./LoginCtrl');
 var BrandCtrl = require('./BrandCtrl');
 var SliderCtrl = require('./SliderCtrl');
 var BlogCtrl = require('./BlogCtrl');
+var AdministratorCtrl = require('./AdministratorCtrl');
 var async = require('async');
 
 // Products
@@ -55,6 +56,10 @@ module.exports.getProductWithOffset = (req, res, next) => {
 
 module.exports.getProductByProductType = (req, res, next) => {
     ProductCtrl.getProductByProductType(req, res, next);
+};
+
+module.exports.getProductByType = (req, res, next) => {
+    ProductCtrl.getProductByType(req, res, next);
 };
 
 // Categories
@@ -219,4 +224,9 @@ module.exports.deleteBlog = (req, res, next) => {
 
 module.exports.getOneBlog = (req, res, next) => {
     BlogCtrl.getOneBlog(req, res, next);
+};
+
+// Administrator
+module.exports.loginAdmin = (req, res, next) => {
+    AdministratorCtrl.loginAdmin(req, res, next);
 };

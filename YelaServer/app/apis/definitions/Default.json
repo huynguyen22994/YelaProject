@@ -42,6 +42,10 @@
                 "brandId": {
                 "type":"integer",
                 "description": "Discribe of Coffee"
+                },
+                "type": {
+                "type":"string",
+                "description": "Discribe of Coffee"
                 }
             }
             },
@@ -162,6 +166,31 @@
                 "description": "Name of Coffee."
                 },
                 "imageLink": {
+                "type": "string",
+                "description": "link image of blog"
+                }
+            }
+        },
+        "Administrator": {
+            "type": "object",
+            "properties": {
+                "adminId": {
+                "type": "integer",
+                "description": "Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles."
+                },
+                "lastName": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "firstName": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "username": {
+                "type": "string",
+                "description": "link image of blog"
+                },
+                "password": {
                 "type": "string",
                 "description": "link image of blog"
                 }

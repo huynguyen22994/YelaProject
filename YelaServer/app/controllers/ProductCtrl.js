@@ -30,7 +30,8 @@ module.exports.createProduct = (req, res, next) => {
             productTypeId: product.productTypeId,
             productStatus: product.productStatus,
             quantity: product.quantity,
-            brandId: product.brandId
+            brandId: product.brandId,
+            type: product.type
         }).then((result) => {
             res.end("insert success");
         }, (err) => {
@@ -61,7 +62,8 @@ module.exports.updateProduct = (req, res, next) => {
                             productTypeId: product.productTypeId,
                             productStatus: product.productStatus,
                             quantity: product.quantity,
-                            brandId: product.brandId
+                            brandId: product.brandId,
+                            type: product.type
                         },
                         {
                             where: {
@@ -83,7 +85,8 @@ module.exports.updateProduct = (req, res, next) => {
                             originalImg: product.originalImg,
                             linkImg: product.linkImg,
                             discribe: product.discribe,
-                            productTypeId: product.productTypeId
+                            productTypeId: product.productTypeId,
+                            type: product.type
                         },
                         {
                             where: {
@@ -262,6 +265,25 @@ module.exports.getProductByProductType = (req, res, next) => {
     models.Product.findAndCountAll({
     where: {
         productTypeId: productTypeId
+    },
+    offset: offset,
+    limit: limit
+    })
+    .then((result) => {
+        res.json(result);
+    }, (err) => {
+        res.statusCode = 400;
+        res.end();
+    });
+};
+
+module.exports.getProductByType = (req, res, next) => {
+    var offset = parseInt(req.query.offset);
+    var limit =  parseInt(req.query.limit);
+    var type = req.query.type;
+    models.Product.findAndCountAll({
+    where: {
+        type: type
     },
     offset: offset,
     limit: limit

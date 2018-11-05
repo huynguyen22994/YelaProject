@@ -13,6 +13,7 @@
         vm.Producttype = {};
         vm.Brand = {};
         vm.ProductStatus = {};
+        vm.typeObj = {};
         vm.isCreate = isCreate;
         vm.isEdit = isEdit;
         vm.create = create;  
@@ -41,10 +42,17 @@
                 name: 'Nổi bật'
             }
         ];
+        vm.types = [
+            { id: 'food', name: 'Món Ăn'},
+            { id: 'resource', name: 'Nguyên Liệu'},
+            { id: 'drink', name: 'Thức Uống'},
+            { id: 'cake', name: 'Bánh'}
+        ];
 
         vm.isSelectedBrand = isSelectedBrand;
         vm.isSelectedProducttype = isSelectedProducttype;
         vm.isSelectedStatus = isSelectedStatus;
+        //vm.isSelectedType = isSelectedType;
 
         activate();
 
@@ -75,6 +83,9 @@
                     });
                     vm.ProductStatus = _.find(vm.productStatus, function (status) {
                         return status.id === res.data.productStatus; 
+                    });
+                    vm.typeObj = _.find(vm.types, function(type) {
+                        return type.id === res.data.type;
                     });
             }).catch(function (err) {
                 console.log(err);
@@ -127,7 +138,8 @@
                 quantity: vm.Product.quantity,
                 productStatus: vm.ProductStatus.id,
                 productTypeId: vm.Producttype.productTypeId,
-                brandId: vm.Brand.brandId
+                brandId: vm.Brand.brandId,
+                type: vm.typeObj.id
             };
 
             if (name) {
@@ -168,7 +180,8 @@
                 originalImg: vm.Product.originalImg,
                 productStatus: vm.ProductStatus.id,
                 productTypeId: vm.Producttype.productTypeId,
-                brandId: vm.Brand.brandId
+                brandId: vm.Brand.brandId,
+                type: vm.typeObj.id
             };
             if (name) {
                  let promise = uploadImg(dataUrl, name);
@@ -227,6 +240,10 @@
 
         function isSelectedStatus() {
             return vm.ProductStatus.id ? true : false;
+        };
+
+        function isSelectedType() {
+            return vm.typeObj.id ? true : false;
         };
 
         function isSelectedBrand() {

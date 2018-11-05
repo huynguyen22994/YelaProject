@@ -26,5 +26,8 @@
     "addToWishlist": "Add to wishlist",
     "posts": "Posts",
     "newPosts": "New Posts",
-    "view": "View"
+    "view": "View",
+    "storeMap": "Google Map",
+    "facebook": "Facebook",
+    "storeAddress": "Address"
 }
