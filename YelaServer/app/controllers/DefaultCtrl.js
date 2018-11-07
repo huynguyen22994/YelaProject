@@ -230,3 +230,11 @@ module.exports.getOneBlog = (req, res, next) => {
 module.exports.loginAdmin = (req, res, next) => {
     AdministratorCtrl.loginAdmin(req, res, next);
 };
+
+module.exports.getAdminInfo = (req, res, next) => {
+    AdministratorCtrl.getAdminInfo(req, res, next);
+};
+
+module.exports.createAdministrator = (req, res, next) => {
+    AdministratorCtrl.createAdministrator(req, res, next);
+};

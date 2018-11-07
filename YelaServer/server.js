@@ -42,6 +42,7 @@ app.use(function (req, res, next) {
 });
  app.use('/', express.static(__dirname + '/public/appClient'));
  app.use('/admin', express.static(__dirname + '/public/appAdmin'));
+ app.use('/login.html', express.static(__dirname + '/public/appAdmin/login.html'));
  app.use('/client-debug.html', express.static(__dirname + '/public/client'));
  app.use('/admin-debug.html', express.static(__dirname + '/public/admin'));
  app.use('/components', express.static(__dirname + '/public/components'));

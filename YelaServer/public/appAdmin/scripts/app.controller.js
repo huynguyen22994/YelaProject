@@ -20,6 +20,8 @@
 
         ////////////////
 
-        function activate() { }
+        function activate() { 
+            vm.spinnerHide = true;    
+        }
     }
 })();

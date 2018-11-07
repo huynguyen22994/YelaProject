@@ -32,6 +32,70 @@
                 },
                 "x-swagger-router-controller": "DefaultCtrl"
             }
+        },
+        "/administrator/info": {
+            "get": {
+                "summary": "Product Types",
+                "description": "This is test Apis Book",
+                "operationId": "getAdminInfo",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "token",
+                        "description": "Coffee object that needs to be added to the CoffeeDB",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                        "200": {
+                            "description": "template file",
+                            "schema": {
+                                "$ref": "#/definitions/Administrator"
+                            }
+                        },
+                        "default": {
+                            "description": "unexpected error",
+                            "schema": {
+                                "$ref": "#/definitions/Error"
+                            }
+                        }
+                    },
+                "x-swagger-router-controller": "DefaultCtrl"
+            }
+        },
+        "/administrator": {
+            "post": {
+                "summary": "Create a new Blog",
+                "description": "Input a Brand object with some properties below",
+                "operationId": "createAdministrator",
+                 "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Coffee object that needs to be added to the CoffeeDB",
+                        "required": false,
+                        "schema": {
+                        "$ref": "#/definitions/Administrator"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "template file",
+                        "schema": {
+                            "$ref": "#/definitions/Administrator"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                },
+                "x-swagger-router-controller": "DefaultCtrl"
+            }
         }
     }
 }
