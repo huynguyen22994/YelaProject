@@ -10,7 +10,6 @@
             token: token
         }
       }).then(function(success) {
-        console.log(success);
         if(success.status === 200) {
           angular.module('adminInfo', []).constant('adminInfo', success.data.rows[0]);
           angular.element(document).ready(function() {

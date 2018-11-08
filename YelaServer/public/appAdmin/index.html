@@ -267,12 +267,12 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> {{vm.adminInfo.lastName}} {{vm.adminInfo.firstName}}</a>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a ng-click="vm.logout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -312,11 +312,23 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-table fa-fw"></i> Sản Phẩm<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Quản Lý Đơn Hàng<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#!/productMgmt/home">Home</a>
+                                    <a href="blank.html">Blank Page</a>
                                 </li>
+                                <li>
+                                    <a href="login.html">Login Page</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-table fa-fw"></i> Quản Lý Thức Ăn<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <!-- <li>
+                                    <a href="#!/productMgmt/home">Home</a>
+                                </li> -->
                                 <li>
                                     <a href="#!/productMgmt/product">Sản Phẩm</a>
                                 </li>
@@ -324,7 +336,10 @@
                                     <a href="#!/productMgmt/producttype">Loại Sản Phẩm</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Chủ Đề</a>
+                                    <a href="#!/productMgmt/category">Chủ Đề</a>
+                                </li>
+                                <li>
+                                    <a href="#!/productMgmt/brand">Nhãn Hiệu</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -342,37 +357,10 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
+                            <a href="#!/blogMgmt/blogs"><i class="fa fa-sitemap fa-fw"></i> Quản Lý Bài Viết<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="panels-wells.html">Panels and Wells</a>
-                                </li>
-                                <li>
-                                    <a href="buttons.html">Buttons</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html">Notifications</a>
-                                </li>
-                                <li>
-                                    <a href="typography.html">Typography</a>
-                                </li>
-                                <li>
-                                    <a href="icons.html"> Icons</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grid</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Second Level Item</a>
+                                    <a href="#!/blogMgmt/blogs">Bài Viết</a>
                                 </li>
                                 <li>
                                     <a href="#">Third Level <span class="fa arrow"></span></a>
@@ -396,13 +384,25 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Cài Đặt<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="blank.html">Blank Page</a>
+                                    <a href="panels-wells.html">Panels and Wells</a>
                                 </li>
                                 <li>
-                                    <a href="login.html">Login Page</a>
+                                    <a href="buttons.html">Buttons</a>
+                                </li>
+                                <li>
+                                    <a href="notifications.html">Notifications</a>
+                                </li>
+                                <li>
+                                    <a href="typography.html">Typography</a>
+                                </li>
+                                <li>
+                                    <a href="icons.html"> Icons</a>
+                                </li>
+                                <li>
+                                    <a href="grid.html">Grid</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -480,6 +480,11 @@
     <script src="/admin/scripts/productMgmt/producttype/producttype.controller.js"></script>
     <script src="/admin/scripts/productMgmt/producttype/producttype.route.js"></script>
     <script src="/admin/scripts/productMgmt/producttype/editCreate/editCreate.controller.js"></script>
+    <!-- blog -->
+    <script src="/admin/scripts/blogMgmt/blogMgmt.module.js"></script>
+    <script src="/admin/scripts/blogMgmt/blog/blog.service.js"></script>
+    <script src="/admin/scripts/blogMgmt/blog/blog.controller.js"></script>
+    <script src="/admin/scripts/blogMgmt/blog/blog.route.js"></script>
 
      <script src="/admin/scripts/userMgmt/userMgmt.module.js"></script>
     <script src="/admin/scripts/userMgmt/userMgmt.route.js"></script> 

@@ -5,8 +5,8 @@
         .module('YelaApplication')
         .controller('IndexController', ControllerController);
 
-    ControllerController.$inject = ['ylConstant'];
-    function ControllerController(ylConstant) {
+    ControllerController.$inject = ['ylConstant', 'adminInfo', '$rootScope'];
+    function ControllerController(ylConstant, adminInfo, $rootScope) {
         var vm = this;
         vm.navBarConfig = {
             appTitle: ylConstant.appTitle,
@@ -14,14 +14,22 @@
             setting: [
                 
             ]
-        }      
+        };
+        vm.adminInfo = adminInfo;
+        vm.logout = logout;
 
         activate();
 
         ////////////////
 
         function activate() { 
-            vm.spinnerHide = true;    
+            vm.spinnerHide = true;  
+            $rootScope.adminInfo = adminInfo;  
+        }
+
+        function logout() {
+            window.localStorage.clear(); 
+            window.location.href = '/login.html';
         }
     }
 })();

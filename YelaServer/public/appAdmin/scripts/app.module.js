@@ -2,8 +2,10 @@
     'use strict';
 
     angular.module('YelaApplication', [
+        'adminInfo',
         'YelaApplication.ProductMgmt',
         'YelaApplication.UserManagement',
+        'YelaApplication.BlogMgmt',
         'jm.i18next',
         'toastr',
         'ngMaterial',
