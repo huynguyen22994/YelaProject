@@ -16,13 +16,13 @@
                 controllerAs: 'vm'
             })
             .when('/blogMgmt/blogs/edit/:id', {
-                templateUrl: '/admin/scripts/productMgmt/product/editCreate/editCreate.template.html',
+                templateUrl: '/admin/scripts/blogMgmt/blog/editCreate/blog.editCreate.template.html',
                 controller: 'BlogCreateController',
                 controllerAs: 'vm',
                 routeId: 'edit'
             })
             .when('/blogMgmt/blogs/create', {
-                templateUrl: '/admin/scripts/productMgmt/product/editCreate/editCreate.template.html',
+                templateUrl: '/admin/scripts/blogMgmt/blog/editCreate/blog.editCreate.template.html',
                 controller: 'BlogCreateController',
                 controllerAs: 'vm',
                 routeId: 'create'

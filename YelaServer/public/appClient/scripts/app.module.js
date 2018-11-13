@@ -9,6 +9,9 @@
         'YelaAppClient.FoodByType',
         'YelaAppClient.Foods',
         'YelaAppClient.Materials',
+        'YelaAppClient.BlogSingle',
+        'YelaAppClient.Cart',
+        'YelaAppClient.Product',
         'YelaChatBox',
         'Brand',
         'Category',
@@ -20,6 +23,8 @@
         'Sidebar',
         'SlideShow',
         'SocialButton',
-        'Tab'
+        'Tab',
+        'ngAnimate',
+        'toastr'
     ]);
 })();

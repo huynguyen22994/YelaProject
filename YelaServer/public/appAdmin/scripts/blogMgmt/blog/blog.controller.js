@@ -24,7 +24,7 @@
 
         //Config for form
         vm.configTable = {
-            arrayColumnLabel: ['Hình Ảnh','Tiêu Đề', 'Tình Trạng', 'Hành Động'],
+            arrayColumnLabel: ['Hình Ảnh','Tiêu Đề', 'Hành Động'],
             arrayColumnContent: [{ image: true, url: 'imageLink', baseUrlForImg: `${ylConstant.serverUrl}/`}, 'title'],
             arrayActions: [
                 {
@@ -33,7 +33,7 @@
                     iconClass: 'fa fa-pencil-square-o',
                     tooltipTitle: 'tooltip_edit_asong',
                     action(item) {
-                        $location.path('/blogtMgmt/blogs/edit/' + item.blogId);
+                        $location.path('/blogMgmt/blogs/edit/' + item.blogId);
                         //songCtrl.routeStateManager(songCtrl.stateSong, songCtrl.routeEditSongState + song.songID)
                     }
                 },

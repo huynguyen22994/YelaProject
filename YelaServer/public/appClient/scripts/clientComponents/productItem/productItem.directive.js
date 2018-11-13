@@ -35,7 +35,7 @@
                                 </div>
                                 <h4>{{data['price']}}</h4>
                                 <p>{{data['name']}}</p>
-                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{ 'addToCart' | i18next }}</a>
+                                <a ng-click="addToCart(data)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{ 'addToCart' | i18next }}</a>
                             </div>
                             <div ng-if="config.overlay" class="product-overlay">
                                 <div class="overlay-content">
@@ -60,13 +60,20 @@
         
     }
     /* @ngInject */
-    function ControllerController($scope, clientConstant) {
+    function ControllerController($scope, clientConstant, toastr, Product, $rootScope) {
         $scope.baseUrl = `${clientConstant.serverUrl}/`;
+        $scope.addToCart = addToCart;
 
         if ($scope.config) {
             if (!angular.isFunction($scope.config.viewDetail)) {
                 $scope.config.viewDetail = angular.noop;
             };   
         };
+        ////////////////////////////
+        function addToCart(product) {
+            var _product = new Product(product.productId, product.name, product.price, product.linkImg);
+            $rootScope.Cart.addProduct(_product);
+            toastr.success(product.name + ' đã được thêm vào giỏ hàng');
+        }
     }
 })();

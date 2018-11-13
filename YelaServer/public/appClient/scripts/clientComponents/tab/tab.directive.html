@@ -14,7 +14,7 @@
                         <div class="productinfo text-center">
                             <img src="{{ content.image }}" alt="" />
                             <h5>{{ content.label }}</h5>
-                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>{{ 'view' | i18next }}</a>
+                            <a ng-click="vm.view(content.id, tabContent.id)" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>{{ 'view' | i18next }}</a>
                         </div>
                         
                     </div>

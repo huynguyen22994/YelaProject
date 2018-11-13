@@ -1,0 +1,21 @@
+
+.badge-cart{
+    width: auto;
+    height: auto;
+    margin: 0;
+    border-radius: 50%;
+    position:absolute;
+    top:-11px;
+    right:-13px;
+    padding:5px;
+    display: inline-block;
+    min-width: 10px;
+    font-size: 10px;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    background-color: #999;
+}

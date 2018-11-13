@@ -10,12 +10,10 @@
         var service = {
             getAllBlogs: getAllBlogs,
             searchProduct: searchProduct,
-            getAllProducttypes: getAllProducttypes,
             deleteBlog: deleteBlog,
-            getProductById: getProductById,
-            getAllBrands: getAllBrands,
-            createProduct: createProduct,
-            updateProduct: updateProduct
+            getBlogById: getBlogById,
+            createBlog: createBlog,
+            updateBlog: updateBlog
         };
         
         return service;
@@ -60,23 +58,13 @@
             });
         };
 
-        function getAllProducttypes() {
-            return $http({
-                url: '/api/producttype',
-                method: 'GET'
-            }).then(function (res) {
-                return res;
-            }).catch(function (err) {
-                return err;
-            });
-        };
 
-        function getProductById(productId) {
+        function getBlogById(blogId) {
             return $http({
-                url: '/api/product/one',
+                url: '/api/blog/one',
                 method: 'GET',
                 params: {
-                    productId: productId
+                    blogId: blogId
                 }
             }).then(function (res) {
                 return res;
@@ -85,20 +73,9 @@
             });
         };
 
-        function getAllBrands() {
+        function createBlog(data) {
             return $http({
-                url: '/api/brand',
-                method: 'GET'
-            }).then(function (res) {
-                return res;
-            }).catch(function (err) {
-                return err;
-            });
-        };
-
-        function createProduct(data) {
-            return $http({
-                url: '/api/products',
+                url: '/api/blog',
                 method: 'POST',
                 data: data
             }).then(function (res) {
@@ -108,9 +85,9 @@
             });
         };
 
-        function updateProduct(data) {
+        function updateBlog(data) {
             return $http({
-                url: '/api/products',
+                url: '/api/blog',
                 method: 'PUT',
                 data: data
             }).then(function (res) {

@@ -45,7 +45,9 @@
             <div class="col-sm-8">
                 <div class="shop-menu pull-right">
                     <ul class="nav navbar-nav">
-                        <li ng-repeat="rightItemMiddle in vm.config.headerMiddle.right"><a ng-href="{{rightItemMiddle.href()}}" ><i ng-class="rightItemMiddle.iconClass"></i> {{ rightItemMiddle.label | i18next}}</a></li>
+                        <li ng-repeat="rightItemMiddle in vm.config.headerMiddle.right">
+                            <a ng-href="{{rightItemMiddle.href()}}" ><i ng-class="rightItemMiddle.iconClass"></i> {{ rightItemMiddle.label | i18next}} <span ng-if="rightItemMiddle.useNotice" class="badge-cart">{{ $root.Cart.getProductLength() }}</span></a>
+                        </li>
                     </ul>
                 </div>
             </div>

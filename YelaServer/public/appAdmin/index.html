@@ -449,6 +449,10 @@
     <script src="/bower_components/ng-file-upload/ng-file-upload-shim.js"></script>
     <script src="/bower_components/ng-file-upload/ng-file-upload.js"></script>
     <script src="/bower_components/ng-img-crop/compile/minified/ng-img-crop.js"></script>
+    
+    <!-- CK Editor-->
+    <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
+    <script src="/bower_components/angular-ckeditor/angular-ckeditor.min.js"></script>
 
 	<script src="/admin/translate/translate.js"></script>
 
@@ -485,10 +489,22 @@
     <script src="/admin/scripts/blogMgmt/blog/blog.service.js"></script>
     <script src="/admin/scripts/blogMgmt/blog/blog.controller.js"></script>
     <script src="/admin/scripts/blogMgmt/blog/blog.route.js"></script>
+    <script src="/admin/scripts/blogMgmt/blog/editCreate/blog.editCreate.controller.js"></script>
 
      <script src="/admin/scripts/userMgmt/userMgmt.module.js"></script>
     <script src="/admin/scripts/userMgmt/userMgmt.route.js"></script> 
     <script src="/admin/scripts/userMgmt/contact/contact.controller.js"></script>
+
+    <!-- <script>
+        ClassicEditor
+            .create( document.querySelector( '#editorCK' ) )
+            .then( editor => {
+                console.log( editor );
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script> -->
 
 </body>
 

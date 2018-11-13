@@ -10,7 +10,8 @@
         'toastr',
         'ngMaterial',
         'ngFileUpload',
-        'ngImgCrop'
+        'ngImgCrop',
+        'ckeditor'
     ]);
 })();
 
