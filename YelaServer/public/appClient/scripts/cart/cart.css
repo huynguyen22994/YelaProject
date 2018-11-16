@@ -19,3 +19,33 @@
     vertical-align: baseline;
     background-color: #999;
 }
+
+.cart-wrapper {
+    text-align: justify
+}
+
+.cart-wrapper .breadcrumbs {
+    display: table-cell
+}
+
+.cart-wrapper .breadcrumbs .breadcrumb li a:after {
+    left: 82px;
+    top: 10px
+}
+.cart_image {
+    width: 75px;
+    height: 120px;
+    height: auto;
+    float: left;
+    margin: 3px;
+    padding: 3px;
+}
+
+.cart_image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.cart-wrapper .cart_delete {
+    display: table-cell;
+}

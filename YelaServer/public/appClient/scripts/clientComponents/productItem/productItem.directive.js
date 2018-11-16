@@ -33,13 +33,13 @@
                                 <div style="cursor:pointer" ng-click="config.viewDetail(data)">
                                     <img ng-src="{{baseUrl}}{{data['linkImg']}}" alt="" />
                                 </div>
-                                <h4>{{data['price']}}</h4>
+                                <h4>{{data['priceFormatted']}}</h4>
                                 <p>{{data['name']}}</p>
                                 <a ng-click="addToCart(data)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{ 'addToCart' | i18next }}</a>
                             </div>
                             <div ng-if="config.overlay" class="product-overlay">
                                 <div class="overlay-content">
-                                    <h2>{{data['price']}} VND</h2>
+                                    <h2>{{data['priceFormatted']}} VND</h2>
                                     <p>Easy Polo Black Edition</p>
                                     <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{ 'addToCart' | i18next }}</a>
                                 </div>
@@ -69,11 +69,24 @@
                 $scope.config.viewDetail = angular.noop;
             };   
         };
+
+        active();
         ////////////////////////////
         function addToCart(product) {
             var _product = new Product(product.productId, product.name, product.price, product.linkImg);
+            _product.upQuantity();
             $rootScope.Cart.addProduct(_product);
             toastr.success(product.name + ' đã được thêm vào giỏ hàng');
+        }
+
+        function active() {
+            formatPrice();
+        }
+
+        function formatPrice() {
+            if($scope.data) {
+                $scope.data['priceFormatted'] = parseInt($scope.data.price).toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+            }
         }
     }
 })();

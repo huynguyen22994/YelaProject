@@ -29,5 +29,10 @@
     "view": "View",
     "storeMap": "Google Map",
     "facebook": "Facebook",
-    "storeAddress": "Address"
+    "storeAddress": "Address",
+    "description": "Description",
+    "price": "Price",
+    "quantity": "Quantity",
+    "total": "Total",
+    "totalMoney": "Total"
 }

@@ -27,7 +27,16 @@
         ////////////////
 
         function addProduct(product) {
-            this.products.push(product);
+            var isExistList = false;
+            for(var i = 0; i < this.products.length; i++) {
+                if(this.products[i]._id === product._id) {
+                    this.products[i].upQuantity();
+                    isExistList = true;
+                }
+            }
+            if(!isExistList) {
+                this.products.push(product);
+            }
             return this;
         }
 
@@ -41,8 +50,8 @@
 
         function removeProduct(product) {
             for(var i = 0; i < this.products.length; i++) {
-                if(this.products._id === product._id) {
-                    this.products.slice(i, 1);
+                if(this.products[i]._id === product._id) {
+                    this.products.splice(i, 1);
                 }
             }
             return this;

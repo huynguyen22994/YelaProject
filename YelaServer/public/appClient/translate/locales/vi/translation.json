@@ -29,5 +29,10 @@
     "view": "Xem",
     "storeMap": "Google Map",
     "facebook": "Trang facebook",
-    "storeAddress": "Địa Chỉ"
+    "storeAddress": "Địa Chỉ",
+    "description": "Mô Tả",
+    "price": "Giá",
+    "quantity": "Số Lượng",
+    "total": "Tổng",
+    "totalMoney": "Tổng Tiền"
 }

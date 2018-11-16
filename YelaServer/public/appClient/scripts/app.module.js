@@ -12,6 +12,7 @@
         'YelaAppClient.BlogSingle',
         'YelaAppClient.Cart',
         'YelaAppClient.Product',
+        'YelaAppClient.CartApp',
         'YelaChatBox',
         'Brand',
         'Category',
@@ -24,6 +25,7 @@
         'SlideShow',
         'SocialButton',
         'Tab',
+        'CartTable',
         'ngAnimate',
         'toastr'
     ]);
