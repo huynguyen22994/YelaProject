@@ -21,7 +21,7 @@
                     <thead>
                         <tr class="cart_menu">
                             <td ng-repeat="attr in config.attrs" ng-class="attr.class">{{ attr.i18name | i18next }}</td>
-                            <td></td>
+                            <td ng-if="!config.isView"></td>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,20 +38,20 @@
                             </td>
                             <td class="cart_quantity">
                                 <div class="cart_quantity_button">
-                                    <a class="cart_quantity_up" style="cursor: pointer" ng-click="vm.upQuantity(product)"> + </a>
+                                    <a ng-if="!config.isView" class="cart_quantity_up" style="cursor: pointer" ng-click="vm.upQuantity(product)"> + </a>
                                     <input class="cart_quantity_input" ng-disabled="true" type="text" name="quantity" value="{{ product.getQuantity() }}" autocomplete="off" size="2">
-                                    <a class="cart_quantity_down" style="cursor: pointer" ng-click="vm.downQuantity(product)"> - </a>
+                                    <a ng-if="!config.isView" class="cart_quantity_down" style="cursor: pointer" ng-click="vm.downQuantity(product)"> - </a>
                                 </div>
                             </td>
                             <td class="cart_total">
-                                <p class="cart_total_price">{{ product.getPriceWithQuantity() }}</p>
+                                <p class="cart_total_price">{{ vm.getCurrencyParsed(product.getPriceWithQuantity()) }}</p>
                             </td>
-                            <td class="cart_delete">
+                            <td ng-if="!config.isView" class="cart_delete">
                                 <a class="cart_quantity_delete" ng-click="vm.removeProduct(product)"><i class="fa fa-times"></i></a>
                             </td>
                         </tr>
 
-                        <tr ng-if="cartData && cartData.length > 0">
+                        <tr ng-if="cartData && cartData.length > 0 && !config.isView">
                             <td class="cart_product"></td>
                             <td class="cart_description"></td>
                             <td class="cart_price"></td>
@@ -62,6 +62,26 @@
                                 <p class="cart_total_price">{{ vm.total }}</p>
                             </td>
                             <td class="cart_delete"></td>
+                        </tr>
+
+                        <tr ng-if="config.isView">
+                            <td colspan="4">&nbsp;</td>
+                            <td colspan="2">
+                                <table class="table table-condensed total-result">
+                                    <tr>
+                                        <td>Tổng Tiền Trong Giỏ Hàng</td>
+                                        <td>{{ vm.total }}</td>
+                                    </tr>
+                                    <tr class="shipping-cost">
+                                        <td>Phí Giao Hàng</td>
+                                        <td>{{ vm.getCurrencyParsed(config.shipCost) }}</td>										
+                                    </tr>
+                                    <tr>
+                                        <td>Tổng Tiền Đơn Hàng</td>
+                                        <td><span>{{ vm.getTotalCartView(vm.total, config.shipCost) }}</span></td>
+                                    </tr>
+                                </table>
+                            </td>
                         </tr>
 
                     </tbody>
@@ -80,6 +100,8 @@
         vm.removeProduct = removeProduct;
         vm.downQuantity = downQuantity;
         vm.upQuantity = upQuantity;
+        vm.getCurrencyParsed = getCurrencyParsed;
+        vm.getTotalCartView = getTotalCartView;
         /////////////////////////////
         function getTotalPrice() {
             if(angular.isArray($scope.cartData)) {
@@ -109,6 +131,24 @@
         function upQuantity(product) {
             product.upQuantity();
             updateToTalPrice();
+        }
+
+        function getCurrencyParsed(number) {
+            if(angular.isNumber(number)) {
+                return number.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+            }
+            return number;
+        }
+
+        function getTotalCartView(cartTotal, shipCost) {
+            var cart = 0, ship = 0;
+            cart = angular.isNumber(cartTotal) ? cartTotal : getParseCurrencyToNumber(cartTotal);
+            ship = angular.isNumber(shipCost) ? shipCost : getParseCurrencyToNumber(shipCost);
+            return getCurrencyParsed(cart + ship);
+        }
+
+        function getParseCurrencyToNumber(currency) {
+            return Number(currency.replace(/[^0-9.-]+/g,"")) * 1000;
         }
         
     }

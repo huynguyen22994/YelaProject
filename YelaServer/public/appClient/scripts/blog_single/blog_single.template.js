@@ -25,7 +25,7 @@
                                                 </ul>
                                             </div>
                                             <div class="row">
-                                                <div class="col-sm-12">
+                                                <div class="col-sm-12" style="text-align: justify">
                                                     <div style="float: left" ng-bind-html="vm.blog.description"></div>
                                                 </div>
                                             </div>

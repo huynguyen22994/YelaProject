@@ -8,9 +8,17 @@
     Service.$inject = [];
     function Service() {
 
+        var cartState = {
+            isCartPage: true
+        };
+
+        var billInfo = {};
+
         var service = {
             getCartTableConfig: getCartTableConfig,
-            getParseCurrencyToNumber: getParseCurrencyToNumber
+            getParseCurrencyToNumber: getParseCurrencyToNumber,
+            getCartState: getCartState,
+            getBillInfo: getBillInfo
         };
         
         return service;
@@ -52,6 +60,13 @@
             return Number(currency.replace(/[^0-9.-]+/g,"")) * 1000;
         }
 
+        function getCartState() {
+            return cartState;
+        }
+
+        function getBillInfo() {
+            return billInfo;
+        }
 
     }
 })();

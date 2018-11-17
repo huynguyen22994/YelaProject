@@ -26,7 +26,7 @@
                 return (vm.RecommendProduct.offset === 0) ? true : false;
             },
             disableRightButton: function() {
-                return (vm.RecommendProduct.total <= vm.RecommendProduct.offset) ? true : false;
+                return (vm.RecommendProduct.total <= (vm.RecommendProduct.offset + vm.RecommendProduct.limit)) ? true : false;
             },
             leftButton: function () {
                 vm.RecommendProduct.offset = vm.RecommendProduct.offset - vm.RecommendProduct.limit;

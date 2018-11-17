@@ -49,3 +49,12 @@
 .cart-wrapper .cart_delete {
     display: table-cell;
 }
+
+.shopper-info .cart-select {
+    background: #F0F0E9;
+    border: 0 none;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+    font-weight: 300;
+}

@@ -3,12 +3,11 @@
 
     angular
         .module('YelaAppClient.CartApp')
-        .controller('CartController', ControllerController);
+        .controller('CheckoutController', ControllerController);
 
-    ControllerController.$inject = ['CartService', 'clientConstant', '$rootScope', '$scope', '$location'];
-    function ControllerController(CartService, clientConstant, $rootScope, $scope, $location) {
+    ControllerController.$inject = ['CartService', 'clientConstant', '$rootScope', '$scope'];
+    function ControllerController(CartService, clientConstant, $rootScope, $scope) {
         var vm = this;
-        vm.cartTableConfig = CartService.getCartTableConfig();
         // total cart price
         vm.total = 0;
         vm.shipCost = 20000;
@@ -16,15 +15,13 @@
         vm.cartTableCheckoutConfig = CartService.getCartTableConfig();
         vm.cartTableCheckoutConfig.isView = true;
         vm.cartTableCheckoutConfig.shipCost = vm.shipCost;
-        // cart cost value
-        vm.cartTableConfig.cartTotal = 0;
-        vm.totalCartPrice = 0;
-        vm.totalCartPriceFormatted = 0;
-        // vm.cartState = CartService.getCartState();
+        // Bill Info
+        vm.billInfo = CartService.getBillInfo();
 
         vm.getShipCost = getShipCost;
         vm.isCheckOutValid = isCheckOutValid;
         vm.goToCheckoutPage = goToCheckoutPage;
+        vm.isHaveProductInCart = isHaveProductInCart;
 
         activate();
         ////////////////
@@ -61,21 +58,19 @@
         function getShipCost() {
             return vm.shipCost ? vm.shipCost.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}) : 'Miễn Phí';
         };
-
+         
         function isCheckOutValid() {
             return CartService.getParseCurrencyToNumber(vm.total) <= 0
         };
 
         function goToCheckoutPage() {
-            //vm.cartTableCheckoutConfig.shipCost = vm.shipCost;
-            $location.path('/checkout'); 
+            vm.cartState.isCartPage = false;
+            vm.cartTableCheckoutConfig.shipCost = vm.shipCost;
         };
 
-        $scope.$watch('vm.cartTableConfig.cartTotal', function(newVal, oldVal) {
-            vm.totalCartPriceFormatted = newVal;
-            updateTotal();
-        });
-
+        function isHaveProductInCart() {
+            return angular.isArray(vm.cartData) ? vm.cartData.length > 0 : false;
+        }
 
     }
 })();
