@@ -5,8 +5,9 @@
         .run(function ($templateCache) {
             $templateCache.put('checkoutPage.html',
                 `   
-                    <div ng-if="!vm.isHaveProductInCart()" ng-include="'checkoutPageNoProduct.html'"></div>
-                    <div ng-if="vm.isHaveProductInCart()" ng-include="'checkoutPageHaveProduct.html'"></div>
+                    <div ng-if="!vm.isHaveProductInCart() && !vm.isCheckoutSuccess()" ng-include="'checkoutPageNoProduct.html'"></div>
+                    <div ng-if="vm.isHaveProductInCart() && !vm.isCheckoutSuccess()" ng-include="'checkoutPageHaveProduct.html'"></div>
+                    <div ng-if="vm.isCheckoutSuccess()" ng-include="'checkoutSuccessPage.html'"></div>
                 `
             );
         });
@@ -30,6 +31,68 @@
 
                         <div class="register-req" style="margin-top: -20px">
                         <p>Hiện tại bạn chưa có sản phẩm nào trong giỏ hàng. Vui lòng chọn sản phẩm trước khi thanh toán giúp chúng mình nhé.</p>
+                    </div><!--/register-req-->
+                </section> <!--/#cart_items-->
+                `
+            );
+        });
+})();
+
+(function() {
+    'use strict';
+    angular
+        .module('YelaAppClient.CartApp')
+        .run(function ($templateCache) {
+            $templateCache.put('checkoutSuccessPage.html',
+                `   
+                <section id="cart_items" class="cart-wrapper">
+                    <div class="container">
+                        <div class="breadcrumbs">
+                            <ol class="breadcrumb">
+                            <li><a href="#">Trang Chủ</a></li>
+                            <li class="active">Thanh Toán</li>
+                            </ol>
+                        </div>
+
+                        <div style="text-align: center; margin-bottom: 3rem">
+                            <h3 style="color: #696763">Xác nhận đơn hàng thành công!</h3>
+                            <h4 style="color: #696763">Cám ơn bạn đã cho chúng tôi cơ hội để phục vụ</h4>
+                        </div>
+
+                        <div class="register-req" style="margin-top: -20px">
+                            <h5>Mã đơn hàng của bạn: <i>{{ vm.billInfoSuccess.billId }}</i></h5>
+                            <p>Cám ơn bạn đã đặt hàng tại quán ăn của chúng tôi. Trong vòng 5 phút nhân viên của FoodTech gọi điện hoặc nhắn tin để xác nhận đơn hàng của bạn.</p>
+                            <div class="row" style="padding-top: 2rem">
+                                <div class="col-sm-6">
+                                    <label>Thông tin giao hàng</label>
+                                    <div class="total_area">
+                                        <ul style="padding-left: inherit">
+                                            <li>Khách hàng: <span>{{ vm.billInfoSuccess.customerName }}</span></li>
+                                            <li>Địa chỉ: <span>{{ vm.billInfoSuccess.address }}</span></li>
+                                            <li>SĐT 1: <span>{{ vm.billInfoSuccess.phoneOne }}</span></li>
+                                            <li>SĐT 2: <span>{{ vm.billInfoSuccess.phoneTwo }}</span></li>
+                                        </ul>
+                                    </div>
+                                    <label>Sản phẩm đã đặt</label>
+                                    <div class="total_area">
+                                        <ul style="padding-left: inherit">
+                                            <li ng-repeat="food in vm.billInfoSuccess.itemsObject.foods">{{ food.name }} <span>{{ vm.formatMoney(food.price) }}</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Tóm tắt đơn hàng</label>
+                                    <div class="total_area">
+                                        <ul style="padding-left: inherit">
+                                            <li>Ngày đặt: <span>{{ vm.billInfoSuccess.orderDate }}</span></li>
+                                            <li>Giá tiền sản phẩm: <span>{{ vm.formatMoney(vm.billInfoSuccess.itemsObject.totalPrice) }}</span></li>
+                                            <li>Phí giao hàng: <span>{{ vm.formatMoney(vm.billInfoSuccess.itemsObject.shipCost) }}</span></li>
+                                            <!--<li>Khuyến mãi: <span>{{ vm.billInfoSuccess.itemsObject }}</span></li>-->
+                                            <li>Tổng cộng: <span>{{ vm.formatMoney(vm.billInfoSuccess.itemsObject.totalBill) }}</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                     </div><!--/register-req-->
                 </section> <!--/#cart_items-->
                 `
@@ -107,7 +170,7 @@
                                     <textarea ng-disabled="true" name="message" rows="16">Cám ơn Quý khách đã đặt hàng từ FoodTech, xin vui lòng hoàn tất bước tiếp theo để xác nhận đơn hàng. Chúng tôi sẽ gửi đơn đặt hàng điện tử tới hòm thư email của Quý khách khi đơn hàng được đặt thành công!
                                     </textarea>
                                 </div>
-                                <a class="btn btn-primary" style="float: right">Đặt Hàng</a>
+                                <a class="btn btn-primary" ng-click="vm.onCheckOut()" style="float: right">Đặt Hàng</a>
                             </div>
                         </div>
                     </div>

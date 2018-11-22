@@ -1,0 +1,88 @@
+{
+    "paths": {
+        "/bill": {
+            "get": {
+                "summary": "Get all blog",
+                "description": "This is a API to get all blog",
+                "operationId": "getBills",
+                "responses": {
+                        "200": {
+                            "description": "template file",
+                            "schema": {
+                                "$ref": "#/definitions/Bill"
+                            }
+                        },
+                        "default": {
+                            "description": "unexpected error",
+                            "schema": {
+                                "$ref": "#/definitions/Error"
+                            }
+                        }
+                    },
+                "x-swagger-router-controller": "DefaultCtrl"
+            },
+            "post": {
+                "summary": "Create a new Blog",
+                "description": "Input a Brand object with some properties below",
+                "operationId": "createBill",
+                 "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Coffee object that needs to be added to the CoffeeDB",
+                        "required": false,
+                        "schema": {
+                        "$ref": "#/definitions/Bill"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "template file",
+                        "schema": {
+                            "$ref": "#/definitions/Bill"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                },
+                "x-swagger-router-controller": "DefaultCtrl"
+            },
+            "put": {
+                "summary": "Update a Blog",
+                "description": "Input a Brand edited with id to edit",
+                "operationId": "updateBill",
+                 "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Coffee object that needs to be added to the CoffeeDB",
+                        "required": false,
+                        "schema": {
+                        "$ref": "#/definitions/Bill"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "template file",
+                        "schema": {
+                            "$ref": "#/definitions/Bill"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                },
+                "x-swagger-router-controller": "DefaultCtrl"
+            }
+        }
+    }
+}

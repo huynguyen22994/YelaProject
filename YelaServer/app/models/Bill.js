@@ -9,13 +9,49 @@ module.exports = function(sequelize, Sequelize) {
         },
         customerId: {
             type: Sequelize.UUID,
-            allowNull: false
+            allowNull: true
         },
         pay: {
-            type: Sequelize.ENUM('done', 'not yet'),
+            type: Sequelize.ENUM('done', 'not', 'cancel'),
             allowNull: false
         },
         deliveryStatus: {
+            type: Sequelize.STRING,
+            allowNull: true
+        },
+        items: {
+            type: Sequelize.STRING,
+            allowNull: true
+        },
+        customerName: {
+            type: Sequelize.STRING,
+            allowNull: true
+        },
+        phoneOne: {
+            type: Sequelize.INTEGER,
+            allowNull: true
+        },
+        phoneTwo: {
+            type: Sequelize.INTEGER,
+            allowNull: true
+        },
+        email: {
+            type: Sequelize.STRING,
+            allowNull: true
+        },
+        city: {
+            type: Sequelize.STRING,
+            allowNull: true
+        },
+        district: {
+            type: Sequelize.STRING,
+            allowNull: true
+        },
+        address: {
+            type: Sequelize.STRING,
+            allowNull: true
+        },
+        description: {
             type: Sequelize.STRING,
             allowNull: true
         }

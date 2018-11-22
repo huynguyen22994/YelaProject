@@ -7,6 +7,7 @@ var BrandCtrl = require('./BrandCtrl');
 var SliderCtrl = require('./SliderCtrl');
 var BlogCtrl = require('./BlogCtrl');
 var AdministratorCtrl = require('./AdministratorCtrl');
+var Bill = require('./BillCtrl');
 var async = require('async');
 
 // Products
@@ -237,4 +238,17 @@ module.exports.getAdminInfo = (req, res, next) => {
 
 module.exports.createAdministrator = (req, res, next) => {
     AdministratorCtrl.createAdministrator(req, res, next);
+};
+
+// Bill
+module.exports.getBills = (req, res, next) => {
+    Bill.getBills(req, res, next);
+};
+
+module.exports.createBill = (req, res, next) => {
+    Bill.createBill(req, res, next);
+};
+
+module.exports.updateBill = (req, res, next) => {
+    Bill.updateBill(req, res, next);
 };

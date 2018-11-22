@@ -196,6 +196,63 @@
                 }
             }
         },
+        "Bill": {
+            "type": "object",
+            "properties": {
+                "billId": {
+                "type": "string",
+                "description": "Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles."
+                },
+                "customerId": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "pay": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "deliveryStatus": {
+                "type": "string",
+                "description": "link image of blog"
+                },
+                "items": {
+                "type": "string",
+                "description": "link image of blog"
+                },
+                "customerName": {
+                "type": "string",
+                "description": "link image of blog"
+                },
+                "phoneOne": {
+                "type": "string",
+                "description": "link image of blog"
+                },
+                "phoneTwo": {
+                "type": "string",
+                "description": "link image of blog"
+                },
+                "email": {
+                "type": "string",
+                "description": "link image of blog"
+                },
+                "city": {
+                "type": "string",
+                "description": "link image of blog"
+                },
+                "district": {
+                "type": "string",
+                "description": "link image of blog"
+                },
+                "address": {
+                "type": "string",
+                "description": "link image of blog"
+                },
+                "description": {
+                "type": "string",
+                "description": "link image of blog"
+                }
+            }
+        },
         "Slider": {
             "type": "object",
             "properties": {
