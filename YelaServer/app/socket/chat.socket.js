@@ -1,6 +1,6 @@
 module.exports.initialize = function initialize(io) {
-    io.sockets.on('connection', function (socket) {
-        console.log('have connect');
+    return io.sockets.on('connection', function (socket) {
+        console.log('[Website] have a user connect to website');
 
         var customerRoom = [];
         var customers = [];
@@ -86,5 +86,7 @@ module.exports.initialize = function initialize(io) {
             //socket.broadcast.emit('updatechat', 'SERVER', socket.username + ' has disconnected');
             socket.leave(socket.room);
         });
+
+        return socket;
     });
 };

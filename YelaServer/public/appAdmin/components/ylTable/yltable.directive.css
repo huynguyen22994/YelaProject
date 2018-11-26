@@ -1,0 +1,30 @@
+.yl-label-success {
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #4CAF50;
+} /* Green */
+.yl-label-info {
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #2196F3;
+} /* Blue */
+.yl-label-warning {
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #ff9800;
+} /* Orange */
+.yl-label-danger {
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #f44336;
+} /* Red */ 
+.yl-label-other {
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #e7e7e7; color: black;
+} /* Gray */

@@ -83,6 +83,37 @@
                 },
                 "x-swagger-router-controller": "DefaultCtrl"
             }
+        },
+        "/bill/status": {
+            "get": {
+                "summary": "Product Types",
+                "description": "This is test Apis Book",
+                "operationId": "getBillByStatus",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "status",
+                        "description": "Coffee object that needs to be added to the CoffeeDB",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                        "200": {
+                            "description": "template file",
+                            "schema": {
+                                "$ref": "#/definitions/Bill"
+                            }
+                        },
+                        "default": {
+                            "description": "unexpected error",
+                            "schema": {
+                                "$ref": "#/definitions/Error"
+                            }
+                        }
+                    },
+                "x-swagger-router-controller": "DefaultCtrl"
+            }
         }
     }
 }

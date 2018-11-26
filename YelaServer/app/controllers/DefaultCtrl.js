@@ -252,3 +252,7 @@ module.exports.createBill = (req, res, next) => {
 module.exports.updateBill = (req, res, next) => {
     Bill.updateBill(req, res, next);
 };
+
+module.exports.getBillByStatus = (req, res, next) => {
+    Bill.getBillByStatus(req, res, next);
+};

@@ -11,8 +11,8 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.UUID,
             allowNull: true
         },
-        pay: {
-            type: Sequelize.ENUM('done', 'not', 'cancel'),
+        status: {
+            type: Sequelize.ENUM('new', 'confirmed', 'canceled', 'inProgress', 'done'),
             allowNull: false
         },
         deliveryStatus: {
@@ -20,7 +20,7 @@ module.exports = function(sequelize, Sequelize) {
             allowNull: true
         },
         items: {
-            type: Sequelize.STRING,
+            type: Sequelize.TEXT,
             allowNull: true
         },
         customerName: {

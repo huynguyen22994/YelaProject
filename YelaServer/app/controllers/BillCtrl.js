@@ -1,6 +1,9 @@
 var models = require('../models');
 var async = require('async');
 var _ = require('underscore');
+var path = require('path');
+var app = require(path.resolve( "../../YelaProject/YelaServer/server.js" ));
+var socketClient = app.socketClient;
 
 
 function getTotalPrice(foodList) {
@@ -31,6 +34,21 @@ function getDateFormatted(dateString) {
     return date.getDay() + '/' + date.getMonth() + '/' + date.getFullYear() + ' | ' + formatAMPM(date);
 };
 
+function updateBillNotice(data) {
+    socketClient.emit('onNewBill', data);
+}
+
+function getItemObjFormatted(itemsString) {
+    if(itemsString) {
+        var itemObject = JSON.parse(itemsString);
+        itemObject.totalPrice = getTotalPrice(itemObject.foods);
+        itemObject.totalBill = itemObject.totalPrice + itemObject.shipCost;
+        return itemObject;
+    } else {
+        return itemsString;
+    }
+}
+
 module.exports.getBills = (req, res, next) => {
     models.Bill.findAndCountAll()
         .then((result) => {
@@ -39,7 +57,10 @@ module.exports.getBills = (req, res, next) => {
                 bills: []
             }
             result.rows.forEach((bill) => {
-                responses.bills.push(bill.dataValues);
+                var billData = bill.dataValues;
+                billData.itemsObject = getItemObjFormatted(billData.items);
+                billData.orderDate = getDateFormatted(billData.createdAt);
+                responses.bills.push(billData);
             });
             res.json(responses);
         },
@@ -50,10 +71,10 @@ module.exports.getBills = (req, res, next) => {
 
 module.exports.createBill = (req, res, next) => {
     var bill = req.body;
-    var pay = 'not';
+    var status = 'new';
     if (bill) {
         models.Bill.create({
-            pay: pay,
+            status: status,
             customerId: bill.customerId,
             deliveryStatus: bill.deliveryStatus,
             items: bill.items,
@@ -68,11 +89,9 @@ module.exports.createBill = (req, res, next) => {
         }).then((result) => {
             let data = result.dataValues;
             if(data) {
-                var itemObject = JSON.parse(data.items);
-                itemObject.totalPrice = getTotalPrice(itemObject.foods);
-                itemObject.totalBill = itemObject.totalPrice + itemObject.shipCost;
-                data.itemsObject = itemObject;
+                data.itemsObject = getItemObjFormatted(data.items);
                 data.orderDate = getDateFormatted(data.createdAt);
+                updateBillNotice(data);
                 res.json(data);
             } else {
                 res.statusCode = 400;
@@ -93,7 +112,7 @@ module.exports.updateBill = (req, res, next) => {
     if (bill) {
         models.Bill.update(
             {
-                pay: bill.pay,
+                status: bill.status,
                 customerId: bill.customerId,
                 deliveryStatus: bill.deliveryStatus,
                 items: bill.items,
@@ -121,4 +140,29 @@ module.exports.updateBill = (req, res, next) => {
         res.statusCode = 400;
         res.end()
     }
+};
+
+module.exports.getBillByStatus = (req, res, next) => {
+    var status = req.query.status;
+    models.Bill.findAndCountAll({
+    where: {
+        status: status
+    }
+    })
+    .then((result) => {
+        let responses = {
+            count: result.count,
+            bills: []
+        }
+        result.rows.forEach((bill) => {
+            var billData = bill.dataValues;
+            billData.itemsObject = getItemObjFormatted(billData.items);
+            billData.orderDate = getDateFormatted(billData.createdAt);
+            responses.bills.push(billData);
+        });
+        res.json(responses);
+    }, (err) => {
+        res.statusCode = 400;
+        res.end();
+    });
 };

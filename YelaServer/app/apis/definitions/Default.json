@@ -207,7 +207,7 @@
                 "type": "string",
                 "description": "Name of Coffee."
                 },
-                "pay": {
+                "status": {
                 "type": "string",
                 "description": "Name of Coffee."
                 },

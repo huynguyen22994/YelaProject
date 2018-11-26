@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var cors = require('cors');
 var http = require('http').createServer(app);
+var socketIO = require('socket.io');
 var io = require('socket.io').listen(http);
 var swagger = require('swagger-tools');
 var fs = require('fs');
@@ -107,6 +108,6 @@ swagger.initializeMiddleware(swaggerObj, (middleware) => {
     });
 });
 
-socket.initialize(io);
+app.socketClient = socket.initialize(io);
 
 exports = module.exports = app;
