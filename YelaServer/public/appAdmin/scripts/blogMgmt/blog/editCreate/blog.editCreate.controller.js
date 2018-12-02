@@ -12,7 +12,12 @@
         vm.options = {
             language: 'en',
             allowedContent: true,
-            entities: false
+            entities: false,
+            filebrowserImageUploadUrl: '/api/blog/upload',
+            filebrowserBrowseUrl: '/upload/images/blogs',
+            filebrowserUploadUrl: '/upload/images/blogs',
+            extraPlugins: 'uploadimage'
+            // extraPlugins: 'imagebrowser'
         };
         vm.croppedDataUrl = '';
 

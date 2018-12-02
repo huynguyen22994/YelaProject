@@ -10,7 +10,9 @@
         var service = {
             getAllBills: getAllBills,
             searchBill: searchBill,
-            getBillWithStatus: getBillWithStatus
+            getBillWithStatus: getBillWithStatus,
+            updateBill: updateBill,
+            getParseRequestBill: getParseRequestBill 
         };
         
         return service;
@@ -53,6 +55,39 @@
             }).catch(function (err) {
                 return err;
             });
+        };
+
+        function updateBill(bill) {
+            return $http({
+                url: '/api/bill',
+                method: 'PUT',
+                data: bill
+            }).then(function (res) {
+                return res;
+            }).catch(function (err) {
+                return err;
+            });
+        };
+
+        function getParseRequestBill(bill) {
+            if(bill) {
+                return {
+                    billId: bill.billId,
+                    status: bill.status,
+                    customerId: bill.customerId,
+                    deliveryStatus: bill.deliveryStatus,
+                    items: bill.items,
+                    customerName: bill.customerName,
+                    phoneOne: bill.phoneOne,
+                    phoneTwo: bill.phoneTwo,
+                    email: bill.email,
+                    city: bill.city,
+                    district: bill.district,
+                    address: bill.address,
+                    description: bill.description
+                }
+            }   
+            return bill;
         };
 
     }

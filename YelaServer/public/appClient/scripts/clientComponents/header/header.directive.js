@@ -93,14 +93,15 @@
             headerBottom: {
                 left: [
                     {id: 'homePage', label: 'home', href: function () { return '/'; }, isChoosen: true },
-                    {id: 'foodsPage', label: 'foods', href: function () { return '#!/foods'; }, isChoosen: false },
+                    {id: 'foodsPage', label: 'foods', href: function () { return '#!/foods'; }, isChoosen: false, subItems: [
+                        { label: 'mainFood', href: function () { return '#!/blog'; }},
+                        { label: 'secondaryFood', href: function () { return '#!/blogSingle'; }},
+                        { label: 'lowCarbFood', href: function () { return '#!/blogSingle'; }}
+                    ]},
                     {id: 'materialsPage', label: 'materials', href: function () { return '#!/materials'; }, isChoosen: false },
-                    {id: 'blogPage', label: 'blog', href: function () { return '#!/blog'; }, isChoosen: false, subItems: [
-                        { label: 'Blog List', href: function () { return '#!/blog'; }},
-                        { label: 'Blog Single', href: function () { return '#!/blogSingle'; }}
-                    ] },
+                    {id: 'productPage', label: 'products', href: function () { return '#!/shop'; }, isChoosen: false },
                     {id: 'contactPage', label: 'contact', href: function () { return '#!/contact'; }, isChoosen: false },
-                    {id: 'productPage', label: 'products', href: function () { return '#!/shop'; }, isChoosen: false }
+                    {id: 'blogPage', label: 'blog', href: function () { return '#!/blogs'; }, isChoosen: false }
                 ],
                 right: [
                     

@@ -382,7 +382,7 @@ ul.sub-menu {
 }
 
 .video-gallery {
-  margin-top: 57px;
+  margin-top: 10px;
   position: inherit;
 }
 
@@ -2556,4 +2556,16 @@ h2.title {
 #map {
   height: 130px;
   position: relative;
+}
+
+.box-footerservice {
+  color: #8C8C88;
+  border-right: 1px solid #e4e4e4;
+  margin: 10px 0;
+  width: 100%;
+}
+
+.icon-footer-top {
+  font-size: 20px;
+  padding-right: 5px;
 }

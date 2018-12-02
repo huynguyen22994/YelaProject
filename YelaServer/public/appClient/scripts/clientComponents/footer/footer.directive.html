@@ -2,44 +2,28 @@
 		<div class="footer-top">
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-2">
-						<div class="address">
-							<img src="images/home/map.png" alt="" />
-							<p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
+					<div class="col-sm-6">
+						<div class="col-sm-6">
+							<div class="box-footerservice">
+								<div>
+									<div class="pull-left icon-service icon-footer-top"><i class="fa fa-truck"></i></div>
+									<h3 class="footerservice-title">Miễn phí vận chuyển</h3>
+									<div class="footerservice-content"> Cho Đơn Đặt Hàng Từ 200 nghìn VNĐ</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="box-footerservice">
+								<div>
+									<div class="pull-left icon-service icon-footer-top"><i class="fa fa-phone"></i></div>
+									<h3 class="footerservice-title">Đặt hàng trực tuyến</h3>
+									<div class="footerservice-content">Liên Hệ Đặt Hàng Qua 0933990004</div>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="col-sm-7">
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="images/home/iframe1.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Bún Bò</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-						
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="images/home/iframe2.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Mỳ Quảng</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-						
-						<div class="col-sm-3">
+					<div class="col-sm-6">						
+						<div class="col-sm-4">
 							<div class="video-gallery text-center">
 								<a href="#">
 									<div class="iframe-img">
@@ -50,11 +34,24 @@
 									</div>
 								</a>
 								<p>Cơm Chiên Cá Mặn</p>
-								<h2>24 DEC 2014</h2>
+							</div>
+						</div>
+
+						<div class="col-sm-4">
+							<div class="video-gallery text-center">
+								<a href="#">
+									<div class="iframe-img">
+										<img src="images/home/iframe3.png" alt="" />
+									</div>
+									<div class="overlay-icon">
+										<i class="fa fa-play-circle-o"></i>
+									</div>
+								</a>
+								<p>Cơm Chiên Cá Mặn</p>
 							</div>
 						</div>
 						
-						<div class="col-sm-3">
+						<div class="col-sm-4">
 							<div class="video-gallery text-center">
 								<a href="#">
 									<div class="iframe-img">
@@ -65,13 +62,7 @@
 									</div>
 								</a>
 								<p>Mỳ Quăng</p>
-								<h2>24 DEC 2014</h2>
 							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="address">
-							<div class="fb-page" data-href="https://www.facebook.com/Yela-Shop-1845648855687460/" data-tabs="timeline" data-width="270" data-height="200" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Yela-Shop-1845648855687460/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Yela-Shop-1845648855687460/">Yela Shop</a></blockquote></div>
 						</div>
 					</div>
 				</div>
@@ -83,29 +74,25 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="single-widget">
-							<h2>{{ 'storeMap' | i18next }}</h2>
-							<div id="map" style="border-style: ridge"></div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="single-widget">
 							<h2>{{ 'facebook' | i18next }}</h2>
 							<div class="fb-page" data-href="https://www.facebook.com/FoodTech-585026038584164/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/FoodTech-585026038584164/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/FoodTech-585026038584164/">FoodTech</a></blockquote></div>
 						</div>
 					</div>
 					<div class="col-sm-4">
 						<div class="single-widget">
-							<h2>About Shopper</h2>
+							<h2>{{ 'storeMap' | i18next }}</h2>
+							
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="single-widget">
+							<h2>Đăng Ký Nhận Ưu Đãi</h2>
 							<form action="#" class="searchform">
-								<input type="text" placeholder="Your email address" />
+								<input type="text" placeholder="Nhập email của bạn" />
 								<button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
-								<p>Get the most recent updates from <br />our site and be updated your self...</p>
+								<p>Hãy đăng ký email của bạn để cập nhật <br /> thông tin khuyến mãi nhanh nhất.</p>
 								<div class="fb-share-button" data-href="https://www.facebook.com/Yela-Shop-1845648855687460/" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2FYela-Shop-1845648855687460%2F&amp;src=sdkpreparse">Chia sẻ</a></div>
 							</form>
-							<ul class="nav nav-pills nav-stacked">
-								<li><b>{{ 'phone' | i18next }}: </b><i>0933990004</i></li>
-								<li><b>{{ 'address' | i18next }}: </b><i>00/00 abc, xyz</i></li>
-							</ul>
 						</div>
 					</div>
 					

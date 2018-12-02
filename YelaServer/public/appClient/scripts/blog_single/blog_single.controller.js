@@ -37,8 +37,6 @@
 
         async function activate() { 
             //let productId = _.get($route, 'current.params.id');
-            await loadBrands();
-            await loadCategories();
             await loadBlogDetail(blogId);
             //await loadProductBestsellers(vm.RecommendProduct.offset, vm.RecommendProduct.limit);
         };

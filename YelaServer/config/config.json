@@ -12,6 +12,7 @@
     "port": 3000,
     "storageProductPath": "./upload/images/products/",
     "storageSliderPath": "./public/client/images/slider/",
+    "storageBlogPath": "./upload/images/blogs/",
     "yelaEmail": {
         "email": "helloworldcoffeeshop@gmail.com",
         "password": "kimyen2209"

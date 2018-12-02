@@ -8,10 +8,7 @@
                     <section>
                         <div class="container">
                             <div class="row">
-                                <div class="col-sm-3">
-                                    <sidebar brand-data="vm.brands" category-data="vm.categories"></sidebar>
-                                </div>
-                                <div class="col-sm-9 padding-right">
+                                <div class="col-sm-12 padding-right">
                                    
                                     <div class="blog-post-area">
                                         <h2 class="title text-center">Bài Viết</h2>
@@ -82,7 +79,7 @@
                                     </div><!--Comments-->
 
                                     <div class="row">
-                                        <div class="col-sm-8">
+                                        <div class="col-sm-6">
                                             <div class="fb-comments" data-href="https://foodtechserver.herokuapp.com/blog" data-numposts="8"></div>
                                         </div>
                                     </div>

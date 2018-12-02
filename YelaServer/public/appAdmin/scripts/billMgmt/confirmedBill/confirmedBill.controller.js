@@ -3,12 +3,12 @@
 
     angular
         .module('YelaApplication.BillMgmt')
-        .controller('NewBillController', ControllerController);
+        .controller('ConfirmedBillController', ControllerController);
 
     ControllerController.$inject = ['$scope', '$window', '$location', 'PagerService', 'BillService', 'ylConstant', '$mdDialog', '$rootScope'];
     function ControllerController($scope, $window, $location, PagerService, BillService, ylConstant, $mdDialog, $rootScope) {
        var vm = this;
-       var billStatus = 'new';
+       var billStatus = 'confirmed';
         vm.classForTable = 'col-md-12 col-sm-12 col-lg-12';
         vm.classForDetail = '';
         vm.producttypeDetail = {};
@@ -26,7 +26,7 @@
         //Config for form
         vm.configTable = {
             arrayColumnLabel: ['Mã Đơn Hàng','Khách Hàng', 'Ngày Đặt Hàng', 'SĐT', 'Hành Động', 'Tình Trạng'],
-            arrayColumnContent: ['billId', 'customerName', 'orderDate', 'phoneOne', {key: 'status', labelClass: 'yl-label-success'}],
+            arrayColumnContent: ['billId', 'customerName', 'orderDate', 'phoneOne', {key: 'status', labelClass: 'yl-label-warning'}],
             arrayActions: [
                 {
                     buttonName: 'button_edit',
@@ -34,11 +34,8 @@
                     iconClass: 'fa fa-check-square',
                     tooltipTitle: 'Xác Nhận Đơn Hàng',
                     action(item) {
-                        item.status = 'confirmed';
-                        var billRequest = BillService.getParseRequestBill(item);
-                        BillService.updateBill(billRequest).then(function(res) {
-                            loadBills();
-                        });
+                        $location.path('/productMgmt/product/edit/' + item.productId);
+                        //songCtrl.routeStateManager(songCtrl.stateSong, songCtrl.routeEditSongState + song.songID)
                     }
                 },
                 // {
@@ -207,7 +204,6 @@
             BillService.getBillWithStatus(billStatus)
             .then(function (bills) {
                 vm.bills = bills.data.bills;
-                $rootScope.NewBills.concatBill(vm.bills);
                 setPage(vm.pageCustomize.currentPage, vm.pageCustomize.size);
             }).catch(function (err) {
                 console.log(err);
@@ -218,7 +214,6 @@
             BillService.getBillWithStatus(billStatus)
                 .then(function (res) {
                     vm.bills = res.data.bills;
-                    $rootScope.NewBills.concatBill(vm.bills);
                     setPage(1);
                 }).catch(function (err) {
                     console.log(err);

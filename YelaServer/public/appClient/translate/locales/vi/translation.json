@@ -4,7 +4,7 @@
     "english": "Tiêng Anh",
     "home": "Trang Chủ",
     "foods": "Món Ăn",
-    "blog": "Nấu Ăn",
+    "blog": "Blog",
     "contact": "Liên Hệ",
     "search": "Tìm Kiếm",
     "searchFood": "Tìm Kiếm Món Ăn",
@@ -34,5 +34,8 @@
     "price": "Giá",
     "quantity": "Số Lượng",
     "total": "Tổng",
-    "totalMoney": "Tổng Tiền"
+    "totalMoney": "Tổng Tiền",
+    "mainFood": "Món Chính",
+    "secondaryFood": "Món Phụ",
+    "lowCarbFood": "Low Carb"
 }

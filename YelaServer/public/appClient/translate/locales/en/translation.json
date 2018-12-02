@@ -34,5 +34,8 @@
     "price": "Price",
     "quantity": "Quantity",
     "total": "Total",
-    "totalMoney": "Total"
+    "totalMoney": "Total",
+    "mainFood": "Main Foods",
+    "secondaryFood": "Secondary Foods",
+    "lowCarbFood": "Low Carb"
 }

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('YelaAppClient.Blog')
+        .module('YelaAppClient.Contact')
         .config(configFunction);
 
     configFunction.$inject = ['$routeProvider', '$locationProvider'];
@@ -10,9 +10,9 @@
         //let urlParams = productMgmtConstant.appUrl.productMgmt.routeUrl + '/:route';
 
         $routeProvider
-            .when('/blogs', {
-                templateUrl: 'blogs.html',
-                controller: 'BlogController',
+            .when('/contact', {
+                templateUrl: 'contact.html',
+                controller: 'ContactController',
                 controllerAs: 'vm'
             });
         //$locationProvider.html5Mode(true);

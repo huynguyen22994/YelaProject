@@ -13,6 +13,8 @@
         'YelaAppClient.Cart',
         'YelaAppClient.Product',
         'YelaAppClient.CartApp',
+        'YelaAppClient.Contact',
+        'YelaAppClient.Blog',
         'YelaChatBox',
         'Brand',
         'Category',

@@ -25,7 +25,20 @@
         //Config for form
         vm.configTable = {
             arrayColumnLabel: ['Mã Đơn Hàng','Khách Hàng', 'Ngày Đặt Hàng', 'SĐT', 'Hành Động', 'Tình Trạng'],
-            arrayColumnContent: ['billId', 'customerName', 'orderDate', 'phoneOne', {key: 'status', labelClass: 'yl-label-success'}],
+            arrayColumnContent: ['billId', 'customerName', 'orderDate', 'phoneOne', {key: 'status', labelClassFunction: function(item) {
+                if(item.status === 'new') {
+                    return 'yl-label-success';
+                } else if(item.status === 'confirmed') {
+                    return 'yl-label-warning';
+                } else if (item.status === 'inProgress') {
+                    return 'yl-label-default';
+                } else if (item.status === 'canceled') {
+                    return 'yl-label-error';
+                } else {
+                    return 'yl-label-primary';
+                }
+                
+            }}],
             arrayActions: [
                 {
                     buttonName: 'button_edit',

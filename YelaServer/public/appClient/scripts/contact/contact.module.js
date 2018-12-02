@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('YelaAppClient.Blog', [
+    angular.module('YelaAppClient.Contact', [
         'ngRoute'
     ]);
 })();
