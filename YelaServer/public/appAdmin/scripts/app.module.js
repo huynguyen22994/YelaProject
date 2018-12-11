@@ -7,6 +7,7 @@
         'YelaApplication.UserManagement',
         'YelaApplication.BlogMgmt',
         'YelaApplication.BillMgmt',
+        'YelaApplication.DashboardManagement',
         'jm.i18next',
         'toastr',
         'ngMaterial',

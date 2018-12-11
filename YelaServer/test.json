@@ -9,6 +9,24 @@
         "dbname": "YelaShopDB",
         "username": "root",
         "password": null,
-        "host": "localhost",
+        "host": "localhost"
+    }, 
+    "test": {
+        "database": {
+            "dbname": "sql12263403",
+            "username": "sql12263403",
+            "password": "zQwZVpb7be",
+            "host": "sql12.freemysqlhosting.net",
+            "dialect": "postgres",
+            "min": 0,
+            "max": 1000,
+            "idle": 10000
+        }
+    },
+    "heroku": {
+        "dbname": "d651i46315f1l4",
+        "username": "acdouqkvqkpvqn",
+        "password": "82c7af4c6c29ad7de2561635fbdc811f344656a80aec428fdafe10245ee29a53",
+        "host": "ec2-184-72-239-186.compute-1.amazonaws.com"
     }
 }

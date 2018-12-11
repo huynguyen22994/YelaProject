@@ -25,6 +25,8 @@ var sequelize = new Sequelize(database.dbname, database.username, database.passw
   //storage: 'http://localhost/phpmyadmin/to/database.sqlite'
 });
 
+//var sequelize = new Sequelize('postgres://acdouqkvqkpvqn:82c7af4c6c29ad7de2561635fbdc811f344656a80aec428fdafe10245ee29a53@ec2-184-72-239-186.compute-1.amazonaws.com:5432/d651i46315f1l4');
+
 fs.readdirSync(__dirname)
   .filter((file) => {
     return (file.indexOf('.') !== 0) && (file != 'index.js') && (file != 'relationship.js')
