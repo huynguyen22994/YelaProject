@@ -168,6 +168,14 @@
                 "imageLink": {
                 "type": "string",
                 "description": "link image of blog"
+                },
+                "summary": {
+                "type": "string",
+                "description": "summary"
+                },
+                "type": {
+                "type": "string",
+                "description": "type"
                 }
             }
         },

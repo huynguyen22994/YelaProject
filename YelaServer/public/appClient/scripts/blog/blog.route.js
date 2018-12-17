@@ -14,6 +14,11 @@
                 templateUrl: 'blogs.html',
                 controller: 'BlogController',
                 controllerAs: 'vm'
+            })
+            .when('/blogs/:id', {
+                templateUrl: 'blogs.html',
+                controller: 'BlogController',
+                controllerAs: 'vm'
             });
         //$locationProvider.html5Mode(true);
     };

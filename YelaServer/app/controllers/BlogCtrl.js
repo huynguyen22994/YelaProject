@@ -25,7 +25,9 @@ module.exports.createBlog = (req, res, next) => {
         models.Blog.create({
             title: blog.title,
             description: blog.description,
-            imageLink: blog.imageLink
+            imageLink: blog.imageLink,
+            summary: blog.summary,
+            type: blog.type
         }).then((result) => {
             res.end("insert success");
         }, (err) => {
@@ -45,7 +47,9 @@ module.exports.updateBlog = (req, res, next) => {
             {
                 title: blog.title,
                 description: blog.description,
-                imageLink: blog.imageLink
+                imageLink: blog.imageLink,
+                summary: blog.summary,
+                type: blog.type
             },
             {
                 where: {
@@ -108,4 +112,22 @@ module.exports.getOneBlog = (req, res, next) => {
         res.statusCode = 400;
         res.end();
     }
+};
+
+module.exports.getBlogsByType = (req, res, next) => {
+    var offset = parseInt(req.query.offset);
+    var type = req.query.type;
+    models.Blog.findAndCountAll({
+    where: {
+        type: type
+    },
+    offset: offset,
+    limit: 6
+    })
+    .then((result) => {
+        res.json(result);
+    }, (err) => {
+        res.statusCode = 400;
+        res.end();
+    });
 };

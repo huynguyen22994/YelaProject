@@ -5,8 +5,8 @@
         .module('YelaAppClient.BlogSingle')
         .controller('BlogSingleController', ControllerController);
 
-    ControllerController.$inject = ['BlogSingleService', '$route', 'clientConstant'];
-    function ControllerController(BlogSingleService, $route, clientConstant) {
+    ControllerController.$inject = ['BlogSingleService', '$route', 'clientConstant', '$location'];
+    function ControllerController(BlogSingleService, $route, clientConstant, $location) {
         var vm = this;
         let blogId = $route.current.params.id;
         vm.RecommendProduct = {
@@ -30,6 +30,7 @@
                 changeProductBestsellers(vm.RecommendProduct.offset, vm.RecommendProduct.limit);
             }
         };
+        vm.goToBlogsByType = goToBlogsByType;
         
         activate();
 
@@ -105,6 +106,10 @@
                     console.log(err);
                     reject(err);
                 });
+        };
+
+        function goToBlogsByType(type) {
+            $location.path(`/blogs/${type}`);
         };
 
     }

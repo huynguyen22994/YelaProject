@@ -227,6 +227,10 @@ module.exports.getOneBlog = (req, res, next) => {
     BlogCtrl.getOneBlog(req, res, next);
 };
 
+module.exports.getBlogsByType = (req, res, next) => {
+    BlogCtrl.getBlogsByType(req, res, next);
+};
+
 // Administrator
 module.exports.loginAdmin = (req, res, next) => {
     AdministratorCtrl.loginAdmin(req, res, next);

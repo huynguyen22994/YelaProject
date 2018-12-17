@@ -5,18 +5,24 @@
         .module('YelaAppClient.Blog')
         .controller('BlogController', ControllerController);
 
-    ControllerController.$inject = ['BlogService', '$route', 'clientConstant'];
-    function ControllerController(BlogService, $route, clientConstant) {
+    ControllerController.$inject = ['BlogService', '$route', 'clientConstant', '$location'];
+    function ControllerController(BlogService, $route, clientConstant, $location) {
         var vm = this;
         vm.blogs = [];
-    
+        vm.readMore = readMore;
+        vm.getFormatDate = getFormatDate;
+        vm.goToBlogsByType = goToBlogsByType;
+
         activate();
         ////////////////
 
         async function activate() { 
-            //let productId = _.get($route, 'current.params.id');
-            await loadBlogs();
-            //await loadProductBestsellers(vm.RecommendProduct.offset, vm.RecommendProduct.limit);
+            let blogType = $route.current.params.id;
+            if(blogType) {
+                await loadBlogsByType(blogType, 0);
+            } else {
+                await loadBlogs();
+            }
         };
 
         function loadBlogs() {
@@ -36,12 +42,35 @@
             });
         };
 
+        function loadBlogsByType(type, offset) {
+            return new Promise((resolve, reject) => {
+                BlogService.getBlogsByType(type, offset)
+                    .then(function (response) {
+                        var data = response.data;
+                        vm.blogs = data.rows;
+                        resolve(vm.blogs);
+                    }).catch(function (err) {
+                        reject(err);
+                    });
+            });
+        };
+
         function getFormatDate(dateString) {
             if(dateString) {
                 var date = new Date(dateString);
                 return date.getDay() + '/' + date.getMonth() + '/' + date.getFullYear();
             }
             return dateString;
+        };
+
+        function readMore(blog) {
+            if(blog) {
+                $location.path(`/blog/${blog.blogId}`);
+            }
+        };
+
+        function goToBlogsByType(type) {
+            $location.path(`/blogs/${type}`);
         };
 
     }

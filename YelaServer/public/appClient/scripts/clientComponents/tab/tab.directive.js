@@ -102,7 +102,6 @@
         }
 
         function view(contentId, tabId) {
-            console.log(contentId);
             $location.path(`/blog/${contentId}`);
         }
     }

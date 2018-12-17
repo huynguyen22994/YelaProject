@@ -19,7 +19,26 @@
             extraPlugins: 'uploadimage'
             // extraPlugins: 'imagebrowser'
         };
+        vm.typeObj = {};
         vm.croppedDataUrl = '';
+        vm.types = [
+            {
+                id: 'food',
+                name: 'Món Ăn'
+            },
+            {
+                id: 'nutrition',
+                name: 'Dinh Dưỡng'
+            },
+            {
+                id: 'lowcarb',
+                name: 'Low Carb'
+            },
+            {
+                id: 'discover',
+                name: 'Khám Phá'
+            }
+        ]
 
         vm.cancel = cancel;
         vm.onReady = onReady;
@@ -60,7 +79,9 @@
             let blogObj = {
                 title: vm.Blog.title,
                 imageLink: vm.Blog.linkImg,
-                description: vm.Blog.description
+                description: vm.Blog.description,
+                summary: vm.Blog.summary,
+                type: vm.typeObj.id
             };
 
             if (name) {
@@ -129,7 +150,9 @@
                 blogId: vm.Blog.blogId,
                 title: vm.Blog.title,
                 description: vm.Blog.description,
-                imageLink: vm.Blog.linkImg
+                imageLink: vm.Blog.linkImg,
+                summary: vm.Blog.summary,
+                type: vm.typeObj.id
             };
             if (name) {
                  let promise = uploadImg(dataUrl, name);

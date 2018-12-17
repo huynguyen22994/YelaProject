@@ -18,6 +18,14 @@ module.exports = function(sequelize, Sequelize) {
         imageLink: {
             type: Sequelize.STRING,
             allowNull: true
+        },
+        summary: {
+            type: Sequelize.TEXT,
+            allowNull: true
+        },
+        type: {
+            type: Sequelize.ENUM('food', 'nutrition', 'lowcarb', 'discover'),
+            allowNull: true
         }
     }, {
         charset: 'utf8',

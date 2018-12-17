@@ -8,7 +8,28 @@
                     <section>
                         <div class="container">
                             <div class="row">
-                                <div class="col-sm-12 padding-right">
+
+                                <div class="col-sm-3">
+                                    <div class="left-sidebar">
+                                        <div class="brands_products"><!--brands_products-->
+                                            <h2>Chủ Đề</h2>
+                                            <div class="brands-name">
+                                                <ul class="nav nav-pills nav-stacked">
+                                                    <li><a href="" ng-click="vm.goToBlogsByType('food')">Món Ăn</a></li>
+                                                    <li><a href="" ng-click="vm.goToBlogsByType('nutrition')">Dinh Dưỡng</a></li>
+                                                    <li><a href="" ng-click="vm.goToBlogsByType('lowcarb')">LowCarb</a></li>
+                                                    <li><a href="" ng-click="vm.goToBlogsByType('discover')">Khám Phá</a></li>
+                                                </ul>
+                                            </div>
+                                        </div><!--/brands_products-->
+                                        
+                                        <div class="shipping text-center"><!--shipping-->
+                                            <img src="images/home/shipping.jpg" alt="" />
+                                        </div><!--/shipping-->
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-9 padding-right">
                                    
                                     <div class="blog-post-area">
                                         <h2 class="title text-center">Bài Viết</h2>
@@ -17,7 +38,6 @@
                                             <div class="post-meta">
                                                 <ul>
                                                     <li><i class="fa fa-user"></i> FoodTech</li>
-                                                    <li><i class="fa fa-clock-o"></i> 1:33 pm</li>
                                                     <li><i class="fa fa-calendar"></i> {{ vm.blog.createdTime }}</li>
                                                 </ul>
                                             </div>
