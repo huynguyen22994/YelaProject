@@ -53,12 +53,17 @@
                                         </div>
                                     </div>
     
-                                    <div class="pagination-area">
+                                    <div class="pagination-area" ng-if="vm.pageArray.length > 0">
                                         <ul class="pagination">
-                                            <li><a href="" class="active">1</a></li>
-                                            <li><a href="">2</a></li>
-                                            <li><a href="">3</a></li>
-                                            <li><a href=""><i class="fa fa-angle-double-right"></i></a></li>
+                                            <li ng-class="{disabled:vm.pageTotal === 1}">
+                                                <a ng-click="vm.changePage(0, vm.paging.limit, 1)"><i class="fa fa-angle-double-left"></i></a>
+                                            </li>
+                                            <li ng-repeat="page in vm.pageArray">
+                                                <a ng-click="vm.changePage(page.offset, page.limit, page.page)" ng-class="{active:page.page === vm.currentPage}"> {{ page.page }} </a>
+                                            </li>
+                                            <li ng-class="{disabled:vm.pageTotal === 1}">
+                                                <a ng-click="vm.changePage((vm.pageTotal  - 1) * vm.paging.limit, vm.paging.limit, vm.pageTotal)"><i class="fa fa-angle-double-right"></i></a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>

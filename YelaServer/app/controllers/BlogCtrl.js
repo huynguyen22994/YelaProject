@@ -116,13 +116,14 @@ module.exports.getOneBlog = (req, res, next) => {
 
 module.exports.getBlogsByType = (req, res, next) => {
     var offset = parseInt(req.query.offset);
+    var limit = parseInt(req.query.limit);
     var type = req.query.type;
     models.Blog.findAndCountAll({
     where: {
         type: type
     },
     offset: offset,
-    limit: 6
+    limit: limit
     })
     .then((result) => {
         res.json(result);
@@ -130,4 +131,26 @@ module.exports.getBlogsByType = (req, res, next) => {
         res.statusCode = 400;
         res.end();
     });
+};
+
+module.exports.getBlogByPaging = (req, res, next) => {
+    var offset = parseInt(req.query.offset);
+    var limit = parseInt(req.query.limit);
+    models.Blog.findAndCountAll({
+        offset: offset,
+        limit: limit
+    })
+    .then((result) => {
+        let responses = {
+            count: result.count,
+            blogs: []
+        }
+        result.rows.forEach((blog) => {
+            responses.blogs.push(blog.dataValues);
+        });
+        res.json(responses);
+    },
+    (err) => {
+        console.log(err);
+    })
 };

@@ -16,10 +16,14 @@
 
         ////////////////
 
-        function getBlogs() {
+        function getBlogs(offset, limit) {
             return $http({
-                url: '/api/blog',
-                method: 'GET'
+                url: '/api/blog/bypaging',
+                method: 'GET',
+                params: {
+                    offset: offset,
+                    limit: limit
+                }
             }).then(function (res) {
                 return res;
             }).catch(function (err) {
@@ -27,12 +31,13 @@
             });
         };
 
-        function getBlogsByType(type, offset) {
+        function getBlogsByType(type, offset, limit) {
             return $http({
                 url: '/api/blog/type',
                 method: 'GET',
                 params: {
                     offset: offset,
+                    limit: limit,
                     type: type
                 }
             }).then(function (res) {

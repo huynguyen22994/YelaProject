@@ -19,7 +19,13 @@
         
     }
     /* @ngInject */
-    function ControllerController ($scope) {
+    function ControllerController ($scope, $rootScope) {
         var vm = this;
+        vm.toggleChatBox = toggleChatBox; 
+
+        ///////////////////////////////////
+        function toggleChatBox() {
+            $rootScope.useChatBox = !$rootScope.useChatBox;
+        }
     }
 })();

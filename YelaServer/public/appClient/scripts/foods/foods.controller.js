@@ -97,7 +97,7 @@
             vm.currentPage = currentPage;
             change(offset, limit);
             async function change(offset, limit) {
-                await loadProducts(offset, limit);
+                await loadFoods(offset, limit);
             };
         };
     }

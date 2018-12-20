@@ -19,7 +19,7 @@
         
     }
     /* @ngInject */
-    function ControllerController ($scope, socket) {
+    function ControllerController ($scope, socket, $rootScope) {
         $scope.cus = 'Customer';
         var $chatboxCredentials = $('.chatbox__credentials');
         var $chatbox = $('.chatbox');
@@ -37,6 +37,10 @@
                     $chatbox.removeClass('chatbox--empty');
                 });
             }
+        };
+
+        $scope.closeChatBox = function() {
+            $rootScope.useChatBox = false;
         };
 
         socket.on('hello', function (admin, role, mes) {

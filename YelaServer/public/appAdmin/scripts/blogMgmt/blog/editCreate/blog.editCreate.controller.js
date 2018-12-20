@@ -139,6 +139,9 @@
                 .then(function (res) {
                     vm.Blog = res.data;
                     vm.croppedDataUrl = `${ylConstant.serverUrl}/${res.data.imageLink}`;
+                    vm.typeObj = _.find(vm.types, function(type) {
+                        return type.id === vm.Blog.type;
+                    });
             }).catch(function (err) {
                 console.log(err);
                 toastr.error('Xảy ra lỗi khi tải bài viết!');

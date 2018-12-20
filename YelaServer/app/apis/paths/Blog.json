@@ -159,10 +159,55 @@
                     },
                     {
                         "in": "query",
+                        "name": "limit",
+                        "description": "Coffee object that needs to be added to the CoffeeDB",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "in": "query",
                         "name": "type",
                         "description": "Coffee object that needs to be added to the CoffeeDB",
                         "required": false,
                         "type": "string"
+                    }
+                ],
+                "responses": {
+                        "200": {
+                            "description": "template file",
+                            "schema": {
+                                "$ref": "#/definitions/Blog"
+                            }
+                        },
+                        "default": {
+                            "description": "unexpected error",
+                            "schema": {
+                                "$ref": "#/definitions/Error"
+                            }
+                        }
+                    },
+                "x-swagger-router-controller": "DefaultCtrl"
+            }
+        },
+        "/blog/bypaging": {
+            "get": {
+                "summary": "Get all blog",
+                "description": "This is a API to get all blog",
+                "operationId": "getBlogByPaging",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Coffee object that needs to be added to the CoffeeDB",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Coffee object that needs to be added to the CoffeeDB",
+                        "required": false,
+                        "type": "integer"
                     }
                 ],
                 "responses": {

@@ -10,6 +10,7 @@
         var vm = this;
         // this is root cart
         $rootScope.Cart = new Cart();
+        $rootScope.useChatBox = false;
 
         activate();
         ////////////////
