@@ -14,6 +14,7 @@ var session = require('express-session');
 var config = fs.readFileSync('./config/config.json');
 var configDB = JSON.parse(config.toString());
 var socket = require('./app/socket/chat.socket.js');
+var models = require('./app/models');
 
 app.use(cors());
 app.options('*', cors());
@@ -91,21 +92,25 @@ var options = {
 
 var port = process.env.PORT || app.get('port');
 
-swagger.initializeMiddleware(swaggerObj, (middleware) => {
-    app.use(middleware.swaggerMetadata());
-    app.use(middleware.swaggerSecurity({
-        oauth2: function (req, def, scopes, callback) {
-        // Do real stuff here
-        }
-    }));
-    app.use(middleware.swaggerRouter(options));
-    app.use(middleware.swaggerUi());
+models.sequelize.sync().then(function() {
 
-    http.listen(port,() => {
-        console.log(`link: http://localhost:${app.get('port')}/api/... => Apis of DoraemonCare`);
-        console.log(`link: http://localhost:${app.get('port')}/docs => Document Apis`);
-        console.log(`link: http://localhost:${app.get('port')}/api-docs => Resource Listing JSON`)
+    swagger.initializeMiddleware(swaggerObj, (middleware) => {
+        app.use(middleware.swaggerMetadata());
+        app.use(middleware.swaggerSecurity({
+            oauth2: function (req, def, scopes, callback) {
+            // Do real stuff here
+            }
+        }));
+        app.use(middleware.swaggerRouter(options));
+        app.use(middleware.swaggerUi());
+    
+        http.listen(port,() => {
+            console.log(`link: http://localhost:${app.get('port')}/api/... => Apis of DoraemonCare`);
+            console.log(`link: http://localhost:${app.get('port')}/docs => Document Apis`);
+            console.log(`link: http://localhost:${app.get('port')}/api-docs => Resource Listing JSON`)
+        });
     });
+
 });
 
 app.socketClient = socket.initialize(io);
