@@ -1,13 +1,10 @@
 {
     "database": {
-        "dbname": "YelaShopDB",
-        "username": "root",
-        "password": null,
-        "host": "localhost",
-        "dialect": "mysql",
-        "min": 0,
-        "max": 1000,
-        "idle": 10000
+        "dbname": "deon4ks8pep7je",
+        "username": "fdmjcoiuoeeyuu",
+        "password": "a35cbb85686c9444ace3000476bb1615881965a70bc873c5105030810225d11e",
+        "host": "ec2-54-235-247-209.compute-1.amazonaws.com",
+        "dialect": "postgres"
     },
     "port": 3000,
     "storageProductPath": "./upload/images/products/",
@@ -17,5 +14,8 @@
         "email": "helloworldcoffeeshop@gmail.com",
         "password": "kimyen2209"
     },
-    "tokenSecrectKey": "yelashop"
+    "tokenSecrectKey": "yelashop",
+    "production": {
+        "use_env_variable": "DATABASE_URL"
+    }
 }
