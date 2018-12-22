@@ -31,13 +31,18 @@ var database = databaseConfig.database;
 //   // SQLite only
 //   //storage: 'http://localhost/phpmyadmin/to/database.sqlite'
 // });
-var match = process.env.DATABASE_URI.match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/);
-sequelize = new Sequelize(process.env.HEROKU_POSTGRESQL_BRONZE_URL, {
+var text = 'postgres://jmefjsgvxqihcc:710b5eef2e57516e06ce43cc901966392d0887d4dba293a13329d1dc7a7bcf7c@ec2-184-73-181-132.compute-1.amazonaws.com:5432/d6d9dbgkkjo8d1';
+var match = text.match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/);
+// console.log(match);
+sequelize = new Sequelize(text, {
   dialect:  'postgres',
   protocol: 'postgres',
   port:     match[4],
   host:     match[3],
-  logging:  true //false
+  logging:  false,
+  dialectOptions: {
+    ssl: true
+  }
 });
 
 //var sequelize = new Sequelize('postgres://acdouqkvqkpvqn:82c7af4c6c29ad7de2561635fbdc811f344656a80aec428fdafe10245ee29a53@ec2-184-72-239-186.compute-1.amazonaws.com:5432/d651i46315f1l4');

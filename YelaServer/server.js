@@ -14,7 +14,7 @@ var session = require('express-session');
 var config = fs.readFileSync('./config/config.json');
 var configDB = JSON.parse(config.toString());
 var socket = require('./app/socket/chat.socket.js');
-var models = require('./app/models');
+// var models = require('./app/models');
 
 app.use(cors());
 app.options('*', cors());
@@ -92,7 +92,7 @@ var options = {
 
 var port = process.env.PORT || app.get('port');
 
-models.sequelize.sync().then(function() {
+// models.sequelize.sync().then(function() {
 
     swagger.initializeMiddleware(swaggerObj, (middleware) => {
         app.use(middleware.swaggerMetadata());
@@ -111,7 +111,7 @@ models.sequelize.sync().then(function() {
         });
     });
 
-});
+// });
 
 app.socketClient = socket.initialize(io);
 
