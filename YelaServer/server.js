@@ -93,7 +93,6 @@ var options = {
 var port = process.env.PORT || app.get('port');
 
 models.sequelize.sync().then(function() {
-
     swagger.initializeMiddleware(swaggerObj, (middleware) => {
         app.use(middleware.swaggerMetadata());
         app.use(middleware.swaggerSecurity({
@@ -110,7 +109,6 @@ models.sequelize.sync().then(function() {
             console.log(`link: http://localhost:${app.get('port')}/api-docs => Resource Listing JSON`)
         });
     });
-
 });
 
 app.socketClient = socket.initialize(io);

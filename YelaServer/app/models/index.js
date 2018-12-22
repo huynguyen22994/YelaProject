@@ -3,8 +3,6 @@ var fs = require('fs');
 var path = require('path');
 var lodash = require('lodash');
 var data = fs.readFileSync('./config/config.json');
-var URL = require('url');
-console.log(URL);
 
 var db = {};
 
@@ -33,12 +31,11 @@ var database = databaseConfig.database;
 //   // SQLite only
 //   //storage: 'http://localhost/phpmyadmin/to/database.sqlite'
 // });
-var text = 'postgres://jmefjsgvxqihcc:710b5eef2e57516e06ce43cc901966392d0887d4dba293a13329d1dc7a7bcf7c@ec2-184-73-181-132.compute-1.amazonaws.com:5432/d6d9dbgkkjo8d1';
-var match = text.match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/);
-// console.log(match);
+var connectStr = database.connectString;
+var match = connectStr.match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/);
 sequelize = new Sequelize('d6d9dbgkkjo8d1', 'jmefjsgvxqihcc', '710b5eef2e57516e06ce43cc901966392d0887d4dba293a13329d1dc7a7bcf7c', {
-  dialect:  'postgres',
-  protocol: 'postgres',
+  dialect:  database.dialect,
+  protocol: database.dialect,
   port:     match[4],
   host:     match[3],
   logging:  false,
@@ -46,8 +43,6 @@ sequelize = new Sequelize('d6d9dbgkkjo8d1', 'jmefjsgvxqihcc', '710b5eef2e57516e0
     ssl: true
   }
 });
-
-//var sequelize = new Sequelize('postgres://acdouqkvqkpvqn:82c7af4c6c29ad7de2561635fbdc811f344656a80aec428fdafe10245ee29a53@ec2-184-72-239-186.compute-1.amazonaws.com:5432/d651i46315f1l4');
 
 fs.readdirSync(__dirname)
   .filter((file) => {
