@@ -2,8 +2,8 @@ var models = require('../models');
 var async = require('async');
 var _ = require('underscore');
 var path = require('path');
-var app = require(path.resolve( "../../YelaProject/YelaServer/server.js" ));
-var socketClient = app.socketClient;
+//var app = require(path.resolve( "../../YelaProject/YelaServer/server.js" ));
+//var socketClient = app.socketClient;
 
 
 function getTotalPrice(foodList) {
@@ -35,7 +35,7 @@ function getDateFormatted(dateString) {
 };
 
 function updateBillNotice(data) {
-    socketClient.emit('onNewBill', data);
+    //socketClient.emit('onNewBill', data);
 }
 
 function getItemObjFormatted(itemsString) {
