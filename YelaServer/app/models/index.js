@@ -3,6 +3,8 @@ var fs = require('fs');
 var path = require('path');
 var lodash = require('lodash');
 var data = fs.readFileSync('./config/config.json');
+var URL = require('url');
+console.log(URL);
 
 var db = {};
 
@@ -34,7 +36,7 @@ var database = databaseConfig.database;
 var text = 'postgres://jmefjsgvxqihcc:710b5eef2e57516e06ce43cc901966392d0887d4dba293a13329d1dc7a7bcf7c@ec2-184-73-181-132.compute-1.amazonaws.com:5432/d6d9dbgkkjo8d1';
 var match = text.match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/);
 // console.log(match);
-sequelize = new Sequelize(text, {
+sequelize = new Sequelize('d6d9dbgkkjo8d1', 'jmefjsgvxqihcc', '710b5eef2e57516e06ce43cc901966392d0887d4dba293a13329d1dc7a7bcf7c', {
   dialect:  'postgres',
   protocol: 'postgres',
   port:     match[4],
