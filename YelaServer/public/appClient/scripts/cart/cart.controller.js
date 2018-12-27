@@ -63,7 +63,9 @@
         };
 
         function isCheckOutValid() {
-            return CartService.getParseCurrencyToNumber(vm.total) <= 0
+            // for trial
+            return true;
+            //return CartService.getParseCurrencyToNumber(vm.total) <= 0
         };
 
         function goToCheckoutPage() {

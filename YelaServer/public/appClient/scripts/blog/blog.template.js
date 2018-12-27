@@ -11,7 +11,7 @@
                             <div class="col-sm-3">
                                 <div class="left-sidebar">
                                     <div class="brands_products"><!--brands_products-->
-                                        <h2>Chủ Đề</h2>
+                                        <h2>{{ 'topic' | i18next }}</h2>
                                         <div class="brands-name">
                                             <ul class="nav nav-pills nav-stacked">
                                                 <li><a href="" ng-click="vm.goToBlogsByType('food')">Món Ăn</a></li>
@@ -23,14 +23,14 @@
                                     </div><!--/brands_products-->
                                     
                                     <div class="shipping text-center"><!--shipping-->
-                                        <img src="images/home/shipping.jpg" alt="" />
+                                        <img src="images/home/banner.png" alt="" />
                                     </div><!--/shipping-->
                                 </div>
                             </div>
 
                             <div class="col-sm-9">
                                 <div class="blog-post-area" style="text-align: -webkit-auto">
-                                    <h2 class="title text-center">Bài Viết Mới Nhất</h2>
+                                    <h2 class="title text-center">{{ 'newPost' | i18next }}</h2>
 
                                     <div class="single-blog-post advance" ng-repeat="blog in vm.blogs">
                                         <div class="post-meta">

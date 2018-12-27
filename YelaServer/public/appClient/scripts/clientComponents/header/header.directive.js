@@ -69,13 +69,13 @@
         vm.config = {
             headerTop: {
                 left: [
-                    { iconClass: 'fa fa-phone', label: '0933990004', href: function () {  return 'aa'} },
-                    { iconClass: 'fa fa-envelope', label: 'foodtech@gmail.com', href: function () { return 'test'; } }
+                    { iconClass: 'fa fa-phone', label: '0933800024', href: function () {  return 'aa'} },
+                    { iconClass: 'fa fa-envelope', label: 'foodtechshopvn@gmail.com', href: function () { return 'test'; } }
                 ],
                 right: [
-                    { iconClass: 'fa fa-facebook', href: function () { return 'string'; } },
-                    {iconClass: 'fa fa-instagram', href: function () { return 'string'; } },
-                    {iconClass: 'fa fa-google-plus', href: function () { return 'string'; } },
+                    { iconClass: 'fa fa-facebook', href: function () { return 'https://www.facebook.com/foodtechshop'; } },
+                    {iconClass: 'fa fa-instagram', href: function () { return 'https://www.instagram.com/foodtechshop.vn/'; } },
+                    {iconClass: 'fa fa-shopping-bag', href: function () { return 'https://shopee.vn/foodtechshop'; } },
                 ]
             },
             headerMiddle: {
@@ -84,10 +84,10 @@
                 ],
                 right: [
                     // { iconClass: 'fa fa-user', label: 'Account', href: function () { return 'string'; } },
-                    { iconClass: 'fa fa-star', label: 'wishlist', href: function () { return 'string'; } },
-                    { iconClass: 'fa fa-crosshairs', label: 'checkout', href: function () { return '#!/checkout'; } },
+                    // { iconClass: 'fa fa-star', label: 'wishlist', href: function () { return 'string'; } },
+                    // { iconClass: 'fa fa-crosshairs', label: 'checkout', href: function () { return '#!/checkout'; } },
                     { iconClass: 'fa fa-shopping-cart', label: 'cart', useNotice: true, href: function () { return '#!/cart'; } },
-                    { iconClass: 'fa fa-lock', label: 'Login', href: function () { return '#!/login'; } },
+                    // { iconClass: 'fa fa-lock', label: 'Login', href: function () { return '#!/login'; } },
                 ]
             },
             headerBottom: {

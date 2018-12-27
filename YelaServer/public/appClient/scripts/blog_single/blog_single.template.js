@@ -12,7 +12,7 @@
                                 <div class="col-sm-3">
                                     <div class="left-sidebar">
                                         <div class="brands_products"><!--brands_products-->
-                                            <h2>Chủ Đề</h2>
+                                            <h2>{{ 'topic' | i18next }}</h2>
                                             <div class="brands-name">
                                                 <ul class="nav nav-pills nav-stacked">
                                                     <li><a href="" ng-click="vm.goToBlogsByType('food')">Món Ăn</a></li>
@@ -24,7 +24,7 @@
                                         </div><!--/brands_products-->
                                         
                                         <div class="shipping text-center"><!--shipping-->
-                                            <img src="images/home/shipping.jpg" alt="" />
+                                            <img src="images/home/banner.png" alt="" />
                                         </div><!--/shipping-->
                                     </div>
                                 </div>
@@ -32,7 +32,7 @@
                                 <div class="col-sm-9 padding-right">
                                    
                                     <div class="blog-post-area">
-                                        <h2 class="title text-center">Bài Viết</h2>
+                                        <h2 class="title text-center">{{ 'post' | i18next }}</h2>
                                         <div class="single-blog-post">
                                             <h3>{{ vm.blog.title }}</h3>
                                             <div class="post-meta">
@@ -46,18 +46,12 @@
                                                     <div style="float: left" ng-bind-html="vm.blog.description"></div>
                                                 </div>
                                             </div>
-                                            <div class="pager-area">
-                                                <ul class="pager pull-right">
-                                                    <li><a href="#">Pre</a></li>
-                                                    <li><a href="#">Next</a></li>
-                                                </ul>
-                                            </div>
                                         </div>
                                     </div><!--/blog-post-area-->
                 
                                     <div class="rating-area">
                                         <ul class="ratings">
-                                            <li class="rate-this">Rate this item:</li>
+                                            <li class="rate-this">{{ 'rate' | i18next }}:</li>
                                             <li>
                                                 <i class="fa fa-star color"></i>
                                                 <i class="fa fa-star color"></i>
@@ -66,12 +60,6 @@
                                                 <i class="fa fa-star"></i>
                                             </li>
                                             <li class="color">(6 votes)</li>
-                                        </ul>
-                                        <ul class="tag">
-                                            <li>TAG:</li>
-                                            <li><a class="color" href="">Pink <span>/</span></a></li>
-                                            <li><a class="color" href="">T-Shirt <span>/</span></a></li>
-                                            <li><a class="color" href="">Girls</a></li>
                                         </ul>
                                     </div><!--/rating-area-->
                 
@@ -85,7 +73,7 @@
                                         </a>
                                         <div class="media-body">
                                             <h4 class="media-heading">Huy Nguyen</h4>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                            <p>Khi bạn đã thật sự xác định được mục tiêu của cuộc đời mình thì hãy tập trung theo đuổi và kiên trì với nó. Hãy luôn giữ một niềm tin và khát khao cháy bỏng về điều đó, vì đó là hai yếu tố không thể thiếu để biến ước mơ của bạn thành sự thật.</p>
                                             <div class="blog-socials">
                                                 <ul>
                                                     <li><a href=""><i class="fa fa-facebook"></i></a></li>
