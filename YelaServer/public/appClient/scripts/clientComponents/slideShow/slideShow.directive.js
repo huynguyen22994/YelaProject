@@ -27,7 +27,7 @@
                     <div class="item active">
                         <div class="col-sm-4">
                             <h1><span>F </span>| Food Tech</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                            <p>Chúng tôi luôn khát khao, cố gắng cải thiện từng ngày để mang đến những sản phẩm và một dịch vụ tốt nhất cho cộng đồng. </p>
                         </div>
                         <div class="col-sm-8">
                             <img src="images/home/slide3.PNG" class="girl img-responsive" alt="" />
@@ -45,7 +45,7 @@
                     <div class="item">
                         <div class="col-sm-4">
                             <h1><span>F |</span> Food Tech</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                            <p>Chúng tôi luôn khát khao, cố gắng cải thiện từng ngày để mang đến những sản phẩm và một dịch vụ tốt nhất cho cộng đồng. </p>
                         </div>
                         <div class="col-sm-8">
                             <img src="images/home/slide2.PNG" class="girl img-responsive" style="padding-top: 75px" alt="" />

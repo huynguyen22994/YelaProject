@@ -72,7 +72,7 @@
                                             <img class="media-object" src="images/blog/man-one.jpg" alt="">
                                         </a>
                                         <div class="media-body">
-                                            <h4 class="media-heading">Huy Nguyen</h4>
+                                            <h4 class="media-heading">FoodTech Shop</h4>
                                             <p>Khi bạn đã thật sự xác định được mục tiêu của cuộc đời mình thì hãy tập trung theo đuổi và kiên trì với nó. Hãy luôn giữ một niềm tin và khát khao cháy bỏng về điều đó, vì đó là hai yếu tố không thể thiếu để biến ước mơ của bạn thành sự thật.</p>
                                             <div class="blog-socials">
                                                 <ul>
