@@ -29,7 +29,11 @@
                             </div>
 
                             <div class="col-sm-9">
-                                <div class="blog-post-area" style="text-align: -webkit-auto">
+                                <div ng-if="vm.isLoading">
+                                    <div class="foodtech-loader"></div>
+                                    <div class="foodtech-loader-backdrop"></div>
+                                </div>
+                                <div ng-if="!vm.isLoading" class="blog-post-area" style="text-align: -webkit-auto">
                                     <h2 class="title text-center">{{ 'newPost' | i18next }}</h2>
 
                                     <div class="single-blog-post advance" ng-repeat="blog in vm.blogs">

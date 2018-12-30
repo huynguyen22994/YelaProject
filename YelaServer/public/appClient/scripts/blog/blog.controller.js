@@ -32,6 +32,7 @@
         };
 
         function loadBlogs(offset, limit, isNew) {
+            vm.isLoading = true;
             return new Promise((resolve, reject) => {
                 BlogService.getBlogs(offset, limit)
                     .then(function (response) {
@@ -40,15 +41,18 @@
                         if(isNew) {
                             setPage(data.count, vm.blogs.length, vm.paging.limit)  
                         }
+                        vm.isLoading = false;
                         resolve(vm.blogs);
                     }).catch(function (err) {
                         console.log(err);
+                        vm.isLoading = false;
                         reject(err);
                     });
             });
         };
 
         function loadBlogsByType(type, offset, limit, isNew) {
+            vm.isLoading = true;
             return new Promise((resolve, reject) => {
                 BlogService.getBlogsByType(type, offset, limit)
                     .then(function (response) {
@@ -57,8 +61,10 @@
                         if(isNew) {
                             setPage(data.count, vm.blogs.length, vm.paging.limit)  
                         }
+                        vm.isLoading = false;
                         resolve(vm.blogs);
                     }).catch(function (err) {
+                        vm.isLoading = false;
                         reject(err);
                     });
             });

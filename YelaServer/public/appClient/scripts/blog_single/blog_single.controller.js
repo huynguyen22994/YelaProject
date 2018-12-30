@@ -69,6 +69,7 @@
         };
 
         function loadBlogDetail(id) {
+            vm.isLoading = true;
             return new Promise((resolve, reject) => {
                 BlogSingleService.getBlogById(id)
                     .then(function (blog) {
@@ -76,9 +77,11 @@
                         //vm.blog.linkImg = `${clientConstant.serverUrl}/${vm.blog.linkImg}`;
                         var date = new Date(vm.blog.createdAt);
                         vm.blog.createdTime = date.getDay() + '/' + date.getMonth() + '/' + date.getFullYear();
+                        vm.isLoading = false;
                         resolve(blog.data);
                     }).catch(function (err) {
                         console.log(err);
+                        vm.isLoading = false;
                         reject(err);
                     });
             });
