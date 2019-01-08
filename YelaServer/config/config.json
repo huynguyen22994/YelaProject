@@ -1,11 +1,13 @@
 {
     "database": {
-        "dbname": "d6d9dbgkkjo8d1",
-        "username": "jmefjsgvxqihcc",
-        "password": "710b5eef2e57516e06ce43cc901966392d0887d4dba293a13329d1dc7a7bcf7c",
-        "host": "ec2-54-235-247-209.compute-1.amazonaws.com",
-        "dialect": "postgres",
-        "connectString": "postgres://jmefjsgvxqihcc:710b5eef2e57516e06ce43cc901966392d0887d4dba293a13329d1dc7a7bcf7c@ec2-184-73-181-132.compute-1.amazonaws.com:5432/d6d9dbgkkjo8d1"
+        "dbname": "YelaShopDB",
+        "username": "root",
+        "password": null,
+        "host": "localhost",
+        "dialect": "mysql",
+        "min": 0,
+        "max": 1000,
+        "idle": 10000
     },
     "port": 3000,
     "storageProductPath": "./upload/images/products/",

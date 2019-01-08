@@ -8,6 +8,8 @@
         'YelaApplication.BlogMgmt',
         'YelaApplication.BillMgmt',
         'YelaApplication.DashboardManagement',
+        'YelaLineChart',
+        'YelaPieChart',
         'jm.i18next',
         'toastr',
         'ngMaterial',

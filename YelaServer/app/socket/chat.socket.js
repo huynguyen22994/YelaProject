@@ -1,10 +1,26 @@
-module.exports.initialize = function initialize(io) {
-    return io.sockets.on('connection', function (socket) {
-        console.log('[Website] have a user connect to website');
+module.exports.initialize = function initialize(io, customer) {
 
+    function addCusOnline(socket, site) {
+        if(site === 'client') {
+            console.log('[Website] have a user connect to website');
+            customer.countOnline = customer.countOnline + 1;
+        }
+    }
+
+    function removeCusOnline(socket, site) {
+        if(site === 'client') {
+            console.log('[Website] have a user disconnect to website');
+            customer.countOnline = customer.countOnline - 1;
+        }
+    }
+
+    ///////////////////////////////////////////////////////
+    return io.sockets.on('connection', function (socket) {
         var customerRoom = [];
         var customers = [];
-        
+
+        addCusOnline(socket, socket.handshake.query.side);
+        /////////////////////////////////////////
         socket.on('adminOnline', function () {
             socket.emit('cusUpdateRoom', customerRoom);
         });
@@ -78,6 +94,7 @@ module.exports.initialize = function initialize(io) {
 
         // when the user disconnects.. perform this
         socket.on('disconnect', function(){
+            removeCusOnline(socket, socket.handshake.query.side);
             // remove the username from global usernames list
             //delete usernames[socket.username];
             // update list of users in chat, client-side

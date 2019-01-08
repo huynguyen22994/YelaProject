@@ -9,7 +9,7 @@
 
     Service.$inject = ['$rootScope'];
     function Service($rootScope) {
-        var socket = io.connect('/', {query:"side=server"});
+        var socket = io.connect('/', {query:"side=client"});
         return {
           on: function (eventName, callback) {
             socket.on(eventName, function () {  

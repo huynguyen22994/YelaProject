@@ -3,8 +3,8 @@
             cursor: pointer
         }
     </style>
-
-    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+<div id="table-wrapper">
+    <table class="table table-striped table-bordered table-hover" id="table-scroll">
         <thead>
             <tr>    
                 <th ng-if="hasCheckBox"><input type="checkbox" ng-model="config.checkBoxOptions.checkAll" value="" ng-click="config.checkBoxOptions.toggleCheckAll()"></th>
@@ -65,3 +65,4 @@
             </tr> 
         </tbody>
     </table>
+</div>

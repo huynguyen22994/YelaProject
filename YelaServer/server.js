@@ -15,6 +15,9 @@ var config = fs.readFileSync('./config/config.json');
 var configDB = JSON.parse(config.toString());
 var socket = require('./app/socket/chat.socket.js');
 var models = require('./app/models');
+var customer = {
+    countOnline: 0
+}
 
 app.use(cors());
 app.options('*', cors());
@@ -57,6 +60,10 @@ app.use('/api', upload);
 
 app.get('/admin', function(req, res){
     res.sendFile(path.join(__dirname + '/public/admin/index.html'));
+});
+
+app.get('/admin/api/user/online', function(req, res) {
+    res.json(customer);
 });
 
 var LoadSwagger = () => {
@@ -111,6 +118,6 @@ models.sequelize.sync().then(function() {
     });
 });
 
-app.socketClient = socket.initialize(io);
+app.socketClient = socket.initialize(io, customer);
 
 exports = module.exports = app;
