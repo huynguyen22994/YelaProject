@@ -55,5 +55,14 @@
     "topic": "Topic",
     "post": "Post",
     "newPost": "New Posts",
-    "rate": "Rate"
+    "rate": "Rate",
+    "status": "Status",
+    "type": "Type",
+    "describe": "Describe",
+    "new": "New",
+    "old": "Old",
+    "normal": "Normal",
+    "bestseller": "Bestseller",
+    "prominentest": "Prominentest"
+
 }

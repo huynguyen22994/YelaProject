@@ -1232,6 +1232,13 @@ h2.title {
 	left:0
 }
 
+.newarrival.banner-lable {
+  padding: 5px;
+  background-color: #ff8080;
+  color: #fff;
+  border-radius: 2px
+}
+
 .product-information h2 {
   color: #363432;
   font-family: 'Roboto', sans-serif;

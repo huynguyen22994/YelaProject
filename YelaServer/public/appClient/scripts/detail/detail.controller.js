@@ -5,8 +5,8 @@
         .module('YelaAppClient.Detail')
         .controller('DetailController', ControllerController);
 
-    ControllerController.$inject = ['DetailService', '$route', 'clientConstant'];
-    function ControllerController(DetailService, $route, clientConstant) {
+    ControllerController.$inject = ['DetailService', '$route', 'clientConstant', '$rootScope', 'Product', 'toastr'];
+    function ControllerController(DetailService, $route, clientConstant, $rootScope, Product, toastr) {
         var vm = this;
         let productId = $route.current.params.id;
         vm.RecommendProduct = {
@@ -30,6 +30,8 @@
                 changeProductBestsellers(vm.RecommendProduct.offset, vm.RecommendProduct.limit);
             }
         };
+        vm.quantity = 1;
+        vm.addToCart = addToCart;    
         
         activate();
 
@@ -106,6 +108,13 @@
                     reject(err);
                 });
         };
+
+        function addToCart(product, quantity) {
+            var _product = new Product(product.productId, product.name, product.price, product.linkImg);
+            _product.upQuantity(quantity);
+            $rootScope.Cart.adddProductWithQuatity(_product, quantity);
+            toastr.success(product.name + ' đã được thêm vào giỏ hàng');
+        }
 
     }
 })();

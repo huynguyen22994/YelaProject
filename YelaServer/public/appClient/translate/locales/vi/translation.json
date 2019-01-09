@@ -55,5 +55,13 @@
     "topic": "Chủ Đề",
     "post": "Bài Viết",
     "newPost": "Bài Viết Mới Nhất",
-    "rate": "Đánh Giá"
+    "rate": "Đánh Giá",
+    "status": "Tình Trạng",
+    "type": "Loại",
+    "describe": "Mô Tả",
+    "new": "Mới",
+    "old": "Củ",
+    "normal": "Bình Thường",
+    "bestseller": "Bán Chạy",
+    "prominentest": "Nổi Bật"
 }

@@ -16,6 +16,7 @@
 
         Cart.prototype = {
             addProduct: addProduct,
+            adddProductWithQuatity: adddProductWithQuatity,
             getProductList: getProductList,
             getProductLength: getProductLength,
             removeProduct: removeProduct,
@@ -31,6 +32,24 @@
             for(var i = 0; i < this.products.length; i++) {
                 if(this.products[i]._id === product._id) {
                     this.products[i].upQuantity();
+                    isExistList = true;
+                }
+            }
+            if(!isExistList) {
+                this.products.push(product);
+            }
+            return this;
+        }
+
+        function adddProductWithQuatity(product, quatity) {
+            var isExistList = false;
+            for(var i = 0; i < this.products.length; i++) {
+                if(this.products[i]._id === product._id) {
+                    if(quatity) {
+                        this.products[i].upQuantity(quatity);
+                    } else {
+                        this.products[i].upQuantity();
+                    }
                     isExistList = true;
                 }
             }
