@@ -8,6 +8,7 @@ var SliderCtrl = require('./SliderCtrl');
 var BlogCtrl = require('./BlogCtrl');
 var AdministratorCtrl = require('./AdministratorCtrl');
 var Bill = require('./BillCtrl');
+var Authentication = require('../middleware/Authentication');
 var async = require('async');
 
 // Products
@@ -16,15 +17,15 @@ module.exports.getProducts = (req, res, next) => {
 };
 
 module.exports.createProduct = (req, res, next) => {
-    ProductCtrl.createProduct(req, res, next);
+    Authentication.sessionAuthenticationCB(req, res, next, ProductCtrl.createProduct);
 };
 
 module.exports.updateProduct = (req, res, next) => {
-    ProductCtrl.updateProduct(req, res, next);
+    Authentication.sessionAuthenticationCB(req, res, next, ProductCtrl.updateProduct);
 };
 
 module.exports.deleteProduct = (req, res, next) => {
-    ProductCtrl.deleteProduct(req, res, next);
+    Authentication.sessionAuthenticationCB(req, res, next, ProductCtrl.deleteProduct);
 };
 
 module.exports.getOneProduct = (req, res, next) => {
@@ -69,11 +70,11 @@ module.exports.getCategory = (req, res, next) => {
 };
 
 module.exports.createCategory = (req, res, next) => {
-    CategoryCtrl.createCategory(req, res, next);
+    Authentication.sessionAuthenticationCB(req, res, next, CategoryCtrl.createCategory);
 };
 
 module.exports.updateCategory = (req, res, next) => {
-    CategoryCtrl.updateCategory(req, res, next);
+    Authentication.sessionAuthenticationCB(req, res, next, CategoryCtrl.updateCategory);
 };
 
 module.exports.getOneCategory = (req, res, next) => {
@@ -81,7 +82,7 @@ module.exports.getOneCategory = (req, res, next) => {
 };
 
 module.exports.deleteCategory = (req, res, next) => {
-    CategoryCtrl.deleteCategory(req, res, next);
+    Authentication.sessionAuthenticationCB(req, res, next, CategoryCtrl.deleteCategory);
 };
 
 module.exports.getCategoryProductTye = (req, res, next) => {
@@ -94,15 +95,15 @@ module.exports.getProductType = (req, res, next) => {
 };
 
 module.exports.createProductType = (req, res, next) => {
-    ProductTypeCtrl.createProductType(req, res, next);
+    Authentication.sessionAuthenticationCB(req, res, next, ProductTypeCtrl.createProductType);
 };
 
 module.exports.updateProductType = (req, res, next) => {
-    ProductTypeCtrl.updateProductType(req, res, next);
+    Authentication.sessionAuthenticationCB(req, res, next, ProductTypeCtrl.updateProductType);
 };
 
 module.exports.deleteProductType = (req, res, next) => {
-    ProductTypeCtrl.deleteProductType(req, res, next);
+    Authentication.sessionAuthenticationCB(req, res, next, ProductTypeCtrl.deleteProductType);
 };
 
 module.exports.getOneProductType = (req, res, next) => {
@@ -162,11 +163,11 @@ module.exports.getBrands = (req, res, next) => {
 };
 
 module.exports.createBrand = (req, res, next) => {
-    BrandCtrl.createBrand(req, res, next);
+    Authentication.sessionAuthenticationCB(req, res, next, BrandCtrl.createBrand);
 };
 
 module.exports.updateBrand = (req, res, next) => {
-    BrandCtrl.updateBrand(req, res, next);
+    Authentication.sessionAuthenticationCB(req, res, next, BrandCtrl.updateBrand);
 };
 
 module.exports.getOneBrand = (req, res, next) => {
@@ -174,7 +175,7 @@ module.exports.getOneBrand = (req, res, next) => {
 };
 
 module.exports.deleteBrand = (req, res, next) => {
-    BrandCtrl.deleteBrand(req, res, next);
+    Authentication.sessionAuthenticationCB(req, res, next, BrandCtrl.deleteBrand);
 };
 
 module.exports.getBrandProduct = (req, res, next) => {
@@ -212,15 +213,15 @@ module.exports.getBlogs = (req, res, next) => {
 };
 
 module.exports.createBlog = (req, res, next) => {
-    BlogCtrl.createBlog(req, res, next);
+    Authentication.sessionAuthenticationCB(req, res, next, BlogCtrl.createBlog);
 };
 
 module.exports.updateBlog = (req, res, next) => {
-    BlogCtrl.updateBlog(req, res, next);
+    Authentication.sessionAuthenticationCB(req, res, next, BlogCtrl.updateBlog);
 };
 
 module.exports.deleteBlog = (req, res, next) => {
-    BlogCtrl.deleteBlog(req, res, next);
+    Authentication.sessionAuthenticationCB(req, res, next, BlogCtrl.deleteBlog);
 };
 
 module.exports.getOneBlog = (req, res, next) => {
@@ -238,6 +239,10 @@ module.exports.getBlogByPaging = (req, res, next) => {
 // Administrator
 module.exports.loginAdmin = (req, res, next) => {
     AdministratorCtrl.loginAdmin(req, res, next);
+};
+
+module.exports.logoutAdmin = (req, res, next) => {
+    AdministratorCtrl.logoutAdmin(req, res, next);
 };
 
 module.exports.getAdminInfo = (req, res, next) => {
@@ -258,7 +263,7 @@ module.exports.createBill = (req, res, next) => {
 };
 
 module.exports.updateBill = (req, res, next) => {
-    Bill.updateBill(req, res, next);
+    Authentication.sessionAuthenticationCB(req, res, next, Bill.updateBill);
 };
 
 module.exports.getBillByStatus = (req, res, next) => {

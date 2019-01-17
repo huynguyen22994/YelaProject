@@ -22,7 +22,7 @@
             loginService(vm.userName, vm.password).then(function(response) {
                 if(response.status === 200) {
                     var data = response.data || response;
-                    window.localStorage.setItem('foodTechToken', data.token);
+                    //window.localStorage.setItem('foodTechToken', data.token);
                     window.location.href = '/admin';
                 }
             }, function(error) {

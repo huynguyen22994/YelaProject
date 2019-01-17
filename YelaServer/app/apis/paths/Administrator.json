@@ -33,6 +33,28 @@
                 "x-swagger-router-controller": "DefaultCtrl"
             }
         },
+        "/administrator/logout": {
+            "get": {
+                "summary": "Product Types",
+                "description": "This is test Apis Book",
+                "operationId": "logoutAdmin",
+                "responses": {
+                        "200": {
+                            "description": "template file",
+                            "schema": {
+                                "$ref": "#/definitions/Administrator"
+                            }
+                        },
+                        "default": {
+                            "description": "unexpected error",
+                            "schema": {
+                                "$ref": "#/definitions/Error"
+                            }
+                        }
+                    },
+                "x-swagger-router-controller": "DefaultCtrl"
+            }
+        },
         "/administrator/info": {
             "get": {
                 "summary": "Product Types",

@@ -34,8 +34,18 @@
         }
 
         function logout() {
-            window.localStorage.clear(); 
-            window.location.href = '/login.html';
+            $http({
+                url: '/api/administrator/logout',
+                method: 'GET'
+            }).then(function (res) {
+                window.localStorage.clear(); 
+                var data = res.data;
+                if(data.logout) {
+                    window.location.href = '/login.html';
+                }
+            }).catch(function (err) {
+                console.log(err);
+            });
         }
 
         function loadNewBill() {

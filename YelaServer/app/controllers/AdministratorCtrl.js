@@ -46,8 +46,16 @@ module.exports.loginAdmin = (req, res, next) => {
     }
 };
 
+module.exports.logoutAdmin = (req, res, next) => { 
+    req.session.destroy();
+    res.end(JSON.stringify({ 
+        token: 0,
+        logout: true 
+    }));
+};
+
 module.exports.getAdminInfo = (req, res, next) => {
-    var token = req.query.token;
+    var token = req.session.token;
     models.Administrator.findAndCountAll({
         where: {
             token: token
