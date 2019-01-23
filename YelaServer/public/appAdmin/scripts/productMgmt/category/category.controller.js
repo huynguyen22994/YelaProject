@@ -3,14 +3,13 @@
 
     angular
         .module('YelaApplication.ProductMgmt')
-        .controller('BrandController', ControllerController);
+        .controller('CategoryController', ControllerController);
 
-    ControllerController.$inject = ['$scope', '$window', '$location', 'PagerService', 'BrandService', 'ylConstant', '$mdDialog'];
-    function ControllerController($scope, $window, $location, PagerService, BrandService, ylConstant, $mdDialog) {
+    ControllerController.$inject = ['$scope', '$window', '$location', 'PagerService', 'CategoryService', 'ylConstant', '$mdDialog'];
+    function ControllerController($scope, $window, $location, PagerService, CategoryService, ylConstant, $mdDialog) {
        var vm = this;
         vm.classForTable = 'col-md-12 col-sm-12 col-lg-12';
         vm.classForDetail = '';
-        vm.producttypeDetail = {};
         vm.pager = {
             setPage: setPage
         };
@@ -33,7 +32,7 @@
                     iconClass: 'fa fa-pencil-square-o',
                     tooltipTitle: 'tooltip_edit_asong',
                     action(item) {
-                        $location.path('/productMgmt/brand/edit/' + item.brandId);
+                        $location.path('/productMgmt/category/edit/' + item.categoryId);
                         //songCtrl.routeStateManager(songCtrl.stateSong, songCtrl.routeEditSongState + song.songID)
                     }
                 },
@@ -42,9 +41,6 @@
                     className: 'btn btn-default',
                     iconClass: 'fa fa-trash-o',
                     tooltipTitle: 'tooltip_delete_asong',
-                    disabled(item) {
-                        return (item.productsCount > 0) ? true : false; 
-                    },
                     action(item, ev) {
                         var confirm = $mdDialog.confirm()
                             .title('Bạn có muốn xóa loại sản phẩm này?')
@@ -54,7 +50,7 @@
                             .cancel('Cancel');
 
                         $mdDialog.show(confirm).then(function() {      
-                            deleteBrand(item);
+                            deleteCategory(item);
                         }, function() {
                             console.log('cancel');
                         });
@@ -92,7 +88,7 @@
                     tooltipTitle: 'tooltip_add',
                     action() {
                         //songCtrl.routeStateManager(songCtrl.stateSong, songCtrl.routeCreateSongState);
-                        $location.path('/productMgmt/brand/create');
+                        $location.path('/productMgmt/category/create');
                     }
                 }
                 // {
@@ -156,9 +152,9 @@
         // };
 
         function activate() {
-            BrandService.getAllBrands()
-                .then(function (brands) {
-                    vm.brands = brands.data;
+            CategoryService.getAllCategories()
+                .then(function (res) {
+                    vm.categories = res.data;
                     setPage(vm.pageCustomize.currentPage, vm.pageCustomize.size);
                 }).catch(function (err) {
                     console.log(err);
@@ -172,11 +168,11 @@
             if(page < 1 || page > vm.pager.totalPages) {
                 return;
             }
-            if(vm.brands.length > 0) {
+            if(vm.categories.length > 0) {
                 vm.hasResult = true;
-                vm.pager = PagerService.getPager(vm.brands.length, page, pageSize);
+                vm.pager = PagerService.getPager(vm.categories.length, page, pageSize);
                 vm.pager.setPage = setPage;
-                vm.items = vm.brands.slice(vm.pager.startIndex, vm.pager.endIndex);
+                vm.items = vm.categories.slice(vm.pager.startIndex, vm.pager.endIndex);
             } else {
                 vm.hasResult = false;
             }
@@ -201,20 +197,20 @@
             showDetail();
         };
 
-        function deleteBrand(item) {
-            let brandId = item.brandId;
-            BrandService.deleteBrand(brandId)
+        function deleteCategory(item) {
+            let categoryId = item.categoryId;
+            CategoryService.deleteCategory(categoryId)
                 .then(function (res) {
-                    loadBrands();
+                    loadCategories();
                 }).catch(function (err) {
                     console.log(err);
                 });
         };
 
-        function loadBrands() {            
-            BrandService.getAllBrands()
-                .then(function (brands) {
-                    vm.brands = brands.data;
+        function loadCategories() {            
+            CategoryService.getAllCategories()
+                .then(function (res) {
+                    vm.categories = res.data;
                     setPage(vm.pageCustomize.currentPage, vm.pageCustomize.size);
                 }).catch(function (err) {
                     console.log(err);
@@ -223,9 +219,9 @@
         };
 
         function refresh() {
-            BrandService.getAllBrands()
+            CategoryService.getAllCategories()
                 .then(function (res) {
-                    vm.brands = res.data;
+                    vm.categories = res.data;
                     setPage(1);
                 }).catch(function (err) {
                     console.log(err);
@@ -244,7 +240,7 @@
                 vm.configTable.checkBoxOptions.checkAll = false;
                 checkAll = false;
             }
-            createOrRemoveArrayItemDelete(vm.brands);
+            createOrRemoveArrayItemDelete(vm.categories);
         };
 
         function createOrRemoveArrayItemDelete(arrayItems) {
@@ -293,7 +289,7 @@
         function loadCheckDelete() {
             angular.forEach(vm.brands, (item) => {
                 angular.forEach(vm.arrayItemDelete, (deleteItem) => {
-                    if(item.productTypeId == deleteItem.productTypeId) {
+                    if(item.categoryId == deleteItem.categoryId) {
                         item.checked = vm.configTable.checkBoxOptions.checkAll;
                     }
                 });
@@ -301,9 +297,9 @@
         };
 
         function search(key) {
-            BrandService.searchProduct(key)
+            CategoryService.searchProduct(key)
                 .then(function (res) {
-                    vm.brands = res.data.rows;
+                    vm.categories = res.data.rows;
                     loadCheckDelete();
                     setPage(1);
                 }).catch(function (err) {

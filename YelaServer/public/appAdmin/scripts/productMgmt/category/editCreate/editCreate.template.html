@@ -4,7 +4,7 @@
             <div class="page-header">
                     <div class="row">
                         <div class="col-md-6">
-                            <h2>Tạo Mới Nhãn Hiệu</h2>                 
+                            <h2>Tạo Mới Chủ Đề</h2>                 
                         </div>
                     </div>
             </div>
@@ -15,24 +15,18 @@
             <form class="form-horizontal" name="form" novalidate>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Tạo mới nhãn hiệu
+                            Tạo mới chủ đề
                         </div>
                         <div class="panel-body">
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group has-success has-feedback">
-                                    <label class="control-label col-sm-2" for="brandname">*Tên Nhãn Hiệu: </label>
+                                    <label class="control-label col-sm-2" for="categoryname">*Tên Chủ Đề: </label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" ng-model="vm.Brand.name" id="brandname" placeholder="Enter brand name" name="brandname" required>  
-                                        <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="form.brandname.$dirty && form.brandname.$valid"></span>
-                                        <span ng-show="form.brandname.$error.required">{{'song_cannot_empty' | i18next}}</span>
+                                        <input class="form-control" ng-model="vm.Category.name" id="categoryname" placeholder="Nhập tên chủ đề" name="categoryname" required>  
+                                        <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="form.categoryname.$dirty && form.categoryname.$valid"></span>
+                                        <span ng-show="form.categoryname.$error.required">Không được bỏ trống</span>
                                     </div>
                                 </div>
-                                <div class="form-group has-success has-feedback">
-                                    <label class="control-label col-sm-2" for="info">Mô Tả </label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" ng-model="vm.Brand.info" id="info" placeholder="Enter info" name="info">  
-                                    </div>
-                                </div> 
                             </div>  
                         </div>
                         <div class="panel-footer">
