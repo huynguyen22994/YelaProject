@@ -176,6 +176,10 @@
                 "type": {
                 "type": "string",
                 "description": "type"
+                },
+                "urlKey": {
+                "type": "string",
+                "description": "type"
                 }
             }
         },

@@ -24,8 +24,8 @@
 
         //Config for form
         vm.configTable = {
-            arrayColumnLabel: ['Hình Ảnh','Tiêu Đề', 'Hành Động'],
-            arrayColumnContent: [{ image: true, url: 'imageLink', baseUrlForImg: `${ylConstant.serverUrl}/`}, 'title'],
+            arrayColumnLabel: ['Hình Ảnh', 'URL', 'Tiêu Đề', 'Hành Động'],
+            arrayColumnContent: [{ image: true, url: 'imageLink', baseUrlForImg: `${ylConstant.serverUrl}/`}, 'urlKey', 'title'],
             arrayActions: [
                 {
                     buttonName: 'button_edit',
@@ -129,8 +129,12 @@
                     queryModel: 'title',
                 },
                 {
-                    label: 'Nội Dung',
-                    queryModel: 'description'
+                    label: 'URL',
+                    queryModel: 'urlKey'
+                },
+                {
+                    label: 'Tóm Tắt',
+                    queryModel: 'summary'
                 },
                 {
                     label: 'Ảnh Bìa',

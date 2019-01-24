@@ -81,7 +81,8 @@
                 imageLink: vm.Blog.linkImg,
                 description: vm.Blog.description,
                 summary: vm.Blog.summary,
-                type: vm.typeObj.id
+                type: vm.typeObj.id,
+                urlKey: vm.Blog.urlKey
             };
 
             if (name) {
@@ -155,7 +156,8 @@
                 description: vm.Blog.description,
                 imageLink: vm.Blog.linkImg,
                 summary: vm.Blog.summary,
-                type: vm.typeObj.id
+                type: vm.typeObj.id,
+                urlKey: vm.Blog.urlKey
             };
             if (name) {
                  let promise = uploadImg(dataUrl, name);

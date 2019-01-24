@@ -26,6 +26,11 @@ module.exports = function(sequelize, Sequelize) {
         type: {
             type: Sequelize.ENUM('food', 'nutrition', 'lowcarb', 'discover'),
             allowNull: true
+        },
+        urlKey: {
+            type: Sequelize.STRING,
+            allowNull: true,
+            unique: true
         }
     }, {
         charset: 'utf8',

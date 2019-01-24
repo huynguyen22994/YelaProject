@@ -144,6 +144,37 @@
                 "x-swagger-router-controller": "DefaultCtrl"
             }
         },
+        "/blog/one/urlkey": {
+            "get": {
+                "summary": "Get onew Brand",
+                "description": "Input blogId to get",
+                "operationId": "getOneBlogByUrl",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "urlKey",
+                        "description": "Coffee object that needs to be added to the CoffeeDB",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                        "200": {
+                            "description": "template file",
+                            "schema": {
+                                "$ref": "#/definitions/Blog"
+                            }
+                        },
+                        "default": {
+                            "description": "unexpected error",
+                            "schema": {
+                                "$ref": "#/definitions/Error"
+                            }
+                        }
+                    },
+                "x-swagger-router-controller": "DefaultCtrl"
+            }
+        },
         "/blog/type": {
             "get": {
                 "summary": "Product Types",

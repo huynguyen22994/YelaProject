@@ -11,7 +11,9 @@
             getBrands: getBrands,
             getCategories: getCategories,
             getBlogById: getBlogById,
-            getBlogs: getBlogs
+            getBlogByUrlKey: getBlogByUrlKey,
+            getBlogs: getBlogs,
+            isURLPage: isURLPage
         };
         
         return service;
@@ -53,6 +55,20 @@
             });
         };
 
+        function getBlogByUrlKey(urlKey) {
+            return $http({
+                url: '/api/blog/one/urlkey',
+                method: 'GET',
+                params: {
+                    urlKey: urlKey
+                }
+            }).then(function (res) {
+                return res;
+            }).catch(function (err) {
+                return err;
+            });
+        };
+
         function getBlogs(offset, limit) {
             return $http({
                 url: '/api/productbestseller',
@@ -67,6 +83,11 @@
                 return err;
             });
         };
+
+        function isURLPage(url) {
+            var regex = /html$/;
+            return regex.test(url);
+        }
 
     }
 })();

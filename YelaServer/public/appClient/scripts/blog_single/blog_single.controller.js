@@ -68,10 +68,16 @@
             });
         };
 
-        function loadBlogDetail(id) {
+        function loadBlogDetail(urlKey) {
             vm.isLoading = true;
+            var getBlogFunction;
+            if(BlogSingleService.isURLPage(urlKey)) {
+                getBlogFunction = BlogSingleService.getBlogByUrlKey;
+            } else {
+                getBlogFunction = BlogSingleService.getBlogById;
+            }
             return new Promise((resolve, reject) => {
-                BlogSingleService.getBlogById(id)
+                getBlogFunction(urlKey)
                     .then(function (blog) {
                         vm.blog = blog.data;
                         //vm.blog.linkImg = `${clientConstant.serverUrl}/${vm.blog.linkImg}`;

@@ -80,7 +80,11 @@
 
         function readMore(blog) {
             if(blog) {
-                $location.path(`/blog/${blog.blogId}`);
+                if(blog.urlKey) {
+                    $location.path(`/blog/${blog.urlKey}`);
+                } else {
+                    $location.path(`/blog/${blog.blogId}`);
+                }
             }
         };
 

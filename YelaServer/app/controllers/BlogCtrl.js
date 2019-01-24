@@ -27,7 +27,8 @@ module.exports.createBlog = (req, res, next) => {
             description: blog.description,
             imageLink: blog.imageLink,
             summary: blog.summary,
-            type: blog.type
+            type: blog.type,
+            urlKey: blog.urlKey
         }).then((result) => {
             res.end("insert success");
         }, (err) => {
@@ -49,7 +50,8 @@ module.exports.updateBlog = (req, res, next) => {
                 description: blog.description,
                 imageLink: blog.imageLink,
                 summary: blog.summary,
-                type: blog.type
+                type: blog.type,
+                urlKey: blog.urlKey
             },
             {
                 where: {
@@ -113,6 +115,31 @@ module.exports.getOneBlog = (req, res, next) => {
         res.end();
     }
 };
+
+module.exports.getOneBlogByUrl = (req, res, next) => {
+    var urlKey = req.query.urlKey;
+    if (urlKey) {
+        models.Blog.findAll({
+            where: {
+                urlKey: urlKey
+            }
+        })
+        .then((result) => {
+            if(Array.isArray(result)) {
+                res.end(JSON.stringify(result[0]));
+            } else {
+                res.end(JSON.stringify(result));
+            }
+        }, (err) => {
+            res.statusCode = 400;
+            res.end()
+        });
+    } else {
+        res.statusCode = 400;
+        res.end();
+    }
+};
+
 
 module.exports.getBlogsByType = (req, res, next) => {
     var offset = parseInt(req.query.offset);
