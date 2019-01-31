@@ -9,6 +9,7 @@ var BlogCtrl = require('./BlogCtrl');
 var AdministratorCtrl = require('./AdministratorCtrl');
 var Bill = require('./BillCtrl');
 var Authentication = require('../middleware/Authentication');
+var LetterCtrl = require('./LetterCtrl');
 var async = require('async');
 
 // Products
@@ -272,4 +273,9 @@ module.exports.updateBill = (req, res, next) => {
 
 module.exports.getBillByStatus = (req, res, next) => {
     Bill.getBillByStatus(req, res, next);
+};
+
+// Letter
+module.exports.testSendMail = (req, res, next) => {
+    LetterCtrl.testSendMail(req, res, next);
 };

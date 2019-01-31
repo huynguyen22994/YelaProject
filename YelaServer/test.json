@@ -28,5 +28,9 @@
         "username": "acdouqkvqkpvqn",
         "password": "82c7af4c6c29ad7de2561635fbdc811f344656a80aec428fdafe10245ee29a53",
         "host": "ec2-184-72-239-186.compute-1.amazonaws.com"
+    },
+    "mailCoffee": {
+        "email": "helloworldcoffeeshop@gmail.com",
+        "password": "kimyen2209"
     }
 }
