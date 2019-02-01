@@ -12,6 +12,7 @@
     "storageSliderPath": "./public/client/images/slider/",
     "storageBlogPath": "./upload/images/blogs/",
     "yelaEmail": {
+        "sub_email": "helloworldcoffeeshop@gmail.com",
         "email": "foodtechshopvn@gmail.com",
         "password": "kimyen2209"
     },

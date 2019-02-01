@@ -2,6 +2,7 @@ var models = require('../models');
 var async = require('async');
 var _ = require('underscore');
 var path = require('path');
+var Mail = require('../services/mailService');
 //var app = require(path.resolve( "../../YelaProject/YelaServer/server.js" ));
 //var socketClient = app.socketClient;
 
@@ -35,6 +36,7 @@ function getDateFormatted(dateString) {
 };
 
 function updateBillNotice(data) {
+    Mail.sendOrderMail(data);
     //socketClient.emit('onNewBill', data);
 }
 

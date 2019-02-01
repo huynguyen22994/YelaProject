@@ -85,7 +85,7 @@
                 right: [
                     // { iconClass: 'fa fa-user', label: 'Account', href: function () { return 'string'; } },
                     // { iconClass: 'fa fa-star', label: 'wishlist', href: function () { return 'string'; } },
-                    // { iconClass: 'fa fa-crosshairs', label: 'checkout', href: function () { return '#!/checkout'; } },
+                    { iconClass: 'fa fa-crosshairs', label: 'checkout', href: function () { return '#!/checkout'; } },
                     { iconClass: 'fa fa-shopping-cart', label: 'cart', useNotice: true, href: function () { return '#!/cart'; } },
                     // { iconClass: 'fa fa-lock', label: 'Login', href: function () { return '#!/login'; } },
                 ]

@@ -64,8 +64,8 @@
 
         function isCheckOutValid() {
             // for trial
-            return true;
-            //return CartService.getParseCurrencyToNumber(vm.total) <= 0
+            //return true;
+            return CartService.getParseCurrencyToNumber(vm.total) <= 0
         };
 
         function goToCheckoutPage() {
