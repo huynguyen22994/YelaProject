@@ -279,3 +279,15 @@ module.exports.getBillByStatus = (req, res, next) => {
 module.exports.testSendMail = (req, res, next) => {
     LetterCtrl.testSendMail(req, res, next);
 };
+
+module.exports.getAllLetter = (req, res, next) => {
+    LetterCtrl.getAllLetter(req, res, next);
+};
+
+module.exports.createLetter = (req, res, next) => {
+    LetterCtrl.createLetter(req, res, next);
+};
+
+module.exports.deleteLetter = (req, res, next) => {
+    LetterCtrl.deleteLetter(req, res, next);
+};

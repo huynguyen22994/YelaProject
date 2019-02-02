@@ -326,6 +326,31 @@
                 }
             }
             },
+        "Letter": {
+            "type": "object",
+            "properties": {
+                "letterId": {
+                "type": "integer",
+                "description": "Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles."
+                },
+                "name": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "phone": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "email": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "message": {
+                "type": "string",
+                "description": "Name of Coffee."
+                }
+            }
+            },    
         "Error": {
             "type": "object",
             "properties": {

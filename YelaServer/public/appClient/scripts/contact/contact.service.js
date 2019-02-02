@@ -8,26 +8,33 @@
     Service.$inject = ['$http'];
     function Service($http) {
         var service = {
-            getFoods: getFoods
+            submitLetter: submitLetter,
+            getLetterRequest: getLetterRequest
         };
         
         return service;
 
         ////////////////
-        function getFoods(offset, limit, type) {
+        function submitLetter(data) {
             return $http({
-                url: '/api/product/type',
-                method: 'GET',
-                params: {
-                    offset: offset,
-                    limit: limit,
-                    type: type
-                }
+                url: '/api/letter',
+                method: 'POST',
+                data: data
             }).then(function (res) {
                 return res;
             }).catch(function (err) {
                 return err;
             });
+        };
+
+        function getLetterRequest(letter) {
+            var requestBody =  {
+                name: letter.name || '',
+                phone: letter.phone || '',
+                email: letter.email || '',
+                message: letter.message || ''
+            };
+            return requestBody;
         };
     }
 })();

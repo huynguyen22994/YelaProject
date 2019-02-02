@@ -15,6 +15,7 @@ module.exports.getAllLetter = (req, res, next) => {
 
 module.exports.createLetter = (req, res, next) => {
     var letter = req.body;
+    var response = {};
     if (letter) {
         models.Letter.create({
             name: letter.name,
@@ -22,39 +23,38 @@ module.exports.createLetter = (req, res, next) => {
             email: letter.email,
             message: letter.message
         }).then((result) => {
-            res.end("insert success");
+            var data = result.dataValues;
+            if(data) {
+                Mail.sendLetterMail(data.email);
+                response.message = "Gửi lời nhắn thành công. Cám ơn bạn vì đã gửi lời nhắn cho chúng tôi.";
+                response.success = true;
+                res.json(response);
+            } else {
+                response.message = "Gửi lời nhắn thất bại. Đã xảy ra lỗi trong quá trình gửi lời nhắn.";
+                response.success = false;
+                res.statusCode = 400;
+                res.json(response);
+            }
         }, (err) => {
+            response.message = "Gửi lời nhắn thất bại. Đã xảy ra lỗi trong quá trình gửi lời nhắn.";
+            response.success = false;
             res.statusCode = 400;
-            res.end();
+            res.json(response);
         })
     } else {
+        response.message = "Gửi lời nhắn thất bại. Đã xảy ra lỗi trong quá trình gửi lời nhắn.";
+        response.success = false;
         res.statusCode = 400;
-        res.end();
+        res.json(response);
     }
 };
 
-module.exports.getOneCategory = (req, res, next) => {
-    var categoryId = req.query.categoryId;
-    if (categoryId) {
-        models.Category.findById(categoryId)
-            .then((result) => {
-                res.end(JSON.stringify(result));
-            }, (err) => {
-                res.statusCode = 400;
-                res.end()
-            });
-    } else {
-        res.statusCode = 400;
-        res.end();
-    }
-};
-
-module.exports.deleteCategory = (req, res, next) => {
-    var categoryId = req.query.categoryId;
-    if (categoryId) {
-        models.Category.destroy({
+module.exports.deleteLetter = (req, res, next) => {
+    var letterId = req.query.letterId;
+    if (letterId) {
+        models.Letter.destroy({
             where: {
-                categoryId: categoryId
+                letterId: letterId
             }
         }, {
             force: true    
