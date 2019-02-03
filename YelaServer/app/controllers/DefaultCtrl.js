@@ -338,10 +338,10 @@ module.exports.createShipCost = (req, res, next) => {
     ShipCostCtrl.createShipCost(req, res, next);
 };
 
-module.exports.deleteShopCost = (req, res, next) => {
-    ShipCostCtrl.deleteShopCost(req, res, next);
+module.exports.deleteShipCost = (req, res, next) => {
+    ShipCostCtrl.deleteShipCost(req, res, next);
 };
 
-module.exports.updateShopCost = (req, res, next) => {
-    ShipCostCtrl.updateShopCost(req, res, next);
+module.exports.updateShipCost = (req, res, next) => {
+    ShipCostCtrl.updateShipCost(req, res, next);
 };

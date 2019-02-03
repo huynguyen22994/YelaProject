@@ -46,7 +46,7 @@ module.exports.createShipCost = (req, res, next) => {
     }
 };
 
-module.exports.deleteShopCost = (req, res, next) => {
+module.exports.deleteShipCost = (req, res, next) => {
     var shipCostId = req.query.shipCostId;
     if (shipCostId) {
         models.ShipCost.destroy({
@@ -72,7 +72,7 @@ module.exports.deleteShopCost = (req, res, next) => {
     }
 };
 
-module.exports.updateShopCost = (req, res, next) => {
+module.exports.updateShipCost = (req, res, next) => {
     var shipCost = req.body;
     if (shipCost) {
         models.ShipCost.update(
