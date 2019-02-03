@@ -10,6 +10,9 @@ var AdministratorCtrl = require('./AdministratorCtrl');
 var Bill = require('./BillCtrl');
 var Authentication = require('../middleware/Authentication');
 var LetterCtrl = require('./LetterCtrl');
+var CityCtrl = require('./CityCtrl');
+var DistrictCtrl = require('./DistrictCtrl');
+var ShipCostCtrl = require('./ShipCostCtrl');
 var async = require('async');
 
 // Products
@@ -290,4 +293,55 @@ module.exports.createLetter = (req, res, next) => {
 
 module.exports.deleteLetter = (req, res, next) => {
     LetterCtrl.deleteLetter(req, res, next);
+};
+
+// City
+module.exports.getAllCity = (req, res, next) => {
+    CityCtrl.getAllCity(req, res, next);
+};
+
+module.exports.createCity = (req, res, next) => {
+    CityCtrl.createCity(req, res, next);
+};
+
+module.exports.deleteCity = (req, res, next) => {
+    CityCtrl.deleteCity(req, res, next);
+};
+
+module.exports.updateCity = (req, res, next) => {
+    CityCtrl.updateCity(req, res, next);
+};
+
+// District
+module.exports.getAllDistrict = (req, res, next) => {
+    DistrictCtrl.getAllDistrict(req, res, next);
+};
+
+module.exports.createDistrict = (req, res, next) => {
+    DistrictCtrl.createDistrict(req, res, next);
+};
+
+module.exports.deleteDistrict = (req, res, next) => {
+    DistrictCtrl.deleteDistrict(req, res, next);
+};
+
+module.exports.updateDistrict = (req, res, next) => {
+    DistrictCtrl.updateDistrict(req, res, next);
+};
+
+//ShipCostCtrl
+module.exports.getAllShipCost = (req, res, next) => {
+    ShipCostCtrl.getAllShipCost(req, res, next);
+};
+
+module.exports.createShipCost = (req, res, next) => {
+    ShipCostCtrl.createShipCost(req, res, next);
+};
+
+module.exports.deleteShopCost = (req, res, next) => {
+    ShipCostCtrl.deleteShopCost(req, res, next);
+};
+
+module.exports.updateShopCost = (req, res, next) => {
+    ShipCostCtrl.updateShopCost(req, res, next);
 };

@@ -58,6 +58,14 @@ models.sequelize.query('ALTER TABLE ProductTypes ADD CONSTRAINT FK_ProductTypeCa
     console.log(err);
   });
 
+  models.sequelize.query('ALTER TABLE Districts ADD CONSTRAINT FK_DistrictCity FOREIGN KEY (cityId) REFERENCES Citys(cityId)')
+  .spread((result, metadata) => {
+    console.log('Created FK_DistrictCity');
+  }, (err) => {
+    console.log(err);
+  });
+
+
   // models.sequelize.query('ALTER TABLE Bills ADD CONSTRAINT FK_BillCustomer FOREIGN KEY (customerId) REFERENCES Customers(customerId)')
   // .spread((result, metadata) => {
   //   console.log('Created FK_BillCustomer');

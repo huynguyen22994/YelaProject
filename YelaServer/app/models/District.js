@@ -1,21 +1,21 @@
-module.exports = function (sequelize, Sequelize) {
+module.exports = function(sequelize, Sequelize) {
 
-    var ShipCost = sequelize.define('ShipCost', {
-        shipCostId: {
+    var District = sequelize.define('District', {
+        districtId: {
             type: Sequelize.UUID,
             defaultValue: Sequelize.UUIDV1,
             allowNull: false,
             primaryKey: true
         },
-        cost: {
-            type: Sequelize.FLOAT(11),
+        district: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        code: {
+            type: Sequelize.INTEGER,
             allowNull: true
         },
         cityId: {
-            type: Sequelize.UUID,
-            allowNull: false
-        },
-        districtId: {
             type: Sequelize.UUID,
             allowNull: false
         }
@@ -24,5 +24,5 @@ module.exports = function (sequelize, Sequelize) {
         collate: 'utf8_unicode_ci'
     });
 
-    return ShipCost;
+    return District;
 };
