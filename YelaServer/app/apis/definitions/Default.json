@@ -350,7 +350,66 @@
                 "description": "Name of Coffee."
                 }
             }
-            },    
+            }, 
+        "City": {
+            "type": "object",
+            "properties": {
+                "cityId": {
+                "type": "integer",
+                "description": "Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles."
+                },
+                "city": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "code": {
+                "type": "string",
+                "description": "Name of Coffee."
+                }
+            }
+            },     
+        "District": {
+            "type": "object",
+            "properties": {
+                "districtId": {
+                "type": "integer",
+                "description": "Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles."
+                },
+                "district": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "code": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "cityId": {
+                "type": "string",
+                "description": "Name of Coffee."
+                }
+            }
+            }, 
+        "ShipCost": {
+            "type": "object",
+            "properties": {
+                "shipCostId": {
+                "type": "integer",
+                "description": "Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles."
+                },
+                "cost": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "cityId": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "districtId": {
+                "type": "string",
+                "description": "Name of Coffee."
+                }
+            }
+            },        
         "Error": {
             "type": "object",
             "properties": {

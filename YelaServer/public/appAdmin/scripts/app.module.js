@@ -8,6 +8,7 @@
         'YelaApplication.BlogMgmt',
         'YelaApplication.BillMgmt',
         'YelaApplication.DashboardManagement',
+        'YelaApplication.ShippingMgmt',
         'YelaLineChart',
         'YelaPieChart',
         'jm.i18next',
