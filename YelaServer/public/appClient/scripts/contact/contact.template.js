@@ -25,20 +25,23 @@
                                             <input type="email" name="email" class="form-control" required="required" ng-model="vm.letter.email" placeholder="* Email">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <input type="text" name="phone" class="form-control" required="required" ng-model="vm.letter.phone" placeholder="Số điện thoai">
+                                            <input type="text" name="phone" class="form-control" ng-model="vm.letter.phone" placeholder="Số điện thoai">
                                         </div>
                                         <div class="form-group col-md-12">
                                             <input type="text" name="subject" class="form-control" required="required" ng-model="vm.letter.name" placeholder="* Họ Tên">
                                         </div>
                                         <div class="form-group col-md-12">
                                             <textarea name="message" id="message" required="required" class="form-control" rows="8" ng-model="vm.letter.message" placeholder="* Nhập lời nhắn của bạn"></textarea>
-                                        </div>                        
+                                        </div>       
+                                        <div class="form-group col-md-12">
+                                            <div id="g-recapcha"></div> 
+                                        </div>            
                                         <div class="form-group col-md-12">
                                             <input type="submit" name="submit" class="btn btn-primary pull-right" ng-disabled="vm.canNotSubmit()" ng-click="vm.submitLetter()" value="Gửi">
                                         </div>
                                     </form>
                                 </div>
-                            </div>
+                            </div>  
                             <div class="col-sm-4" style="text-align: left">
                                 <div class="contact-info">
                                     <h2 class="title text-center">Thông Tin Liên Hệ</h2>
@@ -68,9 +71,23 @@
                                     </div>
                                 </div>
                             </div>    			
+                            <div class="col-md-12">
+                            <div id="g-recapcha"> 
+                        </div>  
+                            </div>
                         </div>  
                     </div>	
                 </div><!--/#contact-page-->
+                <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+                    async defer>
+                </script>
+                <script type="text/javascript">
+                    var onloadCallback = function() {
+                        window.foodtechGReCapcha = grecaptcha.render('g-recapcha', {
+                        'sitekey' : '6LcDoY8UAAAAAOPbEpQPnOefbqbDtOe-5pg0eGbD'
+                        });
+                    };
+                </script>
                 `
             );
         });
