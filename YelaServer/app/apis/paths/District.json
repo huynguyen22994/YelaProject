@@ -1,6 +1,6 @@
 {
     "paths": {
-        "/disctrict": {
+        "/district": {
             "get": {
                 "summary": "Product Types",
                 "description": "This is test Apis Book",
@@ -101,6 +101,37 @@
                             "description": "template file",
                             "schema": {
                                 "$ref": "#/definitions/District"
+                            }
+                        },
+                        "default": {
+                            "description": "unexpected error",
+                            "schema": {
+                                "$ref": "#/definitions/Error"
+                            }
+                        }
+                    },
+                "x-swagger-router-controller": "DefaultCtrl"
+            }
+        },
+        "/district/one": {
+            "get": {
+                "summary": "Product Types",
+                "description": "This is test Apis Book",
+                "operationId": "getOneDistrict",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "districtId",
+                        "description": "Coffee object that needs to be added to the CoffeeDB",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                        "200": {
+                            "description": "template file",
+                            "schema": {
+                                "$ref": "#/definitions/Category"
                             }
                         },
                         "default": {

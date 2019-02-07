@@ -3,14 +3,14 @@
 
     angular
         .module('YelaApplication.ShippingMgmt')
-        .controller('CityController', ControllerController);
+        .controller('DistrictController', ControllerController);
 
-    ControllerController.$inject = ['$scope', '$window', '$location', 'PagerService', 'CityService', 'ylConstant', '$mdDialog'];
-    function ControllerController($scope, $window, $location, PagerService, CityService, ylConstant, $mdDialog) {
+    ControllerController.$inject = ['$scope', '$window', '$location', 'PagerService', 'DistrictService', 'ylConstant', '$mdDialog'];
+    function ControllerController($scope, $window, $location, PagerService, DistrictService, ylConstant, $mdDialog) {
        var vm = this;
         vm.classForTable = 'col-md-12 col-sm-12 col-lg-12';
         vm.classForDetail = '';
-        vm.cityDetail = {};
+        vm.districtDetail = {};
         vm.pager = {
             setPage: setPage
         };
@@ -24,8 +24,8 @@
 
         //Config for form
         vm.configTable = {
-            arrayColumnLabel: ['Thành Phố', 'Zip Code', 'Hành Động'],
-            arrayColumnContent: ['city', 'code'],
+            arrayColumnLabel: ['Quận/Huyện', 'Zip Code', 'Thuộc Thành Phố', 'Hành Động'],
+            arrayColumnContent: ['district', 'code', 'cityId'],
             arrayActions: [
                 {
                     buttonName: 'button_edit',
@@ -33,7 +33,7 @@
                     iconClass: 'fa fa-pencil-square-o',
                     tooltipTitle: 'tooltip_edit_asong',
                     action(item) {
-                        $location.path('/shippingMgmt/city/edit/' + item.cityId);
+                        $location.path('/shippingMgmt/district/edit/' + item.districtId);
                         //songCtrl.routeStateManager(songCtrl.stateSong, songCtrl.routeEditSongState + song.songID)
                     }
                 },
@@ -54,7 +54,7 @@
                             .cancel('Cancel');
 
                         $mdDialog.show(confirm).then(function() {      
-                            deleteCity(item);
+                            deleteDistrict(item);
                         }, function() {
                             console.log('cancel');
                         });
@@ -92,7 +92,7 @@
                     tooltipTitle: 'tooltip_add',
                     action() {
                         //songCtrl.routeStateManager(songCtrl.stateSong, songCtrl.routeCreateSongState);
-                        $location.path('/shippingMgmt/city/create');
+                        $location.path('/shippingMgmt/district/create');
                     }
                 }
             ],
@@ -141,9 +141,9 @@
         // };
 
         function activate() {
-            CityService.getAllCities()
+            DistrictService.getAllDistricts()
                 .then(function (response) {
-                    vm.cities = response.data.rows;
+                    vm.districts = response.data.rows;
                     setPage(vm.pageCustomize.currentPage, vm.pageCustomize.size);
                 }).catch(function (err) {
                     console.log(err);
@@ -157,11 +157,11 @@
             if(page < 1 || page > vm.pager.totalPages) {
                 return;
             }
-            if(vm.cities.length > 0) {
+            if(vm.districts.length > 0) {
                 vm.hasResult = true;
-                vm.pager = PagerService.getPager(vm.cities.length, page, pageSize);
+                vm.pager = PagerService.getPager(vm.districts.length, page, pageSize);
                 vm.pager.setPage = setPage;
-                vm.items = vm.cities.slice(vm.pager.startIndex, vm.pager.endIndex);
+                vm.items = vm.districts.slice(vm.pager.startIndex, vm.pager.endIndex);
             } else {
                 vm.hasResult = false;
             }
@@ -183,24 +183,24 @@
         };
 
         function getDetail (item) {
-            vm.cityDetail = item;
+            vm.districtDetail = item;
             showDetail();
         };
 
-        function deleteCity(item) {
-            let cityId = item.cityId;
-            CityService.deleteCity(cityId)
+        function deleteDistrict(item) {
+            let districtId = item.districtId;
+            DistrictService.deleteDistrict(districtId)
                 .then(function (res) {
-                    loadCity();
+                    loadDistrict();
                 }).catch(function (err) {
                     console.log(err);
                 });
         };
 
-        function loadCity() {            
-            CityService.getAllCities()
+        function loadDistrict() {            
+            DistrictService.getAllDistricts()
                 .then(function (response) {
-                    vm.cities = response.data.rows;
+                    vm.districts = response.data.rows;
                     setPage(vm.pageCustomize.currentPage, vm.pageCustomize.size);
                 }).catch(function (err) {
                     console.log(err);
@@ -209,9 +209,9 @@
         };
 
         function refresh() {
-            CityService.getAllCities()
+            DistrictService.getAllDistricts()
                 .then(function (res) {
-                    vm.cities = res.data.rows;
+                    vm.districts = res.data.rows;
                     setPage(1);
                 }).catch(function (err) {
                     console.log(err);
@@ -230,7 +230,7 @@
                 vm.configTable.checkBoxOptions.checkAll = false;
                 checkAll = false;
             }
-            createOrRemoveArrayItemDelete(vm.cities);
+            createOrRemoveArrayItemDelete(vm.districts);
         };
 
         function createOrRemoveArrayItemDelete(arrayItems) {
@@ -269,7 +269,7 @@
                 vm.arrayItemDelete.push(item);
             } else {
                 for(var i = 0; i < vm.arrayItemDelete.length; i++) {
-                    if(vm.arrayItemDelete[i] == item.blogId) {
+                    if(vm.arrayItemDelete[i] == item.districtId) {
                         vm.arrayItemDelete.splice(i, 1);
                     }
                 }
@@ -279,7 +279,7 @@
         function loadCheckDelete() {
             angular.forEach(vm.cities, (item) => {
                 angular.forEach(vm.arrayItemDelete, (deleteItem) => {
-                    if(item.cityId == deleteItem.cityId) {
+                    if(item.districtId == deleteItem.districtId) {
                         item.checked = vm.configTable.checkBoxOptions.checkAll;
                     }
                 });

@@ -95,3 +95,19 @@ module.exports.updateCity = (req, res, next) => {
         res.end()
     }
 };
+
+module.exports.getOneCity = (req, res, next) => {
+    var cityId = req.query.cityId;
+    if (cityId) {
+        models.City.findById(cityId)
+            .then((result) => {
+                res.end(JSON.stringify(result));
+            }, (err) => {
+                res.statusCode = 400;
+                res.end()
+            });
+    } else {
+        res.statusCode = 400;
+        res.end();
+    }
+};

@@ -312,6 +312,10 @@ module.exports.updateCity = (req, res, next) => {
     CityCtrl.updateCity(req, res, next);
 };
 
+module.exports.getOneCity = (req, res, next) => {
+    CityCtrl.getOneCity(req, res, next);
+};
+
 // District
 module.exports.getAllDistrict = (req, res, next) => {
     DistrictCtrl.getAllDistrict(req, res, next);
@@ -327,6 +331,10 @@ module.exports.deleteDistrict = (req, res, next) => {
 
 module.exports.updateDistrict = (req, res, next) => {
     DistrictCtrl.updateDistrict(req, res, next);
+};
+
+module.exports.getOneDistrict = (req, res, next) => {
+    DistrictCtrl.getOneDistrict(req, res, next);
 };
 
 //ShipCostCtrl

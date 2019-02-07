@@ -74,6 +74,7 @@ module.exports.deleteDistrict = (req, res, next) => {
 
 module.exports.updateDistrict = (req, res, next) => {
     var district = req.body;
+    var response = {};
     if (district) {
         models.District.update(
             {
@@ -87,13 +88,43 @@ module.exports.updateDistrict = (req, res, next) => {
                 }
             }
         ).then((result) => {
-            res.end(JSON.stringify(result));
+            var length = result.length;
+            if(length > 0) {
+                response.message = "Thêm quận thành công.";
+                response.success = true;
+                res.json(response);
+            } else {
+                response.message = "Thêm quận thất bại.";
+                response.success = false;
+                res.statusCode = 400;
+                res.json(response);
+            }
         }, (err) => {
+            response.message = "Thêm quận thất bại.";
+            response.success = false;
             res.statusCode = 400;
-            res.end();
+            res.json(response);
         })
     } else {
+        response.message = "Thêm quận thất bại.";
+        response.success = false;
         res.statusCode = 400;
-        res.end()
+        res.json(response);
+    }
+};
+
+module.exports.getOneDistrict = (req, res, next) => {
+    var districtId = req.query.districtId;
+    if (districtId) {
+        models.District.findById(districtId)
+            .then((result) => {
+                res.end(JSON.stringify(result));
+            }, (err) => {
+                res.statusCode = 400;
+                res.end()
+            });
+    } else {
+        res.statusCode = 400;
+        res.end();
     }
 };

@@ -16,13 +16,13 @@
                 controllerAs: 'vm'
             })
             .when('/shippingMgmt/city/edit/:id', {
-                templateUrl: '/admin/scripts/shippingMgmt/city/editCreate/blog.editCreate.template.html',
+                templateUrl: '/admin/scripts/shippingMgmt/city/editCreate/editCreate.template.html',
                 controller: 'CityCreateController',
                 controllerAs: 'vm',
                 routeId: 'edit'
             })
             .when('/shippingMgmt/city/create', {
-                templateUrl: '/admin/scripts/shippingMgmt/city/editCreate/blog.editCreate.template.html',
+                templateUrl: '/admin/scripts/shippingMgmt/city/editCreate/editCreate.template.html',
                 controller: 'CityCreateController',
                 controllerAs: 'vm',
                 routeId: 'create'
