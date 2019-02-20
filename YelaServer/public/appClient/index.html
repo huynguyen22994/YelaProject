@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
 	<meta name="author" content="">
-	<!-- <meta property="og:title" content="FoodTech Shop">
-	<meta property="og:type" content="website">
-	<meta property="og:description" content="Cook with Passion & Eat with Love">
+	<meta property="og:title" content="FoodTech Shop" />
+	<meta property="og:type" content="website" />
+	<meta property="og:description" content="Cook with Passion & Eat with Love" />
 	<meta property="og:url" content="https://foodtechserver.herokuapp.com" /> 
-	<meta property="og:image" content="https://foodtechserver.herokuapp.com/images/home/logo.png" />  -->
+	<meta property="og:image" content="https://foodtechserver.herokuapp.com/images/home/logo.png" />
 	<!-- <base href="/"> -->
     <link href="styles/css/bootstrap.min.css" rel="stylesheet">
     <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -106,7 +106,9 @@
 
     <footer-app></footer-app>
     
-    <social-button></social-button>
+	<social-button></social-button>
+	
+	<div class="fb-customerchat" page_id="585026038584164"></div>
 
   
     <script src="styles/js/jquery.js"></script>
@@ -228,23 +230,43 @@
 	<script src="scripts/cart/cart.route.js"></script>
 	<script src="scripts/blog/blog.module.js"></script>
 	<script src="scripts/blog/blog.route.js"></script>-->
-	<script>(function(d, s, id) {
+	<script>
+			window.fbAsyncInit = function() {
+			  FB.init({
+				appId            : '375782316127685',
+				autoLogAppEvents : true,
+				xfbml            : true,
+				version          : 'v2.12'
+			  });
+			};
+	</script>
+	<!-- <script>(function(d, s, id) {
 		var js, fjs = d.getElementsByTagName(s)[0];
 		if (d.getElementById(id)) return;
 		js = d.createElement(s); js.id = id;
 		js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.11&appId=375782316127685';
 		fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
-	</script>
+	</script> -->
 	<!-- Facebook -->
 	<div id="fb-root"></div>
-	<script>(function(d, s, id) {
+	<!--<script>(function(d, s, id) {
 		var js, fjs = d.getElementsByTagName(s)[0];
 		if (d.getElementById(id)) return;
 		js = d.createElement(s); js.id = id;
 		js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.2&appId=375782316127685&autoLogAppEvents=1';
 		fjs.parentNode.insertBefore(js, fjs);
-	  }(document, 'script', 'facebook-jssdk'));</script>
+	  }(document, 'script', 'facebook-jssdk'));</script> -->
+
+	  <script>
+		(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js";
+		fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	  </script>
 
 	<!-- <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlwdeQyEcDwuDVui9r8z3-TQ51LO8pU-U&callback=initMap"></script> -->
 	<!-- Instagram -->
