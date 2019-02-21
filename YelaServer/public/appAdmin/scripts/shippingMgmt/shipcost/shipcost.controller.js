@@ -3,10 +3,10 @@
 
     angular
         .module('YelaApplication.ShippingMgmt')
-        .controller('CityController', ControllerController);
+        .controller('ShipCostCreateController', ControllerController);
 
-    ControllerController.$inject = ['$scope', '$window', '$location', 'PagerService', 'CityService', 'ylConstant', '$mdDialog'];
-    function ControllerController($scope, $window, $location, PagerService, CityService, ylConstant, $mdDialog) {
+    ControllerController.$inject = ['$scope', '$window', '$location', 'PagerService', 'ShipCostService', 'ylConstant', '$mdDialog'];
+    function ControllerController($scope, $window, $location, PagerService, ShipCostService, ylConstant, $mdDialog) {
        var vm = this;
         vm.classForTable = 'col-md-12 col-sm-12 col-lg-12';
         vm.classForDetail = '';

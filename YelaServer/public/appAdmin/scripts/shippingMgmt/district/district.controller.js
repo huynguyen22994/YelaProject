@@ -5,8 +5,8 @@
         .module('YelaApplication.ShippingMgmt')
         .controller('DistrictController', ControllerController);
 
-    ControllerController.$inject = ['$scope', '$window', '$location', 'PagerService', 'DistrictService', 'ylConstant', '$mdDialog'];
-    function ControllerController($scope, $window, $location, PagerService, DistrictService, ylConstant, $mdDialog) {
+    ControllerController.$inject = ['$scope', '$window', '$location', 'PagerService', 'DistrictService', 'ylConstant', '$mdDialog', 'CityService'];
+    function ControllerController($scope, $window, $location, PagerService, DistrictService, ylConstant, $mdDialog, CityService) {
        var vm = this;
         vm.classForTable = 'col-md-12 col-sm-12 col-lg-12';
         vm.classForDetail = '';
@@ -24,8 +24,8 @@
 
         //Config for form
         vm.configTable = {
-            arrayColumnLabel: ['Quận/Huyện', 'Zip Code', 'Thuộc Thành Phố', 'Hành Động'],
-            arrayColumnContent: ['district', 'code', 'cityId'],
+            arrayColumnLabel: ['Quận/Huyện', 'Zip Code', 'Hành Động'],
+            arrayColumnContent: ['district', 'code'],
             arrayActions: [
                 {
                     buttonName: 'button_edit',
@@ -114,11 +114,15 @@
             items: [
                 {
                     label: 'Thành Phố',
-                    queryModel: 'city',
+                    queryModel: 'district',
                 },
                 {
                     label: 'Zip Code',
                     queryModel: 'code'
+                },
+                {
+                    label: 'Thuộc Thành Phố',
+                    queryModel: 'city'
                 }
             ],
             headerClick: function () {
@@ -183,8 +187,15 @@
         };
 
         function getDetail (item) {
+            var cityId = item.cityId;
             vm.districtDetail = item;
-            showDetail();
+            CityService.getCityById(cityId).then(function(res) {
+                var cityData = res.data;
+                vm.districtDetail.city = cityData.city;
+                vm.districtDetail.cityData = cityData;
+            }).finally(function() {
+                showDetail();
+            });
         };
 
         function deleteDistrict(item) {
