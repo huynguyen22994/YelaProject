@@ -353,3 +353,7 @@ module.exports.deleteShipCost = (req, res, next) => {
 module.exports.updateShipCost = (req, res, next) => {
     ShipCostCtrl.updateShipCost(req, res, next);
 };
+
+module.exports.getShipCost = (req, res, next) => {
+    ShipCostCtrl.getShipCost(req, res, next);
+};

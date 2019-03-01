@@ -3,14 +3,14 @@
 
     angular
         .module('YelaApplication.ShippingMgmt')
-        .controller('ShipCostCreateController', ControllerController);
+        .controller('ShipCostController', ControllerController);
 
-    ControllerController.$inject = ['$scope', '$window', '$location', 'PagerService', 'ShipCostService', 'ylConstant', '$mdDialog'];
-    function ControllerController($scope, $window, $location, PagerService, ShipCostService, ylConstant, $mdDialog) {
+    ControllerController.$inject = ['$scope', '$window', '$location', 'PagerService', 'ShipCostService', 'ylConstant', '$mdDialog', '$q', 'CityService', 'DistrictService'];
+    function ControllerController($scope, $window, $location, PagerService, ShipCostService, ylConstant, $mdDialog, $q, CityService, DistrictService) {
        var vm = this;
         vm.classForTable = 'col-md-12 col-sm-12 col-lg-12';
         vm.classForDetail = '';
-        vm.cityDetail = {};
+        vm.shipCostDetail = {};
         vm.pager = {
             setPage: setPage
         };
@@ -24,8 +24,8 @@
 
         //Config for form
         vm.configTable = {
-            arrayColumnLabel: ['Thành Phố', 'Zip Code', 'Hành Động'],
-            arrayColumnContent: ['city', 'code'],
+            arrayColumnLabel: ['Thành Phố', 'Quận', 'Ship', 'Hành Động'],
+            arrayColumnContent: ['city', 'district', 'cost'],
             arrayActions: [
                 {
                     buttonName: 'button_edit',
@@ -33,7 +33,7 @@
                     iconClass: 'fa fa-pencil-square-o',
                     tooltipTitle: 'tooltip_edit_asong',
                     action(item) {
-                        $location.path('/shippingMgmt/city/edit/' + item.cityId);
+                        $location.path('/shippingMgmt/shipcost/edit/' + item.id);
                         //songCtrl.routeStateManager(songCtrl.stateSong, songCtrl.routeEditSongState + song.songID)
                     }
                 },
@@ -43,7 +43,7 @@
                     iconClass: 'fa fa-trash-o',
                     tooltipTitle: 'tooltip_delete_asong',
                     disabled(item) {
-                        return (item.productsCount > 0) ? true : false; 
+                        return false; 
                     },
                     action(item, ev) {
                         var confirm = $mdDialog.confirm()
@@ -54,7 +54,7 @@
                             .cancel('Cancel');
 
                         $mdDialog.show(confirm).then(function() {      
-                            deleteCity(item);
+                            deleteShipCost(item);
                         }, function() {
                             console.log('cancel');
                         });
@@ -92,7 +92,7 @@
                     tooltipTitle: 'tooltip_add',
                     action() {
                         //songCtrl.routeStateManager(songCtrl.stateSong, songCtrl.routeCreateSongState);
-                        $location.path('/shippingMgmt/city/create');
+                        $location.path('/shippingMgmt/shipCost/create');
                     }
                 }
             ],
@@ -117,8 +117,12 @@
                     queryModel: 'city',
                 },
                 {
-                    label: 'Zip Code',
-                    queryModel: 'code'
+                    label: 'Quận',
+                    queryModel: 'district'
+                },
+                {
+                    label: 'Ship',
+                    queryModel: 'cost'
                 }
             ],
             headerClick: function () {
@@ -141,15 +145,60 @@
         // };
 
         function activate() {
-            CityService.getAllCities()
-                .then(function (response) {
-                    vm.cities = response.data.rows;
-                    setPage(vm.pageCustomize.currentPage, vm.pageCustomize.size);
-                }).catch(function (err) {
-                    console.log(err);
-                });
+            // CityService.getAllCities()
+            //     .then(function (response) {
+            //         vm.shipCost = response.data.rows;
+            //         setPage(vm.pageCustomize.currentPage, vm.pageCustomize.size);
+            //     }).catch(function (err) {
+            //         console.log(err);
+            //     });
+            loadShipCost();
         };
 
+        function loadShipCost(isRefresh) {
+            initialShipCost().then(function(data) {
+                vm.shipCostList = data;
+                setPage(vm.pageCustomize.currentPage, vm.pageCustomize.size);
+            })
+        };
+
+        function getShipCost() {
+            return ShipCostService.getAllShipCost();
+        };
+
+        function getCities() {
+            return ShipCostService.getAllCities();
+        };
+
+        function getDistrict() {
+            return ShipCostService.getAllDistricts();
+        };
+
+        function initialShipCost() {
+            return $q.all([
+                getShipCost(),
+                getCities(),
+                getDistrict()
+            ]).then(function(data) {
+                var shipList = data[0].rows;
+                var cities = data[1].rows;
+                var districts = data[2].rows;
+                angular.forEach(shipList, function(ship) {
+                    var city = _.find(cities, function(c) {
+                        return c.cityId === ship.cityId;
+                    });
+                    var district = _.find(districts, function(d) {
+                        return d.districtId === ship.districtId;
+                    });
+                    ship.city = city.city;
+                    ship.district = district.district;
+                });
+
+                return shipList;
+            });
+        };
+
+        ///////////////////////////////////////////////////////////
         function setPage(page, pageSize = vm.pageCustomize.size) {
             //pageSize = pageSize || songCtrl.pageCustomize.size;
             vm.pageCustomize.size = pageSize;
@@ -157,11 +206,11 @@
             if(page < 1 || page > vm.pager.totalPages) {
                 return;
             }
-            if(vm.cities.length > 0) {
+            if(vm.shipCostList.length > 0) {
                 vm.hasResult = true;
-                vm.pager = PagerService.getPager(vm.cities.length, page, pageSize);
+                vm.pager = PagerService.getPager(vm.shipCostList.length, page, pageSize);
                 vm.pager.setPage = setPage;
-                vm.items = vm.cities.slice(vm.pager.startIndex, vm.pager.endIndex);
+                vm.items = vm.shipCostList.slice(vm.pager.startIndex, vm.pager.endIndex);
             } else {
                 vm.hasResult = false;
             }
@@ -186,6 +235,7 @@
             vm.cityDetail = item;
             showDetail();
         };
+        ////////////////////////////////////////////////////////////
 
         function deleteCity(item) {
             let cityId = item.cityId;
@@ -209,13 +259,15 @@
         };
 
         function refresh() {
-            CityService.getAllCities()
-                .then(function (res) {
-                    vm.cities = res.data.rows;
-                    setPage(1);
-                }).catch(function (err) {
-                    console.log(err);
-                });
+            loadShipCost(true);
+
+            // CityService.getAllCities()
+            //     .then(function (res) {
+            //         vm.cities = res.data.rows;
+            //         setPage(1);
+            //     }).catch(function (err) {
+            //         console.log(err);
+            //     });
         };
 
         function toggleCheckAll() {

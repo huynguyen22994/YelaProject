@@ -3,7 +3,56 @@ var async = require('async');
 var _ = require('underscore');
 
 module.exports.getAllShipCost = (req, res, next) => {
-    models.ShipCost.findAndCountAll()
+    models.ShipCost.findAndCountAll(
+        //{
+        //subQuery: false,
+        //attributes: ['id', 'City.cityId'],
+        // include:[
+        //     { 
+        //         model: models.City, 
+        //         as:'theCity', 
+        //         required:false,
+        //         paranoid: false,
+        //         where: {
+        //             cityId: {$col: 'ShipCost.cityId'}
+        //         }
+        //     }
+            // { 
+            //     model: models.District, 
+            //     as:'theDistrict', 
+            //     required:false,
+            //     where: {
+            //         cityId: {$col: 'ShipCost.districtId'}
+            //     }
+            // }
+        //]
+        // include: [
+        //     {
+        //       model: models.City,
+        //       where: {
+        //         cityId: {$col: 'ShipCost.cityId'}
+        //       }
+        //     }
+        //   ]
+    //}
+    )
+        .then((result) => {
+            res.json(result);
+        },
+        (err) => {
+            console.log(err);
+        })
+};
+
+module.exports.getShipCost = (req, res, next) => {
+    var cityId = req.query.cityId;
+    var districtId = req.query.districtId;
+    models.ShipCost.findAll({
+        where: {
+            cityId: cityId,
+            districtId: districtId
+        }
+    })
         .then((result) => {
             res.json(result);
         },

@@ -9,6 +9,8 @@
     function Service($http) {
         var service = {
             getAllShipCost: getAllShipCost,
+            getAllCities: getAllCities,
+            getAllDistricts: getAllDistricts,
             deleteShipCost: deleteShipCost,
             getShipCostById: getShipCostById,
             createShipCost: createShipCost,
@@ -23,7 +25,29 @@
                 url: '/api/shipcost',
                 method: 'GET'
             }).then(function (res) {
-                return res;
+                return res.data;
+            }).catch(function (err) {
+                return err;
+            });
+        };
+
+        function getAllCities() {
+            return $http({
+                url: '/api/city',
+                method: 'GET'
+            }).then(function (res) {
+                return res.data;
+            }).catch(function (err) {
+                return err;
+            });
+        };
+
+        function getAllDistricts() {
+            return $http({
+                url: '/api/district',
+                method: 'GET'
+            }).then(function (res) {
+                return res.data;
             }).catch(function (err) {
                 return err;
             });

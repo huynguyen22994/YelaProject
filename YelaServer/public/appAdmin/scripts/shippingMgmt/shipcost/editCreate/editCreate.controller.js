@@ -3,7 +3,7 @@
 
     angular
         .module('YelaApplication.ShippingMgmt')
-        .controller('CityCreateController', ControllerController);
+        .controller('ShipCostCreateController', ControllerController);
 
     ControllerController.$inject = ['CityService', '$scope', '$window', '$location', '$route', 'toastr', 'Upload', '$q', 'ylConstant'];
     function ControllerController(CityService, $scope, $window, $location, $route, toastr, Upload, $q, ylConstant) {
