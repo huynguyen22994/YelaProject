@@ -12,7 +12,7 @@
             getAllCities: getAllCities,
             getAllDistricts: getAllDistricts,
             deleteShipCost: deleteShipCost,
-            getShipCostById: getShipCostById,
+            getShipCostByQuery: getShipCostByQuery,
             createShipCost: createShipCost,
             updateShipCost: updateShipCost
         };
@@ -53,12 +53,13 @@
             });
         };
 
-        function deleteShipCost(shipCostId) {
+        function deleteShipCost(cityId, districtId) {
             return $http({
                 url: '/api/shipcost',
                 method: 'DELETE',
                 params: {
-                    shipCostId: shipCostId
+                    cityId: cityId,
+                    districtId: districtId
                 }
             }).then(function (res) {
                 return res;
@@ -68,12 +69,13 @@
         };
 
 
-        function getShipCostById(shipCostId) {
+        function getShipCostByQuery(cityId, districtId) {
             return $http({
-                url: '/api/shipcost/one',
+                url: '/api/shipcostQuery',
                 method: 'GET',
                 params: {
-                    shipCostId: shipCostId
+                    cityId: cityId,
+                    districtId: districtId
                 }
             }).then(function (res) {
                 return res;

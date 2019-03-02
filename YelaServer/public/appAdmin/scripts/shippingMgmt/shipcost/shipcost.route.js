@@ -15,7 +15,7 @@
                 controller: 'ShipCostController',
                 controllerAs: 'vm'
             })
-            .when('/shippingMgmt/shipcost/edit/:id', {
+            .when('/shippingMgmt/shipcost/edit/:cityId/:districtId', {
                 templateUrl: '/admin/scripts/shippingMgmt/shipcost/editCreate/editCreate.template.html',
                 controller: 'ShipCostCreateController',
                 controllerAs: 'vm',

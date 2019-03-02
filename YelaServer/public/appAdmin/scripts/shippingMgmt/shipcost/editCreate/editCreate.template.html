@@ -4,7 +4,7 @@
             <div class="page-header">
                     <div class="row">
                         <div class="col-md-6">
-                            <h2>Tạo Mới Thành Phố</h2>                 
+                            <h2>Thông Tin Shipping</h2>                 
                         </div>
                     </div>
             </div>
@@ -15,24 +15,42 @@
             <form class="form-horizontal" name="form" novalidate>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Tạo mới thành phố
+                            Tạo Mới Thông Tin Shipping
                         </div>
                         <div class="panel-body">
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group has-success has-feedback">
-                                    <label class="control-label col-sm-2" for="city">*Thành Phố: </label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" ng-model="vm.City.city" id="city" placeholder="Nhập tên chủ đề" name="city" required>  
-                                        <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="form.city.$dirty && form.city.$valid"></span>
-                                        <span ng-show="form.city.$error.required">Không được bỏ trống</span>
+                                    <label class="control-label col-sm-2" for="citiSelect">*Thành Phố </label>
+                                    <div class="col-sm-10">          
+                                        <select 
+                                            name="citiSelect" 
+                                            id="citiSelect" 
+                                            class="form-control" 
+                                            ng-options="option.city for option in vm.cityList track by option.cityId" 
+                                            ng-model="vm.City" required>
+                                        </select>
+                                        <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="form.citiSelect.$dirty && form.citiSelect.$valid"></span>
                                     </div>
-                                </div>
+                                </div> 
                                 <div class="form-group has-success has-feedback">
-                                    <label class="control-label col-sm-2" for="code">*Zip code: </label>
+                                    <label class="control-label col-sm-2" for="districtSelect">*Quận/Huyện </label>
+                                    <div class="col-sm-10">          
+                                        <select 
+                                            name="districtSelect" 
+                                            id="districtSelect" 
+                                            class="form-control" 
+                                            ng-options="option.district for option in vm.districtList track by option.districtId" 
+                                            ng-model="vm.District" required>
+                                        </select>
+                                        <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="form.districtSelect.$dirty && form.districtSelect.$valid"></span>
+                                    </div>
+                                </div> 
+                                <div class="form-group has-success has-feedback">
+                                    <label class="control-label col-sm-2" for="cost">*Giá Ship: </label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" ng-model="vm.City.code" id="code" placeholder="Nhập tên chủ đề" name="code" required>  
-                                        <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="form.code.$dirty && form.code.$valid"></span>
-                                        <span ng-show="form.code.$error.required">Không được bỏ trống</span>
+                                        <input class="form-control" ng-model="vm.ShipCost.cost" id="cost" placeholder="Nhập giá ship" name="cost" required>  
+                                        <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="form.cost.$dirty && form.cost.$valid"></span>
+                                        <span ng-show="form.cost.$error.required">Không được bỏ trống</span>
                                     </div>
                                 </div>
                             </div>  

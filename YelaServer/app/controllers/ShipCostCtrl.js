@@ -96,11 +96,13 @@ module.exports.createShipCost = (req, res, next) => {
 };
 
 module.exports.deleteShipCost = (req, res, next) => {
-    var shipCostId = req.query.shipCostId;
-    if (shipCostId) {
+    var cityId = req.query.cityId;
+    var districtId = req.query.districtId;
+    if (cityId && districtId) {
         models.ShipCost.destroy({
             where: {
-                shipCostId: shipCostId
+                cityId: cityId,
+                districtId: districtId
             }
         }, {
             force: true    
@@ -132,7 +134,8 @@ module.exports.updateShipCost = (req, res, next) => {
             },
             {
                 where: {
-                    shipCostId: shipCost.shipCostId
+                    cityId: shipCost.cityId,
+                    districtId: shipCost.districtId
                 }
             }
         ).then((result) => {

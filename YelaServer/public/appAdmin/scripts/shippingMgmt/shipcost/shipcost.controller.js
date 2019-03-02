@@ -5,8 +5,8 @@
         .module('YelaApplication.ShippingMgmt')
         .controller('ShipCostController', ControllerController);
 
-    ControllerController.$inject = ['$scope', '$window', '$location', 'PagerService', 'ShipCostService', 'ylConstant', '$mdDialog', '$q', 'CityService', 'DistrictService'];
-    function ControllerController($scope, $window, $location, PagerService, ShipCostService, ylConstant, $mdDialog, $q, CityService, DistrictService) {
+    ControllerController.$inject = ['$scope', '$window', '$location', 'PagerService', 'ShipCostService', 'ylConstant', '$mdDialog', '$q', 'CityService'];
+    function ControllerController($scope, $window, $location, PagerService, ShipCostService, ylConstant, $mdDialog, $q, CityService) {
        var vm = this;
         vm.classForTable = 'col-md-12 col-sm-12 col-lg-12';
         vm.classForDetail = '';
@@ -33,7 +33,7 @@
                     iconClass: 'fa fa-pencil-square-o',
                     tooltipTitle: 'tooltip_edit_asong',
                     action(item) {
-                        $location.path('/shippingMgmt/shipcost/edit/' + item.id);
+                        $location.path('/shippingMgmt/shipcost/edit/' + item.cityId + '/' + item.districtId);
                         //songCtrl.routeStateManager(songCtrl.stateSong, songCtrl.routeEditSongState + song.songID)
                     }
                 },
@@ -92,7 +92,7 @@
                     tooltipTitle: 'tooltip_add',
                     action() {
                         //songCtrl.routeStateManager(songCtrl.stateSong, songCtrl.routeCreateSongState);
-                        $location.path('/shippingMgmt/shipCost/create');
+                        $location.path('/shippingMgmt/shipcost/create');
                     }
                 }
             ],
@@ -145,20 +145,17 @@
         // };
 
         function activate() {
-            // CityService.getAllCities()
-            //     .then(function (response) {
-            //         vm.shipCost = response.data.rows;
-            //         setPage(vm.pageCustomize.currentPage, vm.pageCustomize.size);
-            //     }).catch(function (err) {
-            //         console.log(err);
-            //     });
             loadShipCost();
         };
 
         function loadShipCost(isRefresh) {
             initialShipCost().then(function(data) {
                 vm.shipCostList = data;
-                setPage(vm.pageCustomize.currentPage, vm.pageCustomize.size);
+                if(isRefresh) {
+                    setPage(1);
+                } else {
+                    setPage(vm.pageCustomize.currentPage, vm.pageCustomize.size);
+                }
             })
         };
 
@@ -237,11 +234,12 @@
         };
         ////////////////////////////////////////////////////////////
 
-        function deleteCity(item) {
+        function deleteShipCost(item) {
             let cityId = item.cityId;
-            CityService.deleteCity(cityId)
+            let districtId = item.districtId;
+            ShipCostService.deleteShipCost(cityId, districtId)
                 .then(function (res) {
-                    loadCity();
+                    refresh();
                 }).catch(function (err) {
                     console.log(err);
                 });
@@ -260,14 +258,6 @@
 
         function refresh() {
             loadShipCost(true);
-
-            // CityService.getAllCities()
-            //     .then(function (res) {
-            //         vm.cities = res.data.rows;
-            //         setPage(1);
-            //     }).catch(function (err) {
-            //         console.log(err);
-            //     });
         };
 
         function toggleCheckAll() {

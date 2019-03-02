@@ -90,7 +90,14 @@
                 "parameters": [
                     {
                         "in": "query",
-                        "name": "categoryId",
+                        "name": "cityId",
+                        "description": "Coffee object that needs to be added to the CoffeeDB",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "districtId",
                         "description": "Coffee object that needs to be added to the CoffeeDB",
                         "required": false,
                         "type": "string"
