@@ -131,7 +131,38 @@
                         "200": {
                             "description": "template file",
                             "schema": {
-                                "$ref": "#/definitions/Category"
+                                "$ref": "#/definitions/District"
+                            }
+                        },
+                        "default": {
+                            "description": "unexpected error",
+                            "schema": {
+                                "$ref": "#/definitions/Error"
+                            }
+                        }
+                    },
+                "x-swagger-router-controller": "DefaultCtrl"
+            }
+        },
+        "/district/incity": {
+            "get": {
+                "summary": "Product Types",
+                "description": "This is test Apis Book",
+                "operationId": "getDistrictInCity",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "cityId",
+                        "description": "Coffee object that needs to be added to the CoffeeDB",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                        "200": {
+                            "description": "template file",
+                            "schema": {
+                                "$ref": "#/definitions/District"
                             }
                         },
                         "default": {

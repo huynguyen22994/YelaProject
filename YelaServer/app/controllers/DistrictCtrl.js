@@ -128,3 +128,23 @@ module.exports.getOneDistrict = (req, res, next) => {
         res.end();
     }
 };
+
+module.exports.getDistrictInCity = (req, res, next) => {
+    var cityId = req.query.cityId;
+    if (cityId) {
+        models.District.findAll({
+            where: {
+                cityId: cityId
+            }
+        })
+            .then((result) => {
+                res.json(result);
+            }, (err) => {
+                res.statusCode = 400;
+                res.end()
+            });
+    } else {
+        res.statusCode = 400;
+        res.end();
+    }
+};

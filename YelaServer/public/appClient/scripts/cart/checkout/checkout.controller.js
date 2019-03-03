@@ -5,13 +5,15 @@
         .module('YelaAppClient.CartApp')
         .controller('CheckoutController', ControllerController);
 
-    ControllerController.$inject = ['CartService', 'clientConstant', '$rootScope', '$scope'];
-    function ControllerController(CartService, clientConstant, $rootScope, $scope) {
+    ControllerController.$inject = ['CartService', 'clientConstant', '$rootScope', '$scope', '$q'];
+    function ControllerController(CartService, clientConstant, $rootScope, $scope, $q) {
         var vm = this;
         // total cart price
         vm.total = 0;
         vm.shipCost = 20000;
         vm.isCheckoutSuccessPage = false;
+        vm.cities = [];
+        vm.districts = [];
         // config for cart table in checkout page
         vm.cartTableCheckoutConfig = CartService.getCartTableConfig();
         vm.cartTableCheckoutConfig.isView = true;
@@ -33,8 +35,9 @@
 
         async function activate() { 
             await loadCart();
-            vm.totalCartPriceFormatted = vm.cartTableConfig.cartTotal;
+            vm.totalCartPriceFormatted = vm.cartTableCheckoutConfig.cartTotal;
             updateTotal();
+            prepareShipData();
         };
 
         function loadCart() {
@@ -42,6 +45,18 @@
                 vm.cartData = $rootScope.Cart.getProductList();
                 resolve(vm.cartData);
             });
+        };
+
+        function getCities() {
+            return CartService.getAllCities();
+        };
+
+        function prepareShipData() {
+            return $q.all([
+                getCities()
+            ]).then(function(data) {
+                vm.cities = data[0].rows;
+            })
         };
 
         function getCartTotal() {

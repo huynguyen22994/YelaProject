@@ -22,7 +22,10 @@
             getBillInfo: getBillInfo,
             createBill: createBill,
             getParseBillRequest: getParseBillRequest,
-            getBillInfoSuccess: getBillInfoSuccess
+            getBillInfoSuccess: getBillInfoSuccess,
+            getAllCities: getAllCities,
+            getAllDistricts: getAllDistricts,
+            getShipping: getShipping
         };
         
         return service;
@@ -61,7 +64,10 @@
         }
 
         function getParseCurrencyToNumber(currency) {
-            return Number(currency.replace(/[^0-9.-]+/g,"")) * 1000;
+            if(currency) {
+                return Number(currency.replace(/[^0-9.-]+/g,"")) * 1000;
+            }
+            return currency;
         }
 
         function getCartState() {
@@ -105,6 +111,46 @@
         function getBillInfoSuccess() {
             return billInfoSuccess;
         }
+
+        function getAllCities() {
+            return $http({
+                url: '/api/city',
+                method: 'GET'
+            }).then(function (res) {
+                return res.data;
+            }).catch(function (err) {
+                return err;
+            });
+        };
+
+        function getAllDistricts(cityId) {
+            return $http({
+                url: '/api/district/incity',
+                method: 'GET',
+                params: {
+                    cityId: cityId
+                }
+            }).then(function (res) {
+                return res.data;
+            }).catch(function (err) {
+                return err;
+            });
+        };
+
+        function getShipping(cityId, districtId) {
+            return $http({
+                url: '/api/shipcostQuery',
+                method: 'GET',
+                params: {
+                    cityId: cityId,
+                    districtId: districtId
+                }
+            }).then(function (res) {
+                return res.data;
+            }).catch(function (err) {
+                return err;
+            });
+        };
 
     }
 })();

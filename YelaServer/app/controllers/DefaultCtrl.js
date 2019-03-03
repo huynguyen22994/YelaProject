@@ -337,6 +337,10 @@ module.exports.getOneDistrict = (req, res, next) => {
     DistrictCtrl.getOneDistrict(req, res, next);
 };
 
+module.exports.getDistrictInCity = (req, res, next) => {
+    DistrictCtrl.getDistrictInCity(req, res, next);
+};
+
 //ShipCostCtrl
 module.exports.getAllShipCost = (req, res, next) => {
     ShipCostCtrl.getAllShipCost(req, res, next);

@@ -126,33 +126,28 @@
                                 <div class="shopper-info">
                                     <p>Thông Tin Thanh Toán</p>
                                     <form>
-                                        <input type="text" ng-model="vm.billInfo.name" placeholder="*Họ và Tên">
-                                        <input type="text" ng-model="vm.billInfo.phoneOne" placeholder="*Số điện thoại 1">
-                                        <input type="text" ng-model="vm.billInfo.phoneTwo" placeholder="Số điện thoại 2">
-                                        <input type="email" ng-model="vm.billInfo.email" placeholder="Địa chỉ mail">
-                                        <select ng-model="vm.billInfo.contry" class="cart-select">
-                                            <option>-- Thành Phố --</option>
-                                            <option>United States</option>
-                                            <option>Bangladesh</option>
-                                            <option>UK</option>
-                                            <option>India</option>
-                                            <option>Pakistan</option>
-                                            <option>Ucrane</option>
-                                            <option>Canada</option>
-                                            <option>Dubai</option>
+                                        <label>{{ '*Họ và Tên' | i18next }}:</label>
+                                        <input type="text" ng-model="vm.billInfo.name">
+                                        <label>{{ '*Số điện thoại 1' | i18next }}:</label>
+                                        <input type="text" ng-model="vm.billInfo.phoneOne">
+                                        <label>{{ 'Số điện thoại 2' | i18next }}:</label>
+                                        <input type="text" ng-model="vm.billInfo.phoneTwo">
+                                        <label>{{ 'Email' | i18next }}:</label>
+                                        <input type="email" ng-model="vm.billInfo.email">
+                                        <label>{{ '*Thành Phố' | i18next }}:</label>
+                                        <select
+                                            class="cart-select"
+                                            ng-options="option.city for option in vm.cities track by option.cityId" 
+                                            ng-model="vm.billInfo.contry">
                                         </select>
-                                        <select ng-model="vm.billInfo.region" class="cart-select">
-                                            <option>-- Quận/Huyện --</option>
-                                            <option>United States</option>
-                                            <option>Bangladesh</option>
-                                            <option>UK</option>
-                                            <option>India</option>
-                                            <option>Pakistan</option>
-                                            <option>Ucrane</option>
-                                            <option>Canada</option>
-                                            <option>Dubai</option>
+                                        <label>{{ '*Quận/Huyện' | i18next }}:</label>
+                                        <select
+                                        class="cart-select"
+                                            ng-options="option.district for option in vm.districts track by option.districtId" 
+                                            ng-model="vm.billInfo.region">
                                         </select>
-                                        <input type="text" ng-model="vm.billInfo.address" placeholder="*Địa Chỉ">
+                                        <label>{{ '*Địa Chỉ' | i18next }}:</label>
+                                        <input type="text" ng-model="vm.billInfo.address">
                                     </form>
                                 </div>
                             </div>
@@ -160,14 +155,14 @@
                             <div class="col-sm-4">
                                 <div class="order-message">
                                     <p>Thông tin Thêm</p>
-                                    <textarea name="message" ng-model="vm.billInfo.description" placeholder="Ghi chú về đơn hàng. Ví dụ: lưu ý khi giao hàng" rows="16"></textarea>
+                                    <textarea name="message" style="height: 515px" ng-model="vm.billInfo.description" placeholder="Ghi chú về đơn hàng. Ví dụ: lưu ý khi giao hàng" rows="16"></textarea>
                                 </div>	
                             </div>			
                             
                             <div class="col-sm-5">
                                 <div class="order-message">
                                     <p>Ship Và Trả Tiền Mặt Khi Nhận Hàng</p>
-                                    <textarea ng-disabled="true" name="message" rows="16">Cám ơn Quý khách đã đặt hàng từ FoodTech, xin vui lòng hoàn tất bước tiếp theo để xác nhận đơn hàng. Chúng tôi sẽ gửi đơn đặt hàng điện tử tới hòm thư email của Quý khách khi đơn hàng được đặt thành công!
+                                    <textarea ng-disabled="true" style="height: 515px" name="message" rows="16">Cám ơn Quý khách đã đặt hàng từ FoodTech, xin vui lòng hoàn tất bước tiếp theo để xác nhận đơn hàng. Chúng tôi sẽ gửi đơn đặt hàng điện tử tới hòm thư email của Quý khách khi đơn hàng được đặt thành công!
                                     </textarea>
                                 </div>
                                 <a class="btn btn-primary" ng-click="vm.onCheckOut()" style="float: right">Đặt Hàng</a>
