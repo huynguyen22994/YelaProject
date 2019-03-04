@@ -138,13 +138,15 @@
                                         <select
                                             class="cart-select"
                                             ng-options="option.city for option in vm.cities track by option.cityId" 
-                                            ng-model="vm.billInfo.contry">
+                                            ng-model="vm.billInfo.contry"
+                                            ng-change="vm.onCityChange()">
                                         </select>
                                         <label>{{ '*Quận/Huyện' | i18next }}:</label>
                                         <select
                                         class="cart-select"
                                             ng-options="option.district for option in vm.districts track by option.districtId" 
-                                            ng-model="vm.billInfo.region">
+                                            ng-model="vm.billInfo.region"
+                                            ng-change="vm.onDistrictChange()">
                                         </select>
                                         <label>{{ '*Địa Chỉ' | i18next }}:</label>
                                         <input type="text" ng-model="vm.billInfo.address">
@@ -155,7 +157,8 @@
                             <div class="col-sm-4">
                                 <div class="order-message">
                                     <p>Thông tin Thêm</p>
-                                    <textarea name="message" style="height: 515px" ng-model="vm.billInfo.description" placeholder="Ghi chú về đơn hàng. Ví dụ: lưu ý khi giao hàng" rows="16"></textarea>
+                                    <label>{{ 'Ghi chú về đơn hàng' | i18next }}:</label>
+                                    <textarea name="message" style="height: 490px" ng-model="vm.billInfo.description" placeholder="Ví dụ: lưu ý khi giao hàng" rows="16"></textarea>
                                 </div>	
                             </div>			
                             

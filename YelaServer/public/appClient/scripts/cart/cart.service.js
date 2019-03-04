@@ -24,7 +24,7 @@
             getParseBillRequest: getParseBillRequest,
             getBillInfoSuccess: getBillInfoSuccess,
             getAllCities: getAllCities,
-            getAllDistricts: getAllDistricts,
+            getDistrictByCity: getDistrictByCity,
             getShipping: getShipping
         };
         
@@ -97,13 +97,13 @@
                     customerId: bill.customerId,
                     items: items,
                     customerName: bill.name,
-                    phoneOne: bill.phoneOne,
-                    phoneTwo: bill.phoneTwo,
-                    email: bill.email,
-                    city: bill.contry,
-                    district: bill.region,
-                    address: bill.address,
-                    description: bill.description
+                    phoneOne: bill.phoneOne || 'No',
+                    phoneTwo: bill.phoneTwo || 'No',
+                    email: bill.email || 'No',
+                    city: bill.contry.city || 'No',
+                    district: bill.region.district || 'No',
+                    address: bill.address || 'No',
+                    description: bill.description || 'No'
                 }
             }
         }
@@ -123,7 +123,7 @@
             });
         };
 
-        function getAllDistricts(cityId) {
+        function getDistrictByCity(cityId) {
             return $http({
                 url: '/api/district/incity',
                 method: 'GET',

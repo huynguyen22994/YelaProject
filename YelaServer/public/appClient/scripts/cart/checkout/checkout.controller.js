@@ -5,12 +5,12 @@
         .module('YelaAppClient.CartApp')
         .controller('CheckoutController', ControllerController);
 
-    ControllerController.$inject = ['CartService', 'clientConstant', '$rootScope', '$scope', '$q'];
-    function ControllerController(CartService, clientConstant, $rootScope, $scope, $q) {
+    ControllerController.$inject = ['CartService', 'clientConstant', '$rootScope', '$scope', '$q', 'toastr'];
+    function ControllerController(CartService, clientConstant, $rootScope, $scope, $q, toastr) {
         var vm = this;
         // total cart price
         vm.total = 0;
-        vm.shipCost = 20000;
+        vm.shipCost = 0;
         vm.isCheckoutSuccessPage = false;
         vm.cities = [];
         vm.districts = [];
@@ -29,6 +29,8 @@
         vm.isCheckoutSuccess = isCheckoutSuccess;
         vm.onCheckOut = onCheckOut;
         vm.formatMoney = formatMoney;
+        vm.onCityChange = onCityChange;
+        vm.onDistrictChange = onDistrictChange;
 
         activate();
         ////////////////
@@ -45,6 +47,14 @@
                 vm.cartData = $rootScope.Cart.getProductList();
                 resolve(vm.cartData);
             });
+        };
+
+        function getDistrictByCity(cityId) {
+            return CartService.getDistrictByCity(cityId);
+        };
+
+        function getShipping(cityId, districtId) {
+            return CartService.getShipping(cityId, districtId);
         };
 
         function getCities() {
@@ -93,22 +103,33 @@
         }
 
         function onCheckOut() {
-            vm.billInfo.items = {
-                foods: angular.copy(vm.cartData),
-                shipCost: vm.shipCost
-            }
-            var billParsed = CartService.getParseBillRequest(vm.billInfo);
-            CartService.createBill(billParsed).then(function(response) {
-                var data = response.data;
-                if(data) {
-                    vm.billInfoSuccess = data;
-                    goToCheckOutSuccessPage();
+            if(isCanCheckOut()) {
+                vm.billInfo.items = {
+                    foods: angular.copy(vm.cartData),
+                    shipCost: vm.shipCost
                 }
-            }, function(err) {
-                console.log(err);
-            }).catch(function(err) {
-                console.log(err);
-            })
+                var billParsed = CartService.getParseBillRequest(vm.billInfo);
+                CartService.createBill(billParsed).then(function(response) {
+                    var data = response.data;
+                    if(data) {
+                        vm.billInfoSuccess = data;
+                        goToCheckOutSuccessPage();
+                    }
+                }, function(err) {
+                    console.log(err);
+                }).catch(function(err) {
+                    console.log(err);
+                })
+            } else {
+                toastr.error('Giúp chúng mình nhập đầy đủ thông tin ở mục có dấu (*) nhé.');
+            }
+        }
+
+        function isCanCheckOut() {
+            var bill = vm.billInfo;
+            var city = bill.contry;
+            var district = bill.region;
+            return bill.name && bill.phoneOne && bill.address && city.city && district.districtId;
         }
 
         function goToCheckOutSuccessPage() {
@@ -121,6 +142,37 @@
 
         function formatMoney(number) {
             return number.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+        }
+
+        function onCityChange() {
+            var city = vm.billInfo.contry;
+            vm.billInfo.region = {};
+            if(city.cityId) {
+                getDistrictByCity(city.cityId)
+                    .then(function(districts) {
+                        vm.districts = districts;
+                    })
+            }
+        }
+
+        function onDistrictChange() {
+            var city = vm.billInfo.contry;
+            var district = vm.billInfo.region;
+            if(city.cityId && district.districtId) {
+                getShipping(city.cityId, district.districtId)
+                    .then(function(shipping) {
+                        var ship = shipping[0];
+                        if(ship){
+                            vm.shipCost = ship.cost;
+                            vm.cartTableCheckoutConfig.shipCost = ship.cost;
+                            
+                        } else {
+                            vm.shipCost = 0;
+                            vm.cartTableCheckoutConfig.shipCost = 0;
+                        }
+                        updateTotal();
+                    })
+            }
         }
 
     }
