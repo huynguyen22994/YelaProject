@@ -18,7 +18,7 @@
         function activate() { 
             $timeout(function() {
                 vm.spinnerHide = true;
-            }, 3000);
+            }, 1000);
         };
 
         $scope.$on("$destroy", function() {

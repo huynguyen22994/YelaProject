@@ -48,7 +48,7 @@
     "shipPrice": "Delivery charges",
     "freeDelivery": "Free delivery",
     "orderOnline": "Order Online",
-    "forOrderFrom": "For Order From",
+    "forOrderFrom": "Only applicable for orders in HCM City",
     "contactOrder": "Contact Order",
     "registerGetSaleOffCode": "Register To Get Sale Off Code",
     "registerGetCodeMsg": "Please register by your email to get sale off code.",
