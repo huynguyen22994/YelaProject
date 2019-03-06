@@ -213,6 +213,7 @@
 	<!--login--> 
 	<script src="scripts/login/login.module.js"></script>
 	<script src="scripts/login/login.route.js"></script>
+	<script src="scripts/login/login.constant.js"></script>
 	<script src="scripts/login/login.controller.js"></script>
 	<!-- contact -->
 	<script src="scripts/contact/contact.module.js"></script>
@@ -279,6 +280,20 @@
 		});
 		feed.run();
 	</script> -->
+
+	<!--Login Google Facebook-->
+	<script src="/script/login/login.js"></script>
+
+	<script type="text/javascript">
+		(function(){
+			var p = document.createElement('script');
+			p.type = 'text/javascript';
+			p.async = true;
+			p.src = 'https://apis.google.com/js/client.js?onload=onLoadFunction';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(p, s);
+		})();
+	</script>
 
 </body>
 </html>

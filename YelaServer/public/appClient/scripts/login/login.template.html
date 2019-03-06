@@ -1,9 +1,9 @@
-<section id="form"><!--form-->
+<section id="form" style="margin-top: 10px; margin-bottom: 60px" ><!--form-->
     <div class="container">
         <div class="row">
             <div class="col-sm-4 col-sm-offset-1">
                 <div class="login-form"><!--login form-->
-                    <h2>Login to your account</h2>
+                    <h2>{{ 'Đăng nhập tài khoản' | i18next}}</h2>
                     <form action="#">
                         <input type="text" placeholder="Name" />
                         <input type="email" placeholder="Email Address" />
@@ -14,13 +14,25 @@
                         <button type="submit" class="btn btn-default">Login</button>
                     </form>
                 </div><!--/login form-->
+                <div class="login-form">
+                    <h2>{{ 'Đăng nhập bằng Google, Facebook' | i18next}}</h2>
+                    <button type="submit" 
+                        class="btn btn-default" 
+                        style="background-color: #EA5154; color: #fff" 
+                        ng-click="vm.onGoogleLogin();"
+                        ><i class="fa fa-google"></i> Google</button>
+                    <button type="submit" 
+                        class="btn btn-default" 
+                        style="background-color: #4264AA; color: #fff" 
+                        ><i class="fa fa-facebook"></i> Facebook</button>
+                </div>
             </div>
             <div class="col-sm-1">
                 <h2 class="or">OR</h2>
             </div>
             <div class="col-sm-4">
                 <div class="signup-form"><!--sign up form-->
-                    <h2>New User Signup!</h2>
+                    <h2>{{ 'Đăng ký tài khoản mới' | i18next }}</h2>
                     <form action="#">
                         <input type="text" placeholder="Name"/>
                         <input type="email" placeholder="Email Address"/>

@@ -5,15 +5,49 @@
         .module('YelaAppClient.Login')
         .controller('LoginController', ControllerController);
 
-    ControllerController.$inject = [];
-    function ControllerController() {
+    ControllerController.$inject = ['LoginConstant'];
+    function ControllerController(LoginConstant) {
         var vm = this;
         
+        vm.onGoogleLogin = onGoogleLogin;
 
         activate();
 
         ////////////////
 
         function activate() { }
+
+        function onGoogleLogin(){
+            //if ($scope.customerLogined === false) {
+                var params = {
+                    'clientid': LoginConstant.google.clientid,
+                    'cookiepolicy': LoginConstant.google.cookiepolicy,
+                    'callback': function (result) {
+                        if (result['status']['signed_in']) {
+                            window.gapi.client.request({ path: LoginConstant.google.clientPath }).then(
+                                function(success) {
+                                    // API call is successful
+
+                                    var user_info = JSON.parse(success.body);
+
+                                    // user profile information
+                                    console.log(user_info);
+                                },
+                                function(error) {
+                                    // Error occurred
+                                    console.log(error);
+                                }
+                            );
+                        }
+                    },
+                    'approvalprompt': 'force',
+                    'scope': LoginConstant.google.scope
+                };
+                gapi.auth.signIn(params);
+            // } else {
+            //     alert('Moi ban dang xuat');
+            // }
+        }
+
     }
 })();
