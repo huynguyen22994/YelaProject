@@ -21,7 +21,7 @@ module.exports = function(sequelize, Sequelize) {
         },
         password: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: true
         },
         address: {
             type: Sequelize.STRING,
@@ -44,8 +44,16 @@ module.exports = function(sequelize, Sequelize) {
             allowNull: true
         },
         loginType: {
-            type: Sequelize.ENUM('yela', 'google', 'facebook'),
+            type: Sequelize.ENUM('manual', 'google', 'facebook'),
             allowNull: false
+        },
+        token: {
+            type: Sequelize.STRING,
+            allowNull: true
+        },
+        displayName: {
+            type: Sequelize.STRING,
+            allowNull: true
         }
     }, {
         charset: 'utf8',

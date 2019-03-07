@@ -5,8 +5,8 @@
         .module('YelaAppClient.Login')
         .controller('LoginController', ControllerController);
 
-    ControllerController.$inject = ['LoginConstant'];
-    function ControllerController(LoginConstant) {
+    ControllerController.$inject = ['LoginConstant', 'LoginService'];
+    function ControllerController(LoginConstant, LoginService) {
         var vm = this;
         
         vm.onGoogleLogin = onGoogleLogin;
@@ -26,12 +26,12 @@
                         if (result['status']['signed_in']) {
                             window.gapi.client.request({ path: LoginConstant.google.clientPath }).then(
                                 function(success) {
-                                    // API call is successful
-
                                     var user_info = JSON.parse(success.body);
-
-                                    // user profile information
-                                    console.log(user_info);
+                                    var requestBody = LoginService.helper.parserGGRequest(user_info);
+                                    LoginService.loginGoogleFacebook(requestBody)
+                                        .then(function(res) {
+                                            console.log(res);
+                                        })
                                 },
                                 function(error) {
                                     // Error occurred
