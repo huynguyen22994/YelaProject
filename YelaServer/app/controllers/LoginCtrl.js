@@ -8,6 +8,37 @@ var async = require('async');
 var dataConfig = JSON.parse(data.toString());
 var config = dataConfig.yelaEmail;
 
+function createNewCustomer(customer) {
+    var data = {
+        success: false,
+        token: null,
+        error: null
+    }
+    var promise = new Promise(function(resolve, reject) {
+        var token = jwt.sign(customer.email, dataConfig.tokenSecrectKey);
+        models.Customer.create({
+            lastName: customer.lastName,
+            firstName: customer.firstName,
+            email: customer.email,
+            password: customer.password,
+            loginType: customer.loginType,
+            avatarLink: customer.avatarLink,
+            gender: customer.gender,
+            token: token
+        }).then((result) => {
+            data.success = true;
+            data.token = token;
+            data.customer = result.dataValues;
+            resolve(data);
+        }, (err) => {
+            data.success = false;
+            data.error = err;
+            reject(data);
+        });
+    });
+    return promise;
+};
+
 module.exports.emailAuthentication = (req, res, next) => {
     var customerEmail = req.query.email;
     var code = Math.random().toString(36).substring(7);
@@ -87,56 +118,37 @@ module.exports.loginGoogleFacebook = (req, res, next) => {
             }
         }, (existCustomer, result) => {
             if (existCustomer) {
-                if (existCustomer.email == customer.email && existCustomer.password == customer.password) {
-                        var token = jwt.sign(existCustomer, dataConfig.tokenSecrectKey);
-                        req.session.userLogined = true;
-                        req.session.token = token;
-                        res.end(JSON.stringify({ token: token } ));
+                if (existCustomer.email == customer.email && customer.loginType === 'manual' && existCustomer.password == customer.password ) {
+                    // var token = jwt.sign(existCustomer, dataConfig.tokenSecrectKey);
+                    // req.session.userLogined = true;
+                    // req.session.token = token;
+                    res.json({
+                        token: existCustomer.token,
+                        customer: existCustomer
+                    })
+                } else if(existCustomer.email == customer.email && ( customer.loginType === 'google' || customer.loginType === 'facebook')) {
+                    res.json({
+                        token: existCustomer.token,
+                        customer: existCustomer
+                    })
                 } else {
                         res.statusCode = 400;
                         res.end(JSON.stringify({err: "email or password wrong"}));
                 }
-
-
-
-                // models.Customer.findOne({
-                //     where: {
-                //         email: customer.email,
-                //         password: customer.password
-                //     }
-                // }).then((cus) => {
-                //     if (cus) {
-                //         var token = jwt.sign(cus.dataValues, dataConfig.tokenSecrectKey);
-                //         req.session.userLogined = true;
-                //         req.session.token = token;
-                //         res.end(JSON.stringify({ token: token } ));
-                //     } else {
-                //         res.statusCode = 400;
-                //         res.end(JSON.stringify({err: "account is not exist"}));
-                //     }
-                // }, (err) => {
-                //     res.statusCode = 400;
-                //     res.end(JSON.stringify({err: err}));
-                // });
             } else {
                 if (result.checkEmailExist.check) {
-                    models.Customer.create({
-                        lastName: customer.lastName,
-                        firstName: customer.firstName,
-                        email: customer.email,
-                        password: customer.password,
-                        loginType: customer.loginType,
-                        avatarLink: customer.avatarLink,
-                        gender: customer.gender
-                    }).then((result) => {
-                        var token = jwt.sign(customer, dataConfig.tokenSecrectKey);
-                        req.session.userLogined = true;
-                        req.session.token = token;
-                        res.end(JSON.stringify({ token: token } ));
-                    }, (err) => {
-                        res.statusCode = 400;
-                        res.end();
-                    });  
+                    createNewCustomer(customer)
+                        .then(function(data) {
+                            if(data.success){
+                                res.json(data);
+                            } else {
+                                res.statusCode = 400;
+                                res.end();
+                            }
+                        }).catch(function() {
+                            res.statusCode = 400;
+                            res.end();
+                        });
                 } else {
                     res.statusCode = 400;
                     res.end();

@@ -5,8 +5,8 @@
         .module('YelaAppClient.Login')
         .controller('LoginController', ControllerController);
 
-    ControllerController.$inject = ['LoginConstant', 'LoginService'];
-    function ControllerController(LoginConstant, LoginService) {
+    ControllerController.$inject = ['LoginConstant', 'LoginService', 'Customer', '$rootScope'];
+    function ControllerController(LoginConstant, LoginService, Customer, $rootScope) {
         var vm = this;
         
         vm.onGoogleLogin = onGoogleLogin;
@@ -30,7 +30,11 @@
                                     var requestBody = LoginService.helper.parserGGRequest(user_info);
                                     LoginService.loginGoogleFacebook(requestBody)
                                         .then(function(res) {
-                                            console.log(res);
+                                            if(res.data) {
+                                                var cusInfo = res.data.customer;
+                                                $rootScope.Customer = new Customer(cusInfo.customerId, cusInfo.token, cusInfo.firstName, cusInfo.lastName, cusInfo.avatarLink, cusInfo.email);
+                                                console.log($rootScope.Customer);
+                                            }
                                         })
                                 },
                                 function(error) {
