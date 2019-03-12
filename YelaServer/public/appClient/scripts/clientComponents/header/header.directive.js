@@ -62,10 +62,11 @@
         
     }
     /* @ngInject */
-    function ControllerController ($scope, $i18next) {
+    function ControllerController ($scope, $i18next, $rootScope) {
         var vm = this;
         vm.changeLanguage = changeLanguage;
         vm.onHeaderBottom = onHeaderBottom;
+        vm.isCustomerLogin = isCustomerLogin;
         vm.config = {
             headerTop: {
                 left: [
@@ -87,7 +88,19 @@
                     // { iconClass: 'fa fa-star', label: 'wishlist', href: function () { return 'string'; } },
                     { iconClass: 'fa fa-crosshairs', label: 'checkout', href: function () { return '#!/checkout'; } },
                     { iconClass: 'fa fa-shopping-cart', label: 'cart', useNotice: true, href: function () { return '#!/cart'; } },
-                    { iconClass: 'fa fa-lock', label: 'Login', href: function () { return '#!/login'; } },
+                    { 
+                        iconClass: 'fa fa-lock', 
+                        label: 'Login', 
+                        hide: function() {
+                            if($rootScope.Customer) {
+                                return $rootScope.Customer.isLogin();
+                            }
+                            return false;
+                        },
+                        href: function () { 
+                            return '#!/login'; 
+                        } 
+                    },
                 ]
             },
             headerBottom: {
@@ -124,6 +137,13 @@
                     }
                 })
             }
+        };
+
+        function isCustomerLogin() {
+            if($rootScope.Customer) {
+                return $rootScope.Customer.isLogin();
+            }
+            return false;
         };
     }
 })();

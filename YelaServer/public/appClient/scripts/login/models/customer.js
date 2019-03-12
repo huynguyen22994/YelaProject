@@ -23,7 +23,8 @@
             getName: getName,
             getEmail: getEmail,
             getImage: getImage,
-            getToken: getToken
+            getToken: getToken,
+            isLogin: isLogin
         }
         
         return Customer;
@@ -35,7 +36,7 @@
         }
 
         function getName() {
-            return this.firstName + this.lastName;
+            return this.firstName + ' ' + this.lastName;
         }
 
         function getEmail() {
@@ -48,6 +49,14 @@
 
         function getToken() {
             return this.token;
+        }
+
+        function isLogin() {
+            if(this.token) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
     }

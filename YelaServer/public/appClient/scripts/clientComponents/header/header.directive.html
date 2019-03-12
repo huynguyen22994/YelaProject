@@ -45,9 +45,25 @@
             <div class="col-sm-8">
                 <div class="shop-menu pull-right">
                     <ul class="nav navbar-nav">
-                        <li ng-repeat="rightItemMiddle in vm.config.headerMiddle.right">
+                        <li ng-repeat="rightItemMiddle in vm.config.headerMiddle.right" ng-hide="rightItemMiddle.hide()">
                             <a ng-href="{{rightItemMiddle.href()}}" ><i ng-class="rightItemMiddle.iconClass"></i> {{ rightItemMiddle.label | i18next}} <span ng-if="rightItemMiddle.useNotice" class="badge-cart">{{ $root.Cart.getProductLength() }}</span></a>
                         </li>
+                        <li class="dropdown" ng-show="vm.isCustomerLogin()" >
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                                <img ng-src="{{ $root.Customer.getImage() }}" style="width: 27px; height: 27px; display: inline-block" class="img-circle img-responsive" alt="avatar"> <i class="fa fa-caret-down"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user" style="text-align: -webkit-left; margin-left: -105px;">
+                                <li>
+                                    <a><i class="fa fa-user fa-fw"></i> {{ $root.Customer.getName() }}</a>
+                                </li>
+                                <li class="divider" style="display: block"></li>
+                                <li>
+                                    <a><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                                </li>
+                            </ul>
+                            <!-- /.dropdown-user -->
+                        </li>
+
                     </ul>
                 </div>
             </div>
