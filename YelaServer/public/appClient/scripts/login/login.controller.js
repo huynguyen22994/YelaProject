@@ -5,11 +5,12 @@
         .module('YelaAppClient.Login')
         .controller('LoginController', ControllerController);
 
-    ControllerController.$inject = ['LoginConstant', 'LoginService', 'Customer', '$rootScope', '$location'];
-    function ControllerController(LoginConstant, LoginService, Customer, $rootScope, $location) {
+    ControllerController.$inject = ['LoginConstant', 'LoginService', 'Customer', '$rootScope', '$location', '$scope'];
+    function ControllerController(LoginConstant, LoginService, Customer, $rootScope, $location, $scope) {
         var vm = this;
         
         vm.onGoogleLogin = onGoogleLogin;
+        vm.onFacebookLogin = onFacebookLogin;
 
         activate();
 
@@ -53,6 +54,41 @@
             //     alert('Moi ban dang xuat');
             // }
         }
+
+        function onFacebookLogin() {
+            checkFBLoginState();
+        }
+
+        function checkFBLoginState() {
+            window.FB.getLoginStatus(function(response) {
+                statusChangeCallback(response);
+              });
+        }
+
+        function statusChangeCallback(response) {
+            if (response.status === 'connected') {
+                facebookAPI();
+            } else {
+                window.FB.login(function(response) {
+                    facebookAPI();
+                }, {scope: 'public_profile,email'});
+            }
+          }
+
+          function facebookAPI() {
+            FB.api('/me', {fields: 'name, email, last_name, first_name, picture'}, function(customerInfo) {
+              var requestBody = LoginService.helper.parserFFRequest(customerInfo);
+              LoginService.loginGoogleFacebook(requestBody)
+                  .then(function(res) {
+                      if(res.data) {
+                          var cusInfo = res.data.customer;
+                          $rootScope.Customer = new Customer(cusInfo.customerId, cusInfo.token, cusInfo.firstName, cusInfo.lastName, cusInfo.avatarLink, cusInfo.email);
+                          window.localStorage.setItem('customerToken', $rootScope.Customer.getToken());
+                          $location.path('/'); 
+                      }
+                  })
+            });
+          }
 
     }
 })();

@@ -15,7 +15,8 @@
             loginGoogleFacebook: loginGoogleFacebook,
             getCustomerByToken: getCustomerByToken,
             helper: {
-                parserGGRequest: parserGGRequest
+                parserGGRequest: parserGGRequest,
+                parserFFRequest: parserFFRequest
             }
         };
         
@@ -35,6 +36,20 @@
                 loginType: 'google',
                 displayName: data.displayName
             }
+        }
+
+        function parserFFRequest(data) {
+            var pictureData = data.picture || {};
+            var picture = pictureData.data || {};
+            return {
+                lastName: data.last_name,
+                firstName: data.first_name,
+                email: data.email,
+                id: data.id,
+                avatarLink: picture.url,
+                loginType: 'facebook',
+                displayName: data.name
+            }   
         }
 
         function createCustomer(customer) {
