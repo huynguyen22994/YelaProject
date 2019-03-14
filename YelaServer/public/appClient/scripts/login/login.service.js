@@ -13,6 +13,7 @@
             loginCustomer: loginCustomer,
             logout: logout,
             loginGoogleFacebook: loginGoogleFacebook,
+            getCustomerByToken: getCustomerByToken,
             helper: {
                 parserGGRequest: parserGGRequest
             }
@@ -91,6 +92,20 @@
                 method: 'POST',
                 url: 'api/customer/login/google/facebook',
                 data: customer
+            }).then((res) => {
+                return res;
+            }, (err) => {
+                return err;
+            });
+        };
+
+        function getCustomerByToken(token) {
+            return $http({
+                method: 'GET',
+                url: '/api/customer/token',
+                params: {
+                    token: token
+                }
             }).then((res) => {
                 return res;
             }, (err) => {

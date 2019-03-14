@@ -62,3 +62,28 @@ module.exports.checkEmail = (email, callback) => {
         callback('Error when check Email', null);
     });
 };
+
+module.exports.getCustomerByToken = (req, res, next) => {
+    var data = {
+        success: false,
+        customer: {}
+    }
+    var token = req.query.token;
+    models.Customer.findOne({
+        where: {
+            token: token
+        }
+    }).then((result) => {
+        if(result) {
+            data.success = true;
+            data.customer = result.dataValues;
+            res.json(data);
+        } else {
+            data.success = false;
+            res.json(data);
+        }
+    }, (err) => {
+        data.error = err;
+        res.json(data);
+    });
+};

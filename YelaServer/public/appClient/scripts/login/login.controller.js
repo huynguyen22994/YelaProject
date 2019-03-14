@@ -33,6 +33,7 @@
                                             if(res.data) {
                                                 var cusInfo = res.data.customer;
                                                 $rootScope.Customer = new Customer(cusInfo.customerId, cusInfo.token, cusInfo.firstName, cusInfo.lastName, cusInfo.avatarLink, cusInfo.email);
+                                                window.localStorage.setItem('customerToken', $rootScope.Customer.getToken());
                                                 $location.path('/'); 
                                             }
                                         })

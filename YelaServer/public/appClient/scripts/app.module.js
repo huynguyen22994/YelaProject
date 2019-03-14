@@ -28,6 +28,7 @@
         'SocialButton',
         'Tab',
         'CartTable',
+        'CustomerModel',
         'ngAnimate',
         'toastr'
     ]);

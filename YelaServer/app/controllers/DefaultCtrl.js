@@ -127,6 +127,10 @@ module.exports.createCustomer = (req, res, next) => {
     CustomerCtrl.createCustomer(req, res, next);
 };
 
+module.exports.getCustomerByToken = (req, res, next) => {
+    CustomerCtrl.getCustomerByToken(req, res, next);
+};
+
 // Email authentication
 module.exports.emailAuthentication = (req, res, next) => {
     var customerEmail = req.query.email;

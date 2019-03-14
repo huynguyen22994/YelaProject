@@ -5,21 +5,55 @@
         .module('YelaAppClient')
         .controller('ClientController', ControllerController);
 
-    ControllerController.$inject = ['$i18next', '$timeout', '$rootScope', 'Cart', '$scope'];
-    function ControllerController($i18next, $timeout, $rootScope, Cart, $scope) {
+    ControllerController.$inject = ['$i18next', '$timeout', '$rootScope', 'Cart', '$scope', 'LoginService', 'Customer', '$location'];
+    function ControllerController($i18next, $timeout, $rootScope, Cart, $scope, LoginService, Customer, $location) {
         var vm = this;
+        var TIME_OUT = 1000;
+        var customerToken = window.localStorage.getItem('customerToken');
         // this is root cart
         $rootScope.Cart = new Cart();
         $rootScope.useChatBox = false;
+        $rootScope.logout = logout;
+
 
         activate();
         ////////////////
 
         function activate() { 
-            $timeout(function() {
-                vm.spinnerHide = true;
-            }, 1000);
+            getCustomer(customerToken);
         };
+
+        function getCustomer(token) {
+            var promise = new Promise(function(resolve, reject) {
+                if(token) {
+                    LoginService.getCustomerByToken(token)
+                        .then(function(res) {
+                            var data = res.data;
+                            if(data) {
+                                if(data.success) {
+                                    var cusInfo = data.customer;
+                                    $rootScope.Customer = new Customer(cusInfo.customerId, cusInfo.token, cusInfo.firstName, cusInfo.lastName, cusInfo.avatarLink, cusInfo.email);
+                                    vm.spinnerHide = true;
+                                }
+                            }
+                            resolve();
+                        })
+                } else {
+                    $timeout(function() {
+                        vm.spinnerHide = true;
+                        resolve();
+                    }, TIME_OUT);
+                }
+            })
+            return promise;
+        }
+
+        function logout() {
+            window.localStorage.removeItem("customerToken");
+            $rootScope.Customer.destroy();
+            $location.path('/');
+        }
+
 
         $scope.$on("$destroy", function() {
             

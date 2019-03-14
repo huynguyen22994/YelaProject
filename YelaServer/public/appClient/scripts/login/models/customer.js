@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('YelaAppClient.Login')
+        .module('CustomerModel', [])
         .factory('Customer', Service);
 
     Service.$inject = [];
@@ -14,7 +14,7 @@
             this.firstName = firstName;
             this.lastName = lastName;
             this.avatarLink = avatarLink;
-            this.email = email,
+            this.email = email;
             this.contructor = Customer;
         }
 
@@ -24,7 +24,8 @@
             getEmail: getEmail,
             getImage: getImage,
             getToken: getToken,
-            isLogin: isLogin
+            isLogin: isLogin,
+            destroy: destroy
         }
         
         return Customer;
@@ -57,6 +58,16 @@
             } else {
                 return false;
             }
+        }
+
+        function destroy() {
+            this._id = null;
+            this.token = null;
+            this.firstName = null;
+            this.lastName = null;
+            this.avatarLink = null;
+            this.email = null;
+            return this;
         }
 
     }

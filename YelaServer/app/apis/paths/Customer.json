@@ -182,6 +182,37 @@
                 },
                 "x-swagger-router-controller": "DefaultCtrl"
             }
+        },
+        "/customer/token": {
+            "get": {
+                "summary": "Product Types",
+                "description": "This is test Apis Book",
+                "operationId": "getCustomerByToken",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "token",
+                        "description": "Coffee object that needs to be added to the CoffeeDB",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                        "200": {
+                            "description": "template file",
+                            "schema": {
+                                "$ref": "#/definitions/Customer"
+                            }
+                        },
+                        "default": {
+                            "description": "unexpected error",
+                            "schema": {
+                                "$ref": "#/definitions/Error"
+                            }
+                        }
+                    },
+                "x-swagger-router-controller": "DefaultCtrl"
+            }
         }
     }
 }
