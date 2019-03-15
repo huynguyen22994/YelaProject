@@ -63,5 +63,13 @@
     "old": "Củ",
     "normal": "Bình Thường",
     "bestseller": "Bán Chạy",
-    "prominentest": "Nổi Bật"
+    "prominentest": "Nổi Bật",
+    "signup": "Đăng ký",
+    "signupLabel": "Đăng ký tài khoản mới",
+    "or": "Hoặc",
+    "signInByGGFF": "Đăng nhập bằng Google, Facebook",
+    "keepSignIn": "Giữ đăng nhập",
+    "signInAccount": "Đăng nhập tài khoản",
+    "signIn": "Đăng nhập",
+    "password": "Mật khẩu"
 }

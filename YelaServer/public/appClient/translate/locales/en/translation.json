@@ -63,6 +63,13 @@
     "old": "Old",
     "normal": "Normal",
     "bestseller": "Bestseller",
-    "prominentest": "Prominentest"
-
+    "prominentest": "Prominentest",
+    "signup": "Sign up",
+    "signupLabel": "Sign up a new account",
+    "or": "OR",
+    "signInByGGFF": "Signin by Google, Facebook",
+    "keepSignIn": "Keep me signed in",
+    "signInAccount": "Sign in with account",
+    "signIn": "Sign in",
+    "password": "Password"
 }
