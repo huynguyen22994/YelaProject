@@ -1,25 +1,45 @@
 var models = require('../models');
 var async = require('async');
 var _ = require('underscore');
+var jwt = require('jsonwebtoken');
+var data = fs.readFileSync('./config/config.json');
+var dataConfig = JSON.parse(data.toString());
 
 module.exports.createCustomer = (req, res, next) => {
     var customer = req.body;
+    var data = {
+        success: false,
+        token: null,
+        error: null
+    };
     if (customer) {
+        var token = jwt.sign(customer.email, dataConfig.tokenSecrectKey);
+        if(!customer.displayName) {
+            customer.displayName = customer.firstName + ' ' + customer.lastName;
+        }
         models.Customer.create({
             lastName: customer.lastName,
             firstName: customer.firstName,
             email: customer.email,
             password: customer.password,
-            loginType: customer.loginType
+            loginType: customer.loginType,
+            avatarLink: customer.avatarLink,
+            gender: customer.gender,
+            displayName: customer.displayName,
+            token: token
         }).then((result) => {
-            res.end("insert success");
+            data.success = true;
+            data.token = token;
+            data.customer = result.dataValues;
+            res.json(data);
         }, (err) => {
-            res.statusCode = 400;
-            res.end();
+            data.success = false;
+            data.error = err;
+            res.json(data);
         });
     } else {
         res.statusCode = 400;
-        res.end();
+        res.json(data);
     }
 };
 

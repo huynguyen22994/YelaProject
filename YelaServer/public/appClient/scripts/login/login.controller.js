@@ -5,12 +5,15 @@
         .module('YelaAppClient.Login')
         .controller('LoginController', ControllerController);
 
-    ControllerController.$inject = ['LoginConstant', 'LoginService', 'Customer', '$rootScope', '$location', '$scope'];
-    function ControllerController(LoginConstant, LoginService, Customer, $rootScope, $location, $scope) {
+    ControllerController.$inject = ['LoginConstant', 'LoginService', 'Customer', '$rootScope', '$location', '$scope', 'toastr'];
+    function ControllerController(LoginConstant, LoginService, Customer, $rootScope, $location, $scope, toastr) {
         var vm = this;
+        vm.customerSignUp = {};
         
         vm.onGoogleLogin = onGoogleLogin;
         vm.onFacebookLogin = onFacebookLogin;
+        vm.onSignUp = onSignUp;
+        vm.onSignIn = onSignIn;
 
         activate();
 
@@ -73,22 +76,39 @@
                     facebookAPI();
                 }, {scope: 'public_profile,email'});
             }
-          }
+        }
 
-          function facebookAPI() {
-            FB.api('/me', {fields: 'name, email, last_name, first_name, picture'}, function(customerInfo) {
-              var requestBody = LoginService.helper.parserFFRequest(customerInfo);
-              LoginService.loginGoogleFacebook(requestBody)
-                  .then(function(res) {
-                      if(res.data) {
-                          var cusInfo = res.data.customer;
-                          $rootScope.Customer = new Customer(cusInfo.customerId, cusInfo.token, cusInfo.firstName, cusInfo.lastName, cusInfo.avatarLink, cusInfo.email);
-                          window.localStorage.setItem('customerToken', $rootScope.Customer.getToken());
-                          $location.path('/'); 
-                      }
-                  })
-            });
-          }
+        function facebookAPI() {
+        FB.api('/me', {fields: 'name, email, last_name, first_name, picture'}, function(customerInfo) {
+            var requestBody = LoginService.helper.parserFFRequest(customerInfo);
+            LoginService.loginGoogleFacebook(requestBody)
+                .then(function(res) {
+                    if(res.data) {
+                        var cusInfo = res.data.customer;
+                        $rootScope.Customer = new Customer(cusInfo.customerId, cusInfo.token, cusInfo.firstName, cusInfo.lastName, cusInfo.avatarLink, cusInfo.email);
+                        window.localStorage.setItem('customerToken', $rootScope.Customer.getToken());
+                        $location.path('/'); 
+                    }
+                })
+        });
+        }
+
+        function onSignIn() {
+
+        }
+
+        function onSignUp() {
+            var isCapchaChecked;
+            if(window.grecaptcha) {
+              isCapchaChecked = window.grecaptcha.getResponse(window.foodtechLoginGReCapcha);   
+            };
+            if(isCapchaChecked) {
+
+            } else {
+                vm.alertMsg = 'Vui lòng xác nhận bạn không phải là người máy tiếp tục gửi lời nhắn nhé. Điều này sẽ giúp chúng tôi ngăn chặn việc spam tin nhắn.';
+                toastr.error(vm.alertMsg);
+            }
+        }
 
     }
 })();

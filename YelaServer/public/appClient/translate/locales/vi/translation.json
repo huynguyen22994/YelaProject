@@ -71,5 +71,9 @@
     "keepSignIn": "Giữ đăng nhập",
     "signInAccount": "Đăng nhập tài khoản",
     "signIn": "Đăng nhập",
-    "password": "Mật khẩu"
+    "password": "Mật khẩu",
+    "firstName": "Tên",
+    "lastName": "Họ",
+    "confirmPassword": "Nhập lại mật khẩu",
+    "displayName": "Tên hiển thị"
 }

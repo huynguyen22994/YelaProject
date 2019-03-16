@@ -35,13 +35,28 @@
                 <div class="signup-form"><!--sign up form-->
                     <h2>{{ 'signupLabel' | i18next }}</h2>
                     <form action="#">
-                        <input type="text" placeholder="{{ 'name' | i18next }}"/>
-                        <input type="email" placeholder="{{ 'email' | i18next }}"/>
-                        <input type="password" placeholder="{{ 'password' | i18next }}"/>
-                        <button type="submit" class="btn btn-default">{{ 'signup' | i18next }}</button>
+                        <input type="text" ng-model="vm.customerSignUp.firstName" placeholder="{{ 'firstName' | i18next }}"/>
+                        <input type="text" ng-model="vm.customerSignUp.lastName" placeholder="{{ 'lastName' | i18next }}"/>
+                        <!-- <input type="text" ng-model="vm.customerSignUp.name" placeholder="{{ 'displayName' | i18next }}"/> -->
+                        <input type="email" ng-model="vm.customerSignUp.email" placeholder="{{ 'email' | i18next }}"/>
+                        <input type="password" ng-model="vm.customerSignUp.password" placeholder="{{ 'password' | i18next }}"/>
+                        <input type="password" ng-model="vm.customerSignUp.password" placeholder="{{ 'confirmPassword' | i18next }}"/>
+                        <div id="login-g-recapcha"></div>
+                        <button ng-click="vm.onSignUp()" style="margin-top:10px" class="btn btn-default">{{ 'signup' | i18next }}</button>
                     </form>
                 </div><!--/sign up form-->
             </div>
         </div>
     </div>
 </section><!--/form-->
+
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+    async defer>
+    </script>
+    <script type="text/javascript">
+    var onloadCallback = function() {
+        window.foodtechLoginGReCapcha = grecaptcha.render('login-g-recapcha', {
+        'sitekey' : '6LcDoY8UAAAAAOPbEpQPnOefbqbDtOe-5pg0eGbD'
+        });
+    };
+</script>
