@@ -24,7 +24,8 @@ function createNewCustomer(customer) {
             loginType: customer.loginType,
             avatarLink: customer.avatarLink,
             gender: customer.gender,
-            token: token
+            token: token,
+            status: 'active'
         }).then((result) => {
             data.success = true;
             data.token = token;

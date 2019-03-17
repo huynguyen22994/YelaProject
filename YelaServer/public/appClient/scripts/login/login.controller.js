@@ -14,12 +14,15 @@
         vm.onFacebookLogin = onFacebookLogin;
         vm.onSignUp = onSignUp;
         vm.onSignIn = onSignIn;
+        vm.backToLoginPage = backToLoginPage;
 
         activate();
 
         ////////////////
 
-        function activate() { }
+        function activate() {
+            vm.isLoginPage = true;
+         }
 
         function onGoogleLogin(){
             //if ($scope.customerLogined === false) {
@@ -102,12 +105,46 @@
             if(window.grecaptcha) {
               isCapchaChecked = window.grecaptcha.getResponse(window.foodtechLoginGReCapcha);   
             };
-            if(isCapchaChecked) {
 
+            if(isValidSignUp(vm.customerSignUp)) {
+                if(isPasswordMatched(vm.customerSignUp.password, vm.customerSignUp.confirmPassword)) {
+                    if(isCapchaChecked) {
+                        var customerRequest = LoginService.helper.parserManualRequest(vm.customerSignUp);
+                        LoginService.createCustomer(customerRequest)
+                            .then(function(response) {
+                                var data = response.data || {};
+                                var customer = data.customer;
+                                if(data.success && customer.status === 'pending'){
+                                    vm.customerSignUp = {};
+                                    vm.isLoginPage = false;
+                                } else {
+
+                                }
+                            })
+                    } else {
+                        vm.alertMsg = 'Bạn vui lòng chọn mục capcha để chúng tôi biết bạn không phải là người máy nhé.';
+                        toastr.error(vm.alertMsg);
+                    }
+                } else {
+                    vm.alertMsg = 'Mật khẩu và xác nhận mật khẩu của bạn không đúng kìa.';
+                    toastr.error(vm.alertMsg);
+                }
             } else {
-                vm.alertMsg = 'Vui lòng xác nhận bạn không phải là người máy tiếp tục gửi lời nhắn nhé. Điều này sẽ giúp chúng tôi ngăn chặn việc spam tin nhắn.';
+                vm.alertMsg = 'Bạn vui lòng nhập đầy đủ thông tin giúp chúng mình nhé.';
                 toastr.error(vm.alertMsg);
             }
+        }
+
+        function isValidSignUp(data) {
+            return data.lastName && data.firstName && data.email && data.password && data.confirmPassword;
+        }
+
+        function isPasswordMatched(pass, confirmPass) {
+            return pass === confirmPass;
+        }
+
+        function backToLoginPage() {
+            vm.isLoginPage = true;
         }
 
     }

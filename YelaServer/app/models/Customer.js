@@ -54,6 +54,10 @@ module.exports = function(sequelize, Sequelize) {
         displayName: {
             type: Sequelize.STRING,
             allowNull: true
+        },
+        status: {
+            type: Sequelize.ENUM('active', 'inactive', 'pending'),
+            allowNull: false
         }
     }, {
         charset: 'utf8',

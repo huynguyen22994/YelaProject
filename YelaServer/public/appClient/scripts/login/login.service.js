@@ -16,7 +16,8 @@
             getCustomerByToken: getCustomerByToken,
             helper: {
                 parserGGRequest: parserGGRequest,
-                parserFFRequest: parserFFRequest
+                parserFFRequest: parserFFRequest,
+                parserManualRequest: parserManualRequest
             }
         };
         
@@ -49,6 +50,18 @@
                 avatarLink: picture.url,
                 loginType: 'facebook',
                 displayName: data.name
+            }   
+        }
+
+        function parserManualRequest(data) {
+            return {
+                lastName: data.lastName,
+                firstName: data.firstName,
+                email: data.email,
+                loginType: 'manual',
+                displayName: data.name,
+                password: data.password,
+                confirmPassword: data.confirmPassword
             }   
         }
 

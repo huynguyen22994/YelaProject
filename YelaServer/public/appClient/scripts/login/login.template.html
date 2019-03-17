@@ -1,4 +1,4 @@
-<section id="form" style="margin-top: 10px; margin-bottom: 60px" ><!--form-->
+<section ng-if="vm.isLoginPage" id="form" style="margin-top: 10px; margin-bottom: 60px" ><!--form-->
     <div class="container">
         <div class="row">
             <div class="col-sm-4 col-sm-offset-1">
@@ -34,13 +34,13 @@
             <div class="col-sm-4">
                 <div class="signup-form"><!--sign up form-->
                     <h2>{{ 'signupLabel' | i18next }}</h2>
-                    <form action="#">
+                    <form>
                         <input type="text" ng-model="vm.customerSignUp.firstName" placeholder="{{ 'firstName' | i18next }}"/>
                         <input type="text" ng-model="vm.customerSignUp.lastName" placeholder="{{ 'lastName' | i18next }}"/>
                         <!-- <input type="text" ng-model="vm.customerSignUp.name" placeholder="{{ 'displayName' | i18next }}"/> -->
                         <input type="email" ng-model="vm.customerSignUp.email" placeholder="{{ 'email' | i18next }}"/>
                         <input type="password" ng-model="vm.customerSignUp.password" placeholder="{{ 'password' | i18next }}"/>
-                        <input type="password" ng-model="vm.customerSignUp.password" placeholder="{{ 'confirmPassword' | i18next }}"/>
+                        <input type="password" ng-model="vm.customerSignUp.confirmPassword" placeholder="{{ 'confirmPassword' | i18next }}"/>
                         <div id="login-g-recapcha"></div>
                         <button ng-click="vm.onSignUp()" style="margin-top:10px" class="btn btn-default">{{ 'signup' | i18next }}</button>
                     </form>
@@ -49,6 +49,23 @@
         </div>
     </div>
 </section><!--/form-->
+
+<section ng-if="!vm.isLoginPage" id="sign-up-success" class="cart-wrapper" style="margin-top: 10px; margin-bottom: 60px">
+    <div class="container">
+
+        <div style="text-align: center; margin-bottom: 3rem">
+            <h3 style="color: #696763">Đăng ký tài khoản thành công</h3>
+        </div>
+
+        <div class="register-req" style="margin-top: -20px">
+            <h5>Mã đơn hàng của bạn: <i>{{ vm.billInfoSuccess.billId }}</i></h5>
+            <p>Cám ơn bạn đã đặt hàng tại quán ăn của chúng tôi. Trong vòng 5 phút nhân viên của FoodTech gọi điện hoặc nhắn tin để xác nhận đơn hàng của bạn.</p>
+            <button ng-click="vm.backToLoginPage()" 
+            style="margin-top:10px; background: #ff8080; border-radius: 0;color: #FFFFFF;" 
+            class="btn btn-default">{{ 'backToLoginPage' | i18next }}</button>
+        </div>    
+    </div><!--/register-req-->
+</section> <!--/#cart_items-->
 
 <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
     async defer>

@@ -1,6 +1,7 @@
 var models = require('../models');
 var async = require('async');
 var _ = require('underscore');
+var fs = require('fs');
 var jwt = require('jsonwebtoken');
 var data = fs.readFileSync('./config/config.json');
 var dataConfig = JSON.parse(data.toString());
@@ -26,7 +27,8 @@ module.exports.createCustomer = (req, res, next) => {
             avatarLink: customer.avatarLink,
             gender: customer.gender,
             displayName: customer.displayName,
-            token: token
+            token: token,
+            status: (customer.loginType === 'manual') ? 'pending' : 'inactive'
         }).then((result) => {
             data.success = true;
             data.token = token;
