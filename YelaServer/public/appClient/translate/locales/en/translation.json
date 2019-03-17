@@ -75,5 +75,6 @@
     "firstName": "First name",
     "lastName": "Last name",
     "confirmPassword": "Confirm password",
-    "displayName": "Display name"
+    "displayName": "Display name",
+    "backToLoginPage": "Back to login page"
 }

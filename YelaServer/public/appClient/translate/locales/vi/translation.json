@@ -75,5 +75,6 @@
     "firstName": "Tên",
     "lastName": "Họ",
     "confirmPassword": "Nhập lại mật khẩu",
-    "displayName": "Tên hiển thị"
+    "displayName": "Tên hiển thị",
+    "backToLoginPage": "Trở lại trang đăng nhập"
 }

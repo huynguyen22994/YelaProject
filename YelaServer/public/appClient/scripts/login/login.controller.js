@@ -115,7 +115,6 @@
                                 var data = response.data || {};
                                 var customer = data.customer;
                                 if(data.success && customer.status === 'pending'){
-                                    vm.customerSignUp = {};
                                     vm.isLoginPage = false;
                                 } else {
 
@@ -144,6 +143,7 @@
         }
 
         function backToLoginPage() {
+            vm.customerSignUp = {};
             vm.isLoginPage = true;
         }
 

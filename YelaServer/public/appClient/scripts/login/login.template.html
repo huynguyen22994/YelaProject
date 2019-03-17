@@ -58,8 +58,9 @@
         </div>
 
         <div class="register-req" style="margin-top: -20px">
-            <h5>Mã đơn hàng của bạn: <i>{{ vm.billInfoSuccess.billId }}</i></h5>
-            <p>Cám ơn bạn đã đặt hàng tại quán ăn của chúng tôi. Trong vòng 5 phút nhân viên của FoodTech gọi điện hoặc nhắn tin để xác nhận đơn hàng của bạn.</p>
+            <h5>Đã gửi thư kích hoạt tài khoản thành công.</h5>
+            <p>Chúng tôi đã gửi đến địa chỉ email <b>{{vm.customerSignUp.email}}</b> một thư kích hoạt tài khoản. Bạn vui lòng giúp chúng tôi kiểm tra mail và xác nhận kích hoạt tài khoản với nhé.</p>
+            <p>Cám ơn đã đăng ký tài khoản ở FoodTech. Bạn sẽ nhận được nhiều chương trình ưu đã mua hàng giảm giá hơn.</p>
             <button ng-click="vm.backToLoginPage()" 
             style="margin-top:10px; background: #ff8080; border-radius: 0;color: #FFFFFF;" 
             class="btn btn-default">{{ 'backToLoginPage' | i18next }}</button>

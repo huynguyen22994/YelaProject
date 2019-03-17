@@ -5,6 +5,7 @@ var fs = require('fs');
 var jwt = require('jsonwebtoken');
 var data = fs.readFileSync('./config/config.json');
 var dataConfig = JSON.parse(data.toString());
+var Mail = require('../services/mailService');
 
 module.exports.createCustomer = (req, res, next) => {
     var customer = req.body;
@@ -33,7 +34,15 @@ module.exports.createCustomer = (req, res, next) => {
             data.success = true;
             data.token = token;
             data.customer = result.dataValues;
-            res.json(data);
+            if(data.customer.status === 'pending') {
+                Mail.sendActiveAccountMail(data.customer)
+                    .then(function(result) {
+                        data.sendMail = result;
+                        res.json(data);
+                    })
+            } else {
+                res.json(data);
+            }
         }, (err) => {
             data.success = false;
             data.error = err;
