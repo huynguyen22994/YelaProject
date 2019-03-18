@@ -13,7 +13,11 @@
             getProductNews: getProductNews,
             getProductBestsellers: getProductBestsellers,
             getBrands: getBrands,
-            getCategories: getCategories
+            getCategories: getCategories,
+            activeAccount: activeAccount,
+            helper: {
+                parseActiveRequest: parseActiveRequest
+            }
         };
         
         return service;
@@ -90,5 +94,23 @@
                 return err;
             });
         };
+
+        function activeAccount(data) {
+            return $http({
+                url: '/api/customer/active',
+                method: 'POST',
+                data: data
+            }).then(function (res) {
+                return res;
+            }).catch(function (err) {
+                return err;
+            });
+        };
+
+        function parseActiveRequest(token, id, email) {
+            return {
+
+            }
+        }
     }
 })();

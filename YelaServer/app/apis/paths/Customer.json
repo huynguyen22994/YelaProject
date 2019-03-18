@@ -213,6 +213,39 @@
                     },
                 "x-swagger-router-controller": "DefaultCtrl"
             }
+        },
+        "/customer/active": {
+            "post": {
+                "summary": "create new coffee",
+                "description": "input a new coffee to insert CoffeeDB",
+                "operationId": "activeCustomer",
+                 "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Coffee object that needs to be added to the CoffeeDB",
+                        "required": false,
+                        "schema": {
+                        "$ref": "#/definitions/Customer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "template file",
+                        "schema": {
+                            "$ref": "#/definitions/Customer"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                },
+                "x-swagger-router-controller": "DefaultCtrl"
+            }
         }
     }
 }

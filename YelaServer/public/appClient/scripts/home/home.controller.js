@@ -5,8 +5,8 @@
         .module('YelaAppClient.Home')
         .controller('HomeController', ControllerController);
 
-    ControllerController.$inject = ['HomeService', 'clientConstant'];
-    function ControllerController(HomeService, clientConstant) {
+    ControllerController.$inject = ['HomeService', 'clientConstant', '$route'];
+    function ControllerController(HomeService, clientConstant, $route) {
         var vm = this;
         vm.offsetRecommendProduct = 0;
         vm.limitRecommendProduct = 4;
@@ -57,12 +57,30 @@
         ////////////////
 
         async function activate() {
+            detectActiveAccount();
             await loadBrands();
             await loadCategories();
             await loadProductFreatures(vm.FeatureProduct.offset, vm.FeatureProduct.limit);
             vm.productNews = await loadProductNews();
             await loadProductBestsellers(vm.RecommendProduct.offset, vm.RecommendProduct.limit);
          };
+
+        function detectActiveAccount() {
+            if(_.get($route, 'current.$$route.isActiveRoute')) {
+                var token = _.get($route, 'current.params.token');
+                var id = _.get($route, 'current.params.id');
+                var email = _.get($route, 'current.params.email');
+                activeAccount(token, id, email);
+            }
+        } 
+
+        function activeAccount(token, id, email) {
+            var requestData = HomeService.helper.parseActiveRequest(token, id, email);
+            HomeService.activeAccount(requestData)
+                .then(function(response) {
+
+                })
+        }
 
         function loadProductFreatures(offset, limit) {
             return new Promise((resolve, reject) => {

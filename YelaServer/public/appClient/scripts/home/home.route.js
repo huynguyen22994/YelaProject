@@ -7,13 +7,19 @@
 
     configFunction.$inject = ['$routeProvider', '$locationProvider'];
     function configFunction($routeProvider, $locationProvider) {
-        //let urlParams = productMgmtConstant.appUrl.productMgmt.routeUrl + '/:route';
+        var urlActiveAccount = '/active-account/:token/:id/:email';
 
         $routeProvider
             .when('/', {
                 templateUrl: 'home.html',
                 controller: 'HomeController',
                 controllerAs: 'vm'
+            })
+            .when(urlActiveAccount, {
+                templateUrl: 'home.html',
+                controller: 'HomeController',
+                controllerAs: 'vm',
+                isActiveRoute: true
             });
         //$locationProvider.html5Mode(true);
     };

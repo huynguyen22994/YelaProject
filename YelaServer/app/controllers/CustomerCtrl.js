@@ -54,30 +54,6 @@ module.exports.createCustomer = (req, res, next) => {
     }
 };
 
-module.exports.updateCategory = (req, res, next) => {
-    var category = req.body;
-    if (category) {
-        models.Category.update(
-            {
-                name: category.name
-            },
-            {
-                where: {
-                    categoryId: category.categoryId
-                }
-            }
-        ).then((result) => {
-            res.end(JSON.stringify(result));
-        }, (err) => {
-            res.statusCode = 400;
-            res.end();
-        })
-    } else {
-        res.statusCode = 400;
-        res.end()
-    }
-};
-
 module.exports.checkEmail = (email, callback) => {
     models.Customer.findOne({
         where: {
@@ -117,4 +93,61 @@ module.exports.getCustomerByToken = (req, res, next) => {
         data.error = err;
         res.json(data);
     });
+};
+
+module.exports.activeCustomer = (req, res, next) => {
+    var customer = req.body || {};
+    var token = customer.token;
+    var id = customer.customerId;
+    var email = customer.email;
+    var data = {
+        success: false,
+        token: null,
+        error: null
+    };
+    if(token && id && email) {
+        models.Customer.findOne({
+            where: {
+                token: token,
+                customerId: id,
+                email: email
+            }
+        }).then(function(result) {
+            if(result.dataValues) {
+                var customerValue = result.dataValues;
+                models.Customer.update(
+                    {
+                        status: 'active'
+                    },
+                    {
+                        where: {
+                            token: customerValue.token,
+                            customerId: customerValue.customerId,
+                            email: customerValue.email
+                        }
+                    }
+                ).then((result) => {
+                    data.success = true;
+                    data.token = customerValue.token;
+                    res.json(data);
+                }, (err) => {
+                    res.statusCode = 400;
+                    data.msg = "Update status fail";
+                    res.json(data);
+                })
+            } else {
+                res.statusCode = 400;
+                data.msg = "Can't active account";
+                res.json(data);
+            }
+        }, (err) => {
+            res.statusCode = 400;
+            data.msg = err;
+            res.json(data);
+        });
+    } else {
+        res.statusCode = 400;
+        data.msg = "Can't active account";
+        res.json(data);
+    }
 };

@@ -131,6 +131,10 @@ module.exports.getCustomerByToken = (req, res, next) => {
     CustomerCtrl.getCustomerByToken(req, res, next);
 };
 
+module.exports.activeCustomer = (req, res, next) => {
+    CustomerCtrl.activeCustomer(req, res, next);
+};
+
 // Email authentication
 module.exports.emailAuthentication = (req, res, next) => {
     var customerEmail = req.query.email;
