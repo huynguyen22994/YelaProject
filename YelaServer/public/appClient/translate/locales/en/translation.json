@@ -76,5 +76,6 @@
     "lastName": "Last name",
     "confirmPassword": "Confirm password",
     "displayName": "Display name",
-    "backToLoginPage": "Back to login page"
+    "backToLoginPage": "Back to login page",
+    "close": "Close"
 }

@@ -5,8 +5,8 @@
         .module('YelaAppClient.Home')
         .controller('HomeController', ControllerController);
 
-    ControllerController.$inject = ['HomeService', 'clientConstant', '$route'];
-    function ControllerController(HomeService, clientConstant, $route) {
+    ControllerController.$inject = ['HomeService', 'clientConstant', '$route', '$rootScope'];
+    function ControllerController(HomeService, clientConstant, $route, $rootScope) {
         var vm = this;
         vm.offsetRecommendProduct = 0;
         vm.limitRecommendProduct = 4;
@@ -78,8 +78,32 @@
             var requestData = HomeService.helper.parseActiveRequest(token, id, email);
             HomeService.activeAccount(requestData)
                 .then(function(response) {
-
-                })
+                    var data = response.data || {};
+                    if(data.success) {
+                        $rootScope.rootModal.headerTitle = "Kích hoạt tài khoản thành công";
+                        $rootScope.rootModal.contentMsg = "Cám ơn bạn đã đăng ký tài khoản tại FoodTech. Chúng tôi sẽ gửi đến bạn thông vào về những chương trình giảm giá và sự kiện của shop.";
+                        $rootScope.rootModal.show();
+                        // login
+                        $rootScope.getCustomer(data.token)
+                            .then(function() {
+                                window.localStorage.setItem('customerToken', data.token);
+                            })
+                    } else {
+                        if(data.isActived) {
+                            $rootScope.rootModal.headerTitle = "Kích hoạt tài khoản thất bại";
+                            $rootScope.rootModal.contentMsg = "Tài khoản này đã được kích hoạt. Bạn có thể liên hệ với admin của FoodTech ở mục liên hệ để được hỗ trợ. Cám ơn bạn nhé.";
+                            $rootScope.rootModal.show();
+                        } else {
+                            $rootScope.rootModal.headerTitle = "Kích hoạt tài khoản thất bại";
+                            $rootScope.rootModal.contentMsg = "Đã xảy ra lỗi trong quá trỉnh kích hoạt tài khoản, bạn có thể vào mục liên hệ để gửi thông báo để được admin FoodTech hỗ trợ kích hoạt tài khoản nhé. Cám ơn bạn.";
+                            $rootScope.rootModal.show();  
+                        }  
+                    }
+                }).catch(function(error) {
+                    $rootScope.rootModal.headerTitle = "Kích hoạt tài khoản thất bại";
+                    $rootScope.rootModal.contentMsg = "Đã xảy ra lỗi trong quá trỉnh kích hoạt tài khoản, bạn có thể vào mục liên hệ để gửi thông báo để được admin FoodTech hỗ trợ kích hoạt tài khoản nhé. Cám ơn bạn.";
+                    $rootScope.rootModal.show();
+                });
         }
 
         function loadProductFreatures(offset, limit) {

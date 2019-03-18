@@ -109,7 +109,9 @@
 
         function parseActiveRequest(token, id, email) {
             return {
-
+                token: token,
+                customerId: id,
+                email: email
             }
         }
     }

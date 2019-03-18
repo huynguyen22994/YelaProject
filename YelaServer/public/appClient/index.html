@@ -110,6 +110,27 @@
 	
 	<div class="fb-customerchat" page_id="585026038584164"></div>
 
+	  <!-- Root Modal -->
+	  <div class="modal fade" id="rootModal" role="dialog">
+		<div class="modal-dialog">
+		
+		  <!-- Modal content-->
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <button type="button" ng-click="$root.rootModal.closeCallback()" class="close" data-dismiss="modal">&times;</button>
+			  <h4 class="modal-title">{{ $root.rootModal.headerTitle }}</h4>
+			</div>
+			<div class="modal-body">
+			  <p>{{ $root.rootModal.contentMsg }}</p>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" ng-click="$root.rootModal.closeCallback()" class="btn btn-default" data-dismiss="modal">{{ 'close' | i18next }}</button>
+			</div>
+		  </div>
+		  
+		</div>
+	  </div>
+
   
     <script src="styles/js/jquery.js"></script>
 	<script src="styles/js/bootstrap.min.js"></script>

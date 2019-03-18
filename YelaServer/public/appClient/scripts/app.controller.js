@@ -14,7 +14,25 @@
         $rootScope.Cart = new Cart();
         $rootScope.useChatBox = false;
         $rootScope.logout = logout;
+        $rootScope.rootModal = {
+            headerTitle: '',
+            contentMsg: '',
+            show: function() {
+                angular.element('#rootModal').modal('show');
+            },
+            hide: function() {
+                angular.element('#rootModal').modal('hide');
+            },
+            toggle: function() {
+                angular.element('#rootModal').modal('toggle');
+            },
+            closeCallback: function() {
+                $location.path('/');
+            }
+        }
 
+        //////// Function ////////
+        $rootScope.getCustomer = getCustomer;
 
         activate();
         ////////////////

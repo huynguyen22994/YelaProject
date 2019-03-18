@@ -45,7 +45,7 @@
         }
 
         function getImage() {
-            return this.avatarLink;
+            return this.avatarLink ? this.avatarLink : 'images/shop/customer.png';
         }
 
         function getToken() {

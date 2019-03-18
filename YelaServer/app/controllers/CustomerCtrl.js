@@ -114,27 +114,33 @@ module.exports.activeCustomer = (req, res, next) => {
             }
         }).then(function(result) {
             if(result.dataValues) {
-                var customerValue = result.dataValues;
-                models.Customer.update(
-                    {
-                        status: 'active'
-                    },
-                    {
-                        where: {
-                            token: customerValue.token,
-                            customerId: customerValue.customerId,
-                            email: customerValue.email
+                if(result.dataValues.status !== 'active') {
+                    var customerValue = result.dataValues;
+                    models.Customer.update(
+                        {
+                            status: 'active'
+                        },
+                        {
+                            where: {
+                                token: customerValue.token,
+                                customerId: customerValue.customerId,
+                                email: customerValue.email
+                            }
                         }
-                    }
-                ).then((result) => {
-                    data.success = true;
-                    data.token = customerValue.token;
-                    res.json(data);
-                }, (err) => {
-                    res.statusCode = 400;
-                    data.msg = "Update status fail";
-                    res.json(data);
-                })
+                    ).then((result) => {
+                        data.success = true;
+                        data.token = customerValue.token;
+                        res.json(data);
+                    }, (err) => {
+                        res.statusCode = 400;
+                        data.msg = "Update status fail";
+                        res.json(data);
+                    })
+                } else {
+                    data.success = false;
+                    data.isActived = true;
+                    res.json(data);  
+                }
             } else {
                 res.statusCode = 400;
                 data.msg = "Can't active account";
