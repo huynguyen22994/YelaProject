@@ -17,7 +17,8 @@
             helper: {
                 parserGGRequest: parserGGRequest,
                 parserFFRequest: parserFFRequest,
-                parserManualRequest: parserManualRequest
+                parserManualRequest: parserManualRequest,
+                parseManualLoginReq: parseManualLoginReq
             }
         };
         
@@ -140,6 +141,13 @@
                 return err;
             });
         };
+
+        function parseManualLoginReq(data) {
+            return {
+                email: data.email,
+                password: data.password
+            }
+        }
 
     }
 })();

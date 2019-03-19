@@ -4,14 +4,14 @@
             <div class="col-sm-4 col-sm-offset-1">
                 <div class="login-form"><!--login form-->
                     <h2>{{ 'signInAccount' | i18next}}</h2>
-                    <form action="#">
-                        <input type="text" placeholder="{{ 'name' | i18next }}" />
-                        <input type="email" placeholder="{{ 'email' | i18next }}" />
+                    <form>
+                        <input type="email" ng-model="vm.customerSignIn.email" placeholder="{{ 'email' | i18next }}" />
+                        <input type="password" ng-model="vm.customerSignIn.password" placeholder="{{ 'password' | i18next }}" />
                         <span>
                             <input type="checkbox" class="checkbox"> 
                             {{ 'keepSignIn' | i18next }}
                         </span>
-                        <button type="submit" class="btn btn-default">{{ 'signIn' | i18next }}</button>
+                        <button ng-click="vm.onSignIn()" class="btn btn-default">{{ 'signIn' | i18next }}</button>
                     </form>
                 </div><!--/login form-->
                 <div class="login-form">

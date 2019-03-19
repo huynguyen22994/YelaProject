@@ -9,6 +9,7 @@
     function ControllerController(LoginConstant, LoginService, Customer, $rootScope, $location, $scope, toastr) {
         var vm = this;
         vm.customerSignUp = {};
+        vm.customerSignIn = {};
         
         vm.onGoogleLogin = onGoogleLogin;
         vm.onFacebookLogin = onFacebookLogin;
@@ -97,7 +98,27 @@
         }
 
         function onSignIn() {
-
+            if(vm.customerSignIn.email || vm.customerSignIn.password) {
+                var requestBody = LoginService.helper.parseManualLoginReq(vm.customerSignIn);
+                LoginService.loginCustomer(requestBody)
+                    .then(function(res) {
+                        if(res.data && res.data.token) {
+                            var cusInfo = res.data.customer;
+                            $rootScope.Customer = new Customer(cusInfo.customerId, cusInfo.token, cusInfo.firstName, cusInfo.lastName, cusInfo.avatarLink, cusInfo.email);
+                            window.localStorage.setItem('customerToken', $rootScope.Customer.getToken());
+                            $location.path('/'); 
+                        } else {
+                            vm.alertMsg = 'Đăng nhập thất bại';
+                            toastr.error(vm.alertMsg);
+                        }
+                    }).catch(function() {
+                        vm.alertMsg = 'Đăng nhập thất bại. Đã xảy ra lỗi khi đăng nhập.';
+                        toastr.error(vm.alertMsg);
+                    });
+            } else {
+                vm.alertMsg = 'Vui lòng nhập đầy đủ thông tin email, password.';
+                toastr.error(vm.alertMsg);
+            }
         }
 
         function onSignUp() {
@@ -117,7 +138,13 @@
                                 if(data.success && customer.status === 'pending'){
                                     vm.isLoginPage = false;
                                 } else {
-
+                                    if(data.isExistEmail) {
+                                        vm.alertMsg = 'Email này đã được đăng ký, bạn có thử đăng ký với email khác hoặc đăng nhập bằng Google hoặc Facebook.';
+                                        toastr.error(vm.alertMsg);
+                                    } else {
+                                        vm.alertMsg = 'Đã có lỗi xảy ra trong quá trình đăng ký, bạn đăng ký lại giúp chúng mình nhé.';
+                                        toastr.error(vm.alertMsg);
+                                    }
                                 }
                             })
                     } else {

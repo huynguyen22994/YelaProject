@@ -79,10 +79,16 @@ module.exports.loginCustomer = (req, res, next) => {
         }
     }).then((customer) => {
         if (customer) {
-            var token = jwt.sign(customer.dataValues, dataConfig.tokenSecrectKey);
-            req.session.userLogined = true;
-            req.session.token = token;
-            res.end(JSON.stringify({ token: token } ));
+            if(customer.status === 'active') {
+                var customerData = customer.dataValues;
+                res.json({
+                    token: customerData.token,
+                    customer: customerData
+                })
+            } else {
+                res.statusCode = 400;
+                res.end(JSON.stringify({notActive: true, err: "account is not active"}));
+            }
         } else {
             res.statusCode = 400;
             res.end(JSON.stringify({err: "account is not exist"}));

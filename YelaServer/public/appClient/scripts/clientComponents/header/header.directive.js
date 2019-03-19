@@ -90,7 +90,7 @@
                     { iconClass: 'fa fa-shopping-cart', label: 'cart', useNotice: true, href: function () { return '#!/cart'; } },
                     { 
                         iconClass: 'fa fa-lock', 
-                        label: 'Login', 
+                        label: 'signIn', 
                         hide: function() {
                             if($rootScope.Customer) {
                                 return $rootScope.Customer.isLogin();

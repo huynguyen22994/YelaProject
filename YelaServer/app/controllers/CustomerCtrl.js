@@ -19,35 +19,60 @@ module.exports.createCustomer = (req, res, next) => {
         if(!customer.displayName) {
             customer.displayName = customer.firstName + ' ' + customer.lastName;
         }
-        models.Customer.create({
-            lastName: customer.lastName,
-            firstName: customer.firstName,
-            email: customer.email,
-            password: customer.password,
-            loginType: customer.loginType,
-            avatarLink: customer.avatarLink,
-            gender: customer.gender,
-            displayName: customer.displayName,
-            token: token,
-            status: (customer.loginType === 'manual') ? 'pending' : 'inactive'
-        }).then((result) => {
-            data.success = true;
-            data.token = token;
-            data.customer = result.dataValues;
-            if(data.customer.status === 'pending') {
-                Mail.sendActiveAccountMail(data.customer)
-                    .then(function(result) {
-                        data.sendMail = result;
-                        res.json(data);
-                    })
-            } else {
+        models.Customer.findOne({
+            where: {
+                email: customer.email
+            }
+        }).then((value) => {
+            if (value) {
+               if(!value.dataValues) {
+                createCustomer();
+               } else {
+                data.success = false;
+                data.isExistEmail = true;
                 res.json(data);
+               }
+            } else {
+                createCustomer();
             }
         }, (err) => {
             data.success = false;
             data.error = err;
             res.json(data);
         });
+
+        function createCustomer() {
+            models.Customer.create({
+                lastName: customer.lastName,
+                firstName: customer.firstName,
+                email: customer.email,
+                password: customer.password,
+                loginType: customer.loginType,
+                avatarLink: customer.avatarLink,
+                gender: customer.gender,
+                displayName: customer.displayName,
+                token: token,
+                status: (customer.loginType === 'manual') ? 'pending' : 'inactive'
+            }).then((result) => {
+                data.success = true;
+                data.token = token;
+                data.customer = result.dataValues;
+                if(data.customer.status === 'pending') {
+                    Mail.sendActiveAccountMail(data.customer)
+                        .then(function(result) {
+                            data.sendMail = result;
+                            res.json(data);
+                        })
+                } else {
+                    res.json(data);
+                }
+            }, (err) => {
+                data.success = false;
+                data.error = err;
+                res.json(data);
+            });
+        }
+
     } else {
         res.statusCode = 400;
         res.json(data);
