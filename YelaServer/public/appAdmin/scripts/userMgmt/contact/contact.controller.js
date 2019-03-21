@@ -10,14 +10,17 @@
         // var vm = this;
         // vm.switchRoom = switchRoom;
         // $scope.switchRoom = switchRoom;
-
+        $scope.currentRoom = '';
         activate();
 
         ////////////////
 
-        function activate() { }
+        function activate() { 
+            socket.emit('adminOnline');
+        }
 
         window.switchRoom = function switchRoom(room){
+            $scope.currentRoom = room;
             socket.emit('cusSwitchRoom', room);
         }
 
@@ -25,16 +28,18 @@
             $('#rooms').empty();
             if(current_room) {
                 $.each(rooms, function(key ,value) {
-                    if(value == current_room){
-                        $('#rooms').append('<div>' + value + '</div>');
+                    var mailFormat = value.email.replace("@gmail.com", "");
+                    if(value.email == current_room){
+                        $('#rooms').append('<div style="color: #ff8080">' + mailFormat + '</div>');
                     }
                     else {
-                        $('#rooms').append('<div><a class="btn btn-default" onclick="switchRoom(\''+value+'\')">' + value + '</a></div>');
+                        $('#rooms').append('<div><a onclick="switchRoom(\''+value.email+'\')">' + mailFormat  + '</a></div>');
                     }
                 })
             } else {
                 $.each(rooms, function(key, value) {
-                    $('#rooms').append('<div><a class="btn btn-default" onclick="switchRoom(\''+value+'\')">' + value + '</a></div>');
+                    var mailFormat = value.email.replace("@gmail.com", "");
+                    $('#rooms').append('<div><a onclick="switchRoom(\''+value.email+'\')">' + mailFormat + '</a></div>');
                 });
             }
         });
@@ -46,10 +51,9 @@
         });
 
         socket.on('loadOldMessage', function(customer) {
-            console.log(customer);
             $('#conversation').empty();
             customer.chatBoxs.forEach(function(chat) {
-                $('#conversation').append('<b>'+chat.name + ':</b> ' + chat.chat + '<br>');
+                $('#conversation').append('<b>'+ chat.name + ':</b> ' + chat.message + '<br>');
             });
         });
 
@@ -63,11 +67,12 @@
                 var message = $('#data').val();
                 $('#data').val('');
                 // tell server to execute 'sendchat' and send along one parameter
-                $('#conversation').append('<b> Admin :</b> ' + message + '<br>');
+                $('#conversation').append('<b> FoodTech :</b> ' + message + '<br>');
                 socket.emit('cusSendChat', 
                     {
                         customer: {
-                            name: 'Admin'
+                            email: $scope.currentRoom,
+                            name: 'FoodTech'
                         },
                         role: 'admin',
                         chat: message

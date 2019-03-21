@@ -1,3 +1,6 @@
+var ChatModel = require('../controllers/ChatCtrl');
+var ChatService = require('../services/chatService');
+
 module.exports.initialize = function initialize(io, customer) {
 
     function addCusOnline(socket, site) {
@@ -22,7 +25,16 @@ module.exports.initialize = function initialize(io, customer) {
         addCusOnline(socket, socket.handshake.query.side);
         /////////////////////////////////////////
         socket.on('adminOnline', function () {
-            socket.emit('cusUpdateRoom', customerRoom);
+            ChatModel.getAllChat()
+                .then(function(result) {
+                    var customerList = result.rows;
+                    if(customerList) {
+                        socket.emit('cusUpdateRoom', customerList);
+                    }
+                }, function(error) {
+                    console.log(error);
+                });
+            // socket.emit('cusUpdateRoom', customerRoom);
         });
 
         socket.on('switchRoom', function(newroom){
@@ -38,58 +50,126 @@ module.exports.initialize = function initialize(io, customer) {
         });
 
         socket.on('cusSwitchRoom', function (room) {
+            // if (socket.room) {
+            //     socket.leave(socket.room);	
+            // }
+            // socket.join(room);
+            // socket.cusRoom = room;
+            // socket.emit('cusUpdateRoom', customerRoom, room);
+            // customers.forEach(function (custo) {
+            //     if (custo.email === room) {
+            //         socket.emit('loadOldMessage', custo);
+            //     }
+            // });
             if (socket.room) {
                 socket.leave(socket.room);	
             }
             socket.join(room);
-            socket.cusRoom = room;
-            socket.emit('cusUpdateRoom', customerRoom, room);
-            customers.forEach(function (custo) {
-                if (custo.email === room) {
-                    socket.emit('loadOldMessage', custo);
-                }
-            });
+            ChatModel.getAllChat()
+                .then(function(result) {
+                    var customerList = result.rows;
+                    if(customerList) {
+                        socket.emit('cusUpdateRoom', customerList, room);
+                        customerList.forEach(function (customer) {
+                            if (customer.email === room) {
+                                var contentObj = JSON.parse(customer.content);
+                                var reuquestCustomer = {
+                                    email: customer.email,
+                                    chatBoxs: contentObj.messages
+                                };
+                                socket.emit('loadOldMessage', reuquestCustomer);
+                            }
+                        });
+                    }
+                }, function(error) {
+                    console.log(error);
+                });
         });
 
         socket.on('customerJoin', function (customer) {
             checkCustomerExt(customer).then(function (customerExist) {
                 if (customerExist.check) {
-                    socket.customer = customer;
-                    socket.cusRoom = customer.email;
+                    var customerObj = customerExist.customer;
+                    var content = JSON.parse(customerObj.content);
+                    var reuquestCustomer = {
+                        email: customerObj.email,
+                        chatBoxs: content.messages
+                    };
+                    socket.customer = customerObj;
+                    socket.cusRoom = customerObj.email;
                     socket.join(socket.cusRoom)
-                    io.sockets.in(customer.email).emit('loadOldMessage', customerExist.customer);
+                    io.sockets.in(customerObj.email).emit('loadOldMessage', reuquestCustomer);
                 } else {
-                    socket.customer = customer;
-                    socket.cusRoom = customer.email;
                     customer.chatBoxs = [{name: 'Admin', role: 'admin', chat: 'Can I help you ?'}];
                     customerRoom.push(customer.email);
                     customers.push(customer);
-                    socket.join(socket.cusRoom);
-                    socket.emit('hello', 'Admin', 'admin', 'Can I help you ?');
+
+                    var Message = ChatService.instanceMessage('FoodTech', 'Chào bạn, chúng tôi có thể giúp gì được cho bạn ?', 'admin');
+                    var MessageList = ChatService.instanceMessageList(customer.email, Message);
+                    var Chat = ChatService.instanceChat(customer.email, MessageList.getMessageListStr());
+
+                    socket.customer = Chat;
+                    // socket.cusRoom = Chat.getEmail();
+                    // socket.join(socket.cusRoom);
+                    socket.join(Chat.getEmail());
+                    socket.emit('hello', Message.getName(), Message.getRole(), Message.getMessage());
                     socket.broadcast.emit('cusNewRoom', customer.email);
+                    ChatModel.triggerNewChat(Chat);
                 }
             });
         });
 
         function checkCustomerExt(customer) {
             return new Promise(function (resolve, reject) {
-                customers.forEach(function (customerResult) {
-                    if (customerResult.email === customer.email) {
-                        resolve({ check: true, customer: customerResult });
-                    }
-                });
-                resolve({ check: false});
+                ChatModel.getChatContentByMail(customer.email)
+                    .then(function(result) {
+                        if(result) {
+                            var customerObj = result.dataValues || false;
+                            if(customerObj) {
+                                resolve({ 
+                                    check: true, 
+                                    customer: customerObj
+                                });
+                            } else {
+                                resolve({ check: false});
+                            }
+                        } else {
+                            resolve({ check: false});
+                        }
+                    }, function(error) {
+                        console.log(error);
+                        resolve({ check: false});
+                    });
             });
         };
 
         socket.on('cusSendChat', function (customer, role, message) {
-            customers.forEach(function (cus) {
-                if (cus.email === socket.cusRoom) {
-                    cus.chatBoxs.push({ name: customer.customer.name, role: customer.role, chat: customer.chat });
-                }
-            });
+            // customers.forEach(function (cus) {
+            //     if (cus.email === socket.cusRoom) {
+            //         cus.chatBoxs.push({ name: customer.customer.name, role: customer.role, chat: customer.chat });
+            //     }
+            // });
             //io.sockets.in(socket.cusRoom).emit('cusUpdateChat', customer.customer.name, customer.role, customer.chat);
-            socket.broadcast.to(socket.cusRoom).emit('cusUpdateChat', customer.customer.name, customer.role, customer.chat);
+            // socket.broadcast.to(socket.cusRoom).emit('cusUpdateChat', customer.customer.name, customer.role, customer.chat);
+
+            var Message = ChatService.instanceMessage(customer.customer.name, customer.chat, customer.role);
+            ChatModel.getChatContentByMail(customer.customer.email)
+                .then(function(result) {
+                    if(result) {
+                        var customerObj = result.dataValues || false;
+                        if(customerObj) {
+                            var MessageList = ChatService.instanceMessageListWithString(customerObj.email, customerObj.content);
+                            MessageList.putMessage(Message);
+                            var Chat = ChatService.instanceChat(customerObj.email, MessageList.getMessageListStr());
+                            socket.broadcast.to(Chat.getEmail()).emit('cusUpdateChat', Message.getName(), Message.getRole(), Message.getMessage());
+                            ChatModel.updateChat(Chat);
+                        } else {
+                            
+                        }
+                    } else {
+                        
+                    }
+                })
         });
 
         // when the user disconnects.. perform this

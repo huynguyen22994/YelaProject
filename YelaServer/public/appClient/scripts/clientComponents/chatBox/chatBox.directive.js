@@ -62,7 +62,7 @@
                         <div class="chatbox__body__message chatbox__body__message--left">
                             <img src="images/shop/administrator.png" alt="Picture">
                             <b> ${chat.name}</b>
-                            <p> ${chat.chat}</p>
+                            <p> ${chat.message}</p>
                         </div>
                     `)
                 } else {
@@ -70,7 +70,7 @@
                         <div class="chatbox__body__message chatbox__body__message--right">
                             <img src="images/shop/customer.png" alt="Picture">
                             <b> ${chat.name}</b>
-                            <p> ${chat.chat}</p>
+                            <p> ${chat.message}</p>
                         </div>
                     `)
                 }
