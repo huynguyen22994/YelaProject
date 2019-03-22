@@ -33,13 +33,13 @@
                         $('#rooms').append('<div style="color: #ff8080">' + mailFormat + '</div>');
                     }
                     else {
-                        $('#rooms').append('<div><a onclick="switchRoom(\''+value.email+'\')">' + mailFormat  + '</a></div>');
+                        $('#rooms').append('<div><a style="cursor:pointer" onclick="switchRoom(\''+value.email+'\')">' + mailFormat  + '</a></div>');
                     }
                 })
             } else {
                 $.each(rooms, function(key, value) {
                     var mailFormat = value.email.replace("@gmail.com", "");
-                    $('#rooms').append('<div><a onclick="switchRoom(\''+value.email+'\')">' + mailFormat + '</a></div>');
+                    $('#rooms').append('<div><a style="cursor:pointer" onclick="switchRoom(\''+value.email+'\')">' + mailFormat + '</a></div>');
                 });
             }
         });

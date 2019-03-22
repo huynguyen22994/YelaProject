@@ -29,18 +29,30 @@
         }
         $scope.chatBoxs = [];
 
+        active();
+        ///////////////////////////////////////////////////////////
+        function active() {
+            if($rootScope.Customer && $rootScope.Customer.isLogin()) {
+                $scope.customer.name = $rootScope.Customer.getName();
+                $scope.customer.email = $rootScope.Customer.getEmail();
+                $scope.customer.image = $rootScope.Customer.getImage();
+                $scope.enterChat();
+            }
+        };
+
         $scope.enterChat = function () {
-            if ($scope.customer.name !== '' && $scope.customer.email !== '') {
+            // if ($scope.customer.name !== '' && $scope.customer.email !== '') {
                 socket.emit('customerJoin', $scope.customer);
                 $chatboxCredentials.on('submit', function (e) {
                     e.preventDefault();
                     $chatbox.removeClass('chatbox--empty');
                 });
-            }
+            //}
         };
 
         $scope.closeChatBox = function() {
             $rootScope.useChatBox = false;
+            $('#chatBoxs').empty();
         };
 
         socket.on('hello', function (admin, role, mes) {
@@ -68,7 +80,7 @@
                 } else {
                     $('#chatBoxs').append(`
                         <div class="chatbox__body__message chatbox__body__message--right">
-                            <img src="images/shop/customer.png" alt="Picture">
+                            <img src="${$scope.customer.image}" alt="Picture">
                             <b> ${chat.name}</b>
                             <p> ${chat.message}</p>
                         </div>
@@ -89,25 +101,13 @@
             } else {
                 $('#chatBoxs').append(`
                 <div class="chatbox__body__message chatbox__body__message--right">
-                    <img src="images/shop/customer.png" alt="Picture">
+                    <img src="${$scope.customer.image}" alt="Picture">
                     <b> ${customer}</b>
                     <p> ${message}</p>
                 </div>
                 `)
             }
         });
-
-        // socket.on('cusUpdateChat', function (customer, role, message) {
-        //     if (role === 'admin') {
-        //         $('#chatBoxs').append(`
-        //             <div class="chatbox__body__message chatbox__body__message--left">
-        //                 <img src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" alt="Picture">
-        //                 <b> ${customer}</b>
-        //                 <p> ${message}</p>
-        //             </div>
-        //         `)
-        //     }
-        // });
 
         $scope.isCustomerChat = function (chat) {
             return (chat.role === 'admin') ? 'chatbox__body__message chatbox__body__message--left' : 'chatbox__body__message chatbox__body__message--right';
@@ -116,7 +116,7 @@
         $scope.sendChat = function () {
             $('#chatBoxs').append(`
                 <div class="chatbox__body__message chatbox__body__message--right">
-                    <img src="images/shop/customer.png" alt="Picture">
+                    <img src="${$scope.customer.image}" alt="Picture">
                     <b> ${$scope.customer.name}</b>
                     <p> ${$scope.message}</p>
                 </div>
@@ -134,6 +134,14 @@
                     $scope.sendChat();
                 }
             }
+        });
+
+        $rootScope.$on("initChatBox", function() {
+            active();
+        });
+
+        $rootScope.$on("closeChatBox", function() {
+            $scope.closeChatBox();
         });
     };
 })();

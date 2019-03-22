@@ -100,9 +100,9 @@ module.exports.initialize = function initialize(io, customer) {
                     socket.join(socket.cusRoom)
                     io.sockets.in(customerObj.email).emit('loadOldMessage', reuquestCustomer);
                 } else {
-                    customer.chatBoxs = [{name: 'Admin', role: 'admin', chat: 'Can I help you ?'}];
-                    customerRoom.push(customer.email);
-                    customers.push(customer);
+                    // customer.chatBoxs = [{name: 'Admin', role: 'admin', chat: 'Can I help you ?'}];
+                    // customerRoom.push(customer.email);
+                    // customers.push(customer);
 
                     var Message = ChatService.instanceMessage('FoodTech', 'Chào bạn, chúng tôi có thể giúp gì được cho bạn ?', 'admin');
                     var MessageList = ChatService.instanceMessageList(customer.email, Message);

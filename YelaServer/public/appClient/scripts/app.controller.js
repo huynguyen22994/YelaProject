@@ -69,6 +69,7 @@
         function logout() {
             window.localStorage.removeItem("customerToken");
             $rootScope.Customer.destroy();
+            $rootScope.$emit("closeChatBox");
             $location.path('/');
         }
 
