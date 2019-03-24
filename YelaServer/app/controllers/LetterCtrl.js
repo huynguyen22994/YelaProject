@@ -2,6 +2,10 @@ var models = require('../models');
 var Mail = require('../services/mailService');
 var async = require('async');
 var _ = require('underscore');
+var readStatus = { 
+    readed: 'readed', 
+    unreaded: 'unreaded'
+};
 
 module.exports.getAllLetter = (req, res, next) => {
     models.Letter.findAndCountAll()
@@ -21,7 +25,8 @@ module.exports.createLetter = (req, res, next) => {
             name: letter.name,
             phone: letter.phone,
             email: letter.email,
-            message: letter.message
+            message: letter.message,
+            status: readStatus.unreaded
         }).then((result) => {
             var data = result.dataValues;
             if(data) {
@@ -80,4 +85,17 @@ module.exports.testSendMail = (req, res, next) => {
     Mail.sendLetterMail(mail).then(function(data) {
         res.json(data);
     });
+};
+
+module.exports.getUnreadedLetter = (req, res, next) => {
+    models.Letter.findAndCountAll({
+        where: {
+            status: readStatus.unreaded
+        }
+    }).then(function(result) {
+        res.json(result);
+    }, function(error) {
+        res.statusCode = 400;
+        res.json();
+    })
 };

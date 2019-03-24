@@ -22,6 +22,10 @@ module.exports = function (sequelize, Sequelize) {
         message: {
             type: Sequelize.TEXT,
             allowNull: false
+        },
+        status: {
+            type: Sequelize.ENUM('readed', 'unreaded'),
+            allowNull: false
         }
     }, {
         charset: 'utf8',

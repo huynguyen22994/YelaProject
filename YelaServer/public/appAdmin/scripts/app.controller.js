@@ -5,8 +5,8 @@
         .module('YelaApplication')
         .controller('IndexController', ControllerController);
 
-    ControllerController.$inject = ['ylConstant', 'adminInfo', '$rootScope', 'socket', 'ylBillNotice', 'BillService', '$http'];
-    function ControllerController(ylConstant, adminInfo, $rootScope, socket, ylBillNotice, BillService, $http) {
+    ControllerController.$inject = ['ylConstant', 'adminInfo', '$rootScope', 'socket', 'ylBillNotice', 'BillService', '$http', 'NotifyPackage', 'Notify', 'LetterNotify'];
+    function ControllerController(ylConstant, adminInfo, $rootScope, socket, ylBillNotice, BillService, $http, NotifyPackage, Notify, LetterNotify) {
         var vm = this;
         vm.navBarConfig = {
             appTitle: ylConstant.appTitle,
@@ -24,10 +24,12 @@
 
         function activate() { 
             $rootScope.NewBills = new ylBillNotice();
+            $rootScope.LetterNotify = new LetterNotify();
             vm.spinnerHide = true;  
             $rootScope.adminInfo = adminInfo;  
             loadNewBill();
             exeGetCustomerOnl();
+            exeGetLetterNotify();
             setInterval(function() {
                 exeGetCustomerOnl();
             }, 5000);
@@ -72,6 +74,27 @@
         function getCustomerOnl() {
             return $http({
                 url: 'api/user/online',
+                method: 'GET'
+            }).then(function (res) {
+                return res;
+            }).catch(function (err) {
+                return err;
+            });
+        }
+
+        function exeGetLetterNotify() {
+            getLetterNotify().then(function(response) {
+                var letterNotifyData = response.data || {};
+                if(letterNotifyData.count > 0) {
+                    $rootScope.LetterNotify.updateCount(letterNotifyData.count);
+                    $rootScope.LetterNotify.updateLetters(letterNotifyData.rows);
+                }
+            })
+        }
+
+        function getLetterNotify() {
+            return $http({
+                url: '/api/letter/notify',
                 method: 'GET'
             }).then(function (res) {
                 return res;

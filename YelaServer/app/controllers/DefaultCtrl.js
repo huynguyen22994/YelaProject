@@ -303,6 +303,10 @@ module.exports.deleteLetter = (req, res, next) => {
     LetterCtrl.deleteLetter(req, res, next);
 };
 
+module.exports.getUnreadedLetter = (req, res, next) => {
+    LetterCtrl.getUnreadedLetter(req, res, next);
+}; 
+
 // City
 module.exports.getAllCity = (req, res, next) => {
     CityCtrl.getAllCity(req, res, next);
