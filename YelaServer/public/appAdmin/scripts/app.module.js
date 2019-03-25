@@ -16,7 +16,8 @@
         'ngMaterial',
         'ngFileUpload',
         'ngImgCrop',
-        'ckeditor'
+        'ckeditor',
+        'ylZingGrid'
     ]);
 })();
 

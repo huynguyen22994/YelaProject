@@ -14,6 +14,11 @@
                 templateUrl: '/admin/scripts/userMgmt/contact/contact.html',
                 controller: 'ContactController',
                 controllerAs: 'vm'
+            })
+            .when('/userMgmt/mail', {
+                templateUrl: '/admin/scripts/userMgmt/mail/mail.html',
+                controller: 'MailController',
+                controllerAs: 'vm'
             });
         //$locationProvider.html5Mode(true);
     };

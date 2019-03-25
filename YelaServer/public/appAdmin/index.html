@@ -24,10 +24,12 @@
     <link rel="stylesheet" href="/admin/styles/morrisjs/morris.css">
     <link rel="stylesheet" href="/admin/styles/css/styles.css">
     <link rel="stylesheet" href="/admin/components/ylTable/yltable.directive.css">
+    <link rel="stylesheet" href="/admin/styles/libraries/zingGrid/zingGridCustom.css">
 
     <!-- Custom Fonts -->
     <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="/bower_components/angular-toastr/dist/angular-toastr.css">
+    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.min.css">
     <link rel="stylesheet" href="/bower_components/angular-material/angular-material.min.css">
 
     <link rel="shortcut icon" href="/admin/favicon.ico">
@@ -281,10 +283,13 @@
                             <a href="#"><i class="fa fa-user fa-fw"></i> Khách Hàng<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Danh Sách</a>
+                                    <a href="#!/userMgmt/cutomer">Danh Sách</a>
                                 </li>
                                 <li>
                                     <a href="#!/userMgmt/contact">Liên Hệ</a>
+                                </li>
+                                <li>
+                                    <a href="#!/userMgmt/mail">Thư</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -398,6 +403,9 @@
     <script src="/bower_components/ng-file-upload/ng-file-upload.js"></script>
     <script src="/bower_components/ng-img-crop/compile/minified/ng-img-crop.js"></script>
     <script data-require="d3@*" data-semver="3.4.6" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.6/d3.min.js"></script>
+    <!-- <script src="https://cdn.fancygrid.com/fancy.min.js"></script>
+    <script src="https://cdn.fancygrid.com/fancy-angular.js"></script> -->
+    <script src="https://cdn.zinggrid.com/zinggrid.min.js"></script>
     
     <!-- CK Editor-->
     <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
@@ -415,6 +423,7 @@
     <script src="/admin/components/ylResize/ylresize.directive.js"></script>
     <script src="/admin/components/ylLineChart/ylLineChart.directive.js"></script>
     <script src="/admin/components/ylPieChart/ylPieChart.directive.js"></script>
+    <script src="/admin/components/ylZingGrid/ylZingGrid.component.js"></script>
     <!--<script src="/admin/components/ylDialog/yldialog.directive.js"></script>-->
 
     <script src="/admin/scripts/app.module.js"></script>
@@ -467,6 +476,8 @@
     <script src="/admin/scripts/userMgmt/userMgmt.module.js"></script>
     <script src="/admin/scripts/userMgmt/userMgmt.route.js"></script> 
     <script src="/admin/scripts/userMgmt/contact/contact.controller.js"></script>
+    <script src="/admin/scripts/userMgmt/mail/mail.service.js"></script>
+    <script src="/admin/scripts/userMgmt/mail/mail.controller.js"></script>
     <!-- dashboard -->
     <script src="/admin/scripts/dashboardMgmt/dashboardMgmt.module.js"></script>
     <script src="/admin/scripts/dashboardMgmt/dashboardMgmt.route.js"></script> 

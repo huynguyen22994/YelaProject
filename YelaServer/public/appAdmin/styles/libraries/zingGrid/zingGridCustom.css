@@ -1,0 +1,85 @@
+/* Grid */
+zing-grid {
+    max-width: 1000px;
+    margin: 20px auto 0 auto;
+    font-size: 14px;
+    font-family: 'Chakra Petch', sans-serif;
+    background: #fff;
+    color: #337ab7;
+    border-color: #e7e7e7;
+    --theme-color-primary: #005481;
+    --zg-head-cell-background_sorted: #003450;
+    --zg-cell-background_sorted: #e7e7e7;
+    --zg-select-arrow-color: #337ab7;
+    --zg-head-cell-icon-color_sorted: #337ab7;
+  }
+  
+  zg-caption {
+    background: #ff8080;
+    font-size: 18px;
+  }
+  
+  zg-caption i {
+    max-width: 15px;
+    margin-right: 15px;
+  }
+  
+  zg-head {
+    border-color: #e7e7e7;
+  }
+  
+  zg-head-cell {
+    background: #fff;
+    color: #e7e7e7;
+    font-weight: bold;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+  }
+  
+  zg-head-cell_sorted zg-icon {
+    max-width: 15px;
+    color: #003450;
+  }
+  
+  zg-column[index="url"] {
+    background: #fff;
+    width: 25%;
+  }
+  
+  zg-row {
+    border-color: #e7e7e7;
+  }
+
+  zg-row:hover {
+    background-color: #e7e7e7;
+  }
+  zg-card:hover {
+    background-color: #e7e7e7;
+  }
+  
+  zg-pager,
+  zg-watermark {
+    background: #fff;
+    color: #337ab7;
+    border-color: #e7e7e7;
+  }
+  
+  /* Type Styling */
+  .caret-down { color:#ff5864; }
+  .caret-up { color:#63e385; }
+  
+  .up {
+    color: #63E385;
+    font-weight: bold;
+  }
+  
+  .down {
+    color: #FF5864;
+    font-weight: bold;
+  }
+  
+  .details {
+    font-size: 11px;
+    color: #cccccc;
+  }
