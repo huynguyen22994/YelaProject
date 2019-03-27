@@ -88,6 +88,9 @@
                 if(letterNotifyData.count > 0) {
                     $rootScope.LetterNotify.updateCount(letterNotifyData.count);
                     $rootScope.LetterNotify.updateLetters(letterNotifyData.rows);
+                } else {
+                    $rootScope.LetterNotify.updateCount(0);
+                    $rootScope.LetterNotify.updateLetters([]);
                 }
             })
         }
@@ -102,6 +105,10 @@
                 return err;
             });
         }
+
+        $rootScope.$on('updateLetterNotify', function() {
+            exeGetLetterNotify();
+        });
 
     }
 })();

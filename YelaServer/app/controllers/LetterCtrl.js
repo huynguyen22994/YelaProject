@@ -99,3 +99,29 @@ module.exports.getUnreadedLetter = (req, res, next) => {
         res.json();
     })
 };
+
+module.exports.readLetter = (req, res, next) => {
+    var letter = req.body;
+    var data = {
+        isSuccess: false,
+        data: null
+    };
+    if(letter && letter.status === readStatus.unreaded) {
+        models.Letter.update(
+            {
+                status: readStatus.readed
+            },
+            {
+                where: {
+                    letterId: letter.letterId
+                }
+            }
+        ).then(function(result) {
+            data.isSuccess = true;
+            data.data = result;
+            res.json(data);
+        })
+    } else {
+        res.json(data);
+    }
+};

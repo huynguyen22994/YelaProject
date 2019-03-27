@@ -307,6 +307,10 @@ module.exports.getUnreadedLetter = (req, res, next) => {
     LetterCtrl.getUnreadedLetter(req, res, next);
 }; 
 
+module.exports.readLetter = (req, res, next) => {
+    LetterCtrl.readLetter(req, res, next);
+};
+
 // City
 module.exports.getAllCity = (req, res, next) => {
     CityCtrl.getAllCity(req, res, next);

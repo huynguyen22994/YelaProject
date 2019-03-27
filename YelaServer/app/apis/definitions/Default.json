@@ -348,6 +348,10 @@
                 "message": {
                 "type": "string",
                 "description": "Name of Coffee."
+                },
+                "status": {
+                "type": "string",
+                "description": "Name of Coffee."
                 }
             }
             }, 
