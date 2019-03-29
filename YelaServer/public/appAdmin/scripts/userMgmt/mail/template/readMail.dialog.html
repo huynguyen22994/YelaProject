@@ -1,0 +1,54 @@
+<div class="modal fade" id="mailModal" role="dialog">
+        <div class="modal-dialog">
+    
+            <!-- Modal content-->
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" ng-click="$root.mailModal.closeCallback()" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{ $root.mailModal.headerTitle }}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label>
+                            Email
+                        </label>
+                    </div>
+                    <div class="col-sm-10">
+                        <p>
+                            {{ $root.mailModal.email }}
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                        <div class="col-sm-2">
+                            <label>
+                                SĐT
+                            </label>
+                        </div>
+                        <div class="col-sm-10">
+                            <p>
+                                {{ $root.mailModal.phone }}
+                            </p>
+                        </div>
+                    </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label>
+                            Nội Dung
+                        </label>
+                    </div>
+                    <div class="col-sm-10">
+                        <p>
+                            {{ $root.mailModal.contentMsg }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-click="$root.mailModal.closeCallback()" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+            </div>
+            
+        </div>
+    </div>

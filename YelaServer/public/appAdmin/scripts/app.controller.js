@@ -5,8 +5,8 @@
         .module('YelaApplication')
         .controller('IndexController', ControllerController);
 
-    ControllerController.$inject = ['ylConstant', 'adminInfo', '$rootScope', 'socket', 'ylBillNotice', 'BillService', '$http', 'NotifyPackage', 'Notify', 'LetterNotify'];
-    function ControllerController(ylConstant, adminInfo, $rootScope, socket, ylBillNotice, BillService, $http, NotifyPackage, Notify, LetterNotify) {
+    ControllerController.$inject = ['ylConstant', 'adminInfo', '$rootScope', 'socket', 'ylBillNotice', 'BillService', '$http', 'NotifyPackage', 'Notify', 'LetterNotify', 'MailService'];
+    function ControllerController(ylConstant, adminInfo, $rootScope, socket, ylBillNotice, BillService, $http, NotifyPackage, Notify, LetterNotify, MailService) {
         var vm = this;
         vm.navBarConfig = {
             appTitle: ylConstant.appTitle,
@@ -15,8 +15,28 @@
                 
             ]
         };
+        $rootScope.mailModal = {
+            headerTitle: '',
+            contentMsg: '',
+            email: '',
+            phone: '',
+            show: function() {
+                angular.element('#mailModal').modal('show');
+            },
+            hide: function() {
+                angular.element('#mailModal').modal('hide');
+            },
+            toggle: function() {
+                angular.element('#mailModal').modal('toggle');
+            },
+            closeCallback: function() {
+                $location.path('/');
+            }
+        };
+
         vm.adminInfo = adminInfo;
         vm.logout = logout;
+        vm.viewLetter = viewLetter;
 
         activate();
 
@@ -105,6 +125,26 @@
                 return err;
             });
         }
+
+        function viewLetter(item) {
+            $rootScope.mailModal.headerTitle = item.name;
+            $rootScope.mailModal.contentMsg = item.message;
+            $rootScope.mailModal.email = item.email;
+            $rootScope.mailModal.phone = item.phone;
+            $rootScope.mailModal.show();
+            if(item.status === 'unreaded') {
+                var requestBody = MailService.helper.parseReadLetterBody(item);
+                MailService.readMail(requestBody)
+                    .then(function(response) {
+                        var data = response.data;
+                        if(data.isSuccess) {
+                            $rootScope.$emit('updateLetterNotify');
+                        }
+                    }, function(error) {
+                        console.log(error);
+                    });
+            }
+        };
 
         $rootScope.$on('updateLetterNotify', function() {
             exeGetLetterNotify();

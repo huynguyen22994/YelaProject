@@ -12,7 +12,7 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
-                            <i class="fa fa-comments fa-5x"></i>
+                            <i class="fa fa-comments fa-3x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge">26</div>
@@ -34,15 +34,15 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
-                            <i class="fa fa-envelope fa-fw fa-5x"></i>
+                            <i class="fa fa-envelope fa-fw fa-3x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">12</div>
+                            <div class="huge">{{ $root.LetterNotify.getCount() }}</div>
                             <div>Mail!</div>
                         </div>
                     </div>
                 </div>
-                <a href="#">
+                <a href="#!/userMgmt/mail">
                     <div class="panel-footer">
                         <span class="pull-left">Xem Chi Tiết</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -56,7 +56,7 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
-                            <i class="fa fa-shopping-cart fa-5x"></i>
+                            <i class="fa fa-shopping-cart fa-3x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge">{{ $root.NewBills.getBillLength() }}</div>
@@ -78,7 +78,7 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
-                            <i class="fa fa-support fa-5x"></i>
+                            <i class="fa fa-support fa-3x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge">{{ $root.customerAccessNumber }}</div>

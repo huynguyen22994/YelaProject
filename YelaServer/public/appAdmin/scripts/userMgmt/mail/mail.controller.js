@@ -24,14 +24,24 @@
         vm.arrayItemDelete = [];
         //Config for form
         vm.configTable = {
-            arrayColumnLabel: ['Tên', 'Email', 'Số Điện Thoại', 'Tình Trạng', 'Hành Động'],
-            arrayColumnContent: ['name', 'email', 'phone', {key: 'status', labelClassFunction: function(item) {
-                if(item.status === 'read') {
+            arrayColumnLabel: ['Tên', 'Email', 'Nội Dung', 'Tình Trạng', 'Hành Động'],
+            arrayColumnContent: ['name', 'email', 
+            {
+                key: 'message',
+                formatterBase: function(item) {
+                    return item.message ? item.message.substring(0, 30) : '';
+                }
+            }, 
+            {
+                key: 'status', 
+                labelClassFunction: function(item) {
+                if(item.status === 'readed') {
                     return 'yl-label-success';
                 } else if(item.status === 'unreaded') {
                     return 'yl-label-warning';
                 }
-            }, formatter: function(item) {
+                }, 
+                formatter: function(item) {
                 if(item.status === 'unreaded') {
                     return 'Chưa xem';
                 } else if(item.status === 'readed') {
@@ -146,23 +156,6 @@
           pager: true,
           viewportStop: true
         };  
-
-        vm.mailModal = {
-            headerTitle: '',
-            contentMsg: '',
-            show: function() {
-                angular.element('#mailModal').modal('show');
-            },
-            hide: function() {
-                angular.element('#mailModal').modal('hide');
-            },
-            toggle: function() {
-                angular.element('#mailModal').modal('toggle');
-            },
-            closeCallback: function() {
-                $location.path('/');
-            }
-        }
 
         activate();
 
@@ -295,9 +288,11 @@
         };
 
         function viewLetter(item) {
-            vm.mailModal.headerTitle = item.name;
-            vm.mailModal.contentMsg = item.message;
-            vm.mailModal.show();
+            $rootScope.mailModal.headerTitle = item.name;
+            $rootScope.mailModal.contentMsg = item.message;
+            $rootScope.mailModal.email = item.email;
+            $rootScope.mailModal.phone = item.phone;
+            $rootScope.mailModal.show();
             if(item.status === 'unreaded') {
                 var requestBody = MailService.helper.parseReadLetterBody(item);
                 MailService.readMail(requestBody)

@@ -33,7 +33,7 @@
                 </td>                            
                 <td 
                     ng-repeat="content in config.arrayColumnContent">
-                        {{::song[content]}}
+                        {{::content.formatterBase(song) || song[content]}}
                         <span ng-if="content.labelClass || content.labelClassFunction" ng-class="content.labelClass || content.labelClassFunction(song)">{{::content.formatter(song) || song[content.key]}}</span>
                         <img ng-if="content.image && song[content.url]" ng-src="{{content.baseUrlForImg}}{{song[content.url]}}" class="img-responsive img-thumbnail" alt="Cinque Terre" width="50" height="50"> 
                         <img ng-if="content.image && !song[content.url]" ng-src="/images/no-image.png" class="img-responsive img-thumbnail" alt="No Img" width="50" height="50"> 

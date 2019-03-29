@@ -111,15 +111,22 @@
                         <span ng-if="$root.LetterNotify.isHaveNotice()" class="yl-badge-cart">{{ $root.LetterNotify.getCount() }}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-messages">
-                        <li ng-if="$root.LetterNotify.isHaveNotice()" ng-repeat="letter in $root.LetterNotify.getLetterList()">
-                            <a href="#">
+                        <li ng-if="$root.LetterNotify.isHaveNotice()" 
+                            ng-repeat="letter in $root.LetterNotify.getLetterList()"
+                            ng-click="vm.viewLetter(letter)">
+                            <a href>
                                 <div>
                                     <strong>{{ letter.email }}</strong>
                                     <span class="pull-right text-muted">
                                         <em>{{ letter.name }}</em>
                                     </span>
                                 </div>
-                                <div>{{ letter.message.substring(0, 100) }}</div>
+                                <div>{{ letter.message.substring(0, 30) }}</div>
+                            </a>
+                        </li>
+                        <li ng-if="!$root.LetterNotify.isHaveNotice()">
+                            <a>
+                                <strong>Hộp thư trống</strong>
                             </a>
                         </li>
                         <li class="divider"></li>
@@ -372,6 +379,8 @@
 
     </div>
     <!-- /#wrapper -->
+    <!-- Read Mail Dialog -->
+    <div ng-include="'/admin/scripts/userMgmt/mail/template/readMail.dialog.html'"></div>
 
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
