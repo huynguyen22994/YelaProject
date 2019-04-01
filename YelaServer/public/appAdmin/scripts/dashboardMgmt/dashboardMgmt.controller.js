@@ -5,8 +5,8 @@
         .module('YelaApplication.DashboardManagement')
         .controller('DashboardController', ControllerController);
 
-    ControllerController.$inject = ['$scope', '$window', '$location', 'ylConstant'];
-    function ControllerController($scope, $window, $location, ylConstant) {
+    ControllerController.$inject = ['$scope', '$window', '$location', 'ylConstant', 'DashboardService'];
+    function ControllerController($scope, $window, $location, ylConstant, DashboardService) {
        var vm = this;
        vm.data = [
             {
@@ -35,6 +35,23 @@
             }
         ];
         ////////////////
+        initialize();
+
+        function initialize() {
+            loadBannerCount();
+        };
+
+        function loadBannerCount() {
+            DashboardService.getDashboardBannerCount()
+                .then(function(response) {
+                    var data = response.data;
+                    if(data) {
+                        vm.messageCount = data.chatCount;
+                        vm.maillCount = data.mailCount;
+                        vm.billCount = data.billCount;
+                    }
+                })
+        }
 
     }
 })();

@@ -15,6 +15,11 @@
                 controller: 'ContactController',
                 controllerAs: 'vm'
             })
+            .when('/userMgmt/user', {
+                templateUrl: '/admin/scripts/userMgmt/user/user.html',
+                controller: 'UserController',
+                controllerAs: 'vm'
+            })
             .when('/userMgmt/mail', {
                 templateUrl: '/admin/scripts/userMgmt/mail/mail.html',
                 controller: 'MailController',

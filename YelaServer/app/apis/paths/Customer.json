@@ -62,7 +62,27 @@
                     }
                 },
                 "x-swagger-router-controller": "DefaultCtrl"
-            }
+            },
+            "get": {
+                "summary": "create new coffee",
+                "description": "input a new coffee to insert CoffeeDB",
+                "operationId": "getCustomer",
+                "responses": {
+                    "200": {
+                        "description": "template file",
+                        "schema": {
+                            "$ref": "#/definitions/Customer"
+                        }
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                },
+                "x-swagger-router-controller": "DefaultCtrl"
+            } 
         },
         "/email/authentication": {
             "get": {

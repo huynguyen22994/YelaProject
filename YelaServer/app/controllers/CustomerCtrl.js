@@ -182,3 +182,13 @@ module.exports.activeCustomer = (req, res, next) => {
         res.json(data);
     }
 };
+
+module.exports.getCustomer = (req, res, next) => {
+    models.Customer.findAndCountAll()
+        .then((result) => {
+            res.json(result);
+        },
+        (err) => {
+            console.log(err);
+        })
+};

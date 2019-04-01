@@ -10,7 +10,7 @@
                     <div class="form-group" ng-repeat="item in config.items">
                         <label>{{item.label}}:</label>
                         <input ng-if="!item.isImg" type="text" class="form-control" ng-disabled="true" ng-model="itemDetail[item.queryModel]">
-                        <img ng-if="item.isImg" ng-src="{{config.baseUrlForImg}}{{itemDetail[item.queryModel]}}" class="img-responsive img-rounded">
+                        <img ng-if="item.isImg" ng-src="{{(config.baseUrlForImg + itemDetail[item.queryModel]) || '/images/shop/customer.png'}}" class="img-responsive img-rounded">
                     </div>
                 </form>
             </div>

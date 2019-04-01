@@ -13,6 +13,7 @@ var LetterCtrl = require('./LetterCtrl');
 var CityCtrl = require('./CityCtrl');
 var DistrictCtrl = require('./DistrictCtrl');
 var ShipCostCtrl = require('./ShipCostCtrl');
+var DashboardCtrl = require('./DashboardCtrl');
 var async = require('async');
 
 // Products
@@ -133,6 +134,10 @@ module.exports.getCustomerByToken = (req, res, next) => {
 
 module.exports.activeCustomer = (req, res, next) => {
     CustomerCtrl.activeCustomer(req, res, next);
+};
+
+module.exports.getCustomer = (req, res, next) => {
+    CustomerCtrl.getCustomer(req, res, next);
 };
 
 // Email authentication
@@ -376,4 +381,9 @@ module.exports.updateShipCost = (req, res, next) => {
 
 module.exports.getShipCost = (req, res, next) => {
     ShipCostCtrl.getShipCost(req, res, next);
+};
+
+//Dashboard
+module.exports.getBannerCount = (req, res, next) => {
+    DashboardCtrl.getBannerCount(req, res, next);
 };
