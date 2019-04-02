@@ -73,8 +73,8 @@
         function activate() {
 
             $scope.hasCheckBox = ($scope.config.checkBoxOptions) ? true : false;
-
             $scope.noResultClass = ($window.innerWidth >= 400) ? 'no-result-lable' : 'no-result-lable-mobile';
+            $scope.getFormatImgUrl = getFormatImgUrl;
         
         };
 
@@ -89,6 +89,15 @@
                 $scope.hasResult = false
             }
         };
+
+        function getFormatImgUrl(url, baseUrlForImg) {
+            return (isDriveUrl(url)) ? url : baseUrlForImg + url;
+        };
+
+        function isDriveUrl(url) {
+            var regex = /^http/;
+            return regex.test(url);
+        }
 
     };
 

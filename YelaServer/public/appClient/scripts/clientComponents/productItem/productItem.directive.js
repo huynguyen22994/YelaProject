@@ -31,7 +31,7 @@
                         <div class="single-products">
                             <div class="productinfo text-center">
                                 <div style="cursor:pointer" ng-click="config.viewDetail(data)">
-                                    <img ng-src="{{baseUrl}}{{data['linkImg']}}" alt="" />
+                                    <img ng-src="{{ getFormatImgUrl(data['linkImg'], baseUrl) }}" alt="" />
                                 </div>
                                 <h4>{{data['priceFormatted']}}</h4>
                                 <p>{{data['name']}}</p>
@@ -63,6 +63,7 @@
     function ControllerController($scope, clientConstant, toastr, Product, $rootScope) {
         $scope.baseUrl = `${clientConstant.serverUrl}/`;
         $scope.addToCart = addToCart;
+        $scope.getFormatImgUrl = getFormatImgUrl;
 
         if ($scope.config) {
             if (!angular.isFunction($scope.config.viewDetail)) {
@@ -87,6 +88,15 @@
             if($scope.data) {
                 $scope.data['priceFormatted'] = parseInt($scope.data.price).toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
             }
+        }
+
+        function getFormatImgUrl(url, baseUrlForImg) {
+            return (isDriveUrl(url)) ? url : baseUrlForImg + url;
+        };
+
+        function isDriveUrl(url) {
+            var regex = /^http/;
+            return regex.test(url);
         }
     }
 })();

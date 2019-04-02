@@ -7,9 +7,14 @@
 
     ControllerController.$inject = ['ProductService', '$scope', '$window', '$location', '$route', 'toastr', 'Upload', '$q', 'ylConstant'];
     function ControllerController(ProductService, $scope, $window, $location, $route, toastr, Upload, $q, ylConstant) {
-        console.log(ylConstant);
         var vm = this;
-        vm.Product = {};
+        var enterImageType = {
+            input: 'input',
+            select: 'select'
+        }
+        vm.Product = {
+            enterImageType: enterImageType.input
+        };
         vm.Producttype = {};
         vm.Brand = {};
         vm.ProductStatus = {};
@@ -52,6 +57,7 @@
         vm.isSelectedBrand = isSelectedBrand;
         vm.isSelectedProducttype = isSelectedProducttype;
         vm.isSelectedStatus = isSelectedStatus;
+        vm.isEnterImageInput = isEnterImageInput;
         //vm.isSelectedType = isSelectedType;
 
         activate();
@@ -87,6 +93,7 @@
                     vm.typeObj = _.find(vm.types, function(type) {
                         return type.id === res.data.type;
                     });
+                    vm.Product.enterImageType = enterImageType.input;
             }).catch(function (err) {
                 console.log(err);
                 toastr.error('Have error when get product');
@@ -159,6 +166,10 @@
                     
                 });
             } else {
+                if(vm.Product.linkImg) {
+                    productObj.originalName = vm.Product.linkImg; 
+                    productObj.linkImg = vm.Product.linkImg;
+                }
                 ProductService.createProduct(productObj)
                     .then(function (res) {
                         toastr.success('Tạo mới thành công');
@@ -252,6 +263,10 @@
 
         function isSelectedProducttype() {
             return vm.Producttype.productTypeId ? true : false;
+        };
+
+        function isEnterImageInput() {
+            return vm.Product.enterImageType === enterImageType.input;
         };
     }
 })();

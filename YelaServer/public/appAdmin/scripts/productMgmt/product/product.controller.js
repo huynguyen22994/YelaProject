@@ -25,7 +25,12 @@
         //Config for form
         vm.configTable = {
             arrayColumnLabel: ['Hình Ảnh','Tên', 'Tình Trạng', 'Ngày Cập Nhật', 'Hành Động'],
-            arrayColumnContent: [{ image: true, url: 'linkImg', baseUrlForImg: `${ylConstant.serverUrl}/`}, 'name', 'productStatus', 'updatedAt'],
+            arrayColumnContent: [
+                { 
+                    image: true, 
+                    url: 'linkImg', 
+                    baseUrlForImg: `${ylConstant.serverUrl}/`
+                }, 'name', 'productStatus', 'updatedAt'],
             arrayActions: [
                 {
                     buttonName: 'button_edit',

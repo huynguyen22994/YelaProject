@@ -113,10 +113,21 @@
                                     </div> 
                                     <div class="form-group has-success has-feedback">
                                         <label class="control-label col-sm-2" for="artist">Chọn Hình Sản Phẩm: </label>
-                                        <div class="col-sm-10">          
-                                            <div class="col-md-4 col-sm-12">
-                                                <button class="btn btn-info" ngf-select ng-model="picFile" accept="image/*">
-                                                    Select Image
+                                        <div class="col-sm-10">   
+                                            <div class="col-md-12 col-sm-12">
+                                                <label class="radio-inline">
+                                                    <input type="radio" ng-model="vm.Product.enterImageType" value="input">Nhập url
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" ng-model="vm.Product.enterImageType" value="select">Chọn hình
+                                                </label>
+                                            </div>   
+                                            <div ng-if="vm.isEnterImageInput()" class="col-md-12 col-sm-12">
+                                                    <input style="margin-top: 10px" class="form-control" ng-model="vm.Product.linkImg" id="imageLink" placeholder="Enter image link" name="imageLink">
+                                            </div>    
+                                            <div ng-if="!vm.isEnterImageInput()" class="col-md-12 col-sm-12">
+                                                <button style="margin-top: 10px" class="btn btn-info" ngf-select ng-model="picFile" accept="image/*">
+                                                    Chọn Hình Ảnh
                                                 </button>                                            
                                                 <span ng-if="picFile.name">{{picFile.name}}</span>
                                                 <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
@@ -125,13 +136,14 @@
                                     </div>
                                 </div>  
                                 <div class="col-md-3 col-sm-3">
-                                    <div class="row">
+                                    <div ng-if="!vm.isEnterImageInput()" class="row">
                                         <div class="col-md-12 col-sm-12">
+                                            <label>Ảnh:</label>
                                             <img ng-src="{{vm.croppedDataUrl}}" class="img-thumbnail" />
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-12 col-sm-12">
+                                        <div ng-if="!vm.isEnterImageInput()" class="col-md-12 col-sm-12">
                                             <label>Chỉnh Ảnh:</label>
                                             <div class="crop-image-class">
                                                 <span ngf-drop ng-model="picFile" ngf-pattern="image/*"
@@ -140,6 +152,12 @@
                                                     result-image="vm.croppedDataUrl">
                                                     </img-crop>
                                                 </span>
+                                            </div>
+                                        </div>
+                                        <div ng-if="vm.isEnterImageInput()" class="col-md-12 col-sm-12">
+                                            <label>Ảnh:</label>
+                                            <div class="crop-image-class">
+                                                    <img ng-src="{{ vm.Product.linkImg }}" class="img-thumbnail" />
                                             </div>
                                         </div>
                                     </div>

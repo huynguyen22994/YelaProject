@@ -1,6 +1,11 @@
 var models = require('../models');
 var fs = require('fs');
 
+function isDriveUrl(url) {
+    var regex = /^http/;
+    return regex.test(url);
+}
+
 module.exports.getProducts = (req, res, next) => {
     models.Product.findAndCountAll()
         .then((result) => {
@@ -77,7 +82,9 @@ module.exports.updateProduct = (req, res, next) => {
                         res.end();
                     }) 
                 } else {
-                    fs.unlinkSync(p.linkImg);
+                    if(!isDriveUrl(p.linkImg)) {
+                        fs.unlinkSync(p.linkImg);
+                    }
                     models.Product.update(
                         {
                             name: product.name,
@@ -125,7 +132,7 @@ module.exports.deleteProduct = (req, res, next) => {
                 res.statusCode = 400;
                 res.end();
             } else {
-                if (linkImg) {
+                if (linkImg && !isDriveUrl(linkImg)) {
                     fs.unlinkSync(linkImg);
                 }
                 res.end("delete success");
