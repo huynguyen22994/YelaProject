@@ -8,6 +8,7 @@
     AppConfigFunction.$inject = ['$locationProvider'];
     function AppConfigFunction($locationProvider) {
         //$locationProvider.html5Mode(true);
+        $locationProvider.hashPrefix('');
     }
 })();
 

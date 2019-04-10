@@ -31,7 +31,7 @@
                             <div class="panel-body">
                                 <ul>
                                     <li ng-repeat="producttype in category.producttypes">
-                                        <a href="#!/foodtype/{{ producttype.productTypeId }}">{{ producttype.name }}</a>
+                                        <a href="#/foodtype/{{ producttype.productTypeId }}">{{ producttype.name }}</a>
                                     </li>
                                 </ul>
                             </div>

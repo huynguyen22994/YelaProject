@@ -292,7 +292,7 @@ module.exports.sendActiveAccountMail = (pendingCustomer) => {
                             </p>
                             <p style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;line-height:26px;margin-bottom:25px;direction:ltr;font:18px/26px sans-serif;margin-top:0;color:#4f748e;padding:0">
                               <a href="`
-                               + 'http://localhost:3000/#!/active-account/' + pendingCustomer.token + '/' + pendingCustomer.customerId + '/' + pendingCustomer.email +
+                               + 'http://localhost:3000/#/active-account/' + pendingCustomer.token + '/' + pendingCustomer.customerId + '/' + pendingCustomer.email +
                               `"
                               target="_blank"
                               style="background: #ff8080;border-radius: 0;color: #FFFFFF;padding: 6px 25px;font-family: 'Roboto', sans-serif">

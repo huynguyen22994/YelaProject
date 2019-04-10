@@ -20,6 +20,9 @@
                 controller: 'HomeController',
                 controllerAs: 'vm',
                 isActiveRoute: true
+            })
+            .otherwise({
+                redirectTo : '/'
             });
         //$locationProvider.html5Mode(true);
     };
