@@ -45,13 +45,7 @@ app.use(function (req, res, next) {
 
     next()
 });
-app.use('/', express.static(__dirname + '/dist'));
-app.use('/scripts', express.static(__dirname + '/public/appClient/scripts'));
-app.use('/styles', express.static(__dirname + '/public/appClient/styles'));
-app.use('/translate', express.static(__dirname + '/public/appClient/translate'));
-app.use('/fonts', express.static(__dirname + '/public/appClient/fonts'));
-app.use('/images', express.static(__dirname + '/public/appClient/images'));
-//  app.use('/', express.static(__dirname + '/public/appClient'));
+ app.use('/', express.static(__dirname + '/public/appClient'));
  app.use('/admin', express.static(__dirname + '/public/appAdmin'));
  app.use('/login.html', express.static(__dirname + '/public/appAdmin/login.html'));
  app.use('/client-debug.html', express.static(__dirname + '/public/client'));

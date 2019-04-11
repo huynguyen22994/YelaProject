@@ -9,6 +9,10 @@ module.exports = function (sequelize, Sequelize) {
         content: {
             type: Sequelize.TEXT,
             allowNull: true
+        },
+        notice: {
+            type: Sequelize.BOOLEAN,
+            allowNull: true
         }
     }, {
         charset: 'utf8',
