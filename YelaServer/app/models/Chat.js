@@ -10,7 +10,11 @@ module.exports = function (sequelize, Sequelize) {
             type: Sequelize.TEXT,
             allowNull: true
         },
-        notice: {
+        clientNoRead: {
+            type: Sequelize.BOOLEAN,
+            allowNull: true
+        },
+        adminNoRead: {
             type: Sequelize.BOOLEAN,
             allowNull: true
         }

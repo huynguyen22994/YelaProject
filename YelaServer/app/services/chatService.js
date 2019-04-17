@@ -8,6 +8,24 @@ function getContent() {
     return this.content;
 }
 
+function setClientReaded(boolean) {
+    this.clientReaded = boolean;
+    return this;
+}
+
+function setAdminReaded(boolean) {
+    this.adminReaded = boolean;
+    return this;
+}
+
+function getClientReaded() {
+    return this.clientReaded;
+}
+
+function getAdminReaded() {
+    return this.adminReaded;
+}
+
 //////////////////////////////////
 function Chat(email, content) {
     this.email = email;
@@ -16,7 +34,11 @@ function Chat(email, content) {
 
 Chat.prototype = {
     getEmail: getEmail,
-    getContent: getContent
+    getContent: getContent,
+    setClientReaded: setClientReaded,
+    setAdminReaded: setAdminReaded,
+    getClientReaded: getClientReaded,
+    getAdminReaded: getAdminReaded
 }
 
 /////////////////////////////////

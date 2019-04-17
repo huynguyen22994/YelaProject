@@ -58,7 +58,8 @@
         });
 
         socket.on('cusNewRoom', function(newRoom) {
-            $('#rooms').append('<div><a class="btn btn-default" onclick="switchRoom(\''+newRoom+'\')">' + newRoom + '</a></div>');
+            var mailFormat = newRoom.replace("@gmail.com", "");
+            $('#rooms').append('<div><a style="cursor:pointer" onclick="switchRoom(\''+newRoom+'\')">' + mailFormat + '</a></div>');
         });
 
         $(function(){
@@ -86,6 +87,16 @@
                     $('#datasend').focus().click();
                 }
             });
+        });
+
+        $('#data').focus(function() {
+            socket.emit('cusReadChat', {
+                customer: {
+                    email: $scope.currentRoom,
+                    name: 'FoodTech'
+                },
+                role: 'admin',
+            } )
         });
     }
 })();

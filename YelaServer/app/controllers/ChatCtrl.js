@@ -33,9 +33,13 @@ module.exports.triggerNewChat = (Chat) => {
 module.exports.updateChat = (Chat) => {
     var email = Chat.getEmail();
     var content = Chat.getContent();
+    var clientNoRead = Chat.getClientReaded();
+    var adminNoRead = Chat.getAdminReaded();
     models.Chat.update(
         {
-            content: content
+            content: content,
+            clientNoRead: clientNoRead,
+            adminNoRead: adminNoRead
         },
         {
             where: {
@@ -58,4 +62,26 @@ module.exports.getAllChat = () => {
         (err) => {
             return err;
         })
+};
+
+module.exports.updateReadForCus = (email, clientNoRead, adminNoRead) => {
+    var updateContent = {};
+    if(clientNoRead) {
+        updateContent.clientNoRead = false;
+    } else if(adminNoRead) {
+        updateContent.adminNoRead = false;
+    }
+    models.Chat.update(
+        updateContent,
+        {
+            where: {
+                email: email
+            }
+        }
+    ).then((result) => {
+        var data = result.dataValues;
+        console.log(data);
+    }, (err) => {
+
+    })
 };

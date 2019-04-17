@@ -161,6 +161,13 @@ module.exports.initialize = function initialize(io, customer) {
                             var MessageList = ChatService.instanceMessageListWithString(customerObj.email, customerObj.content);
                             MessageList.putMessage(Message);
                             var Chat = ChatService.instanceChat(customerObj.email, MessageList.getMessageListStr());
+                            if(Message.getRole() === 'admin') {
+                                Chat.setAdminReaded(false);
+                                Chat.setClientReaded(true);
+                            } else {
+                                Chat.setClientReaded(false);
+                                Chat.setAdminReaded(true);
+                            }
                             socket.broadcast.to(Chat.getEmail()).emit('cusUpdateChat', Message.getName(), Message.getRole(), Message.getMessage());
                             ChatModel.updateChat(Chat);
                         } else {
@@ -170,6 +177,15 @@ module.exports.initialize = function initialize(io, customer) {
                         
                     }
                 })
+        });
+
+        socket.on('cusReadChat', function(customer) {
+            var cus = customer.customer;
+            if(customer.role === 'admin') {
+                ChatModel.updateReadForCus(cus.email, false, true)
+            } else {
+                ChatModel.updateReadForCus(cus.email, true, false);
+            }
         });
 
         // when the user disconnects.. perform this
