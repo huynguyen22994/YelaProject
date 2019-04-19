@@ -30,16 +30,28 @@
                 $.each(rooms, function(key ,value) {
                     var mailFormat = value.email.replace("@gmail.com", "");
                     if(value.email == current_room){
-                        $('#rooms').append('<div style="color: #ff8080">' + mailFormat + '</div>');
+                        if(value.adminNoRead) {
+                            $('#rooms').append('<div style="color: #ff8080; display: inline-flex"><i class="fa fa-bell" style="padding: 3px 2px 0 0px"></i>' + mailFormat + '</div>');
+                        } else {
+                            $('#rooms').append('<div style="color: #ff8080">' + mailFormat + '</div>');
+                        }
                     }
                     else {
-                        $('#rooms').append('<div><a style="cursor:pointer" onclick="switchRoom(\''+value.email+'\')">' + mailFormat  + '</a></div>');
+                        if(value.adminNoRead) {
+                            $('#rooms').append('<div><a style="cursor:pointer; display: inline-flex" onclick="switchRoom(\''+value.email+'\')"><i class="fa fa-bell" style="padding: 3px 2px 0 0px"></i>' + mailFormat  + '</a></div>');
+                        } else {
+                            $('#rooms').append('<div><a style="cursor:pointer; display: inline-flex" onclick="switchRoom(\''+value.email+'\')">' + mailFormat  + '</a></div>');
+                        }
                     }
                 })
             } else {
                 $.each(rooms, function(key, value) {
                     var mailFormat = value.email.replace("@gmail.com", "");
-                    $('#rooms').append('<div><a style="cursor:pointer" onclick="switchRoom(\''+value.email+'\')">' + mailFormat + '</a></div>');
+                    if(value.adminNoRead) {
+                        $('#rooms').append('<div><a style="cursor:pointer; display: inline-flex" onclick="switchRoom(\''+value.email+'\')"><i class="fa fa-bell" style="padding: 3px 2px 0 0px"></i>' + mailFormat + '</a></div>');
+                    } else {
+                        $('#rooms').append('<div><a style="cursor:pointer" onclick="switchRoom(\''+value.email+'\')">' + mailFormat + '</a></div>');
+                    }
                 });
             }
         });
