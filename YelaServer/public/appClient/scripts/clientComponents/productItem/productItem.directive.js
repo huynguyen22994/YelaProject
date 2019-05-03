@@ -46,10 +46,10 @@
                             </div>
                             <img ng-if="config.new" src="images/home/new.png" class="new" alt="" />
                         </div>
-                        <div class="choose" ng-if="false"> <!-- should enable when user login -->
+                        <div class="choose" ng-if="true"> <!-- should enable when user login -->
                             <ul class="nav nav-pills nav-justified">
-                                <li><a href="#"><i class="fa fa-plus-square"></i>{{ 'addToWishlist' | i18next }}</a></li>
-                                <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                                <li><a href="#"><i class="fa fa-heart"></i>{{ 'wishlist' | i18next }}</a></li>
+                                <li><a href="#"><i class="fa fa-eye"></i>{{ 'viewQuick' | i18next }}</a></li>
                             </ul>
                         </div>
                     </div>

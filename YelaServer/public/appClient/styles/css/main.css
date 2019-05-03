@@ -8,9 +8,10 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background:;
   position: relative;
   font-weight:400px;
+  padding: 1em;
+  text-align: center;
 }
 
 ul li {
@@ -263,7 +264,7 @@ a .fa-google-plus:hover  {
   outline: medium none;
   padding-left: 10px;
   width: 155px;
-  background-image: url(../images/home/searchicon.png);
+  background-image: url(/images/home/searchicon.png);
   background-repeat: no-repeat;
   background-position: 130px;
 }
@@ -2600,4 +2601,8 @@ h2.title {
   font-weight: 500;
   margin-bottom: 17px;
   margin-top: inherit; 
+}
+
+.search_box:hover {
+  box-shadow: 0 0 2px rgba(33,33,33,.2); 
 }

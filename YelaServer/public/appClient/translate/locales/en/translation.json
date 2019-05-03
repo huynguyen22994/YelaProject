@@ -77,5 +77,6 @@
     "confirmPassword": "Confirm password",
     "displayName": "Display name",
     "backToLoginPage": "Back to login page",
-    "close": "Close"
+    "close": "Close",
+    "viewQuick": "Quick View"
 }

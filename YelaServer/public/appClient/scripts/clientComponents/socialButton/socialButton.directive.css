@@ -1,8 +1,4 @@
-body {
-    padding: 2em;
-    text-align: center;
-  }
-  
+body 
   * {
     box-sizing: border-box;
   }
