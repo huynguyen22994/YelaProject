@@ -15,6 +15,8 @@
         'YelaAppClient.CartApp',
         'YelaAppClient.Contact',
         'YelaAppClient.Blog',
+        'YelaAppClient.Searching',
+        'YelaAppClient.ngEnter',
         'YelaChatBox',
         'Brand',
         'Category',

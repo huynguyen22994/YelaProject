@@ -62,11 +62,12 @@
         
     }
     /* @ngInject */
-    function ControllerController ($scope, $i18next, $rootScope) {
+    function ControllerController ($scope, $i18next, $rootScope, $location) {
         var vm = this;
         vm.changeLanguage = changeLanguage;
         vm.onHeaderBottom = onHeaderBottom;
         vm.isCustomerLogin = isCustomerLogin;
+        vm.search = search;
         vm.config = {
             headerTop: {
                 left: [
@@ -144,5 +145,10 @@
             }
             return false;
         };
+
+        function search() {
+            $location.path(`/searching/${$rootScope.searchValue}`);
+        };
+
     }
 })();

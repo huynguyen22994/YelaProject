@@ -78,5 +78,6 @@
     "displayName": "Display name",
     "backToLoginPage": "Back to login page",
     "close": "Close",
-    "viewQuick": "Quick View"
+    "viewQuick": "Quick View",
+    "searchResult": "Search Result"
 }
