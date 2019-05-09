@@ -5,8 +5,8 @@
         .module('YelaAppClient')
         .controller('ClientController', ControllerController);
 
-    ControllerController.$inject = ['$i18next', '$timeout', '$rootScope', 'Cart', '$scope', 'LoginService', 'Customer', '$location'];
-    function ControllerController($i18next, $timeout, $rootScope, Cart, $scope, LoginService, Customer, $location) {
+    ControllerController.$inject = ['$i18next', '$timeout', '$rootScope', 'Cart', '$scope', 'LoginService', 'Customer', '$location', 'ModalService'];
+    function ControllerController($i18next, $timeout, $rootScope, Cart, $scope, LoginService, Customer, $location, ModalService) {
         var vm = this;
         var TIME_OUT = 1000;
         var customerToken = window.localStorage.getItem('customerToken');
@@ -33,6 +33,8 @@
 
         //////// Function ////////
         $rootScope.getCustomer = getCustomer;
+        $rootScope.openModal = openModal;
+        $rootScope.closeModal = closeModal;
 
         activate();
         ////////////////
@@ -73,6 +75,13 @@
             $location.path('/');
         }
 
+        function openModal(id) {
+            ModalService.Open(id);
+        }
+
+        function closeModal(id) {
+            ModalService.Close(id);
+        }
 
         $scope.$on("$destroy", function() {
             

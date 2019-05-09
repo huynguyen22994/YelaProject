@@ -23,6 +23,7 @@
 	<link rel="stylesheet" href="styles/css/toast-modify.css">
 
 	<link href="scripts/clientComponents/spinnerLoading/spinnerLoading.css" rel="stylesheet">
+	<link href="scripts/clientComponents/modal/modal.css" rel="stylesheet">
 	<link href="scripts/cart/cart.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
@@ -132,6 +133,19 @@
 		</div>
 	  </div>
 
+	  <modal id="product-quick-view">
+		<div class="modal">
+			<div class="modal-body">
+				<h1>A Custom Modal!</h1>
+				<p>
+					Home page text: <input type="text" ng-model="vm.bodyText" />
+				</p>
+				<button ng-click="vm.closeModal('custom-modal-1');">Close</button>
+			</div>
+		</div>
+		<div class="modal-background"></div>
+	</modal>
+
 
     <script src="styles/js/jquery.js"></script>
 	<script src="styles/js/bootstrap.min.js"></script>
@@ -170,6 +184,8 @@
 	<script src="scripts/clientComponents/socialButton/socialButton.directive.js"></script>
 	<script src="scripts/clientComponents/cart/cart.directive.js"></script>
 	<script src="scripts/clientComponents/ngEnter/ngEnter.directive.js"></script>
+	<script src="scripts/clientComponents/modal/modal.service.js"></script>
+	<script src="scripts/clientComponents/modal/modal.directive.js"></script>
 
   	<!-- build:js app.js -->
 	<!--cart-->

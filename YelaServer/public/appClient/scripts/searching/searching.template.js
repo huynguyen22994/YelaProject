@@ -18,6 +18,11 @@
                                 </div>
                                 <div ng-if="!vm.isLoading" class="blog-post-area" style="text-align: -webkit-auto">
                                     <h2 class="title text-center">{{ 'searchResult' | i18next }}</h2>
+                                    <section id="cart_items" class="cart-wrapper">               
+                                        <div class="register-req" style="margin-top: -20px">
+                                            <p>Không tìm thấy kết quả cho từ khóa <b>"{{ ::$root.searchValue }}"</b>. Vui lòng tìm kiếm lại với từ khóa khác hoặc quay về trang chủ.</p>
+                                        </div><!--/register-req-->
+                                    </section> <!--/#cart_items-->
 
                                     <div class="single-blog-post advance" ng-repeat="product in vm.products">
                                         <div class="row">

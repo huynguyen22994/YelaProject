@@ -17,6 +17,7 @@
         'YelaAppClient.Blog',
         'YelaAppClient.Searching',
         'YelaAppClient.ngEnter',
+        'YelaAppClient.Modal',
         'YelaChatBox',
         'Brand',
         'Category',

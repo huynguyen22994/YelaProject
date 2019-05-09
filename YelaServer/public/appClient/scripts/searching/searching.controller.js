@@ -5,10 +5,11 @@
         .module('YelaAppClient.Searching')
         .controller('SearchingController', ControllerController);
 
-    ControllerController.$inject = ['$route', 'clientConstant', '$location', 'ShopService', 'SearchingService'];
-    function ControllerController($route, clientConstant, $location, ShopService, SearchingService) {
+    ControllerController.$inject = ['$route', 'clientConstant', '$location', 'ShopService', 'SearchingService', '$rootScope'];
+    function ControllerController($route, clientConstant, $location, ShopService, SearchingService, $rootScope) {
         var vm = this;
         let searchKey = $route.current.params.key;
+        $rootScope.searchValue = searchKey;
         vm.products = [];
         vm.pageArray = [];
         vm.changePage = changePage;
