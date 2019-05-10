@@ -136,11 +136,30 @@
 	  <modal id="product-quick-view">
 		<div class="modal">
 			<div class="modal-body">
-				<h1>A Custom Modal!</h1>
-				<p>
-					Home page text: <input type="text" ng-model="vm.bodyText" />
-				</p>
-				<button ng-click="vm.closeModal('custom-modal-1');">Close</button>
+				<span class="close" ng-click="$root.closeModal('product-quick-view')">&times;</span>
+				<div class="row">
+					<div class="col-sm-offset-1 col-sm-4">
+						<div class="product-information">
+							<img ng-src="images/home/gallery2.jpg" alt="" />
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="">
+							<h3>Chả Cá</h3>
+						</div>
+						<div class="row">
+							<div class="col-sm-1">
+								adas
+							</div>
+							<div class="col-sm-11">
+								dsfds
+							</div>
+						</div>
+						<div class="row">
+
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="modal-background"></div>
