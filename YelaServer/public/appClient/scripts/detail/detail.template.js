@@ -12,7 +12,7 @@
                                     <sidebar brand-data="vm.brands" category-data="vm.categories"></sidebar>
                                 </div>
                                 <div class="col-sm-9 padding-right">
-                                    <div class="product-details"><!--product-details-->
+                                    <div class="product-details content-left"><!--product-details-->
                                         <div class="col-sm-5">
                                             <div class="view-product">
                                                 <img ng-src="{{vm.product.linkImg}}" alt="" />
