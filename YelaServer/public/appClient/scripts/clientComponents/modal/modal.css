@@ -86,6 +86,10 @@ modal {
     color: #696763
   }
 
+  modal .product-name-detail {
+    margin-top: 35px
+  }
+
   .content-left {
     text-align: left
   }

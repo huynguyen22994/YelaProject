@@ -1,0 +1,37 @@
+<modal id="product-quick-view">
+    <div class="modal">
+        <div class="modal-body content-left">
+            <span class="close" ng-click="$root.closeModal('product-quick-view')">&times;</span>
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-4">
+                    <div class="product-information product-image-infomation">
+                        <img ng-src="images/home/gallery2.jpg" alt="" />
+                    </div>
+                </div>
+                <div class="col-sm-6 product-information product-content-infomation">
+                    <label class="newarrival banner-lable">{{ $root.productDetailModal.productStatus | i18next }}</label> 
+                    <div class="product-name-detail">
+                        <h3>{{ $root.productDetailModal.name }}</h3>
+                    </div>
+                    <span>
+                        <span>
+                            {{ $root.productDetailModal.price }}
+                        </span>
+                    </span>
+                    <span>
+                        <label>{{ 'quantity' | i18next }}:</label>
+                        <input type="number" ng-model="$root.productDetailModal.quantity" />
+                        <button type="button" class="btn btn-fefault cart" ng-click="vm.addToCart(vm.product, vm.quantity)">
+                            <i class="fa fa-shopping-cart"></i>
+                            {{ 'addToCart' | i18next }}
+                        </button>
+                    </span>
+                    <p><b>{{ 'status' | i18next }}:</b> Còn</p>
+                    <p><b>{{ 'type' | i18next }}:</b> {{ $root.productDetailModal.productStatus | i18next }}</p>
+                    <p><b>{{ 'describe' | i18next }}:</b> {{ $root.productDetailModal.discribe }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</modal>

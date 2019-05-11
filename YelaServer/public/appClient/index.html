@@ -133,49 +133,7 @@
 		</div>
 	  </div>
 
-	  <modal id="product-quick-view">
-		<div class="modal">
-			<div class="modal-body content-left">
-				<span class="close" ng-click="$root.closeModal('product-quick-view')">&times;</span>
-				<div class="row">
-					<div class="col-sm-offset-1 col-sm-4">
-						<div class="product-information product-image-infomation">
-							<img ng-src="images/home/gallery2.jpg" alt="" />
-						</div>
-					</div>
-					<div class="col-sm-6 product-information product-content-infomation">
-						<h3>Chả Cá</h3>
-						<span>
-							<span>
-								999
-							</span>
-						</span>
-						<label class="newarrival banner-lable">{{ vm.product.productStatus | i18next }}</label>   
-						<h2>{{vm.product.name}}</h2>
-						<!--<p>Web ID: 1089772</p>-->
-						<p>
-							<span>
-								<span>{{vm.product.price}}</span>
-							</span>
-						</p>
-						<span>
-							<label>{{ 'quantity' | i18next }}:</label>
-							<input type="number" ng-model="vm.quantity" />
-							<button type="button" class="btn btn-fefault cart" ng-click="vm.addToCart(vm.product, vm.quantity)">
-								<i class="fa fa-shopping-cart"></i>
-								{{ 'addToCart' | i18next }}
-							</button>
-						</span>
-						<p><b>{{ 'status' | i18next }}:</b> Còn</p>
-						<p><b>{{ 'type' | i18next }}:</b> {{ vm.product.productStatus | i18next }}</p>
-						<p><b>{{ 'describe' | i18next }}:</b> {{vm.product.discribe}}</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="modal-background"></div>
-	</modal>
-
+	  <div ng-include="'scripts/templates/modalDetail.tpl.html'"></div>
 
     <script src="styles/js/jquery.js"></script>
 	<script src="styles/js/bootstrap.min.js"></script>

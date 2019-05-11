@@ -30,6 +30,7 @@
                 $location.path('/');
             }
         }
+        $rootScope.productDetailModal = {};
 
         //////// Function ////////
         $rootScope.getCustomer = getCustomer;
