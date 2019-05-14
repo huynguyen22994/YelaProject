@@ -122,6 +122,13 @@
                 ]
             }
         };
+        $rootScope.isCustomerLogin = isCustomerLogin;
+
+        initialize();
+        //////////////////////////////
+        function initialize() {
+            handleHeaderMiddleFixed();
+        }
 
         function changeLanguage(key) {
             $i18next.changeLanguage(key);
@@ -149,6 +156,20 @@
         function search() {
             $location.path(`/searching/${$rootScope.searchValue}`);
         };
+
+        function handleHeaderMiddleFixed() {
+            var headerMiddle = $('#foodtech-header-middle'),
+            distance = headerMiddle.offset().top,
+            $window = $(window);
+    
+            $window.scroll(function() {
+                if ( $window.scrollTop() >= distance ) {
+                    headerMiddle.addClass('header-middle-fixed');
+                 } else {
+                     headerMiddle.removeClass('header-middle-fixed');
+                 }
+            });
+        }
 
     }
 })();

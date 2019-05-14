@@ -5,8 +5,8 @@
         .module('YelaAppClient')
         .controller('ClientController', ControllerController);
 
-    ControllerController.$inject = ['$i18next', '$timeout', '$rootScope', 'Cart', '$scope', 'LoginService', 'Customer', '$location', 'ModalService'];
-    function ControllerController($i18next, $timeout, $rootScope, Cart, $scope, LoginService, Customer, $location, ModalService) {
+    ControllerController.$inject = ['$i18next', '$timeout', '$rootScope', 'Cart', '$scope', 'LoginService', 'Customer', '$location', 'ModalService', 'Product', 'toastr'];
+    function ControllerController($i18next, $timeout, $rootScope, Cart, $scope, LoginService, Customer, $location, ModalService, Product, toastr) {
         var vm = this;
         var TIME_OUT = 1000;
         var customerToken = window.localStorage.getItem('customerToken');
@@ -36,6 +36,7 @@
         $rootScope.getCustomer = getCustomer;
         $rootScope.openModal = openModal;
         $rootScope.closeModal = closeModal;
+        $rootScope.addToCart = addToCart;
 
         activate();
         ////////////////
@@ -82,6 +83,13 @@
 
         function closeModal(id) {
             ModalService.Close(id);
+        }
+
+        function addToCart(product, quantity) {
+            var _product = new Product(product.productId, product.name, product.price, product.linkImg);
+            _product.upQuantity(quantity);
+            $rootScope.Cart.adddProductWithQuatity(_product, quantity);
+            toastr.success(product.name + ' đã được thêm vào giỏ hàng');
         }
 
         $scope.$on("$destroy", function() {

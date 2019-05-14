@@ -48,8 +48,8 @@
                         </div>
                         <div class="choose" ng-if="true"> <!-- should enable when user login -->
                             <ul class="nav nav-pills nav-justified">
-                                <li><a href="#"><i class="fa fa-heart"></i>{{ 'wishlist' | i18next }}</a></li>
-                                <li><a ng-click="openQuickViewDetail(data)"><i class="fa fa-eye"></i>{{ 'viewQuick' | i18next }}</a></li>
+                                <li ng-if="$root.isCustomerLogin()"><a href><i class="fa fa-heart"></i>{{ 'wishlist' | i18next }}</a></li>
+                                <li><a href ng-click="openQuickViewDetail(data)"><i class="fa fa-eye"></i>{{ 'viewQuick' | i18next }}</a></li>
                             </ul>
                         </div>
                     </div>
