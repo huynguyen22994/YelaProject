@@ -1255,8 +1255,8 @@ h2.title {
 
 .product-information span {
   display: inline-block;
-  margin-bottom: 8px;
-  margin-top: 18px;
+  /* margin-bottom: 8px; */
+  margin-top: 10px;
 }
 
 .product-information span span {
@@ -1303,6 +1303,16 @@ h2.title {
   margin-left: 20px;
 }
 
+.cart.view-detail {
+  background: #696763;
+}
+
+.line {
+  clear: both;
+  position: relative;
+  width: 100%;
+  border-top: 1px solid #EEE;
+}
 
 .shop-details-tab {
   border: 1px solid #F7F7F0;

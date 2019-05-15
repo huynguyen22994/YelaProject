@@ -39,10 +39,10 @@
                     label: 'newPosts',
                     isChoosen: false,
                     items: [
-                        {
-                            label: 'Easy Polo Black Edition',
-                            image: 'images/home/gallery2.jpg'
-                        }
+                        // {
+                        //     label: 'Easy Polo Black Edition',
+                        //     image: 'images/home/gallery2.jpg'
+                        // }
                     ]
                 }
             ]

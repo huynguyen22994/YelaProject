@@ -5,8 +5,8 @@
         .module('YelaAppClient')
         .controller('ClientController', ControllerController);
 
-    ControllerController.$inject = ['$i18next', '$timeout', '$rootScope', 'Cart', '$scope', 'LoginService', 'Customer', '$location', 'ModalService', 'Product', 'toastr'];
-    function ControllerController($i18next, $timeout, $rootScope, Cart, $scope, LoginService, Customer, $location, ModalService, Product, toastr) {
+    ControllerController.$inject = ['$i18next', '$timeout', '$rootScope', 'Cart', '$scope', 'LoginService', 'Customer', '$location', 'ModalService', 'Product', 'toastr', '$window'];
+    function ControllerController($i18next, $timeout, $rootScope, Cart, $scope, LoginService, Customer, $location, ModalService, Product, toastr, $window) {
         var vm = this;
         var TIME_OUT = 1000;
         var customerToken = window.localStorage.getItem('customerToken');
@@ -90,11 +90,27 @@
             _product.upQuantity(quantity);
             $rootScope.Cart.adddProductWithQuatity(_product, quantity);
             toastr.success(product.name + ' đã được thêm vào giỏ hàng');
+            cacheCart();
+        }
+
+        function cacheCart() {
+            var cart = $rootScope.Cart.getProductList() || [], cacheCart = [];
+            angular.forEach(cart, function(product) {
+                cacheCart.push({
+                    productId: product.productId,
+                    quantity: product.quantity
+                });
+            })
+            window.localStorage.setItem('cart', cart);
         }
 
         $scope.$on("$destroy", function() {
-            
+
         });
+
+        $window.onbeforeunload = function (evt) {
+            cacheCart();
+        }
 
     }
 })();

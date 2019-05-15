@@ -27,7 +27,7 @@ modal {
     background: #fff;
     /* margin exposes part of the modal background */
   
-    margin: 9rem;
+    margin: 9rem 20rem 20rem 20rem;
     border-radius: 8px;
   }
   modal .modal-background {

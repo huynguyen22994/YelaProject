@@ -20,7 +20,7 @@
             getProductList: getProductList,
             getProductLength: getProductLength,
             removeProduct: removeProduct,
-            getTotalPrice: getTotalPrice  
+            getTotalPrice: getTotalPrice
         }
         
         return Cart;

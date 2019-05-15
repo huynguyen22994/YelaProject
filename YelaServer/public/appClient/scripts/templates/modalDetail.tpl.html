@@ -18,12 +18,17 @@
                             {{ $root.productDetailModal.price }}
                         </span>
                     </span>
+                    <div class="line"></div>
                     <span>
-                        <label>{{ 'quantity' | i18next }}:</label>
-                        <input type="number" ng-model="vm.quantity" />
                         <button type="button" class="btn btn-fefault cart" ng-click="$root.addToCart($root.productDetailModal, vm.quantity)">
                             <i class="fa fa-shopping-cart"></i>
                             {{ 'addToCart' | i18next }}
+                        </button>
+                        <label>{{ 'quantity' | i18next }}:</label>
+                        <input type="number" ng-model="vm.quantity" />
+                        <button type="button" class="btn btn-fefault view-detail cart" ng-click="$root.addToCart($root.productDetailModal, vm.quantity)">
+                            <i class="fa fa-shopping-cart"></i>
+                            {{ 'Xem Chi Tiết' | i18next }}
                         </button>
                     </span>
                     <!-- <p><b>{{ 'status' | i18next }}:</b> Còn</p> -->
