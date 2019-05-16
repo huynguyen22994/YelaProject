@@ -5,8 +5,8 @@
         .module('YelaAppClient')
         .controller('ClientController', ControllerController);
 
-    ControllerController.$inject = ['$i18next', '$timeout', '$rootScope', 'Cart', '$scope', 'LoginService', 'Customer', '$location', 'ModalService', 'Product', 'toastr', '$window'];
-    function ControllerController($i18next, $timeout, $rootScope, Cart, $scope, LoginService, Customer, $location, ModalService, Product, toastr, $window) {
+    ControllerController.$inject = ['$i18next', '$timeout', '$rootScope', 'Cart', '$scope', 'LoginService', 'Customer', '$location', 'ModalService', 'Product', 'toastr', '$window', 'ShopService'];
+    function ControllerController($i18next, $timeout, $rootScope, Cart, $scope, LoginService, Customer, $location, ModalService, Product, toastr, $window, ShopService) {
         var vm = this;
         var TIME_OUT = 1000;
         var customerToken = window.localStorage.getItem('customerToken');
@@ -43,6 +43,7 @@
 
         function activate() { 
             getCustomer(customerToken);
+            initCartFirst();
         };
 
         function getCustomer(token) {
@@ -90,18 +91,39 @@
             _product.upQuantity(quantity);
             $rootScope.Cart.adddProductWithQuatity(_product, quantity);
             toastr.success(product.name + ' đã được thêm vào giỏ hàng');
-            cacheCart();
+        }
+
+        function initCartFirst() {
+            var cacheCartString = window.localStorage.getItem('cart');
+            var cacheCart = JSON.parse(cacheCartString);
+            if(cacheCart && cacheCart.length > 0) {
+                ShopService.getAllProducts()
+                .then(function(response) {
+                    vm.allProducts = response.data.products;
+                    angular.forEach(cacheCart, function(productCache) {
+                        var product = _.find(vm.allProducts, function(item) {
+                            return item.productId === productCache.productId;
+                        })
+                        if(product) {
+                            var _product = new Product(product.productId, product.name, product.price, product.linkImg);
+                            _product.upQuantity(productCache.quantity);
+                            $rootScope.Cart.adddProductWithQuatity(_product, productCache.quantity);
+                        }
+                    })
+                })
+            }
         }
 
         function cacheCart() {
             var cart = $rootScope.Cart.getProductList() || [], cacheCart = [];
+            window.localStorage.removeItem('cart');
             angular.forEach(cart, function(product) {
                 cacheCart.push({
                     productId: product.productId,
                     quantity: product.quantity
                 });
             })
-            window.localStorage.setItem('cart', cart);
+            window.localStorage.setItem('cart', JSON.stringify(cacheCart));
         }
 
         $scope.$on("$destroy", function() {

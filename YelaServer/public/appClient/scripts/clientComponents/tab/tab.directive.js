@@ -59,7 +59,6 @@
 
         function getAllBlog() {
             getBlogs().then(function(response) {
-                console.log(response);
                 var data = response.data;
                 var listBog = parseBlog(data.blogs);
                 vm.tabMenuConfig.tabs[0].items = listBog;

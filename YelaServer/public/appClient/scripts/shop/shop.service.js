@@ -10,7 +10,8 @@
         var service = {
             getBrands: getBrands,
             getCategories: getCategories,
-            getProducts: getProducts
+            getProducts: getProducts,
+            getAllProducts: getAllProducts
         };
         
         return service;
@@ -52,5 +53,16 @@
                 return err;
             });
         };
+
+        function getAllProducts() {
+            return $http({
+                url: '/api/products',
+                method: 'GET'
+            }).then(function (res) {
+                return res;
+            }).catch(function (err) {
+                return err;
+            });
+        }
     }
 })();

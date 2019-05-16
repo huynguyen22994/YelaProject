@@ -2,7 +2,7 @@ window.i18next
 	.use(window.i18nextXHRBackend);
 
 window.i18next.init({
-	debug: true,
+	debug: false,
 	lng: 'vi', // If not given, i18n will detect the browser language.
 	fallbackLng: ['vi', 'en'], // Default is dev
 	backend: {
