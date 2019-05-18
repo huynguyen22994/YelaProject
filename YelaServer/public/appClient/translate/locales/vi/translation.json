@@ -4,7 +4,7 @@
     "english": "Tiêng Anh",
     "home": "Trang Chủ",
     "foods": "Món Ăn",
-    "blog": "Blog",
+    "blog": "Bài Viết",
     "contact": "Liên Hệ",
     "search": "Tìm Kiếm",
     "searchFood": "Tìm Kiếm Món Ăn",
@@ -79,5 +79,6 @@
     "backToLoginPage": "Trở lại trang đăng nhập",
     "close": "Đóng",
     "viewQuick": "Xem Nhanh",
-    "searchResult": "Kết Quả Tìm Kiếm"
+    "searchResult": "Kết Quả Tìm Kiếm",
+    "introduce": "Giới Thiệu"
 }

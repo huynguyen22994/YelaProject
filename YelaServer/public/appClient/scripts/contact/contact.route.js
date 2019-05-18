@@ -13,7 +13,8 @@
             .when('/contact', {
                 templateUrl: 'contact.html',
                 controller: 'ContactController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                appId: 'contact'
             });
         //$locationProvider.html5Mode(true);
     };

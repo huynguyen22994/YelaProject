@@ -13,7 +13,8 @@
             .when('/shop', {
                 templateUrl: 'shop.html',
                 controller: 'ShopController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                appId: 'shop'
             });
         //$locationProvider.html5Mode(true);
     };

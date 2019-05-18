@@ -2,7 +2,9 @@
     'use strict';
 
     angular
-        .module('FooterApp', [])
+        .module('FooterApp', [
+            'jm.i18next'
+        ])
         .directive('footerApp', Directive);
 
     Directive.$inject = [];
@@ -19,8 +21,13 @@
 
     }
     /* @ngInject */
-    function ControllerController ($scope) {
+    function ControllerController ($scope, $i18next) {
         var vm = this;
+        vm.changeLanguage = changeLanguage;
 
+        ///////////////////////////////
+        function changeLanguage(key) {
+            $i18next.changeLanguage(key);
+        };
     }
 })();

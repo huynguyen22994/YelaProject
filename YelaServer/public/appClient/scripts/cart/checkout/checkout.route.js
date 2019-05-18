@@ -13,7 +13,8 @@
             .when('/checkout', {
                 templateUrl: 'checkoutPage.html',
                 controller: 'CheckoutController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                appId: 'checkout'
             });
         //$locationProvider.html5Mode(true);
     };

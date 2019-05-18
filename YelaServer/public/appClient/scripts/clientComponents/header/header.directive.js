@@ -42,9 +42,7 @@
     'use strict';
 
     angular
-        .module('HeaderApp', [
-            'jm.i18next'
-        ])
+        .module('HeaderApp', ['ngRoute'])
         .directive('headerApp', Directive);
 
     Directive.$inject = [];
@@ -62,12 +60,13 @@
         
     }
     /* @ngInject */
-    function ControllerController ($scope, $i18next, $rootScope, $location) {
+    function ControllerController ($scope, $rootScope, $location, $route) {
+        console.log($route);
         var vm = this;
-        vm.changeLanguage = changeLanguage;
         vm.onHeaderBottom = onHeaderBottom;
         vm.isCustomerLogin = isCustomerLogin;
         vm.search = search;
+        vm.detectActiveMenu = detectActiveMenu;
         vm.config = {
             headerTop: {
                 left: [
@@ -106,16 +105,19 @@
             },
             headerBottom: {
                 left: [
-                    {id: 'homePage', label: 'home', href: function () { return '/'; }, isChoosen: true },
-                    {id: 'foodsPage', label: 'foods', href: function () { return '#/foods'; }, isChoosen: false, subItems: [
-                        { label: 'mainFood', href: function () { return '#/blog'; }},
-                        { label: 'secondaryFood', href: function () { return '#/blogSingle'; }},
-                        { label: 'lowCarbFood', href: function () { return '#/blogSingle'; }}
+                    {id: 'home', label: 'home', href: function () { return '/'; }, isChoosen: false, subItems: [
+                        { id: 'introduce', label: 'introduce', href: function () { return '#/info'; }},
+                        { id: 'contact', label: 'contact', href: function () { return '#/contact'; }},
+                    ] },
+                    {id: 'foods', label: 'foods', href: function () { return '#/foods'; }, isChoosen: false, subItems: [
+                        { id: 'mainFood', label: 'mainFood', href: function () { return '#/blog'; }},
+                        { id: 'secondaryFood', label: 'secondaryFood', href: function () { return '#/blogSingle'; }},
+                        { id: 'lowCarbFood', label: 'lowCarbFood', href: function () { return '#/blogSingle'; }}
                     ]},
-                    {id: 'materialsPage', label: 'materials', href: function () { return '#/materials'; }, isChoosen: false },
-                    {id: 'productPage', label: 'products', href: function () { return '#/shop'; }, isChoosen: false },
-                    {id: 'contactPage', label: 'contact', href: function () { return '#/contact'; }, isChoosen: false },
-                    {id: 'blogPage', label: 'blog', href: function () { return '#/blogs'; }, isChoosen: false }
+                    {id: 'materials', label: 'materials', href: function () { return '#/materials'; }, isChoosen: false },
+                    {id: 'shop', label: 'products', href: function () { return '#/shop'; }, isChoosen: false },
+                    // {id: 'contactPage', label: 'contact', href: function () { return '#/contact'; }, isChoosen: false },
+                    {id: 'blogs', label: 'blog', href: function () { return '#/blogs'; }, isChoosen: false }
                 ],
                 right: [
                     
@@ -129,10 +131,6 @@
         function initialize() {
             handleHeaderMiddleFixed();
         }
-
-        function changeLanguage(key) {
-            $i18next.changeLanguage(key);
-        };
 
         function onHeaderBottom(key) {
             if(angular.isArray(vm.config.headerBottom.left)) {
@@ -170,6 +168,16 @@
                  }
             });
         }
+
+        function detectActiveMenu(appId, currentApp) {
+            var currentAppId = currentApp || $route.current.$$route.appId;
+            return appId === currentAppId;
+        }
+
+        $rootScope.$on( "$routeChangeStart", function(event, next, current) {
+            //next.data.private;
+            console.log(current);
+         });
 
     }
 })();

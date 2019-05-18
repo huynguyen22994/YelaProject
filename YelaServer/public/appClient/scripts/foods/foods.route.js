@@ -13,7 +13,8 @@
             .when('/foods', {
                 templateUrl: 'foods.html',
                 controller: 'FoodsController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                appId: 'foods'
             });
         //$locationProvider.html5Mode(true);
     };

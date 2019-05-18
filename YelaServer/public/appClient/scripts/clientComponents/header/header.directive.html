@@ -30,16 +30,6 @@
             </div>
             <div class="col-sm-2">
                 <div class="btn-group pull-left">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle usa" style="z-index: 1000"data-toggle="dropdown">
-                            <span ng-i18next="translate"></span>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a ng-click="vm.changeLanguage('vi')" ng-i18next="vietnameese"></a></li>
-                            <li><a ng-click="vm.changeLanguage('en')" ng-i18next="english"></a></li>
-                        </ul>
-                    </div>
                 </div>
             </div>
             <div class="col-sm-8">
@@ -86,10 +76,10 @@
                 <div class="mainmenu pull-left">
                     <ul class="nav navbar-nav collapse navbar-collapse">
                         <li ng-repeat="leftHeaderBottom in vm.config.headerBottom.left">
-                            <a ng-click="vm.onHeaderBottom(leftHeaderBottom.id)" href="{{ leftHeaderBottom.href() }}" ng-class="{'active': leftHeaderBottom.isChoosen }"> {{ leftHeaderBottom.label | i18next }} <i ng-if="leftHeaderBottom.subItems" class="fa fa-angle-down"></i></a>
+                            <a ng-click="vm.onHeaderBottom(leftHeaderBottom.id)" href="{{ leftHeaderBottom.href() }}" ng-class="{'active': vm.detectActiveMenu(leftHeaderBottom.id) }"> {{ leftHeaderBottom.label | i18next }} <i ng-if="leftHeaderBottom.subItems" class="fa fa-angle-down"></i></a>
                             <ul ng-if="leftHeaderBottom.subItems" role="menu" class="sub-menu">
                                 <li ng-repeat="subItem in leftHeaderBottom.subItems">
-                                    <a href="{{subItem.href() }}">{{ subItem.label | i18next }}</a>
+                                    <a href="{{subItem.href() }}" ng-class="{'active': vm.detectActiveMenu(subItem.id) }">{{ subItem.label | i18next }}</a>
                                 </li>
                             </ul>
                         </li>

@@ -13,7 +13,8 @@
             .when('/cart', {
                 templateUrl: 'cart.html',
                 controller: 'CartController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                appId: 'cart'
             });
         //$locationProvider.html5Mode(true);
     };

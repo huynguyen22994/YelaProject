@@ -13,7 +13,8 @@
             .when('/', {
                 templateUrl: 'home.html',
                 controller: 'HomeController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                appId: 'home'
             })
             .when(urlActiveAccount, {
                 templateUrl: 'home.html',

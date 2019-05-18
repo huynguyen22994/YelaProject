@@ -62,8 +62,10 @@
     /* @ngInject */
     function ControllerController($scope, clientConstant, toastr, Product, $rootScope) {
         $scope.baseUrl = `${clientConstant.serverUrl}/`;
+        $rootScope.baseUrl = `${clientConstant.serverUrl}/`;
         $scope.addToCart = addToCart;
         $scope.getFormatImgUrl = getFormatImgUrl;
+        $rootScope.getFormatImgUrl = getFormatImgUrl;
         $scope.openQuickViewDetail = openQuickViewDetail;
 
         if ($scope.config) {

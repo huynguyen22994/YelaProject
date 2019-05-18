@@ -13,12 +13,14 @@
             .when('/blogs', {
                 templateUrl: 'blogs.html',
                 controller: 'BlogController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                appId: 'blogs'
             })
             .when('/blogs/:id', {
                 templateUrl: 'blogs.html',
                 controller: 'BlogController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                appId: 'blogs'
             });
         //$locationProvider.html5Mode(true);
     };

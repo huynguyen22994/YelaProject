@@ -13,7 +13,8 @@
             .when('/materials', {
                 templateUrl: 'materials.html',
                 controller: 'MaterialsController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                appId: 'materials'
             });
         //$locationProvider.html5Mode(true);
     };
