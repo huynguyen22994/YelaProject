@@ -80,5 +80,7 @@
     "close": "Close",
     "viewQuick": "Quick View",
     "searchResult": "Search Result",
-    "introduce": "Introduce"
+    "introduce": "Introduce",
+    "share": "Share",
+    "comment": "Comment"
 }

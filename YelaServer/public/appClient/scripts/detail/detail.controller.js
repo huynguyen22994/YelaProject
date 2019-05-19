@@ -5,8 +5,8 @@
         .module('YelaAppClient.Detail')
         .controller('DetailController', ControllerController);
 
-    ControllerController.$inject = ['DetailService', '$route', 'clientConstant', '$rootScope', 'Product', 'toastr'];
-    function ControllerController(DetailService, $route, clientConstant, $rootScope, Product, toastr) {
+    ControllerController.$inject = ['DetailService', '$route', 'clientConstant', '$rootScope', 'Product', 'toastr', '$timeout'];
+    function ControllerController(DetailService, $route, clientConstant, $rootScope, Product, toastr, $timeout) {
         var vm = this;
         let productId = $route.current.params.id;
         vm.RecommendProduct = {
@@ -115,6 +115,12 @@
             $rootScope.Cart.adddProductWithQuatity(_product, quantity);
             toastr.success(product.name + ' đã được thêm vào giỏ hàng');
         }
+
+        $timeout(function() {
+            if(window.FB && window.FB.XFBML) {
+                window.FB.XFBML.parse();
+            }
+        })
 
     }
 })();

@@ -37,11 +37,39 @@
                                                     </button>
                                                 </span>
                                                 <p><b>{{ 'status' | i18next }}:</b> Còn</p>
-                                                <p><b>{{ 'type' | i18next }}:</b> {{ vm.product.productStatus | i18next }}</p>
+                                                <div style="display: -webkit-box">
+                                                    <p style="line-height: 40px; padding-right: 5px"><b>{{ 'share' | i18next }}:</p>
+                                                    <!-- Your like button code -->
+                                                    <div class="fb-like" 
+                                                    data-href="{{ 'http://www.foodtechshop.vn/#!/detail/' +  vm.product.productId }}" 
+                                                    data-layout="standard" 
+                                                    data-action="like" 
+                                                    data-show-faces="true"
+                                                    data-share="true">
+                                                    </div>
+                                                </div>
                                                 <p><b>{{ 'describe' | i18next }}:</b> {{vm.product.discribe}}</p>
                                             </div><!--/product-information-->
                                         </div>
                                     </div><!--/product-details-->
+
+                                    <div class="category-tab shop-details-tab" style="text-align: left"><!--category-tab-->
+                                        <div class="col-sm-12">
+                                            <ul class="nav nav-tabs">
+                                                <li class="active"><a href="#reviews" data-toggle="tab">{{ 'comment' | i18next }}</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade active in" id="reviews" >
+                                                <div class="col-sm-12">
+                                                    <div class="fb-comments" 
+                                                        data-href="{{ 'http://www.foodtechshop.vn/#!/detail/' +  vm.product.productId }}" 
+                                                        data-width="700" 
+                                                        data-numposts="10"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!--/category-tab-->
 
                                     <recommend-product array-data="vm.productBestsellers" config="vm.recommendProductConfig"></recommend-product>  
 

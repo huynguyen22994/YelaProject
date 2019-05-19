@@ -13,7 +13,8 @@
             .when('/login', {
                 templateUrl: 'scripts/login/login.template.html',
                 controller: 'LoginController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                appId: 'login'
             });
         //$locationProvider.html5Mode(true);
     };
