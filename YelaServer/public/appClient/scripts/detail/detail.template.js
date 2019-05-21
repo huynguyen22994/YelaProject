@@ -15,7 +15,7 @@
                                     <div class="product-details content-left"><!--product-details-->
                                         <div class="col-sm-5">
                                             <div class="view-product">
-                                                <img ng-src="{{vm.product.linkImg}}" alt="" />
+                                                <img ng-src="{{vm.product.linkImg}}" on-error-src="{{ $root.notFoundImg }}"/>
                                             </div>
                                         </div>
                                         <div class="col-sm-7">
@@ -30,7 +30,7 @@
                                                 </p>
                                                 <span>
                                                     <label>{{ 'quantity' | i18next }}:</label>
-                                                    <input type="number" ng-model="vm.quantity" />
+                                                    <input type="number" ng-model="vm.quantity" min="1"/>
                                                     <button type="button" class="btn btn-fefault cart" ng-click="vm.addToCart(vm.product, vm.quantity)">
                                                         <i class="fa fa-shopping-cart"></i>
                                                         {{ 'addToCart' | i18next }}

@@ -5,8 +5,8 @@
         .module('YelaAppClient')
         .controller('ClientController', ControllerController);
 
-    ControllerController.$inject = ['$i18next', '$timeout', '$rootScope', 'Cart', '$scope', 'LoginService', 'Customer', '$location', 'ModalService', 'Product', 'toastr', '$window', 'ShopService'];
-    function ControllerController($i18next, $timeout, $rootScope, Cart, $scope, LoginService, Customer, $location, ModalService, Product, toastr, $window, ShopService) {
+    ControllerController.$inject = ['$i18next', '$timeout', '$rootScope', 'Cart', '$scope', 'LoginService', 'Customer', '$location', 'ModalService', 'Product', 'toastr', '$window', 'ShopService', 'clientConstant'];
+    function ControllerController($i18next, $timeout, $rootScope, Cart, $scope, LoginService, Customer, $location, ModalService, Product, toastr, $window, ShopService, clientConstant) {
         var vm = this;
         var TIME_OUT = 1000;
         var customerToken = window.localStorage.getItem('customerToken');
@@ -31,6 +31,7 @@
             }
         }
         $rootScope.productDetailModal = {};
+        $rootScope.notFoundImg = clientConstant.notFoundImg;
 
         //////// Function ////////
         $rootScope.getCustomer = getCustomer;

@@ -31,7 +31,7 @@
                         <div class="single-products">
                             <div class="productinfo text-center">
                                 <div style="cursor:pointer" ng-click="config.viewDetail(data)">
-                                    <img ng-src="{{ getFormatImgUrl(data['linkImg'], baseUrl) }}" alt="" />
+                                    <img ng-src="{{ getFormatImgUrl(data['linkImg'], baseUrl) }}" alt="" on-error-src="{{ $root.notFoundImg }}" />
                                 </div>
                                 <h4>{{data['priceFormatted']}}</h4>
                                 <p>{{data['name']}}</p>

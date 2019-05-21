@@ -18,6 +18,7 @@
         'YelaAppClient.Searching',
         'YelaAppClient.ngEnter',
         'YelaAppClient.Modal',
+        'YelaAppClient.errorSrc',
         'YelaChatBox',
         'Brand',
         'Category',

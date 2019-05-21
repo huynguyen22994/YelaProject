@@ -61,7 +61,6 @@
     }
     /* @ngInject */
     function ControllerController ($scope, $rootScope, $location, $route) {
-        console.log($route);
         var vm = this;
         vm.onHeaderBottom = onHeaderBottom;
         vm.isCustomerLogin = isCustomerLogin;
@@ -177,7 +176,6 @@
 
         $rootScope.$on( "$routeChangeStart", function(event, next, current) {
             //next.data.private;
-            console.log(current);
          });
 
     }

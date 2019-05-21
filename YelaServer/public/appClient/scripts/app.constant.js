@@ -3,6 +3,7 @@
 
     angular.module('YelaAppClient')
         .constant('clientConstant', {
-            serverUrl: ''
+            serverUrl: '',
+            notFoundImg: 'images/404/noImage.png'
     });
 })();
