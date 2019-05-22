@@ -23,7 +23,7 @@
                                     </div><!--/brands_products-->
                                     
                                     <div class="shipping text-center"><!--shipping-->
-                                        <img src="images/home/banner.png" alt="" />
+                                        <img src="images/home/banner.png" alt="" on-error-src="{{ $root.notFoundImg }}"/>
                                     </div><!--/shipping-->
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                                         <div class="row">
                                             <div class="col-sm-3">
                                                 <a href="">
-                                                    <img ng-src="{{blog.imageLink}}" alt="Hình Ảnh">
+                                                    <img ng-src="{{blog.imageLink}}" alt="Hình Ảnh" on-error-src="{{ $root.notFoundImg }}">
                                                 </a>
                                             </div>
                                             <div class="col-sm-9">

@@ -44,11 +44,14 @@
                     <div class="panel-body">
                         <form role="form">
                             <fieldset>
-                                <div class="form-group">
-                                    <input class="form-control" ng-model="vm.userName" placeholder="Tài Khoản" name="text" type="text" autofocus>
+                                <div class="alert alert-danger" ng-if="vm.error">
+                                    <strong>Lỗi: </strong> Đăng nhập không thành công.
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" ng-model="vm.password" placeholder="Mật Khẩu" name="password" type="password" value="">
+                                    <input class="form-control" ng-model="vm.userName" ng-enter="vm.login()" placeholder="Tài Khoản" name="text" type="text" autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" ng-model="vm.password" ng-enter="vm.login()" placeholder="Mật Khẩu" name="password" type="password" value="">
                                 </div>
                                 <!-- <div class="checkbox">
                                     <label>
@@ -72,6 +75,7 @@
     <script src="/admin/styles/js/sb-admin-2.js"></script>
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="/scripts/clientComponents/ngEnter/ngEnter.directive.js"></script>
     <!--Login-->
     <script src="/admin/scripts/login/login.module.js"></script>
     <script src="/admin/scripts/login/login.controller.js"></script>

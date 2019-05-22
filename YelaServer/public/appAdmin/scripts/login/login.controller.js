@@ -5,12 +5,13 @@
         .module('YelaApplicationLogin')
         .controller('LoginController', ControllerController);
 
-    ControllerController.$inject = ['$http'];
-    function ControllerController($http) {
+    ControllerController.$inject = ['$http', '$timeout'];
+    function ControllerController($http, $timeout) {
         var vm = this;    
         vm.userName = null;
         vm.password = null;
         vm.login = login;
+        vm.error = false;
 
         activate();
 
@@ -24,12 +25,18 @@
                     var data = response.data || response;
                     //window.localStorage.setItem('foodTechToken', data.token);
                     window.location.href = '/admin';
+                } else {
+                    vm.error = true;
                 }
             }, function(error) {
-                console.log(error);
+                vm.error = true;
             }).catch(function(error) {
-                console.log(error);
-            });
+                vm.error = true;
+            }).finally(function() {
+                $timeout(function() {
+                    vm.error = false;
+                }, 3000)
+            })
         }
 
         function loginService(userName, password) {

@@ -17,7 +17,8 @@
         'ngFileUpload',
         'ngImgCrop',
         'ckeditor',
-        'ylZingGrid'
+        'ylZingGrid',
+        'YelaAppClient.errorSrc'
     ]);
 })();
 

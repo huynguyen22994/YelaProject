@@ -54,6 +54,7 @@
                     ]
                 }
             ],
-            serverUrl: ''
+            serverUrl: '',
+            notFoundImg: '/images/404/noImage.png'
     });
 })();

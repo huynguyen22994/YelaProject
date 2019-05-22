@@ -36,7 +36,7 @@
     "total": "Tổng",
     "totalMoney": "Tổng Tiền",
     "mainFood": "Món Chính",
-    "secondaryFood": "Món Phụ",
+    "secondaryFood": "Món Ăn Kèm",
     "lowCarbFood": "Low Carb",
     "noActiveMsg": "Hiện tại chúng tôi đang trong quá trình xây dựng website nên chức năng thanh toán trực tuyến vẫn chưa hoạt động.",
     "checkShipPrice": "Kiểm tra phí giao hàng",
@@ -82,5 +82,7 @@
     "searchResult": "Kết Quả Tìm Kiếm",
     "introduce": "Giới Thiệu",
     "share": "Chia sẻ",
-    "comment": "Bình Luận"
+    "comment": "Bình Luận",
+    "drinks": "Nước Uống",
+    "recruitment": "Tuyển Dụng"
 }

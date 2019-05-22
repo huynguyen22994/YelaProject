@@ -33,6 +33,7 @@
                 $location.path('/');
             }
         };
+        $rootScope.notFoundImg = ylConstant.notFoundImg;
 
         vm.adminInfo = adminInfo;
         vm.logout = logout;
@@ -50,6 +51,7 @@
             loadNewBill();
             exeGetCustomerOnl();
             exeGetLetterNotify();
+            handleHeaderNav();
             setInterval(function() {
                 exeGetCustomerOnl();
             }, 5000);
@@ -145,6 +147,20 @@
                     });
             }
         };
+
+        function handleHeaderNav() {
+            var headerMiddle = $('#foodtech-admin-header'),
+            distance = headerMiddle.offset().top,
+            $window = $(window);
+    
+            $window.scroll(function() {
+                if ( $window.scrollTop() >= distance + 5 ) {
+                    headerMiddle.addClass('header-middle-fixed');
+                 } else {
+                     headerMiddle.removeClass('header-middle-fixed');
+                 }
+            });
+        }
 
         $rootScope.$on('updateLetterNotify', function() {
             exeGetLetterNotify();

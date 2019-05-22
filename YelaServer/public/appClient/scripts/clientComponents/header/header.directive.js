@@ -106,13 +106,14 @@
             headerBottom: {
                 left: [
                     {id: 'home', label: 'home', href: function () { return '/'; }, isChoosen: false, subItems: [
-                        { id: 'introduce', label: 'introduce', href: function () { return '#/info'; }},
+                        { id: 'introduce', label: 'introduce', href: function () { return '#/about'; }},
                         { id: 'contact', label: 'contact', href: function () { return '#/contact'; }},
+                        { id: 'recruitment', label: 'recruitment', href: function () { return '#/recruitment'; }}
                     ] },
                     {id: 'foods', label: 'foods', href: function () { return '#/foods'; }, isChoosen: false, subItems: [
                         { id: 'mainFood', label: 'mainFood', href: function () { return '#/blog'; }},
                         { id: 'secondaryFood', label: 'secondaryFood', href: function () { return '#/blogSingle'; }},
-                        { id: 'lowCarbFood', label: 'lowCarbFood', href: function () { return '#/blogSingle'; }}
+                        { id: 'drinks', label: 'drinks', href: function () { return '#/blogSingle'; }}
                     ]},
                     {id: 'materials', label: 'materials', href: function () { return '#/materials'; }, isChoosen: false },
                     {id: 'shop', label: 'products', href: function () { return '#/shop'; }, isChoosen: false },
