@@ -36,7 +36,8 @@ module.exports.createProduct = (req, res, next) => {
             productStatus: product.productStatus,
             quantity: product.quantity,
             brandId: product.brandId,
-            type: product.type
+            type: product.type,
+            form: product.form
         }).then((result) => {
             res.end("insert success");
         }, (err) => {
@@ -68,7 +69,8 @@ module.exports.updateProduct = (req, res, next) => {
                             productStatus: product.productStatus,
                             quantity: product.quantity,
                             brandId: product.brandId,
-                            type: product.type
+                            type: product.type,
+                            form: product.form
                         },
                         {
                             where: {
@@ -93,7 +95,8 @@ module.exports.updateProduct = (req, res, next) => {
                             linkImg: product.linkImg,
                             discribe: product.discribe,
                             productTypeId: product.productTypeId,
-                            type: product.type
+                            type: product.type,
+                            form: product.form
                         },
                         {
                             where: {

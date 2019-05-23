@@ -20,7 +20,7 @@
                             <div class="panel-body">
                                 <div class="col-md-9 col-sm-9">
                                     <div class="form-group has-success has-feedback">
-                                        <label class="control-label col-sm-2" for="productname">*Tên Sản Phẩm: </label>
+                                        <label class="control-label col-sm-2" for="productname">*Tên </label>
                                         <div class="col-sm-10">
                                              <input class="form-control" ng-model="vm.Product.name" id="productname" placeholder="Enter product name" name="productname" required>  
                                             <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="form.productname.$dirty && form.productname.$valid"></span>
@@ -30,32 +30,12 @@
                                         </div>
                                     </div>
                                     <div class="form-group has-success has-feedback">
-                                        <label class="control-label col-sm-2" for="price">*Giá: </label>
+                                        <label class="control-label col-sm-2" for="price">Giá </label>
                                         <div class="col-sm-10">
                                              <input class="form-control" ng-model="vm.Product.price" id="price" placeholder="Enter product name" name="price" required>  
                                             <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="form.price.$dirty && form.price.$valid"></span>
                                             <span class="help-block" ng-messages="form.price.$error" ng-if="form.price.$dirty">
                                                 <span ng-show="form.price.$error.required" ng-message="required">không được bỏ trống.</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group has-success has-feedback">
-                                        <label class="control-label col-sm-2" for="quantity">Số Lượng: </label>
-                                        <div class="col-sm-10">
-                                             <input class="form-control" ng-model="vm.Product.quantity" id="quantity" placeholder="Enter product name" name="quantity" required>  
-                                            <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="form.quantity.$dirty && form.quantity.$valid"></span>
-                                            <span class="help-block" ng-messages="form.quantity.$error" ng-if="form.quantity.$dirty">
-                                                <span ng-show="form.quantity.$error.required" ng-message="required">không được bỏ trống.</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group has-success has-feedback">
-                                        <label class="control-label col-sm-2" for="discribe">Mô Tả: </label>
-                                        <div class="col-sm-10">
-                                             <input class="form-control" ng-model="vm.Product.discribe" id="discribe" placeholder="Enter product name" name="discribe" required>  
-                                            <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="form.discribe.$dirty && form.discribe.$valid"></span>
-                                            <span class="help-block" ng-messages="form.discribe.$error" ng-if="form.discribe.$dirty">
-                                                <span ng-show="form.discribe.$error.required" ng-message="required">không được bỏ trống.</span>
                                             </span>
                                         </div>
                                     </div>
@@ -86,7 +66,7 @@
                                         </div>
                                     </div> 
                                     <div class="form-group has-success has-feedback">
-                                        <label class="control-label col-sm-2" for="artist">*Loại Sản Phẩm </label>
+                                        <label class="control-label col-sm-2" for="artist">*Loại </label>
                                         <div class="col-sm-10">          
                                             <select 
                                                 name="producttypeSelect" 
@@ -109,6 +89,40 @@
                                                 ng-model="vm.typeObj" required>
                                             </select>
                                             <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="form.typeSelected.$dirty && form.typeSelected.$valid"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-success has-feedback">
+                                        <label class="control-label col-sm-2" for="quantity">Hình Thức </label>
+                                        <div class="col-sm-10">
+                                            <label class="radio-inline">
+                                                <input type="radio" ng-model="vm.Product.form" value="none">None
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" ng-model="vm.Product.form" value="main">Món Chính
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" ng-model="vm.Product.form" value="second">Món Phụ
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-success has-feedback">
+                                        <label class="control-label col-sm-2" for="quantity">Số Lượng </label>
+                                        <div class="col-sm-10">
+                                             <input class="form-control" ng-model="vm.Product.quantity" id="quantity" placeholder="Enter product name" name="quantity" required>  
+                                            <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="form.quantity.$dirty && form.quantity.$valid"></span>
+                                            <span class="help-block" ng-messages="form.quantity.$error" ng-if="form.quantity.$dirty">
+                                                <span ng-show="form.quantity.$error.required" ng-message="required">không được bỏ trống.</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-success has-feedback">
+                                        <label class="control-label col-sm-2" for="discribe">Mô Tả </label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" ng-model="vm.Product.discribe" id="discribe" placeholder="Enter product name" rows="4" name="discribe" required></textarea>
+                                            <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="form.discribe.$dirty && form.discribe.$valid"></span>
+                                            <span class="help-block" ng-messages="form.discribe.$error" ng-if="form.discribe.$dirty">
+                                                <span ng-show="form.discribe.$error.required" ng-message="required">không được bỏ trống.</span>
+                                            </span>
                                         </div>
                                     </div> 
                                     <div class="form-group has-success has-feedback">
@@ -170,21 +184,21 @@
                                         ng-click="vm.cancel()"
                                         >
                                         <i class="fa fa-ban" aria-hidden="true"></i>
-                                        <b>{{'cancel' | i18next}}</b>
+                                        <b>Hủy</b>
                                     </a>
                                     <button type="submit" ng-if="vm.isCreate()"
                                         ng-disabled="!form.$dirty || (form.$dirty && form.$invalid)" 
                                         class="btn btn-primary pull-right" 
                                         ng-click="vm.create(vm.croppedDataUrl, picFile.name)">
                                         <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                                        <b>{{'button_create' | i18next}}</b>
+                                        <b>Tạo mới</b>
                                     </button>   
                                     <button type="submit" ng-if="vm.isEdit()"
                                         ng-disabled="!form.$dirty || (form.$dirty && form.$invalid)" 
                                         class="btn btn-primary pull-right" 
                                         ng-click="vm.edit(vm.croppedDataUrl, picFile.name)">
                                         <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                                        <b>{{'button_edit' | i18next}}</b>
+                                        <b>Cập nhật</b>
                                     </button>          
                                 </div> 
                                 </div>

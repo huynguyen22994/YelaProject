@@ -46,6 +46,10 @@ module.exports = function(sequelize, Sequelize) {
         type: {
             type: Sequelize.ENUM('food', 'resource', 'drink', 'cake'),
             allowNull: true
+        },
+        form: {
+            type: Sequelize.ENUM('main', 'second'),
+            allowNull: true
         }
     }, {
         charset: 'utf8',

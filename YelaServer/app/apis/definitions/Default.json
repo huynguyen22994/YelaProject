@@ -46,6 +46,10 @@
                 "type": {
                 "type":"string",
                 "description": "Discribe of Coffee"
+                },
+                "form": {
+                "type":"string",
+                "description": "Discribe of Coffee"
                 }
             }
             },

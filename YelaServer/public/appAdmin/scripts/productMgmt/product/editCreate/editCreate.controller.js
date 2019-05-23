@@ -146,7 +146,8 @@
                 productStatus: vm.ProductStatus.id,
                 productTypeId: vm.Producttype.productTypeId,
                 brandId: vm.Brand.brandId,
-                type: vm.typeObj.id
+                type: vm.typeObj.id,
+                form: (vm.Product.form || vm.Product.form !== 'none') ? vm.Product.form : null 
             };
 
             if (name) {
@@ -192,7 +193,8 @@
                 productStatus: vm.ProductStatus.id,
                 productTypeId: vm.Producttype.productTypeId,
                 brandId: vm.Brand.brandId,
-                type: vm.typeObj.id
+                type: vm.typeObj.id,
+                form: (vm.Product.form || vm.Product.form !== 'none') ? vm.Product.form : null
             };
             if (name) {
                  let promise = uploadImg(dataUrl, name);
