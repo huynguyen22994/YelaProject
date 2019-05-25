@@ -305,3 +305,22 @@ module.exports.getProductByType = (req, res, next) => {
         res.end();
     });
 };
+
+module.exports.getProductByForm = (req, res, next) => {
+    var offset = parseInt(req.query.offset);
+    var limit =  parseInt(req.query.limit);
+    var form = req.query.form;
+    models.Product.findAndCountAll({
+    where: {
+        form: form
+    },
+    offset: offset,
+    limit: limit
+    })
+    .then((result) => {
+        res.json(result);
+    }, (err) => {
+        res.statusCode = 400;
+        res.end();
+    });
+};

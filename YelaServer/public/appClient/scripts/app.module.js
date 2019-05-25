@@ -15,6 +15,7 @@
         'YelaAppClient.CartApp',
         'YelaAppClient.Contact',
         'YelaAppClient.Blog',
+        'YelaAppClient.FormFoods',
         'YelaAppClient.Searching',
         'YelaAppClient.ngEnter',
         'YelaAppClient.Modal',

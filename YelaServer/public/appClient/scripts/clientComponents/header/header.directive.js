@@ -111,9 +111,8 @@
                         { id: 'recruitment', label: 'recruitment', href: function () { return '#/recruitment'; }}
                     ] },
                     {id: 'foods', label: 'foods', href: function () { return '#/foods'; }, isChoosen: false, subItems: [
-                        { id: 'mainFood', label: 'mainFood', href: function () { return '#/blog'; }},
-                        { id: 'secondaryFood', label: 'secondaryFood', href: function () { return '#/blogSingle'; }},
-                        { id: 'drinks', label: 'drinks', href: function () { return '#/blogSingle'; }}
+                        { id: 'mainFood', label: 'mainFood', href: function () { return '#/formfoods/main'; }},
+                        { id: 'secondaryFood', label: 'secondaryFood', href: function () { return '#/formfoods/second'; }}
                     ]},
                     {id: 'materials', label: 'materials', href: function () { return '#/materials'; }, isChoosen: false },
                     {id: 'shop', label: 'products', href: function () { return '#/shop'; }, isChoosen: false },

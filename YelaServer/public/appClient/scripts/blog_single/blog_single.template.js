@@ -23,9 +23,9 @@
                                             </div>
                                         </div><!--/brands_products-->
                                         
-                                        <div class="shipping text-center"><!--shipping-->
+                                        <!--<div class="shipping text-center">
                                             <img src="images/home/banner.png" alt="" />
-                                        </div><!--/shipping-->
+                                        </div>-->
                                     </div>
                                 </div>
 

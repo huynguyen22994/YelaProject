@@ -69,6 +69,10 @@ module.exports.getProductByType = (req, res, next) => {
     ProductCtrl.getProductByType(req, res, next);
 };
 
+module.exports.getProductByForm = (req, res, next) => {
+    ProductCtrl.getProductByForm(req, res, next);
+};
+
 // Categories
 module.exports.getCategory = (req, res, next) => {
     CategoryCtrl.getCategory(req, res, next);

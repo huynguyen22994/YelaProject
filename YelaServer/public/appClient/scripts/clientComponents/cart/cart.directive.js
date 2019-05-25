@@ -27,7 +27,7 @@
                     <tbody>
                         <tr ng-repeat="product in cartData">
                             <td class="cart_product cart_image">
-                                <a href=""><img class="img-responsive" src="{{ product.linkImg }}" alt=""></a>
+                                <a href=""><img class="img-responsive" src="{{ product.linkImg }}" on-error-src="{{ $root.notFoundImg }}" alt=""></a>
                             </td>
                             <td class="cart_description">
                                 <h4><a href="">{{ product.name }}</a></h4>

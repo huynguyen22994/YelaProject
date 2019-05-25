@@ -22,9 +22,9 @@
                                         </div>
                                     </div><!--/brands_products-->
                                     
-                                    <div class="shipping text-center"><!--shipping-->
+                                    <!--<div class="shipping text-center">
                                         <img src="images/home/banner.png" alt="" on-error-src="{{ $root.notFoundImg }}"/>
-                                    </div><!--/shipping-->
+                                    </div>-->
                                 </div>
                             </div>
 
