@@ -31,7 +31,8 @@
             }
         };
         vm.quantity = 1;
-        vm.addToCart = addToCart;    
+        vm.addToCart = addToCart; 
+        vm.formatPrice = formatPrice;   
         
         activate();
 
@@ -84,6 +85,13 @@
                     });
             });
         };
+
+        function formatPrice(price) {
+            if(price) {
+                return parseInt(price).toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+            }
+            return price;
+        }
 
         function loadProductBestsellers(offset, limit) {
             return new Promise((resolve, reject) => {

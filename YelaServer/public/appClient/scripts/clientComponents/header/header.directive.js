@@ -125,6 +125,7 @@
             }
         };
         $rootScope.isCustomerLogin = isCustomerLogin;
+        $rootScope.isSmallScreen = false;
 
         initialize();
         //////////////////////////////
@@ -177,6 +178,14 @@
         $rootScope.$on( "$routeChangeStart", function(event, next, current) {
             //next.data.private;
          });
+
+         $scope.$watch('width', function(newVal, oldVal){
+            if(newVal && newVal < 560) {
+                $rootScope.isSmallScreen = true;
+            } else {
+                $rootScope.isSmallScreen = false;
+            }
+        })
 
     }
 })();

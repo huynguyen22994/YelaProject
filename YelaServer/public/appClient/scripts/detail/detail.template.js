@@ -25,7 +25,7 @@
                                                 <!--<p>Web ID: 1089772</p>-->
                                                 <p>
                                                     <span>
-                                                        <span>{{vm.product.price}}</span>
+                                                        <span>{{ vm.formatPrice(vm.product.price) }}</span>
                                                     </span>
                                                 </p>
                                                 <span>

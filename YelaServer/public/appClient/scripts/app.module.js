@@ -35,6 +35,7 @@
         'CartTable',
         'CustomerModel',
         'ngAnimate',
-        'toastr'
+        'toastr',
+        'Resize'
     ]);
 })();

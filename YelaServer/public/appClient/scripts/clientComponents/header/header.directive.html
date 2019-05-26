@@ -20,7 +20,7 @@
     </div>
 </div><!--/header_top-->
 
-<div class="header-middle" id="foodtech-header-middle"><!--header-middle-->
+<div class="header-middle" id="foodtech-header-middle" resize><!--header-middle-->
     <div class="container">
         <div class="row">
             <div class="col-sm-2">
@@ -32,8 +32,8 @@
                 <div class="btn-group pull-left">
                 </div>
             </div>
-            <div class="col-sm-8">
-                <div class="shop-menu pull-right">
+            <div class="col-sm-8 col-xs-9">
+                <div class="shop-menu pull-right" ng-if="!$root.isSmallScreen">
                     <ul class="nav navbar-nav">
                         <li ng-repeat="rightItemMiddle in vm.config.headerMiddle.right" ng-hide="rightItemMiddle.hide()">
                             <a ng-href="{{rightItemMiddle.href()}}" ng-class="{'active': vm.detectActiveMenu(rightItemMiddle.id) }"><i ng-class="rightItemMiddle.iconClass"></i> {{ rightItemMiddle.label | i18next}} <span ng-if="rightItemMiddle.useNotice" class="badge-cart">{{ $root.Cart.getProductLength() }}</span></a>
@@ -55,6 +55,32 @@
                         </li>
 
                     </ul>
+                </div>
+                <div ng-if="$root.isSmallScreen">
+                    <div class="dropdown pull-right" style="display: inline-flex">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">{{ 'cart' | i18next }}
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu nav navbar-nav">
+                            <li ng-repeat="rightItemMiddle in vm.config.headerMiddle.right" ng-hide="rightItemMiddle.hide()">
+                                <a ng-href="{{rightItemMiddle.href()}}" ng-class="{'active': vm.detectActiveMenu(rightItemMiddle.id) }"><i ng-class="rightItemMiddle.iconClass"></i> {{ rightItemMiddle.label | i18next}} <span ng-if="rightItemMiddle.useNotice" class="badge-cart">{{ $root.Cart.getProductLength() }}</span></a>
+                            </li>
+                        </ul>
+                        <div class="dropdown" ng-show="vm.isCustomerLogin()" style="margin-left: 1rem">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="/" aria-expanded="false">
+                                <img ng-src="{{ $root.Customer.getImage() }}" style="width: 27px; height: 27px; display: inline-block" class="img-rounded img-responsive" alt="avatar"> <i class="fa fa-caret-down" style="color: #696763"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user" style="text-align: -webkit-left; margin-left: -105px;">
+                                <li>
+                                    <a><i class="fa fa-user fa-fw"></i> {{ $root.Customer.getName() }}</a>
+                                </li>
+                                <li class="divider" style="display: block"></li>
+                                <li>
+                                    <a ng-click="$root.logout()" style="cursor:pointer"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                                </li>
+                            </ul>
+                            <!-- /.dropdown-user -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
