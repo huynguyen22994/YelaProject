@@ -14,6 +14,7 @@ var CityCtrl = require('./CityCtrl');
 var DistrictCtrl = require('./DistrictCtrl');
 var ShipCostCtrl = require('./ShipCostCtrl');
 var DashboardCtrl = require('./DashboardCtrl');
+var WishlistCtrl = require('./WishlistCtrl');
 var async = require('async');
 
 // Products
@@ -390,4 +391,13 @@ module.exports.getShipCost = (req, res, next) => {
 //Dashboard
 module.exports.getBannerCount = (req, res, next) => {
     DashboardCtrl.getBannerCount(req, res, next);
+};
+
+//Wishlist
+module.exports.saveProductToWishlist = (req, res, next) => {
+    WishlistCtrl.saveProductToWishlist(req, res, next);
+};
+
+module.exports.getWishListByCustomerId = (req, res, next) => {
+    WishlistCtrl.getWishListByCustomerId(req, res, next);
 };

@@ -84,7 +84,7 @@
                 ],
                 right: [
                     // { iconClass: 'fa fa-user', label: 'Account', href: function () { return 'string'; } },
-                    // { iconClass: 'fa fa-star', label: 'wishlist', href: function () { return 'string'; } },
+                    { id: 'wishlist', iconClass: 'fa fa-star', label: 'wishlist', href: function () { return '#/wishlist'; } },
                     { id: 'checkout', iconClass: 'fa fa-crosshairs', label: 'checkout', href: function () { return '#/checkout'; } },
                     { id: 'cart', iconClass: 'fa fa-shopping-cart', label: 'cart', useNotice: true, href: function () { return '#/cart'; } },
                     { 

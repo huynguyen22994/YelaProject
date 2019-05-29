@@ -417,7 +417,20 @@
                 "description": "Name of Coffee."
                 }
             }
-            },        
+            },  
+        "Wishlist": {
+            "type": "object",
+            "properties": {
+                "customerId": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "productList": {
+                "type": "string",
+                "description": "Name of Coffee."
+                }
+            }
+        },          
         "Error": {
             "type": "object",
             "properties": {
