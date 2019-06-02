@@ -401,3 +401,7 @@ module.exports.saveProductToWishlist = (req, res, next) => {
 module.exports.getWishListByCustomerId = (req, res, next) => {
     WishlistCtrl.getWishListByCustomerId(req, res, next);
 };
+
+module.exports.removeProductFromWishlist = (req, res, next) => {
+    WishlistCtrl.removeProductFromWishlist(req, res, next);
+};

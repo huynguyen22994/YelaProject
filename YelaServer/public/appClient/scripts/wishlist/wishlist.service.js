@@ -9,7 +9,8 @@
     function Service($http) {
         var service = {
             getWishList: getWishList,
-            addProductToWishlist: addProductToWishlist
+            addProductToWishlist: addProductToWishlist,
+            removeProductFromWishlist: removeProductFromWishlist
         };
         
         return service;
@@ -32,6 +33,21 @@
         function addProductToWishlist(customerId, productItem) {
             return $http({
                 url: '/api/wishlist',
+                method: 'POST',
+                data: {
+                    customerId: customerId,
+                    productItem: productItem
+                }
+            }).then(function (res) {
+                return res;
+            }).catch(function (err) {
+                return err;
+            });
+        };
+
+        function removeProductFromWishlist(customerId, productItem) {
+            return $http({
+                url: '/api/wishlist/delete',
                 method: 'POST',
                 data: {
                     customerId: customerId,

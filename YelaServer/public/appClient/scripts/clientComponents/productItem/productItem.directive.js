@@ -48,6 +48,7 @@
                         </div>
                         <div class="choose" ng-if="true"> <!-- should enable when user login -->
                             <ul class="nav nav-pills nav-justified">
+                                <li ng-if="showRemoveWishList()"><a href ng-click="removeProductFromWishlist(data)"><i class="fa fa-heart"></i>{{ 'removeLike' | i18next }}</a></li>
                                 <li ng-if="showWishList()"><a href ng-click="addProductToWishlist(data)"><i class="fa fa-heart"></i>{{ 'wishlist' | i18next }}</a></li>
                                 <li><a href ng-click="openQuickViewDetail(data)"><i class="fa fa-eye"></i>{{ 'viewQuick' | i18next }}</a></li>
                             </ul>
@@ -68,7 +69,9 @@
         $rootScope.getFormatImgUrl = getFormatImgUrl;
         $scope.openQuickViewDetail = openQuickViewDetail;
         $scope.addProductToWishlist = addProductToWishlist;
+        $scope.removeProductFromWishlist = removeProductFromWishlist;
         $scope.showWishList = showWishList;
+        $scope.showRemoveWishList = showRemoveWishList;
 
         if ($scope.config) {
             if (!angular.isFunction($scope.config.viewDetail)) {
@@ -127,6 +130,24 @@
             }
         }
 
+        function removeProductFromWishlist(data) {
+            if($rootScope.Customer) {
+                var customerId = $rootScope.Customer.getId();
+                var productItem = JSON.stringify(getParseProductData(data));
+                WishlistService.removeProductFromWishlist(customerId, productItem)
+                .then(function(response) {
+                    var resData = response.data || {};
+                    if(resData.success) {
+                        toastr.success(data.name + ' đã được xóa khỏi yêu thích');
+                    } else {
+                        toastr.error('Xóa khỏi yêu thích thất bại');
+                    }
+                }, function(error) {
+                    toastr.error('Xóa khỏi yêu thích thất bại');
+                })
+            }
+        }
+
         function getParseProductData(data) {
             return {
                 name: data.name,
@@ -144,6 +165,10 @@
 
         function showWishList() {
             return $rootScope.isCustomerLogin() && !isWishlistApp();
+        }
+
+        function showRemoveWishList() {
+            return $rootScope.isCustomerLogin() && isWishlistApp();
         }
 
         function isWishlistApp() {

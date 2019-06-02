@@ -8,7 +8,9 @@
     ControllerController.$inject = ['WishlistService', '$rootScope', '$location'];
     function ControllerController(WishlistService, $rootScope, $location) {
         var vm = this;
-
+        vm.productItemConfig = {
+            loadWishlist: loadWishlist
+        }
         vm.hasProduct = hasProduct;
         activate();
         ////////////////
