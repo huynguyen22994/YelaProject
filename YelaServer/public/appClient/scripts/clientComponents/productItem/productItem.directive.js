@@ -48,7 +48,7 @@
                         </div>
                         <div class="choose" ng-if="true"> <!-- should enable when user login -->
                             <ul class="nav nav-pills nav-justified">
-                                <li ng-if="$root.isCustomerLogin()"><a href><i class="fa fa-heart"></i>{{ 'wishlist' | i18next }}</a></li>
+                                <li ng-if="showWishList()"><a href ng-click="addProductToWishlist(data)"><i class="fa fa-heart"></i>{{ 'wishlist' | i18next }}</a></li>
                                 <li><a href ng-click="openQuickViewDetail(data)"><i class="fa fa-eye"></i>{{ 'viewQuick' | i18next }}</a></li>
                             </ul>
                         </div>
@@ -60,13 +60,15 @@
         
     }
     /* @ngInject */
-    function ControllerController($scope, clientConstant, toastr, Product, $rootScope) {
+    function ControllerController($scope, clientConstant, toastr, Product, $rootScope, WishlistService, $route) {
         $scope.baseUrl = `${clientConstant.serverUrl}/`;
         $rootScope.baseUrl = `${clientConstant.serverUrl}/`;
         $scope.addToCart = addToCart;
         $scope.getFormatImgUrl = getFormatImgUrl;
         $rootScope.getFormatImgUrl = getFormatImgUrl;
         $scope.openQuickViewDetail = openQuickViewDetail;
+        $scope.addProductToWishlist = addProductToWishlist;
+        $scope.showWishList = showWishList;
 
         if ($scope.config) {
             if (!angular.isFunction($scope.config.viewDetail)) {
@@ -105,6 +107,47 @@
         function openQuickViewDetail(data) {
             $rootScope.productDetailModal = data;
             $rootScope.openModal('product-quick-view')
+        }
+
+        function addProductToWishlist(data) {
+            if($rootScope.Customer) {
+                var customerId = $rootScope.Customer.getId();
+                var productItem = JSON.stringify(getParseProductData(data));
+                WishlistService.addProductToWishlist(customerId, productItem)
+                .then(function(response) {
+                    var resData = response.data || {};
+                    if(resData.success) {
+                        toastr.success(data.name + ' đã được thêm vào yêu thích');
+                    } else {
+                        toastr.error('Thêm vào yêu thích thất bại');
+                    }
+                }, function(error) {
+                    toastr.error('Thêm vào yêu thích thất bại');
+                })
+            }
+        }
+
+        function getParseProductData(data) {
+            return {
+                name: data.name,
+                productId: data.productId,
+                brandId: data.brandId,
+                linkImg: data.linkImg,
+                discribe: data.discribe,
+                form: data.form,
+                price: data.price,
+                productStatus: data.productStatus,
+                productTypeId: data.productTypeId,
+                type: data.type
+            }
+        }
+
+        function showWishList() {
+            return $rootScope.isCustomerLogin() && !isWishlistApp();
+        }
+
+        function isWishlistApp() {
+            return $route.current.$$route.appId === 'wishlist';
         }
 
     }

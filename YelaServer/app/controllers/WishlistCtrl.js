@@ -55,6 +55,9 @@ module.exports.saveProductToWishlist = (req, res, next) => {
     var wishBody = req.body;
     var response = {};
     if(wishBody.customerId && wishBody.productItem) {
+        if(_.isString(wishBody.productItem)) {
+            wishBody.productItem = JSON.parse(wishBody.productItem);
+        }
         models.Wishlist.findAndCountAll({
             where: {
                 customerId: wishBody.customerId

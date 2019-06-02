@@ -24,6 +24,7 @@
             getEmail: getEmail,
             getImage: getImage,
             getToken: getToken,
+            getId: getId,
             isLogin: isLogin,
             destroy: destroy
         }
@@ -50,6 +51,10 @@
 
         function getToken() {
             return this.token;
+        }
+
+        function getId() {
+            return this._id;
         }
 
         function isLogin() {

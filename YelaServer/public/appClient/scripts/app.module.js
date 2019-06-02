@@ -17,6 +17,7 @@
         'YelaAppClient.Blog',
         'YelaAppClient.FormFoods',
         'YelaAppClient.Searching',
+        'YelaAppClient.Wishlist',
         'YelaAppClient.ngEnter',
         'YelaAppClient.Modal',
         'YelaAppClient.errorSrc',

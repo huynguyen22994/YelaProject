@@ -425,7 +425,7 @@
                 "type": "string",
                 "description": "Name of Coffee."
                 },
-                "productList": {
+                "productItem": {
                 "type": "string",
                 "description": "Name of Coffee."
                 }
