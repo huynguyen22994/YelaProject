@@ -19,25 +19,11 @@
                                 <div ng-if="!vm.isLoading" class="blog-post-area" style="text-align: -webkit-auto">
                                     <h2 class="title text-center">{{ 'searchResult' | i18next }}</h2>
                                     <section id="cart_items" class="cart-wrapper">               
-                                        <div class="register-req" style="margin-top: -20px">
+                                        <div ng-if="!vm.hasProduct()" class="register-req" style="margin-top: -20px">
                                             <p>Không tìm thấy kết quả cho từ khóa <b>"{{ ::$root.searchValue }}"</b>. Vui lòng tìm kiếm lại với từ khóa khác hoặc quay về trang chủ.</p>
                                         </div><!--/register-req-->
+                                        <product-item ng-if="vm.hasProduct()" ng-repeat="data in vm.products" data="data" config="vm.productItemConfig" ></product-item>
                                     </section> <!--/#cart_items-->
-
-                                    <div class="single-blog-post advance" ng-repeat="product in vm.products">
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <a href="">
-                                                    <img ng-src="{{product.linkImg}}" alt="Hình Ảnh">
-                                                </a>
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <h4>{{ product.name }}</h4>
-                                                <p>{{ product.discribe }}</p>
-                                                <a  class="btn btn-primary" ng-click="vm.readMore(blog)" >Đọc Thêm</a>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>    
                         </div>

@@ -139,6 +139,7 @@
                     var resData = response.data || {};
                     if(resData.success) {
                         toastr.success(data.name + ' đã được xóa khỏi yêu thích');
+                        $rootScope.loadWishlist();
                     } else {
                         toastr.error('Xóa khỏi yêu thích thất bại');
                     }

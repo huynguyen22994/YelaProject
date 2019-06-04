@@ -116,7 +116,7 @@
                             </ol>
                         </div>
 
-                        <div class="register-req" style="margin-top: -20px">
+                    <div ng-if="!$root.isCustomerLogin()" class="register-req" style="margin-top: -20px">
                         <p>Bạn có thể đăng ký để có thể dể dàng truy cập vào lịch sử đặt hàng của bạn và có thể nhận được nhiều ưu đãi hơn nhé.</p>
                     </div><!--/register-req-->
         
@@ -127,7 +127,7 @@
                                     <p>Thông Tin Thanh Toán</p>
                                     <form>
                                         <label>{{ '*Họ và Tên' | i18next }}:</label>
-                                        <input type="text" ng-model="vm.billInfo.name">
+                                        <input type="text" ng-model="vm.billInfo.name" autofocus>
                                         <label>{{ '*Số điện thoại 1' | i18next }}:</label>
                                         <input type="text" ng-model="vm.billInfo.phoneOne">
                                         <label>{{ 'Số điện thoại 2' | i18next }}:</label>

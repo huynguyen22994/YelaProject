@@ -5,8 +5,8 @@
         .module('YelaAppClient.CartApp')
         .controller('CheckoutController', ControllerController);
 
-    ControllerController.$inject = ['CartService', 'clientConstant', '$rootScope', '$scope', '$q', 'toastr'];
-    function ControllerController(CartService, clientConstant, $rootScope, $scope, $q, toastr) {
+    ControllerController.$inject = ['CartService', 'clientConstant', '$rootScope', '$scope', '$q', 'toastr', '$interval'];
+    function ControllerController(CartService, clientConstant, $rootScope, $scope, $q, toastr, $interval) {
         var vm = this;
         // total cart price
         vm.total = 0;
@@ -40,6 +40,7 @@
             vm.totalCartPriceFormatted = vm.cartTableCheckoutConfig.cartTotal;
             updateTotal();
             prepareShipData();
+            await loadCustomerData();
         };
 
         function loadCart() {
@@ -173,6 +174,23 @@
                         updateTotal();
                     })
             }
+        }
+
+        function loadCustomerData(){
+            return new Promise(function(resolve, reject) {
+                var customerToken = window.localStorage.getItem('customerToken');
+                if(customerToken) {
+                    var stopInterval = $interval(function() {
+                        if(angular.isFunction($rootScope.isCustomerLogin) && $rootScope.isCustomerLogin()) {
+                            vm.billInfo.name = $rootScope.Customer.getName();
+                            vm.billInfo.email = $rootScope.Customer.getEmail();
+                            $interval.cancel(stopInterval);
+                            stopInterval = undefined;
+                        }
+                    })
+                }
+                resolve();
+            })
         }
 
     }

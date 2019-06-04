@@ -13,6 +13,8 @@
         vm.products = [];
         vm.pageArray = [];
         vm.changePage = changePage;
+        vm.hasProduct = hasProduct;
+        vm.productItemConfig = {};
         vm.paging = {
             offset: 0,
             limit: 6
@@ -105,6 +107,10 @@
                     });
             });
         };
+
+        function hasProduct() {
+            return vm.products.length > 0;
+        }
 
     }
 })();
