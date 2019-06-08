@@ -128,6 +128,9 @@
             if(window.FB && window.FB.XFBML) {
                 window.FB.XFBML.parse();
             }
+            if(window.ZaloSocialSDK && window.ZaloSocialSDK.reload) {
+                window.ZaloSocialSDK.reload();
+            }
         })
 
         $scope.$watch('vm.quantity', function (newValue, oldValue) {

@@ -39,13 +39,18 @@
                                                 <p><b>{{ 'status' | i18next }}:</b> Còn</p>
                                                 <div style="display: -webkit-box">
                                                     <p style="line-height: 40px; padding-right: 5px"><b>{{ 'share' | i18next }}:</p>
-                                                    <!-- Your like button code -->
+                                                    <!-- Your like button code Facebook-->
                                                     <div class="fb-like" 
                                                     data-href="{{ 'http://www.foodtechshop.vn/#!/detail/' +  vm.product.productId }}" 
                                                     data-layout="standard" 
                                                     data-action="like" 
                                                     data-show-faces="true"
                                                     data-share="true">
+                                                    </div>
+                                                    <!-- Your like button code Zalo -->
+                                                    <div style="display: flex">
+                                                        <div style="margin-right: 5px" class="zalo-share-button" data-href="" data-oaid="2730045833870873800" data-layout="1" data-color="blue" data-customize=false></div>
+                                                        <div class="zalo-follow-only-button" data-oaid="2730045833870873800"></div>
                                                     </div>
                                                 </div>
                                                 <p><b>{{ 'describe' | i18next }}:</b> {{vm.product.discribe}}</p>
