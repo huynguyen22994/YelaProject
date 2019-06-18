@@ -3,7 +3,7 @@ var fs = require('fs');
 
 function isDriveUrl(url) {
     var regex = /^http/;
-    return regex.test(url);
+    return !!url ? regex.test(url) : false;
 }
 
 module.exports.getProducts = (req, res, next) => {
@@ -84,8 +84,12 @@ module.exports.updateProduct = (req, res, next) => {
                         res.end();
                     }) 
                 } else {
-                    if(!isDriveUrl(p.linkImg)) {
-                        fs.unlinkSync(p.linkImg);
+                    if(p.linkImg && !isDriveUrl(p.linkImg)) {
+                        fs.readFile(p.linkImg, function (err, data) {
+                            if(data) {
+                                fs.unlinkSync(p.linkImg);
+                            }
+                        });
                     }
                     models.Product.update(
                         {
