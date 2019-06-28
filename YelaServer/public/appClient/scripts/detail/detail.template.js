@@ -12,6 +12,7 @@
                                     <sidebar brand-data="vm.brands" category-data="vm.categories"></sidebar>
                                 </div>
                                 <div class="col-sm-9 padding-right">
+                                    <h2 class="title text-center">{{ 'productDetail' | i18next }}</h2>
                                     <div class="product-details content-left"><!--product-details-->
                                         <div class="col-sm-5">
                                             <div class="view-product">

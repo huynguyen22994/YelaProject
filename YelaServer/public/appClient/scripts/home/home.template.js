@@ -23,7 +23,7 @@
                                 </div>
                                 <div class="col-sm-9 padding-right">
                                     <features-item array-data="vm.productFreatures" config="vm.featureProductConfig"></features-item>    
-                                    <recommend-product array-data="vm.productBestsellers" config="vm.recommendProductConfig"></recommend-product>  
+                                    <recommend-product array-data="vm.productBestsellers" config="vm.recommendProductConfig"></recommend-product>
                                     <tab></tab>
                                     <div class="col-xs-12 col-sm-10 col-md-8">
                                         <div class="fb-comments" data-href="https://foodtechserver.herokuapp.com" data-numposts="5"></div>

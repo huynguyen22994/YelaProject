@@ -30,25 +30,34 @@
                             <p>Chúng tôi luôn khát khao, cố gắng cải thiện từng ngày để mang đến những sản phẩm và một dịch vụ tốt nhất cho cộng đồng. </p>
                         </div>
                         <div class="col-sm-8">
-                            <img src="images/home/slide3.PNG" class="girl img-responsive" alt="" />
+                            <img src="images/home/foodtech_slide_1.jpg" class="girl img-responsive" alt="" />
                         </div>
                     </div>
                     <div class="item">
-                        <div class="col-sm-12">
-                            <!-- <h2 class="brandSlideShow">Free E-Commerce Template</h2>
+
+                        <!--<div class="col-sm-12 pull-right">
+                            <h2 class="brandSlideShow">Free E-Commerce Template</h2>
                             <p class="textSlideShow">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                             <button type="button" class="btn btn-default get textSlideShow">Get it now</button>
-                            <div class="textSlideShow">Caption Three</div> -->
-                            <img src="images/home/slide.PNG" class="girl img-responsive" alt="" />
+                            <div class="textSlideShow">Caption Three</div>
+                            <img src="images/home/foodtech_slide_2.jpg" class="girl img-responsive" alt="" />
+                        </div>-->
+
+                        <div class="col-sm-4">
+                            <h1><span>Food |</span> Mì Tỏi</h1>
+                            <p>Chúng tôi luôn khát khao, cố gắng cải thiện từng ngày để mang đến những sản phẩm và một dịch vụ tốt nhất cho cộng đồng. </p>
+                        </div>
+                        <div class="col-sm-8">
+                            <img src="images/home/foodtech_slide_3.jpg" class="girl img-responsive"/>
                         </div>
                     </div>      
                     <div class="item">
                         <div class="col-sm-4">
-                            <h1><span>F |</span> Food Tech</h1>
+                            <h1><span>Food |</span> Cơm Vò</h1>
                             <p>Chúng tôi luôn khát khao, cố gắng cải thiện từng ngày để mang đến những sản phẩm và một dịch vụ tốt nhất cho cộng đồng. </p>
                         </div>
                         <div class="col-sm-8">
-                            <img src="images/home/slide2.PNG" class="girl img-responsive" style="padding-top: 75px" alt="" />
+                            <img src="images/home/foodtech_slide_2.jpg" class="girl img-responsive"/>
                         </div>
                     </div>  
                 </div>

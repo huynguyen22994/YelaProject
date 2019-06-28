@@ -86,5 +86,7 @@
     "drinks": "Drinks",
     "recruitment": "Recruitment",
     "productWishlist": "Products In Witshlist",
-    "removeLike": "Unlike"
+    "removeLike": "Unlike",
+    "setCombo": "Set Combo",
+    "productDetail": "Product Detail"
 }
