@@ -8,9 +8,9 @@ var db = {};
 
 // parse Json to Object
 var databaseConfig = JSON.parse(data.toString());
-var database = databaseConfig.database;
 
-//sequelize
+/* sequelize on development */
+// var database = databaseConfig.devDatabase;
 // var sequelize = new Sequelize(database.dbname, database.username, database.password, {
 //   host: database.host,
 //   dialect: database.dialect,
@@ -21,19 +21,23 @@ var database = databaseConfig.database;
 //     min: database.min,
 //     idle: database.idles
 //   },
-//   dialectOptions: {
-//     socketPath: "/var/run/mysqld/mysqld.sock"
-//   },
-//   define: {
-//       paranoid: true
-//   }
 
-//   // SQLite only
-//   //storage: 'http://localhost/phpmyadmin/to/database.sqlite'
-// });
+  // remove
+  // dialectOptions: {
+  //   socketPath: "/var/run/mysqld/mysqld.sock"
+  // },
+  // define: {
+  //     paranoid: true
+  // }
+  // SQLite only
+  //storage: 'http://localhost/phpmyadmin/to/database.sqlite'
+//});
+
+/* on production */
+var database = databaseConfig.database;
 var connectStr = database.connectString;
 var match = connectStr.match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/);
-sequelize = new Sequelize('d6d9dbgkkjo8d1', 'jmefjsgvxqihcc', '710b5eef2e57516e06ce43cc901966392d0887d4dba293a13329d1dc7a7bcf7c', {
+sequelize = new Sequelize('d9juujmdtfnhjg', 'mwqlcrdpbrsvtl', 'd1f86b425d40305f46dd37e6f4e60661eff0db6cf2c1f65e1d943935b592b136', {
   dialect:  database.dialect,
   protocol: database.dialect,
   port:     match[4],
@@ -63,3 +67,10 @@ module.exports = lodash.extend({
     sequelize: sequelize,
     Sequelize: Sequelize
   }, db)
+
+///////////////////// Relationship ///////////////////////////////// 
+// db.ShipCost.hasMany(db.City, {foreignKey : 'cityId', as : 'theCity'});
+// db.City.belongsTo(db.ShipCost, {foreignKey : 'cityId'})
+
+// db.ShipCost.hasMany(db.District, {foreignKey : 'districtId', as : 'theDistrict'});
+// db.District.belongsTo(db.ShipCost, {foreignKey : 'districtId'})

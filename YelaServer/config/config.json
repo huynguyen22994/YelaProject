@@ -1,11 +1,11 @@
 {
     "database": {
-        "dbname": "d6d9dbgkkjo8d1",
-        "username": "jmefjsgvxqihcc",
-        "password": "710b5eef2e57516e06ce43cc901966392d0887d4dba293a13329d1dc7a7bcf7c",
+        "dbname": "d9juujmdtfnhjg",
+        "username": "mwqlcrdpbrsvtl",
+        "password": "d1f86b425d40305f46dd37e6f4e60661eff0db6cf2c1f65e1d943935b592b136",
         "host": "ec2-54-235-247-209.compute-1.amazonaws.com",
         "dialect": "postgres",
-        "connectString": "postgres://jmefjsgvxqihcc:710b5eef2e57516e06ce43cc901966392d0887d4dba293a13329d1dc7a7bcf7c@ec2-184-73-181-132.compute-1.amazonaws.com:5432/d6d9dbgkkjo8d1"
+        "connectString": "postgres://mwqlcrdpbrsvtl:d1f86b425d40305f46dd37e6f4e60661eff0db6cf2c1f65e1d943935b592b136@ec2-50-19-221-38.compute-1.amazonaws.com:5432/d9juujmdtfnhjg"
     },
     "port": 3000,
     "storageProductPath": "./upload/images/products/",
