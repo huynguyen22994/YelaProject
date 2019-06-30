@@ -45,6 +45,7 @@
         function activate() { 
             getCustomer(customerToken);
             initCartFirst();
+            openMainBenner();
         };
 
         function getCustomer(token) {
@@ -125,6 +126,12 @@
                 });
             })
             window.localStorage.setItem('cart', JSON.stringify(cacheCart));
+        }
+
+        function openMainBenner() {
+            setTimeout(function() {
+                openModal('main-banner-dialog');
+            }, 3000);
         }
 
         $scope.$on("$destroy", function() {

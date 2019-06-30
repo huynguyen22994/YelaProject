@@ -1,0 +1,13 @@
+<modal id="main-banner-dialog">
+    <div class="modal">
+        <div class="modal-body content-left" style="height: 60%; width: 40%; margin-left: 30%;padding: 0px">
+            <span class="close" ng-click="$root.closeModal('main-banner-dialog')">&times;</span>
+            <div class="row">
+                <div class="col-sm-12">
+                    <img class="img-responsive" src="images/home/mainBanner.jpg" alt="" on-error-src="{{ $root.notFoundImg }}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-background" style="opacity: 0.5"></div>
+</modal>
