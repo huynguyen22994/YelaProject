@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>FoodTech Shop</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chúng tôi luôn khát khao, cố gắng cải thiện từng ngày để mang đến những sản phẩm thức ăn nhanh và một dịch vụ tốt nhất cho cộng đồng.">
+	<meta name="author" content="FoodTech Team">
+	<meta property="og:title" content="FoodTech Shop" />
+	<meta property="og:type" content="website" />
+	<meta property="og:description" content="Cook with Passion & Eat with Love" />
+	<meta property="og:url" content="https://foodtechserver.herokuapp.com" /> 
+	<meta property="og:image" content="https://foodtechserver.herokuapp.com/images/home/logo.png" />
+	<base href="/">
+    <link href="styles/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="styles/css/prettyPhoto.css" rel="stylesheet">
+    <link href="styles/css/price-range.css" rel="stylesheet">
+    <link href="styles/css/animate.css" rel="stylesheet">
+	<link href="styles/css/main.css" rel="stylesheet">
+	<link href="styles/css/responsive.css" rel="stylesheet">
+	<link rel="stylesheet" href="/bower_components/angular-toastr/dist/angular-toastr.css">
+	<link rel="stylesheet" href="styles/css/toast-modify.css">
+
+	<link href="scripts/clientComponents/spinnerLoading/spinnerLoading.css" rel="stylesheet">
+	<link href="scripts/clientComponents/modal/modal.css" rel="stylesheet">
+	<link href="scripts/cart/cart.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->       
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+	<!-- <script>
+		var map;
+		function initMap() {
+			setTimeout(function() {
+				map = new google.maps.Map(document.getElementById('map'), {
+				center: {
+					lat: 10.848469, 
+					lng: 106.637527
+				},
+				zoom: 8
+				});
+			}, 2000);
+		}
+	</script> -->
+</head><!--/head-->
+
+<body ng-controller="ClientController as vm">
+	<!--Spinner Loading-->
+	<div ng-if="!vm.spinnerHide" class="container" id="loader-warpper">
+		<div class="row">
+			<div id="loader">
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="lading"></div>
+			</div>
+		</div>
+	</div>
+	<!--End Spinner Loading-->
+	<div id="fb-root"></div>
+	<chat-box ng-show="$root.useChatBox"></chat-box> 
+    <header-app></header-app>
+	
+	<ng-view></ng-view>
+
+	<!-- <section id="slider">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+                    <slide-show></slide-show>
+				</div>
+			</div>
+		</div>
+	</section> -->
+	
+	<!-- <section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+
+                    <sidebar></sidebar>
+
+				</div>
+				
+				<div class="col-sm-9 padding-right">
+
+                    <features-item></features-item>
+					
+                    <tab></tab>
+					
+                    <recommend-product></recommend-product>
+					
+				</div>
+			</div>
+		</div>
+	</section> -->
+
+    <footer-app></footer-app>
+    
+	<social-button></social-button>
+	
+	<div class="fb-customerchat" page_id="585026038584164"></div>
+
+	  <!-- Root Modal -->
+	  <div class="modal fade" id="rootModal" role="dialog">
+		<div class="modal-dialog">
+		
+		  <!-- Modal content-->
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <button type="button" ng-click="$root.rootModal.closeCallback()" class="close" data-dismiss="modal">&times;</button>
+			  <h4 class="modal-title">{{ $root.rootModal.headerTitle }}</h4>
+			</div>
+			<div class="modal-body">
+			  <p>{{ $root.rootModal.contentMsg }}</p>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" ng-click="$root.rootModal.closeCallback()" class="btn btn-default" data-dismiss="modal">{{ 'close' | i18next }}</button>
+			</div>
+		  </div>
+		  
+		</div>
+	  </div>
+
+	  <div ng-include="'scripts/templates/modalDetail.tpl.html'"></div>
+	  <div ng-include="'scripts/templates/bannerModel.tpl.html'"></div>
+
+    <script src="styles/js/jquery.js"></script>
+	<script src="styles/js/bootstrap.min.js"></script>
+	<script src="styles/js/jquery.scrollUp.min.js"></script>
+	<script src="styles/js/price-range.js"></script>
+    <script src="styles/js/jquery.prettyPhoto.js"></script>
+	<script src="styles/js/main.js"></script>
+	<script src="styles/js/instafeed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular-route.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-socket-io/0.7.0/socket.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.7.5/angular-sanitize.min.js"></script> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/12.0.0/i18next.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-xhr-backend/1.5.1/i18nextXHRBackend.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-i18next/1.0.4/ng-i18next.min.js"></script>
+	<script src="/bower_components/angular-toastr/dist/angular-toastr.js"></script>
+	<script src="/bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+	<script src="/bower_components/angular-animate/angular-animate.js"></script>
+	<script src="/bower_components/lodash/dist/lodash.js"></script> 
+
+	<script src="translate/translate.js"></script>
+
+	<script src="scripts/clientComponents/socket/socket.directive.js"></script>
+	<script src="scripts/clientComponents/chatBox/chatBox.directive.js"></script>
+	<script src="scripts/clientComponents/slideShow/slideShow.directive.js"></script>
+	<script src="scripts/clientComponents/productItem/productItem.directive.js"></script>
+	<script src="scripts/clientComponents/header/header.directive.js"></script>
+	<script src="scripts/clientComponents/footer/footer.directive.js"></script>
+	<script src="scripts/clientComponents/category/category.directive.js"></script>
+	<script src="scripts/clientComponents/brand/brand.directive.js"></script>
+	<script src="scripts/clientComponents/sidebar/sidebar.directive.js"></script>
+	<script src="scripts/clientComponents/tab/tab.directive.js"></script>
+	<script src="scripts/clientComponents/recommendedItem/recommendedItem.directive.js"></script>
+	<script src="scripts/clientComponents/featuresItem/featuresItem.directive.js"></script>
+	<script src="scripts/clientComponents/socialButton/socialButton.directive.js"></script>
+	<script src="scripts/clientComponents/cart/cart.directive.js"></script>
+	<script src="scripts/clientComponents/ngEnter/ngEnter.directive.js"></script>
+	<script src="scripts/clientComponents/modal/modal.service.js"></script>
+	<script src="scripts/clientComponents/modal/modal.directive.js"></script>
+	<script src="scripts/clientComponents/errorSource/onErrorSrc.directive.js"></script>
+	<script src="scripts/clientComponents/resize/resize.directive.js"></script>
+
+  	<script src="app.js"></script>
+	<!--<script src="scripts/cart/cart.module.js"></script>
+	<script src="scripts/cart/cart.route.js"></script>
+	<script src="scripts/blog/blog.module.js"></script>
+	<script src="scripts/blog/blog.route.js"></script>-->
+	<script src="https://sp.zalo.me/plugins/sdk.js"></script>
+	<script>
+			window.fbAsyncInit = function() {
+			  FB.init({
+				appId            : '375782316127685',
+				autoLogAppEvents : true,
+				xfbml            : true,
+				status			 : true, 
+      			cookie			 : true, 
+				version          : 'v2.12'
+			  });
+			};
+	</script>
+	<!-- <script>(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.11&appId=375782316127685';
+		fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script> -->
+	<!-- Facebook -->
+	<div id="fb-root"></div>
+	<!--<script>(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.2&appId=375782316127685&autoLogAppEvents=1';
+		fjs.parentNode.insertBefore(js, fjs);
+	  }(document, 'script', 'facebook-jssdk'));</script> -->
+
+	  <script>
+		(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js";
+		fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	  </script>
+
+	<!-- <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlwdeQyEcDwuDVui9r8z3-TQ51LO8pU-U&callback=initMap"></script> -->
+	<!-- Instagram -->
+	<!-- <script type="text/javascript">
+		var feed = new Instafeed({
+			get: 'tagged',
+			tagName: 'phillyisugly',
+			limit: 10,
+			accessToken: '9227168889.c0d2dea.e484ce3770a8421ab520381d03c0723d'
+		});
+		feed.run();
+	</script> -->
+
+	<!--Login Google Facebook-->
+	<!-- <script src="https://connect.facebook.net/en_US/sdk.js"></script> -->
+	<script src="/scripts/login/login.js"></script>
+
+	<script type="text/javascript">
+		(function(){
+			var p = document.createElement('script');
+			p.type = 'text/javascript';
+			p.async = true;
+			p.src = 'https://apis.google.com/js/client.js?onload=onLoadFunction';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(p, s);
+		})();
+	</script>
+
+</body>
+</html>
