@@ -2632,3 +2632,27 @@ h2.title {
   padding-top: 5px;
   border-bottom: none;
 }
+
+.ellipsis { 
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.main-banner-dialog {
+  width: 40% !important;
+  margin-left: 30% !important;
+  padding: 0px !important;
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 1000px) {
+  .main-banner-dialog {
+    width: 80% !important;
+    margin-left: 10% !important;
+    padding: 0px !important;
+  }
+  .model-detail-quick-dialog {
+    margin: 9rem 1rem 1rem !important;
+  }
+}

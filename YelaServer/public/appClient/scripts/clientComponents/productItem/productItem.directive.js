@@ -34,7 +34,7 @@
                                     <img ng-src="{{ getFormatImgUrl(data['linkImg'], baseUrl) }}" alt="" on-error-src="{{ $root.notFoundImg }}" />
                                 </div>
                                 <h4>{{data['priceFormatted']}}</h4>
-                                <p>{{data['name']}}</p>
+                                <p class="ellipsis">{{data['name']}}</p>
                                 <a ng-click="addToCart(data)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{ 'addToCart' | i18next }}</a>
                             </div>
                             <div ng-if="config.overlay" class="product-overlay">
