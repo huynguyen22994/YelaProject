@@ -24,7 +24,7 @@
                         <div class="foodtech-loader"></div>
                         <div class="foodtech-loader-backdrop"></div>
                     </div>
-                    <h2 class="title text-center">{{ 'setCombo' | i18next }}</h2>
+                    <h2 class="title text-center">{{ config.title | i18next }}</h2>
                     <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="item active">	

@@ -47,10 +47,14 @@
             });
         };
 
-        function getProductNews() {
+        function getProductNews(offset, limit) {
             return $http({
                 url: '/api/productnew',
-                method: 'GET'
+                method: 'GET',
+                params: {
+                    offset: offset,
+                    limit: limit
+                }
             }).then(function (res) {
                 return res;
             }).catch(function (err) {

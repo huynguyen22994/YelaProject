@@ -20,7 +20,13 @@
             limit: 12,
             total: 0
         };
+        vm.NewProduct = {
+            offset: 0,
+            limit: 4,
+            total: 0
+        };
         vm.recommendProductConfig = {
+            title: 'setCombo',
             isLoading: true,
             disableLeftButton: function () {
                 return (vm.RecommendProduct.offset === 0) ? true : false;
@@ -35,6 +41,25 @@
             rightButton: function () {
                 vm.RecommendProduct.offset = vm.RecommendProduct.offset + vm.RecommendProduct.limit;
                 changeProductBestsellers(vm.RecommendProduct.offset, vm.RecommendProduct.limit);
+            }
+        };
+
+        vm.newProductConfig = {
+            title: 'drinks',
+            isLoading: true,
+            disableLeftButton: function () {
+                return (vm.NewProduct.offset === 0) ? true : false;
+            },
+            disableRightButton: function() {
+                return (vm.NewProduct.total <= (vm.NewProduct.offset + vm.NewProduct.limit)) ? true : false;
+            },
+            leftButton: function () {
+                vm.NewProduct.offset = vm.NewProduct.offset - vm.NewProduct.limit;
+                loadProductNews(vm.NewProduct.offset, vm.NewProduct.limit);
+            },
+            rightButton: function () {
+                vm.NewProduct.offset = vm.NewProduct.offset + vm.NewProduct.limit;
+                loadProductNews(vm.NewProduct.offset, vm.NewProduct.limit);
             }
         };
 
@@ -61,7 +86,7 @@
             await loadBrands();
             await loadCategories();
             await loadProductFreatures(vm.FeatureProduct.offset, vm.FeatureProduct.limit);
-            vm.productNews = await loadProductNews();
+            await loadProductNews(vm.NewProduct.offset, vm.NewProduct.limit);
             await loadProductBestsellers(vm.RecommendProduct.offset, vm.RecommendProduct.limit);
          };
 
@@ -122,11 +147,15 @@
             });
         };
 
-        function loadProductNews() {
+        function loadProductNews(offset, limit) {
             return new Promise((resolve, reject) => {
-                HomeService.getProductNews()
+                HomeService.getProductNews(offset, limit)
                     .then(function (productNews) {
-                        resolve(productNews.data.rows);
+                        vm.newProductConfig.totalItems = productNews.data.count;
+                        vm.NewProduct.total = productNews.data.count;
+                        vm.productNews = productNews.data.rows;
+                        vm.newProductConfig.isLoading = false;
+                        resolve(productNews.data);
                     }).catch(function (err) {
                         console.log(err);
                         reject(err);
