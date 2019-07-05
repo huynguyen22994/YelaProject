@@ -70,11 +70,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">F | FoodTech</a>
+                <a class="navbar-brand" href="/admin">F | FoodTech</a>
             </div>
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="#!/checkout">Thanh Toán
+                        <i class="fa fa-credit-card"></i>
+                    </a>
+                </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-files-o fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -219,7 +224,7 @@
             </ul>
             <!-- /.navbar-top-links -->
 
-            <div class="navbar-default sidebar" role="navigation">
+            <div ng-if="$root.isShowNavBar" class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
@@ -511,6 +516,11 @@
     <script src="/admin/scripts/shippingMgmt/shipcost/shipcost.controller.js"></script>
     <script src="/admin/scripts/shippingMgmt/shipcost/shipcost.route.js"></script>
     <script src="/admin/scripts/shippingMgmt/shipcost/editCreate/editCreate.controller.js"></script>
+    <!-- checkout -->
+    <script src="/admin/scripts/checkout/checkout.module.js"></script>
+    <script src="/admin/scripts/checkout/checkout.service.js"></script>
+    <script src="/admin/scripts/checkout/home/checkout.controller.js"></script>
+    <script src="/admin/scripts/checkout/checkout.route.js"></script>
 
     <!-- <script>
         ClassicEditor

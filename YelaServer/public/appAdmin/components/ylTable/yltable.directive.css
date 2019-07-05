@@ -29,6 +29,14 @@
     background-color: #e7e7e7; color: black;
 } /* Gray */
 
+.ylhightLight {
+    background-color: #ffccbc !important
+}
+
+.ylhightLight:hover {
+    background-color: #ffccbc !important
+}
+
 @media only screen and (max-width: 600px) {
 
   }

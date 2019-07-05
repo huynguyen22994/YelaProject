@@ -430,7 +430,20 @@
                 "description": "Name of Coffee."
                 }
             }
-        },          
+        },  
+        "BillInDay": {
+            "type": "object",
+            "properties": {
+                "date": {
+                "type": "string",
+                "description": "Name of Coffee."
+                },
+                "productString": {
+                "type": "string",
+                "description": "Name of Coffee."
+                }
+            }
+        },        
         "Error": {
             "type": "object",
             "properties": {

@@ -33,7 +33,10 @@
                 $location.path('/');
             }
         };
+        $rootScope.isShowNavBar = true;
         $rootScope.notFoundImg = ylConstant.notFoundImg;
+        $rootScope.hideNavBar = hideNavBar;
+        $rootScope.showNavBar = showNavBar;
 
         vm.adminInfo = adminInfo;
         vm.logout = logout;
@@ -160,6 +163,16 @@
                      headerMiddle.removeClass('header-middle-fixed');
                  }
             });
+        }
+
+        function hideNavBar() {
+            $rootScope.isShowNavBar = false;
+            $("#page-wrapper").css({"margin-left": "0px"});
+        }
+
+        function showNavBar() {
+            $rootScope.isShowNavBar = true;
+            $("#page-wrapper").css({"margin-left": "250px"});
         }
 
         $rootScope.$on('updateLetterNotify', function() {

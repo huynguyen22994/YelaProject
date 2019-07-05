@@ -93,7 +93,8 @@
                 if($scope.list.searchText) {
                     $scope.showSearchInput = true;
                 }
-            }
+            };
+            $scope.config.arrayModel = $scope.arrayModel;
         };
 
         function toggleSearchInput() {

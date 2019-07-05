@@ -3,6 +3,7 @@ YeleWebApp/node_modules
 YeleWebApp/bower_components
 YelaServer/npm-debug.log
 YelaServer/thumb.db
+YelaServer/bill_data
 YelaWebApp/npm-debug.log
 YelaServer/bower_components
 .idea

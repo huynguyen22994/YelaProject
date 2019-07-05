@@ -15,6 +15,7 @@ var DistrictCtrl = require('./DistrictCtrl');
 var ShipCostCtrl = require('./ShipCostCtrl');
 var DashboardCtrl = require('./DashboardCtrl');
 var WishlistCtrl = require('./WishlistCtrl');
+var BillInDayCtrl = require('./BillInDayCtrl');
 var async = require('async');
 
 // Products
@@ -404,4 +405,17 @@ module.exports.getWishListByCustomerId = (req, res, next) => {
 
 module.exports.removeProductFromWishlist = (req, res, next) => {
     WishlistCtrl.removeProductFromWishlist(req, res, next);
+};
+
+//BillInDayCtrl
+module.exports.getBillByDay = (req, res, next) => {
+    BillInDayCtrl.getBillByDay(req, res, next);
+};
+
+module.exports.addBillByDay = (req, res, next) => {
+    BillInDayCtrl.addBillByDay(req, res, next);
+};
+
+module.exports.updateStatusBillDay = (req, res, next) => {
+    BillInDayCtrl.updateStatusBillDay(req, res, next);
 };
