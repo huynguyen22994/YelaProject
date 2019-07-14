@@ -275,7 +275,8 @@
         'CustomerModel',
         'ngAnimate',
         'toastr',
-        'Resize'
+        'Resize',
+        'ngMeta'
     ]);
 })();
 (function () {
@@ -291,10 +292,17 @@
         .module('YelaAppClient')
         .config(AppConfigFunction);
 
-    AppConfigFunction.$inject = ['$locationProvider'];
-    function AppConfigFunction($locationProvider) {
+    AppConfigFunction.$inject = ['$locationProvider', 'ngMetaProvider'];
+    function AppConfigFunction($locationProvider, ngMetaProvider) {
         //$locationProvider.html5Mode(true);
         $locationProvider.hashPrefix('');
+
+        ngMetaProvider.useTitleSuffix(true);
+        // On /home, the title would change to
+        // 'Home Page | Best Website on the Internet!'
+        ngMetaProvider.setDefaultTitle('FoodTech Shop - Mì Tỏi & Cơm Vò');
+        ngMetaProvider.setDefaultTitleSuffix(' | FoodTech Shop');
+        ngMetaProvider.setDefaultTag('author', 'FoodTech Team');
     }
 })();
 
@@ -326,8 +334,9 @@
         .module('YelaAppClient')
         .run(AppRunFunction);
 
-    AppRunFunction.$inject = ['$rootScope'];
-    function AppRunFunction($rootScope) {
+    AppRunFunction.$inject = ['$rootScope', 'ngMeta'];
+    function AppRunFunction($rootScope, ngMeta) {
+        ngMeta.init();
         $rootScope.$on("$locationChangeStart", function(event, next, current) {   
             $(window).scrollTop(0);
         }); 
@@ -349,8 +358,8 @@
         .module('YelaAppClient')
         .controller('ClientController', ControllerController);
 
-    ControllerController.$inject = ['$i18next', '$timeout', '$rootScope', 'Cart', '$scope', 'LoginService', 'Customer', '$location', 'ModalService', 'Product', 'toastr', '$window', 'ShopService', 'clientConstant'];
-    function ControllerController($i18next, $timeout, $rootScope, Cart, $scope, LoginService, Customer, $location, ModalService, Product, toastr, $window, ShopService, clientConstant) {
+    ControllerController.$inject = ['$i18next', '$timeout', '$rootScope', 'Cart', '$scope', 'LoginService', 'Customer', '$location', 'ModalService', 'Product', 'toastr', '$window', 'ShopService', 'clientConstant', 'ngMeta'];
+    function ControllerController($i18next, $timeout, $rootScope, Cart, $scope, LoginService, Customer, $location, ModalService, Product, toastr, $window, ShopService, clientConstant, ngMeta) {
         var vm = this;
         var TIME_OUT = 1000;
         var customerToken = window.localStorage.getItem('customerToken');
@@ -382,6 +391,7 @@
         $rootScope.openModal = openModal;
         $rootScope.closeModal = closeModal;
         $rootScope.addToCart = addToCart;
+        $rootScope.setMetaTag = setMetaTag;
 
         activate();
         ////////////////
@@ -389,7 +399,7 @@
         function activate() { 
             getCustomer(customerToken);
             initCartFirst();
-            openMainBenner();
+            //openMainBenner();
         };
 
         function getCustomer(token) {
@@ -476,6 +486,12 @@
             setTimeout(function() {
                 openModal('main-banner-dialog');
             }, 3000);
+        }
+
+        function setMetaTag(title, description, image) {
+            ngMeta.setTitle(title);
+            ngMeta.setTag('description', description);
+            ngMeta.setTag('image', 'https://foodtechserver.herokuapp.com' + image);
         }
 
         $scope.$on("$destroy", function() {
@@ -672,7 +688,16 @@
                 templateUrl: 'home.html',
                 controller: 'HomeController',
                 controllerAs: 'vm',
-                appId: 'home'
+                appId: 'home',
+                data: {
+                    meta: {
+                        'title': 'FoodTech Shop - Mì Tỏi & Cơm Vò',
+                        'og:title': 'FoodTech Shop - Mì Tỏi & Cơm Vò',
+                        'description': 'Chúng tôi luôn khát khao, cố gắng cải thiện từng ngày để mang đến những sản phẩm thức ăn nhanh và một dịch vụ tốt nhất cho cộng đồng.',
+                        'og:description': 'Chúng tôi luôn khát khao, cố gắng cải thiện từng ngày để mang đến những sản phẩm thức ăn nhanh và một dịch vụ tốt nhất cho cộng đồng.',
+                        'og:image': 'https://foodtechserver.herokuapp.com/images/home/foodtech_slide_3.jpg'
+                    }
+                },
             })
             .when(urlActiveAccount, {
                 templateUrl: 'home.html',
@@ -693,8 +718,12 @@
         .module('YelaAppClient.Home')
         .controller('HomeController', ControllerController);
 
-    ControllerController.$inject = ['HomeService', 'clientConstant', '$route', '$rootScope'];
-    function ControllerController(HomeService, clientConstant, $route, $rootScope) {
+    ControllerController.$inject = ['HomeService', 'clientConstant', '$route', '$rootScope', 'ngMeta'];
+    function ControllerController(HomeService, clientConstant, $route, $rootScope, ngMeta) {
+        ngMeta.setTitle('FoodTech Shop - Mì Tỏi & Cơm Vò');
+        ngMeta.setTag('description', 'Chúng tôi luôn khát khao, cố gắng cải thiện từng ngày để mang đến những sản phẩm thức ăn nhanh và một dịch vụ tốt nhất cho cộng đồng.');
+        ngMeta.setTag('image', 'https://foodtechserver.herokuapp.com/images/home/foodtech_slide_3.jpg');
+        
         var vm = this;
         vm.offsetRecommendProduct = 0;
         vm.limitRecommendProduct = 4;
@@ -1413,7 +1442,8 @@
                 DetailService.getProductById(id)
                     .then(function (product) {
                         vm.product = product.data;
-                        vm.product.linkImg = `${clientConstant.serverUrl}/${vm.product.linkImg}`;                       
+                        vm.product.linkImg = `${clientConstant.serverUrl}/${vm.product.linkImg}`;    
+                        $rootScope.setMetaTag(vm.product.name, vm.product.discribe, vm.product.linkImg);                 
                         resolve(product.data);
                     }).catch(function (err) {
                         console.log(err);
