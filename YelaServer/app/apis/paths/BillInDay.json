@@ -1,6 +1,26 @@
 {
     "paths": {
         "/billinday": {
+            "get": {
+                "summary": "Get onew Brand",
+                "description": "Input BrandId to get",
+                "operationId": "getAllBillDay",
+                "responses": {
+                        "200": {
+                            "description": "template file",
+                            "schema": {
+                                "$ref": "#/definitions/BillInDay"
+                            }
+                        },
+                        "default": {
+                            "description": "unexpected error",
+                            "schema": {
+                                "$ref": "#/definitions/Error"
+                            }
+                        }
+                    },
+                "x-swagger-router-controller": "DefaultCtrl"
+            },
             "post": {
                 "summary": "Create a new Brand",
                 "description": "Input a Brand object with some properties below",

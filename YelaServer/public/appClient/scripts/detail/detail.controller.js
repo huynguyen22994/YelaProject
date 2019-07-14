@@ -77,7 +77,8 @@
                 DetailService.getProductById(id)
                     .then(function (product) {
                         vm.product = product.data;
-                        vm.product.linkImg = `${clientConstant.serverUrl}/${vm.product.linkImg}`;                       
+                        vm.product.linkImg = `${clientConstant.serverUrl}/${vm.product.linkImg}`;    
+                        $rootScope.setMetaTag(vm.product.name, vm.product.discribe, vm.product.linkImg);                 
                         resolve(product.data);
                     }).catch(function (err) {
                         console.log(err);

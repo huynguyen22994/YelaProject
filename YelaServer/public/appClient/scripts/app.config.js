@@ -5,10 +5,17 @@
         .module('YelaAppClient')
         .config(AppConfigFunction);
 
-    AppConfigFunction.$inject = ['$locationProvider'];
-    function AppConfigFunction($locationProvider) {
+    AppConfigFunction.$inject = ['$locationProvider', 'ngMetaProvider'];
+    function AppConfigFunction($locationProvider, ngMetaProvider) {
         //$locationProvider.html5Mode(true);
         $locationProvider.hashPrefix('');
+
+        ngMetaProvider.useTitleSuffix(true);
+        // On /home, the title would change to
+        // 'Home Page | Best Website on the Internet!'
+        ngMetaProvider.setDefaultTitle('FoodTech Shop - Mì Tỏi & Cơm Vò');
+        ngMetaProvider.setDefaultTitleSuffix(' | FoodTech Shop');
+        ngMetaProvider.setDefaultTag('author', 'FoodTech Team');
     }
 })();
 

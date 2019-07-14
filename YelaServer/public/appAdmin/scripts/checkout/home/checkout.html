@@ -46,7 +46,10 @@
                                 </label>
                             </form>
                         </div>
-                        <div class="col-sm-6" style="text-align: right">
+                        <div class="col-sm-3" style="text-align: right">
+                            <label>Tổng Tiền:</label>
+                        </div>
+                        <div class="col-sm-3" style="text-align: right">
                             <label>{{ vm.getTotal() }}</label>
                         </div>
                     </div>
@@ -79,8 +82,16 @@
                             <yl-table config="vm.configTableForViewBill" array="vm.billSelected.list" has-result="true"></yl-table> 
                         </div>
                         <div class="panel-footer">
-                            <div style="text-align: right">
-                                <label>{{ vm.getTotal() }}</label>
+                            <div class="row">
+                                <div class="col-sm-4">
+
+                                </div>
+                                <div class="col-sm-4" style="text-align: right">
+                                    <label>Tổng Tiền:</label>
+                                </div>
+                                <div class="col-sm-4" style="text-align: right">
+                                        <label>{{ vm.getTotalViewBill(vm.billSelected.list) }}</label>
+                                    </div>
                             </div>
                         </div>
                     </div>

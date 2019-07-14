@@ -37,6 +37,7 @@
         'CustomerModel',
         'ngAnimate',
         'toastr',
-        'Resize'
+        'Resize',
+        'ngMeta'
     ]);
 })();

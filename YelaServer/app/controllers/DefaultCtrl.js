@@ -419,3 +419,7 @@ module.exports.addBillByDay = (req, res, next) => {
 module.exports.updateStatusBillDay = (req, res, next) => {
     BillInDayCtrl.updateStatusBillDay(req, res, next);
 };
+
+module.exports.getAllBillDay = (req, res, next) => {
+    BillInDayCtrl.getAllBillDay(req, res, next);
+};

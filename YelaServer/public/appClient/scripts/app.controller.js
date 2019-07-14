@@ -5,8 +5,8 @@
         .module('YelaAppClient')
         .controller('ClientController', ControllerController);
 
-    ControllerController.$inject = ['$i18next', '$timeout', '$rootScope', 'Cart', '$scope', 'LoginService', 'Customer', '$location', 'ModalService', 'Product', 'toastr', '$window', 'ShopService', 'clientConstant'];
-    function ControllerController($i18next, $timeout, $rootScope, Cart, $scope, LoginService, Customer, $location, ModalService, Product, toastr, $window, ShopService, clientConstant) {
+    ControllerController.$inject = ['$i18next', '$timeout', '$rootScope', 'Cart', '$scope', 'LoginService', 'Customer', '$location', 'ModalService', 'Product', 'toastr', '$window', 'ShopService', 'clientConstant', 'ngMeta'];
+    function ControllerController($i18next, $timeout, $rootScope, Cart, $scope, LoginService, Customer, $location, ModalService, Product, toastr, $window, ShopService, clientConstant, ngMeta) {
         var vm = this;
         var TIME_OUT = 1000;
         var customerToken = window.localStorage.getItem('customerToken');
@@ -38,6 +38,7 @@
         $rootScope.openModal = openModal;
         $rootScope.closeModal = closeModal;
         $rootScope.addToCart = addToCart;
+        $rootScope.setMetaTag = setMetaTag;
 
         activate();
         ////////////////
@@ -45,7 +46,7 @@
         function activate() { 
             getCustomer(customerToken);
             initCartFirst();
-            openMainBenner();
+            //openMainBenner();
         };
 
         function getCustomer(token) {
@@ -132,6 +133,12 @@
             setTimeout(function() {
                 openModal('main-banner-dialog');
             }, 3000);
+        }
+
+        function setMetaTag(title, description, image) {
+            ngMeta.setTitle(title);
+            ngMeta.setTag('description', description);
+            ngMeta.setTag('image', 'https://foodtechserver.herokuapp.com' + image);
         }
 
         $scope.$on("$destroy", function() {

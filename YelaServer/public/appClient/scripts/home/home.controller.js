@@ -5,8 +5,12 @@
         .module('YelaAppClient.Home')
         .controller('HomeController', ControllerController);
 
-    ControllerController.$inject = ['HomeService', 'clientConstant', '$route', '$rootScope'];
-    function ControllerController(HomeService, clientConstant, $route, $rootScope) {
+    ControllerController.$inject = ['HomeService', 'clientConstant', '$route', '$rootScope', 'ngMeta'];
+    function ControllerController(HomeService, clientConstant, $route, $rootScope, ngMeta) {
+        ngMeta.setTitle('FoodTech Shop - Mì Tỏi & Cơm Vò');
+        ngMeta.setTag('description', 'Chúng tôi luôn khát khao, cố gắng cải thiện từng ngày để mang đến những sản phẩm thức ăn nhanh và một dịch vụ tốt nhất cho cộng đồng.');
+        ngMeta.setTag('image', 'https://foodtechserver.herokuapp.com/images/home/foodtech_slide_3.jpg');
+        
         var vm = this;
         vm.offsetRecommendProduct = 0;
         vm.limitRecommendProduct = 4;

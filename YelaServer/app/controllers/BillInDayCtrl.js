@@ -33,6 +33,50 @@ function wiriteBillFile(filePath, res, newBillObj) {
       });
 }
 
+function promiseAllP(items, block) {
+    var promises = [];
+    items.forEach(function(item,index) {
+
+        fs.readFile(filePath, function(err, data) {
+            if(err) {
+                res.json({
+                    status: 'fail',
+                    msg: 'can not read file'
+                });
+            } else {
+                var dataObj = JSON.parse(data.toString());
+                res.json({
+                    status: 'success',
+                    data: dataObj
+                });
+            }
+        });
+
+
+
+        promises.push( function(item,i) {
+            return new Promise(function(resolve, reject) {
+                return block.apply(this,[item,index,resolve,reject]);
+            });
+        }(item,index))
+    });
+    return Promise.all(promises);
+}
+
+
+function readFiles(dirname) {
+    return new Promise((resolve, reject) => {
+        fs.readdir(dirname, function(err, filenames) {
+            if (err) return reject(err);
+            
+
+            return resolve({
+                fileList: filenames
+            })
+        });
+  });
+}
+
 module.exports.addBillByDay = (req, res, next) => {
     var billInfo = req.body; 
     var filePath = path + billInfo.date + '.txt';
@@ -46,7 +90,6 @@ module.exports.addBillByDay = (req, res, next) => {
         }
     });
 };
-
 
 module.exports.getBillByDay = (req, res, next) => {
     var date = req.query.date;
@@ -100,4 +143,12 @@ module.exports.updateStatusBillDay = (req, res, next) => {
               });
         }
     });
+};
+
+module.exports.getAllBillDay = (req, res, next) => {
+    readFiles(path).then(function(files) {
+        res.json(files);
+    }).catch(function(error) {
+        res.json(error);
+    })
 };

@@ -77,11 +77,43 @@
             ]
         };
         vm.configTable = {
-            arrayColumnLabel: ['Sản Phẩm', 'Số Lượng', 'Giá', 'Ưu Đãi', ''],
+            arrayColumnLabel: ['Sản Phẩm', 'SL', 'Giá', 'Mang Đi', 'Ưu Đãi', ''],
             arrayColumnContent: ['name', 'selectedQuantity', {
                 formatterBase: function(item) {
                     var price = item['selectedQuantity'] * item['price'];
                     return parseCerrency(price);
+                }
+            },
+            {
+                formatterBase: function(product) {
+                    if((product['name'] === 'Mì Tỏi' || product['name'] === 'Cơm Vò') && !product._hightLight) {
+                        if(vm.takingPrice) {
+                            var priceFormated = vm.takingPrice * product['selectedQuantity'];
+                            return parseCerrency(priceFormated);
+                        } else {
+                            return parseCerrency(0);
+                        }
+                    } else if(product['name'] === 'Combo 1') {
+                        if(vm.takingPrice) { 
+                            return parseCerrency(3000 * product['selectedQuantity']);
+                        } else {
+                            return parseCerrency(0);
+                        }
+                    } else if(product['name'] === 'Combo 2') {
+                        if(vm.takingPrice) { 
+                            return parseCerrency(6000 * product['selectedQuantity']);
+                        } else {
+                            return parseCerrency(0);
+                        }
+                    } else if(product['name'] === 'Combo 3') {
+                        if(vm.takingPrice) { 
+                            return parseCerrency(9000 * product['selectedQuantity']);
+                        } else {
+                            return parseCerrency(0);
+                        }
+                    } else {
+                        return parseCerrency(0);
+                    }
                 }
             },
             {
@@ -147,8 +179,13 @@
             }
         };
         vm.configBillListTable = {
-            arrayColumnLabel: ['Số chờ', 'Mang Đi', 'Giờ của bill', 'Tiến Trình', 'Hành Động'],
-            arrayColumnContent: ['number', 'takeAway', 'id', 'status'],
+            arrayColumnLabel: ['Số chờ', 'Mang Đi', 'Giờ Đặt', 'Thanh Toán', 'Tổng', 'Hành Động'],
+            arrayColumnContent: ['number', 'takeAway', 'id', 'status', {
+                formatterBase: function(item) {
+                    var price = getTotalViewBill(item.list);
+                    return parseCerrency(price);
+                }
+            }],
             arrayActions: [
                 {
                     buttonName: 'Xong',
@@ -206,6 +243,7 @@
         vm.getTotal = getTotal;
         vm.isShowDetail = isShowDetail;
         vm.addToGift = addToGift;
+        vm.getTotalViewBill = getTotalViewBill;
 
         activate();
 
@@ -270,10 +308,24 @@
                 }
                 var priceOfProduct = product['selectedQuantity'] * price;
                 total = total + priceOfProduct;
+                if((product['name'] === 'Mì Tỏi' || product['name'] === 'Cơm Vò') && !product._hightLight) {
+                    if(vm.takingPrice) {
+                        total = total + (vm.takingPrice * product['selectedQuantity']);
+                    }
+                } else if(product['name'] === 'Combo 1') {
+                    if(vm.takingPrice) {
+                        total = total + (3000 * product['selectedQuantity']);
+                    }
+                } else if(product['name'] === 'Combo 2') {
+                    if(vm.takingPrice) {
+                        total = total + (6000 * product['selectedQuantity']);
+                    }
+                } else if(product['name'] === 'Combo 3') {
+                    if(vm.takingPrice) {
+                        total = total + (9000 * product['selectedQuantity']);
+                    }
+                }
             });
-            if(vm.takingPrice) {
-                total = total + vm.takingPrice;
-            }
             return parseCerrency(total);
         }
 
@@ -329,10 +381,13 @@
             checkoutService.getBillByday(date)
                 .then(function(response) {
                     var data = response.data;
+                    var indexItem = 0;
                     if(data.status === 'success') {
                         vm.billByDayData = data.data;
                         vm.billByDayDataList = [];
                         angular.forEach(vm.billByDayData, function(value, key) {
+                            indexItem = indexItem + 1;
+                            value.numberIndex = indexItem
                             vm.billByDayDataList.push(value);
                         });
                         vm.billByDayDataList.reverse();
@@ -402,6 +457,36 @@
 
         function cancelBill(bill) {
 
+        }
+
+        function getTotalViewBill(list) {
+            var total = 0;
+            angular.forEach(list, function(product) {
+                var price = product['price'];
+                if(product['productStatus'] === 'bestseller') {
+                    price = getDiscount20Percent(product);
+                }
+                var priceOfProduct = product['selectedQuantity'] * price;
+                total = total + priceOfProduct;
+                if((product['name'] === 'Mì Tỏi' || product['name'] === 'Cơm Vò') && !product._hightLight) {
+                    if(vm.takingPrice) {
+                        total = total + (vm.takingPrice * product['selectedQuantity']);
+                    }
+                } else if(product['name'] === 'Combo 1') {
+                    if(vm.takingPrice) {
+                        total = total + (3000 * product['selectedQuantity']);
+                    }
+                } else if(product['name'] === 'Combo 2') {
+                    if(vm.takingPrice) {
+                        total = total + (6000 * product['selectedQuantity']);
+                    }
+                } else if(product['name'] === 'Combo 3') {
+                    if(vm.takingPrice) {
+                        total = total + (9000 * product['selectedQuantity']);
+                    }
+                }
+            });
+            return parseCerrency(total);
         }
 
         $scope.$watch('vm.taking', function(newValue, oldValue) {
