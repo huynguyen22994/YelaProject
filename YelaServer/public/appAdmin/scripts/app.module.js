@@ -10,6 +10,7 @@
         'YelaApplication.DashboardManagement',
         'YelaApplication.ShippingMgmt',
         'YelaApplication.CheckoutMgmt',
+        'YelaApplication.Statistic',
         'YelaLineChart',
         'YelaPieChart',
         'jm.i18next',

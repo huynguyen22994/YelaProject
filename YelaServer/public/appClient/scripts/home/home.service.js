@@ -10,6 +10,7 @@
         var service = {
             getAllProduct: getAllProduct,
             getProductFreatures: getProductFreatures,
+            getProductMains: getProductMains,
             getProductNews: getProductNews,
             getProductBestsellers: getProductBestsellers,
             getBrands: getBrands,
@@ -35,6 +36,21 @@
         function getProductFreatures(offset, limit) {
             return $http({
                 url: '/api/productfreatures',
+                method: 'GET',
+                params: {
+                    offset: offset,
+                    limit: limit
+                }
+            }).then(function (res) {
+                return res;
+            }).catch(function (err) {
+                return err;
+            });
+        };
+
+        function getProductMains(offset, limit) {
+            return $http({
+                url: '/api/productmains',
                 method: 'GET',
                 params: {
                     offset: offset,

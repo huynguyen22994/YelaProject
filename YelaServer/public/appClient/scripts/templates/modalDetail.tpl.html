@@ -20,7 +20,7 @@
                     </span>
                     <div class="line"></div>
                     <span>
-                        <button type="button" class="btn btn-fefault cart" ng-click="$root.addToCart($root.productDetailModal, vm.quantity)">
+                        <button type="button" class="btn btn-fefault cart" ng-disabled="$root.productDetailModal.quantity < 1" ng-click="$root.addToCart($root.productDetailModal, vm.quantity)">
                             <i class="fa fa-shopping-cart"></i>
                             {{ 'addToCart' | i18next }}
                         </button>

@@ -37,11 +37,20 @@
                                 <p class="ellipsis">{{data['name']}}</p>
                                 <a ng-click="addToCart(data)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{ 'addToCart' | i18next }}</a>
                             </div>
-                            <div ng-if="config.overlay" class="product-overlay">
+                            <div ng-if="config.overlay" class="productinfo product-overlay">
                                 <div class="overlay-content">
+                                    <div style="cursor:pointer" ng-click="config.viewDetail(data)">
+                                        <img ng-src="{{ getFormatImgUrl(data['linkImg'], baseUrl) }}" alt="" on-error-src="{{ $root.notFoundImg }}" />
+                                    </div>
                                     <h2>{{data['priceFormatted']}} VND</h2>
-                                    <p>Easy Polo Black Edition</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{ 'addToCart' | i18next }}</a>
+                                    <p>{{ data['name'] }}</p>
+                                    <a ng-click="addToCart(data)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{ 'addToCart' | i18next }}</a>
+                                </div>
+                            </div>
+                            <div ng-if="data['quantity'] < 1" class="product-blocked">
+                                <label class="newarrival banner-lable">{{ 'Tạm Hết' | i18next }}</label> 
+                                <div class="blocked-content">
+                                    <!--<p>Hôm nay quán không có món này mất rồi.</p>-->
                                 </div>
                             </div>
                             <img ng-if="config.new" src="images/home/new.png" class="new" alt="" />

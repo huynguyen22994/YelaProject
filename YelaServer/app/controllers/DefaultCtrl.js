@@ -43,6 +43,10 @@ module.exports.getProductFreature = (req, res, next) => {
     ProductCtrl.getProductFreature(req, res, next);
 };
 
+module.exports.getProductMain = (req, res, next) => {
+    ProductCtrl.getProductMain(req, res, next);
+};
+
 module.exports.getProductNew = (req, res, next) => {
     ProductCtrl.getProductNew(req, res, next);
 };

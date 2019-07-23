@@ -24,7 +24,7 @@
                     <div class="foodtech-loader"></div>
                     <div class="foodtech-loader-backdrop"></div>
                 </div>
-                <h2 class="title text-center">{{ 'featuresFood' | i18next }}</h2>
+                <h2 class="title text-center">{{ config.title | i18next }}</h2>
                 <product-item ng-repeat="data in arrayData" data="data" config="vm.productItemConfig"></product-item>
             </div>
             <div class="pagination-area">

@@ -26,6 +26,9 @@
                 var lineFunc;
      
                 function getWidthDefault() {
+                    if(_.get(scope, 'config.svgWidth')) {
+                        return _.get(scope, 'config.svgWidth');
+                    }
                     return window.innerWidth < 700 ? 300 : 600;
                 }
 
@@ -41,7 +44,7 @@
      
                 xRange = d3.scale.linear ()
                             .range ([margin, width - margin])
-                            .domain ([0,3]);
+                            .domain ([0,_.get(scope, 'data').length]);
      
                 xAxis = d3.svg.axis ()
                             .scale (xRange)
@@ -81,13 +84,13 @@
                                 .data (scope.data);
      
                 circle.enter ().append ("circle")
-                    .attr ("cx", function (d, i) {return i * ((width - margin*2)/3) + margin;})
+                    .attr ("cx", function (d, i) {return i * ((width - margin*2)/_.get(scope, 'data').length) + margin;})
                     .attr ("cy", function (d) {return height - margin - (d.value/100)*height;})
-                    .attr ("r", 10)
+                    .attr ("r", 4)
                     .style ("fill", function (d) {return d.color;});
      
                 circle.enter ().append ('text')
-                .attr("dx", function(d, i){return i * ((width - margin*2)/3) + margin;})
+                .attr("dx", function(d, i){return i * ((width - margin*2)/_.get(scope, 'data').length) + margin;})
                 .attr("dy", function(d){return height - margin - (d.value/100)*height;})
                 .text(function(d){return d.label})
                 

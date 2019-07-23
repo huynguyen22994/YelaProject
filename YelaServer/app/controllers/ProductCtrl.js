@@ -188,6 +188,24 @@ module.exports.getProductFreature = (req, res, next) => {
     });
 };
 
+module.exports.getProductMain = (req, res, next) => {
+    var offset = parseInt(req.query.offset);
+    var limit =  parseInt(req.query.limit);
+    models.Product.findAndCountAll({
+    where: {
+        form: 'main'
+    },
+    offset: offset,
+    limit: limit
+    })
+    .then((result) => {
+        res.json(result);
+    }, (err) => {
+        res.statusCode = 400;
+        res.end();
+    });
+};
+
 module.exports.getProductNew = (req, res, next) => {
     var offset = parseInt(req.query.offset);
     var limit = parseInt(req.query.limit);

@@ -943,7 +943,35 @@ h2.title {
   color: #fff;
 }
 
+.product-blocked {
+  background: #696763;
+  top: 0;
+  position: absolute;
+  transition: height 500ms ease 0s;
+  width: 100%;
+  opacity: 0.2;
+}
 
+.product-blocked .blocked-content {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.product-blocked .blocked-content p {
+  color: #ebedf0
+}
+
+.product-blocked .newarrival.banner-lable {
+  background-color: #040404;
+  color: #fff;
+}
+
+.single-products .product-blocked {
+  display: block;
+  height: 100%;
+}
 
 .add-to-cart {
   background:#F5F5ED;

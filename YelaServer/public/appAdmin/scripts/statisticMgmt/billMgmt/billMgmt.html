@@ -4,12 +4,24 @@
             <div class="page-header">
                     <div class="row">
                         <div class="col-md-6">
-                            <h3 ng-i18next>Thống Kê Bill</h3>                 
+                            <h3 ng-i18next>Thống Kê Theo Tháng</h3>                 
                         </div>
                     </div>
             </div>
         </div>
         <!-- /.col-lg-12 -->
+    </div>
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <yl-button-header config="vm.configButtonHeaderLineChart" list=""></yl-button-header>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body" ng-if="vm.showChart">
+                <yl-line-chart style="width:100%;height:550px;" data="vm.lineChartData" config="vm.lineChartConfig"></yl-line-chart>
+            </div>
+            <!-- /.panel-body -->
+        </div>
     </div>
     <div class="row">
         <div ng-class="vm.classForTable">
@@ -19,8 +31,19 @@
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <yl-table config="vm.configTable" array="vm.items" has-result="vm.hasResult"></yl-table> 
-                    <yl-paging pager="vm.pager" page-customize-size="vm.pageCustomize" has-result="vm.hasResult"></yl-paging>
+                    <yl-table config="vm.configTable" array="vm.billList" has-result="vm.hasResult()"></yl-table> 
+                    <!-- <yl-paging pager="vm.pager" page-customize-size="vm.pageCustomize" has-result="vm.hasResult"></yl-paging> -->
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-6"></div>
+                        <div class="col-sm-3" style="text-align: right">
+                            <label>Tổng Doanh Thu:</label>
+                        </div>
+                        <div class="col-sm-3" style="text-align: right">
+                                <label>{{ vm.getTotalRevenue(vm.billList) }}</label>
+                            </div>
+                    </div>
                 </div>
                 <!-- /.panel-body -->
             </div>

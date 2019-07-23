@@ -4,13 +4,13 @@ var data = fs.readFileSync('./config/config.json');
 var async = require('async');
 var dataConfig = JSON.parse(data.toString());
 var config = dataConfig.yelaEmail;
-
+var text = 'tronghuy2209';
 /////////////////////////////////////////////////////////
 var transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
         user: config.email,
-        pass: config.password
+        pass: text
     }
 });
 

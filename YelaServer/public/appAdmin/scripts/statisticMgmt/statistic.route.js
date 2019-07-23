@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('YelaApplication.StatisticMgmt')
+        .module('YelaApplication.Statistic')
         .config(configFunction);
 
     configFunction.$inject = ['$routeProvider', '$locationProvider'];
