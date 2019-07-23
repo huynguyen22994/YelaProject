@@ -523,6 +523,7 @@
         var service = {
             getAllProduct: getAllProduct,
             getProductFreatures: getProductFreatures,
+            getProductMains: getProductMains,
             getProductNews: getProductNews,
             getProductBestsellers: getProductBestsellers,
             getBrands: getBrands,
@@ -548,6 +549,21 @@
         function getProductFreatures(offset, limit) {
             return $http({
                 url: '/api/productfreatures',
+                method: 'GET',
+                params: {
+                    offset: offset,
+                    limit: limit
+                }
+            }).then(function (res) {
+                return res;
+            }).catch(function (err) {
+                return err;
+            });
+        };
+
+        function getProductMains(offset, limit) {
+            return $http({
+                url: '/api/productmains',
                 method: 'GET',
                 params: {
                     offset: offset,
@@ -657,6 +673,7 @@
                                     <sidebar brand-data="vm.brands" category-data="vm.categories"></sidebar>
                                 </div>
                                 <div class="col-sm-9 padding-right">
+                                    <features-item array-data="vm.productMains" config="vm.mainProductConfig"></features-item>  
                                     <features-item array-data="vm.productFreatures" config="vm.featureProductConfig"></features-item>    
                                     <recommend-product array-data="vm.productBestsellers" config="vm.recommendProductConfig"></recommend-product>
                                     <recommend-product array-data="vm.productNews" config="vm.newProductConfig"></recommend-product>
@@ -737,6 +754,11 @@
             limit: 12,
             total: 0
         };
+        vm.MainProduct = {
+            offset: 0,
+            limit: 4,
+            total: 0
+        };
         vm.NewProduct = {
             offset: 0,
             limit: 4,
@@ -744,7 +766,7 @@
         };
         vm.recommendProductConfig = {
             title: 'setCombo',
-            isLoading: true,
+            isLoading: false,
             disableLeftButton: function () {
                 return (vm.RecommendProduct.offset === 0) ? true : false;
             },
@@ -763,7 +785,7 @@
 
         vm.newProductConfig = {
             title: 'drinks',
-            isLoading: true,
+            isLoading: false,
             disableLeftButton: function () {
                 return (vm.NewProduct.offset === 0) ? true : false;
             },
@@ -781,6 +803,7 @@
         };
 
         vm.featureProductConfig = {
+            title: 'featuresFood',
             isLoading: true,
             totalItems: 0,
             currentPage: 1,
@@ -794,6 +817,21 @@
             }
         };
 
+        vm.mainProductConfig = {
+            title: 'mainFood',
+            isLoading: false,
+            totalItems: 0,
+            currentPage: 1,
+            limit: vm.FeatureProduct.limit,
+            changePage: function (offset, limit, currentPage) {
+                this.currentPage = currentPage;
+                change(offset, limit);
+                async function change(offset, limit) {
+                    await loadProductMains(offset, limit);
+                };
+            }
+        };
+
         activate();
 
         ////////////////
@@ -802,6 +840,7 @@
             detectActiveAccount();
             await loadBrands();
             await loadCategories();
+            await loadProductMains(vm.FeatureProduct.offset, vm.FeatureProduct.limit);
             await loadProductFreatures(vm.FeatureProduct.offset, vm.FeatureProduct.limit);
             await loadProductNews(vm.NewProduct.offset, vm.NewProduct.limit);
             await loadProductBestsellers(vm.RecommendProduct.offset, vm.RecommendProduct.limit);
@@ -847,6 +886,21 @@
                     $rootScope.rootModal.show();
                 });
         }
+
+        function loadProductMains(offset, limit) {
+            return new Promise((resolve, reject) => {
+                HomeService.getProductMains(offset, limit)
+                    .then(function (productMains) {
+                        vm.mainProductConfig.totalItems = productMains.data.count;
+                        vm.MainProduct.total = productMains.data.count;
+                        vm.productMains = productMains.data.rows;
+                        resolve(vm.productMains);
+                    }).catch(function (err) {
+                        console.log(err);
+                        reject(err);
+                    });
+            });
+        };
 
         function loadProductFreatures(offset, limit) {
             return new Promise((resolve, reject) => {
