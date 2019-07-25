@@ -16,12 +16,12 @@
                 </div><!--/login form-->
                 <div class="login-form">
                     <h2>{{ 'signInByGGFF' | i18next}}</h2>
-                    <button type="submit" 
+                    <button type="submit" ng-disabled="true"
                         class="btn btn-default" 
                         style="background-color: #EA5154; color: #fff" 
                         ng-click="vm.onGoogleLogin();"
                         ><i class="fa fa-google"></i> Google</button>
-                    <button type="submit" 
+                    <button type="submit" ng-disabled="true"
                         class="btn btn-default" 
                         style="background-color: #4264AA; color: #fff" 
                         ng-click="vm.onFacebookLogin();"

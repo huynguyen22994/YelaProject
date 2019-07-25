@@ -11,6 +11,9 @@ var transporter = nodemailer.createTransport({
     auth: {
         user: config.email,
         pass: text
+    },
+    tls: {
+      rejectUnauthorized: false
     }
 });
 
@@ -19,6 +22,9 @@ var sub_transporter = nodemailer.createTransport({
   auth: {
       user: config.sub_email,
       pass: config.password
+  },
+  tls: {
+    rejectUnauthorized: false
   }
 });
 
