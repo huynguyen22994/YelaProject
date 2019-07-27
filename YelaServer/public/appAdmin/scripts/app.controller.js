@@ -56,8 +56,9 @@
             exeGetLetterNotify();
             handleHeaderNav();
             setInterval(function() {
-                exeGetCustomerOnl();
-            }, 5000);
+                //exeGetCustomerOnl();
+                loadNewBill();
+            }, 15000);
         }
 
         function logout() {

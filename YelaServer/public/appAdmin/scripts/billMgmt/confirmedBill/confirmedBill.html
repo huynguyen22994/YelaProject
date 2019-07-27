@@ -27,7 +27,40 @@
         <!-- /.panel -->
         </div>
         <div ng-if="vm.isShowDetail();" ng-class="vm.classForDetail">
-            <yl-form-detail item-detail="vm.producttypeDetail" config="vm.configFormDetail"></yl-form-detail>
+            <!-- <yl-form-detail item-detail="vm.producttypeDetail" config="vm.configFormDetail"></yl-form-detail> -->
+            <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h5>
+                            Chi Tiết Đơn Hàng
+                        </h5>
+                    </div>
+                    <div class="panel-body">
+                        <label>Thông tin sản phẩm</label>
+                        <ul>
+                            <li ng-repeat="food in vm.producttypeDetail.itemsObject.foods">
+                                <label>
+                                    {{ food.name }}
+                                </label>
+                                <span style="float:right">
+                                    {{ food.quantity }}
+                                </span>
+                            </li>
+                        </ul>
+                        <div>
+                            <label>Thông tin thêm</label>
+                            <textarea ng-model="vm.producttypeDetail.description" class="form-control" ng-disabled="true"></textarea>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div><label>SDT 1</label><span style="float:right">{{ vm.producttypeDetail.phoneOne }} </span></div>
+                        <div><label>SDT 2</label><span style="float:right"> {{ vm.producttypeDetail.phoneTwo }}</span></div>
+                        <div><label>Địa Chỉ:</label><p> {{ vm.producttypeDetail.address }}</p></div>
+                        <br>
+                        <div><label>Sản Phẩm</label><span style="float:right"> {{ vm.producttypeDetail.itemsObject.totalPrice}} </span></div>
+                        <div><label>Giao Hàng</label><span style="float:right"> {{ vm.producttypeDetail.itemsObject.shipCost}} - {{ vm.producttypeDetail.district }} </span></div>
+                        <div><label>Total</label><span style="float:right"> {{ vm.producttypeDetail.itemsObject.totalBill}}</span></div>
+                    </div>
+                </div>
         </div>
     </div>
 </div>
