@@ -98,10 +98,10 @@
                             toastr.error('Tạo mới bài viết thất bại');
                         });
                 }, function (err) {
-                    
+                     
                 });
             } else {
-                BlogService.createBlog(productObj)
+                BlogService.createBlog(blogObj)
                     .then(function (res) {
                         toastr.success('Tạo mới bài viết thành công');
                         $location.path('/blogMgmt/blogs');
