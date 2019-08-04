@@ -1,4 +1,5 @@
 (function() {
+    'use strict';
     angular
     .module('YelaAppClient.ngEnter', [])
     .directive('ngEnter', function () {
@@ -13,4 +14,4 @@
             });
         };
     })
-})()
+})();

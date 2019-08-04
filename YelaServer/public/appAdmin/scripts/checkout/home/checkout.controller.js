@@ -86,31 +86,37 @@
             },
             {
                 formatterBase: function(product) {
-                    if((product['name'] === 'Mì Tỏi' || product['name'] === 'Cơm Vò') && !product._hightLight) {
-                        if(vm.takingPrice) {
-                            var priceFormated = vm.takingPrice * product['selectedQuantity'];
-                            return parseCerrency(priceFormated);
-                        } else {
-                            return parseCerrency(0);
-                        }
-                    } else if(product['name'] === 'Combo 1') {
-                        if(vm.takingPrice) { 
-                            return parseCerrency(3000 * product['selectedQuantity']);
-                        } else {
-                            return parseCerrency(0);
-                        }
-                    } else if(product['name'] === 'Combo 2') {
-                        if(vm.takingPrice) { 
-                            return parseCerrency(6000 * product['selectedQuantity']);
-                        } else {
-                            return parseCerrency(0);
-                        }
-                    } else if(product['name'] === 'Combo 3') {
-                        if(vm.takingPrice) { 
-                            return parseCerrency(9000 * product['selectedQuantity']);
-                        } else {
-                            return parseCerrency(0);
-                        }
+                    // if((product['name'] === 'Mì Tỏi' || product['name'] === 'Cơm Vò') && !product._hightLight) {
+                    //     if(vm.takingPrice) {
+                    //         var priceFormated = vm.takingPrice * product['selectedQuantity'];
+                    //         return parseCerrency(priceFormated);
+                    //     } else {
+                    //         return parseCerrency(0);
+                    //     }
+                    // } else if(product['name'] === 'Combo 1') {
+                    //     if(vm.takingPrice) { 
+                    //         return parseCerrency(3000 * product['selectedQuantity']);
+                    //     } else {
+                    //         return parseCerrency(0);
+                    //     }
+                    // } else if(product['name'] === 'Combo 2') {
+                    //     if(vm.takingPrice) { 
+                    //         return parseCerrency(6000 * product['selectedQuantity']);
+                    //     } else {
+                    //         return parseCerrency(0);
+                    //     }
+                    // } else if(product['name'] === 'Combo 3') {
+                    //     if(vm.takingPrice) { 
+                    //         return parseCerrency(9000 * product['selectedQuantity']);
+                    //     } else {
+                    //         return parseCerrency(0);
+                    //     }
+                    // } else {
+                    //     return parseCerrency(0);
+                    // }
+                    if(product['takeAway'] === true) {
+                        var price = product['selectedQuantity'] * 3000;
+                        return parseCerrency(price);
                     } else {
                         return parseCerrency(0);
                     }
@@ -119,13 +125,16 @@
             {
                 formatterBase: function(product) {
                     var item = angular.copy(product);
-                    if(item['productStatus'] === 'bestseller') {
-                        var productPrice = getDiscount20Percent(item);
-                        var price = item['selectedQuantity'] * productPrice;
-                        return '-20%:' + parseCerrency(price);
-                    } else if ((item.name === 'Mì Tỏi' || item.name === 'Cơm Vò') && !item['_hightLight']) {
-                        return 'Ưu Đãi';
-                    } else if(item['_hightLight']) {
+                    // if(item['productStatus'] === 'bestseller') {
+                    //     var productPrice = getDiscount20Percent(item);
+                    //     var price = item['selectedQuantity'] * productPrice;
+                    //     return '-20%:' + parseCerrency(price);
+                    // } else if ((item.name === 'Mì Tỏi' || item.name === 'Cơm Vò') && !item['_hightLight']) {
+                    //     return 'Ưu Đãi';
+                    // } else if(item['_hightLight']) {
+                    //     return 'Tặng';
+                    // }
+                    if(item['_hightLight']) {
                         return 'Tặng';
                     }
                 }
@@ -149,30 +158,39 @@
                         reduction(item);
                     }
                 },
-                {
-                    buttonName: 'Ưu Đãi',
-                    className: 'btn btn-success',
-                    iconClass: 'fa fa-gift',
-                    tooltipTitle: 'Ưu Đãi',
-                    disabled(item) {
-                        if((item.name === 'Mì Tỏi' || item.name === 'Cơm Vò') &&  !item._hightLight) {
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    },
-                    action(item, ev) {
-                        takeGift(item);
-                    }
-                }
                 // {
-                //     buttonName: 'Xóa',
-                //     className: 'btn btn-danger',
-                //     iconClass: 'fa fa-trash-o',
-                //     tooltipTitle: 'Xóa',
+                //     buttonName: 'Ưu Đãi',
+                //     className: 'btn btn-success',
+                //     iconClass: 'fa fa-gift',
+                //     tooltipTitle: 'Ưu Đãi',
+                //     disabled(item) {
+                //         if((item.name === 'Mì Tỏi' || item.name === 'Cơm Vò') &&  !item._hightLight) {
+                //             return false;
+                //         } else {
+                //             return true;
+                //         }
+                //     },
                 //     action(item, ev) {
+                //         takeGift(item);
                 //     }
                 // }
+                {
+                    buttonName: 'Mang Đi',
+                    className: 'btn btn-success',
+                    iconClass: 'fa fa-shopping-bag',
+                    tooltipTitle: 'Mang Đi',
+                    disabled(item) {
+                        // if((item.name === 'Mì Tỏi' || item.name === 'Cơm Vò') &&  !item._hightLight) {
+                        //     return false;
+                        // } else {
+                        //     return true;
+                        // }
+                        return false;
+                    },
+                    action(item, ev) {
+                        item['takeAway'] = !item['takeAway'];
+                    }
+                }
             ],
             trClick: function (item) {
                 //getDetail(item);
@@ -223,13 +241,16 @@
             {
                 formatterBase: function(product) {
                     var item = angular.copy(product);
-                    if(item['productStatus'] === 'bestseller') {
-                        var productPrice = getDiscount20Percent(item);
-                        var price = item['selectedQuantity'] * productPrice;
-                        return '-20%:' + parseCerrency(price);
-                    } else if ((item.name === 'Mì Tỏi' || item.name === 'Cơm Vò') && !item['_hightLight']) {
-                        return 'Ưu Đãi';
-                    } else if(item['_hightLight']) {
+                    // if(item['productStatus'] === 'bestseller') {
+                    //     var productPrice = getDiscount20Percent(item);
+                    //     var price = item['selectedQuantity'] * productPrice;
+                    //     return '-20%:' + parseCerrency(price);
+                    // } else if ((item.name === 'Mì Tỏi' || item.name === 'Cơm Vò') && !item['_hightLight']) {
+                    //     return 'Ưu Đãi';
+                    // } else if(item['_hightLight']) {
+                    //     return 'Tặng';
+                    // }
+                    if(item['_hightLight']) {
                         return 'Tặng';
                     }
                 }
@@ -287,7 +308,7 @@
             })
             if(!existingList) {
                 product.selectedQuantity = 1;
-                vm.billData.push(product);
+                vm.billData.push(angular.copy(product));
             }
         }
 
@@ -303,28 +324,31 @@
             var total = 0;
             angular.forEach(vm.billData, function(product) {
                 var price = product['price'];
-                if(product['productStatus'] === 'bestseller') {
-                    price = getDiscount20Percent(product);
-                }
+                // if(product['productStatus'] === 'bestseller') {
+                //     price = getDiscount20Percent(product);
+                // }
                 var priceOfProduct = product['selectedQuantity'] * price;
-                total = total + priceOfProduct;
-                if((product['name'] === 'Mì Tỏi' || product['name'] === 'Cơm Vò') && !product._hightLight) {
-                    if(vm.takingPrice) {
-                        total = total + (vm.takingPrice * product['selectedQuantity']);
-                    }
-                } else if(product['name'] === 'Combo 1') {
-                    if(vm.takingPrice) {
-                        total = total + (3000 * product['selectedQuantity']);
-                    }
-                } else if(product['name'] === 'Combo 2') {
-                    if(vm.takingPrice) {
-                        total = total + (6000 * product['selectedQuantity']);
-                    }
-                } else if(product['name'] === 'Combo 3') {
-                    if(vm.takingPrice) {
-                        total = total + (9000 * product['selectedQuantity']);
-                    }
+                if(product['takeAway']) {
+                    priceOfProduct = priceOfProduct + (product['selectedQuantity'] * 3000);
                 }
+                total = total + priceOfProduct;
+                // if((product['name'] === 'Mì Tỏi' || product['name'] === 'Cơm Vò') && !product._hightLight) {
+                //     if(vm.takingPrice) {
+                //         total = total + (vm.takingPrice * product['selectedQuantity']);
+                //     }
+                // } else if(product['name'] === 'Combo 1') {
+                //     if(vm.takingPrice) {
+                //         total = total + (3000 * product['selectedQuantity']);
+                //     }
+                // } else if(product['name'] === 'Combo 2') {
+                //     if(vm.takingPrice) {
+                //         total = total + (6000 * product['selectedQuantity']);
+                //     }
+                // } else if(product['name'] === 'Combo 3') {
+                //     if(vm.takingPrice) {
+                //         total = total + (9000 * product['selectedQuantity']);
+                //     }
+                // }
             });
             return parseCerrency(total);
         }
@@ -463,28 +487,31 @@
             var total = 0;
             angular.forEach(list, function(product) {
                 var price = product['price'];
-                if(product['productStatus'] === 'bestseller') {
-                    price = getDiscount20Percent(product);
-                }
+                // if(product['productStatus'] === 'bestseller') {
+                //     price = getDiscount20Percent(product);
+                // }
                 var priceOfProduct = product['selectedQuantity'] * price;
-                total = total + priceOfProduct;
-                if((product['name'] === 'Mì Tỏi' || product['name'] === 'Cơm Vò') && !product._hightLight) {
-                    if(vm.takingPrice) {
-                        total = total + (vm.takingPrice * product['selectedQuantity']);
-                    }
-                } else if(product['name'] === 'Combo 1') {
-                    if(vm.takingPrice) {
-                        total = total + (3000 * product['selectedQuantity']);
-                    }
-                } else if(product['name'] === 'Combo 2') {
-                    if(vm.takingPrice) {
-                        total = total + (6000 * product['selectedQuantity']);
-                    }
-                } else if(product['name'] === 'Combo 3') {
-                    if(vm.takingPrice) {
-                        total = total + (9000 * product['selectedQuantity']);
-                    }
+                if(product['takeAway']) {
+                    priceOfProduct = priceOfProduct + (product['selectedQuantity'] * 3000);
                 }
+                total = total + priceOfProduct;
+                // if((product['name'] === 'Mì Tỏi' || product['name'] === 'Cơm Vò') && !product._hightLight) {
+                //     if(vm.takingPrice) {
+                //         total = total + (vm.takingPrice * product['selectedQuantity']);
+                //     }
+                // } else if(product['name'] === 'Combo 1') {
+                //     if(vm.takingPrice) {
+                //         total = total + (3000 * product['selectedQuantity']);
+                //     }
+                // } else if(product['name'] === 'Combo 2') {
+                //     if(vm.takingPrice) {
+                //         total = total + (6000 * product['selectedQuantity']);
+                //     }
+                // } else if(product['name'] === 'Combo 3') {
+                //     if(vm.takingPrice) {
+                //         total = total + (9000 * product['selectedQuantity']);
+                //     }
+                // }
             });
             return parseCerrency(total);
         }

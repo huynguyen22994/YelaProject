@@ -18,6 +18,7 @@
         return directive;
         
     }
+    ControllerController.$inject = ['$scope', '$http', '$location'];
     /* @ngInject */
     function ControllerController ($scope, $http, $location) {
         var vm = this;
@@ -33,18 +34,18 @@
                         //     image: 'images/home/gallery1.jpg'
                         // }
                     ]
-                },
-                {
-                    id: '#newPosts',
-                    label: 'newPosts',
-                    isChoosen: false,
-                    items: [
-                        // {
-                        //     label: 'Easy Polo Black Edition',
-                        //     image: 'images/home/gallery2.jpg'
-                        // }
-                    ]
                 }
+                // {
+                //     id: '#newPosts',
+                //     label: 'newPosts',
+                //     isChoosen: false,
+                //     items: [
+                //         // {
+                //         //     label: 'Easy Polo Black Edition',
+                //         //     image: 'images/home/gallery2.jpg'
+                //         // }
+                //     ]
+                // }
             ]
         };
 

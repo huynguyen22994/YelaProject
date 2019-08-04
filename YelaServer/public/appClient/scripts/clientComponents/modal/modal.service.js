@@ -5,6 +5,7 @@
         .module('YelaAppClient.Modal', [])
         .factory('ModalService', Service);
 
+    Service.$inject = [];
     function Service() {
         var modals = []; // array of modals on the page
         var service = {};
@@ -39,5 +40,4 @@
             modal.close();
         }
     }
-
 })();

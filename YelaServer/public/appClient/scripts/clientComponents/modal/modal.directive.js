@@ -5,6 +5,7 @@
         .module('YelaAppClient.Modal')
         .directive('modal', Directive);
 
+    Directive.$inject = ['ModalService'];    
     function Directive(ModalService) {
         return {
             link: function (scope, element, attrs) {

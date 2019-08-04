@@ -48,7 +48,7 @@
                                     <address>
                                         <p>Điện thoại: 0933800024</p>
                                         </br>
-                                        <p>Địa chỉ: 11/3a Bis, KP 1, Phường Đông Hưng Thuận, Quận 12, TP Hồ Chí Minh</p>
+                                        <p>Địa chỉ: 11/3a Bis, Đường ĐHT 19, KP 1, Phường Đông Hưng Thuận, Quận 12, TP Hồ Chí Minh</p>
                                         </br>
                                         <p>Email: foodtechshopvn@gmail.com</p>
                                     </address>

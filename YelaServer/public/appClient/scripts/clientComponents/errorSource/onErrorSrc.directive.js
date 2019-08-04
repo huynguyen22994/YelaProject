@@ -1,4 +1,5 @@
 (function() {
+  'use strict';
     angular
     .module('YelaAppClient.errorSrc', [])
     .directive('onErrorSrc', function() {
@@ -12,4 +13,4 @@
             }
         }
     });
-})()
+})();

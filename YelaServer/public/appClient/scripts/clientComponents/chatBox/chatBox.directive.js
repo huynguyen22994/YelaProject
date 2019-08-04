@@ -18,6 +18,7 @@
         return directive;
         
     }
+    ControllerController.$inject = ['$scope', 'socket', '$rootScope']
     /* @ngInject */
     function ControllerController ($scope, socket, $rootScope) {
         $scope.cus = 'Customer';

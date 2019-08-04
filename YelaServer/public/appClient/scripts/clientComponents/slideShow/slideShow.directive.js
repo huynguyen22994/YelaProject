@@ -73,6 +73,7 @@
         return directive;
 
     }
+    ControllerController.$inject = ['$scope'];
     /* @ngInject */
     function ControllerController ($scope) {
         // config.data = [];

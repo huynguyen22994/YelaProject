@@ -45,6 +45,7 @@
         return directive;
         
     }
+    ControllerController.$inject = ['$scope', '$location'];
     /* @ngInject */
     function ControllerController ($scope, $location) {
         var vm = this;

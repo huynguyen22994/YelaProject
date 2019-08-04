@@ -5,7 +5,8 @@ var concat = require('gulp-concat');
 var gulpif = require('gulp-if');
 var lazypipe = require('lazypipe');
 var useref = require('gulp-useref');
-
+var cleanCSS = require('gulp-clean-css');
+ 
 // gulp.task('client-script-compress', function () {
 //   return gulp.src('public/appClient/index.html')
 //       .pipe(useref({}, lazypipe().pipe(function() {
@@ -29,13 +30,19 @@ var useref = require('gulp-useref');
 //     .pipe(gulp.dest('./dist'))
 // });
 
+gulp.task('minify-css', () => {
+    return gulp.src('public/appClient/styles/css/*.css')
+        .pipe(cleanCSS({compatibility: 'ie8'}))
+        .pipe(gulp.dest('dist'));
+});
+
 gulp.task('client-script-compress', function () {
     return gulp.src('public/appClient/index.html')
         .pipe(useref())
-        //.pipe(gulpif(['*.js', '!*.min.js'], minify()))
-        // .pipe(minify())
+        // .pipe(gulpif(['*.js', '!*.min.js'], minify()))
+        .pipe(minify())
         //.pipe(uglify())
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('default',['client-script-compress']);
+gulp.task('default',['client-script-compress', 'minify-css']);

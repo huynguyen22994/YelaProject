@@ -69,6 +69,7 @@
         return directive;
         
     }
+    ControllerController.$inject = ['$scope', 'clientConstant', 'toastr', 'Product', '$rootScope', 'WishlistService', '$route'];
     /* @ngInject */
     function ControllerController($scope, clientConstant, toastr, Product, $rootScope, WishlistService, $route) {
         $scope.baseUrl = `${clientConstant.serverUrl}/`;

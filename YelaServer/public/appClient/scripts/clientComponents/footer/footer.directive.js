@@ -20,6 +20,7 @@
         return directive;
 
     }
+    ControllerController.$inject = ['$scope', '$i18next'];
     /* @ngInject */
     function ControllerController ($scope, $i18next) {
         var vm = this;

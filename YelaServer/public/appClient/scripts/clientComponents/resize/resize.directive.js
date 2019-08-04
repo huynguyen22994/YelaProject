@@ -4,6 +4,7 @@
         .module('Resize', [])
         .directive('resize', resizeFunction);
 
+    resizeFunction.$inject = ['$window'];    
     function resizeFunction($window) {
         return {
             link: link,
