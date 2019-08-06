@@ -2683,4 +2683,7 @@ h2.title {
   .model-detail-quick-dialog {
     margin: 9rem 1rem 1rem !important;
   }
+  #foodtech-single-blog img {
+    width: 300px
+  }
 }

@@ -46,7 +46,7 @@
                                                     <div class="foodtech-loader"></div>
                                                     <div class="foodtech-loader-backdrop"></div>
                                                 </div>
-                                                <div ng-if="!vm.isLoading" class="col-xs-12 col-sm-12" style="text-align: justify">
+                                                <div ng-if="!vm.isLoading" id="foodtech-single-blog" class="col-xs-12 col-sm-12" style="text-align: justify">
                                                     <div style="float: left; width: inherit" ng-bind-html="vm.blog.description"></div>
                                                 </div>
                                             </div>
