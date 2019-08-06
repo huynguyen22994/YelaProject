@@ -2,7 +2,9 @@
     'use strict';
     angular
         .module('YelaAppClient.Searching')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('searching.html',
                 `   
                 <section>
@@ -31,5 +33,5 @@
                 </section>
                 `
             );
-        });
+        };
 })();

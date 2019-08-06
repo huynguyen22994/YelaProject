@@ -653,7 +653,9 @@
     'use strict';
     angular
         .module('YelaAppClient.Home')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('home.html',
                 `   
                     <section id="slider">
@@ -687,7 +689,7 @@
                     </section>
                 `
             );
-        });
+        }
 })();
 (function () {
     'use strict';
@@ -1066,7 +1068,9 @@
     'use strict';
     angular
         .module('YelaAppClient.Shop')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('shop.html',
                 `               
                     <section>
@@ -1103,7 +1107,7 @@
                     </section>
                 `
             );
-        });
+        };
 })();
 (function () {
     'use strict';
@@ -1312,7 +1316,9 @@
     'use strict';
     angular
         .module('YelaAppClient.Detail')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('detail.html',
                 `   
                     <section>
@@ -1395,7 +1401,7 @@
                     </section>
                 `
             );
-        });
+        };
 })();
 (function () {
     'use strict';
@@ -1642,7 +1648,9 @@
     'use strict';
     angular
         .module('YelaAppClient.FoodByType')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('FoodType.html',
                 `               
                     <section>
@@ -1679,7 +1687,7 @@
                     </section>
                 `
             );
-        });
+        };
 })();
 (function () {
     'use strict';
@@ -1863,7 +1871,9 @@
     'use strict';
     angular
         .module('YelaAppClient.Foods')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('foods.html',
                 `               
                     <section>
@@ -1900,7 +1910,7 @@
                     </section>
                 `
             );
-        });
+        };
 })();
 (function () {
     'use strict';
@@ -2071,7 +2081,9 @@
     'use strict';
     angular
         .module('YelaAppClient.Materials')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('materials.html',
                 `               
                     <section>
@@ -2108,7 +2120,7 @@
                     </section>
                 `
             );
-        });
+        };
 })();
 (function () {
     'use strict';
@@ -2339,7 +2351,9 @@
     'use strict';
     angular
         .module('YelaAppClient.BlogSingle')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('blogsingle.html',
                 `   
                     <section>
@@ -2383,7 +2397,7 @@
                                                     <div class="foodtech-loader"></div>
                                                     <div class="foodtech-loader-backdrop"></div>
                                                 </div>
-                                                <div ng-if="!vm.isLoading" class="col-xs-12 col-sm-12" style="text-align: justify">
+                                                <div ng-if="!vm.isLoading" id="foodtech-single-blog" class="col-xs-12 col-sm-12" style="text-align: justify">
                                                     <div style="float: left; width: inherit" ng-bind-html="vm.blog.description"></div>
                                                 </div>
                                             </div>
@@ -2441,7 +2455,7 @@
                     </section>
                 `
             );
-        });
+        };
 })();
 (function () {
     'use strict';
@@ -2755,14 +2769,16 @@
     'use strict';
     angular
         .module('YelaAppClient.CartApp')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('cart.html',
                 `   
                    <div ng-include="'cartCheckout.html'"></div> 
                    <!--<div ng-if="!vm.cartState.isCartPage" ng-include="'checkout.html'"></div>--> 
                 `
             );
-        });
+        };
 })();
 (function () {
     'use strict';
@@ -2933,7 +2949,9 @@
     'use strict';
     angular
         .module('YelaAppClient.CartApp')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('cartCheckout.html',
                 `   
                 <section id="cart_items" class="cart-wrapper">
@@ -3005,13 +3023,15 @@
 
                 `
             );
-        });
+        };
 })();
 (function() {
     'use strict';
     angular
         .module('YelaAppClient.CartApp')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('checkout.html',
                 `   
                 <section id="cart_items" class="cart-wrapper">
@@ -3091,13 +3111,15 @@
                 </section> <!--/#cart_items-->
                 `
             );
-        });
+        };
 })();
 (function() {
     'use strict';
     angular
         .module('YelaAppClient.CartApp')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('checkoutPage.html',
                 `   
                     <div ng-if="!vm.isHaveProductInCart() && !vm.isCheckoutSuccess()" ng-include="'checkoutPageNoProduct.html'"></div>
@@ -3105,14 +3127,16 @@
                     <div ng-if="vm.isCheckoutSuccess()" ng-include="'checkoutSuccessPage.html'"></div>
                 `
             );
-        });
+        };
 })();
 
 (function() {
     'use strict';
     angular
         .module('YelaAppClient.CartApp')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('checkoutPageNoProduct.html',
                 `   
                 <section id="cart_items" class="cart-wrapper">
@@ -3130,14 +3154,16 @@
                 </section> <!--/#cart_items-->
                 `
             );
-        });
+        };
 })();
 
 (function() {
     'use strict';
     angular
         .module('YelaAppClient.CartApp')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('checkoutSuccessPage.html',
                 `   
                 <section id="cart_items" class="cart-wrapper">
@@ -3192,14 +3218,16 @@
                 </section> <!--/#cart_items-->
                 `
             );
-        });
+        };
 })();
 
 (function() {
     'use strict';
     angular
         .module('YelaAppClient.CartApp')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('checkoutPageHaveProduct.html',
                 `   
                 <section id="cart_items" class="cart-wrapper">
@@ -3277,7 +3305,7 @@
                 </section> <!--/#cart_items-->
                 `
             );
-        });
+        };
 })();
 (function() {
     'use strict';
@@ -3922,7 +3950,9 @@
     'use strict';
     angular
         .module('YelaAppClient.Contact')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('contact.html',
                 `               
                 <div id="contact-page" class="container">
@@ -4010,24 +4040,23 @@
                 </script>
                 `
             );
-        });
+        };
+    /* <script>
+    var map;
+    function initMap() {
+        setTimeout(function() {
+            map = new google.maps.Map(document.getElementById('map'), {
+            center: {
+                lat: 10.848469, 
+                lng: 106.637527
+            },
+            zoom: 8
+            });
+        }, 500);
+    }
+    </script>
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlwdeQyEcDwuDVui9r8z3-TQ51LO8pU-U&callback=initMap"></script> */
 })();
-
-{/* <script>
-var map;
-function initMap() {
-    setTimeout(function() {
-        map = new google.maps.Map(document.getElementById('map'), {
-        center: {
-            lat: 10.848469, 
-            lng: 106.637527
-        },
-        zoom: 8
-        });
-    }, 500);
-}
-</script>
-<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlwdeQyEcDwuDVui9r8z3-TQ51LO8pU-U&callback=initMap"></script> */}
 (function () {
     'use strict';
 
@@ -4173,7 +4202,9 @@ function initMap() {
     'use strict';
     angular
         .module('YelaAppClient.Blog')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('blogs.html',
                 `   
                 <section>
@@ -4248,7 +4279,7 @@ function initMap() {
                 </section>
                 `
             );
-        });
+        };
 })();
 (function () {
     'use strict';
@@ -4443,7 +4474,9 @@ function initMap() {
     'use strict';
     angular
         .module('YelaAppClient.FormFoods')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('formFoods.html',
                 `               
                     <section>
@@ -4480,7 +4513,7 @@ function initMap() {
                     </section>
                 `
             );
-        });
+        };
 })();
 (function () {
     'use strict';
@@ -4651,7 +4684,9 @@ function initMap() {
     'use strict';
     angular
         .module('YelaAppClient.Searching')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('searching.html',
                 `   
                 <section>
@@ -4680,7 +4715,7 @@ function initMap() {
                 </section>
                 `
             );
-        });
+        };
 })();
 (function () {
     'use strict';
@@ -4892,7 +4927,9 @@ function initMap() {
     'use strict';
     angular
         .module('YelaAppClient.Wishlist')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('wishlist.html',
                 `               
                     <section>
@@ -4916,7 +4953,7 @@ function initMap() {
                     </section>
                 `
             );
-        });
+        };
 })();
 (function () {
     'use strict';

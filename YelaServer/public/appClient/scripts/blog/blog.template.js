@@ -2,7 +2,9 @@
     'use strict';
     angular
         .module('YelaAppClient.Blog')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('blogs.html',
                 `   
                 <section>
@@ -77,5 +79,5 @@
                 </section>
                 `
             );
-        });
+        };
 })();

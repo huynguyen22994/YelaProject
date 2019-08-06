@@ -2,7 +2,9 @@
     'use strict';
     angular
         .module('YelaAppClient.Home')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('home.html',
                 `   
                     <section id="slider">
@@ -36,5 +38,5 @@
                     </section>
                 `
             );
-        });
+        }
 })();

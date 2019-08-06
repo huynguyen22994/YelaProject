@@ -2,7 +2,9 @@
     'use strict';
     angular
         .module('YelaAppClient.FoodByType')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('FoodType.html',
                 `               
                     <section>
@@ -39,5 +41,5 @@
                     </section>
                 `
             );
-        });
+        };
 })();

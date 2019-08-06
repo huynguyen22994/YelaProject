@@ -2,7 +2,9 @@
     'use strict';
     angular
         .module('YelaAppClient.CartApp')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('checkoutPage.html',
                 `   
                     <div ng-if="!vm.isHaveProductInCart() && !vm.isCheckoutSuccess()" ng-include="'checkoutPageNoProduct.html'"></div>
@@ -10,14 +12,16 @@
                     <div ng-if="vm.isCheckoutSuccess()" ng-include="'checkoutSuccessPage.html'"></div>
                 `
             );
-        });
+        };
 })();
 
 (function() {
     'use strict';
     angular
         .module('YelaAppClient.CartApp')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('checkoutPageNoProduct.html',
                 `   
                 <section id="cart_items" class="cart-wrapper">
@@ -35,14 +39,16 @@
                 </section> <!--/#cart_items-->
                 `
             );
-        });
+        };
 })();
 
 (function() {
     'use strict';
     angular
         .module('YelaAppClient.CartApp')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('checkoutSuccessPage.html',
                 `   
                 <section id="cart_items" class="cart-wrapper">
@@ -97,14 +103,16 @@
                 </section> <!--/#cart_items-->
                 `
             );
-        });
+        };
 })();
 
 (function() {
     'use strict';
     angular
         .module('YelaAppClient.CartApp')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('checkoutPageHaveProduct.html',
                 `   
                 <section id="cart_items" class="cart-wrapper">
@@ -182,5 +190,5 @@
                 </section> <!--/#cart_items-->
                 `
             );
-        });
+        };
 })();

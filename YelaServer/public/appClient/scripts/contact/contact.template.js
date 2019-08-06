@@ -2,7 +2,9 @@
     'use strict';
     angular
         .module('YelaAppClient.Contact')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('contact.html',
                 `               
                 <div id="contact-page" class="container">
@@ -90,21 +92,20 @@
                 </script>
                 `
             );
-        });
+        };
+    /* <script>
+    var map;
+    function initMap() {
+        setTimeout(function() {
+            map = new google.maps.Map(document.getElementById('map'), {
+            center: {
+                lat: 10.848469, 
+                lng: 106.637527
+            },
+            zoom: 8
+            });
+        }, 500);
+    }
+    </script>
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlwdeQyEcDwuDVui9r8z3-TQ51LO8pU-U&callback=initMap"></script> */
 })();
-
-{/* <script>
-var map;
-function initMap() {
-    setTimeout(function() {
-        map = new google.maps.Map(document.getElementById('map'), {
-        center: {
-            lat: 10.848469, 
-            lng: 106.637527
-        },
-        zoom: 8
-        });
-    }, 500);
-}
-</script>
-<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlwdeQyEcDwuDVui9r8z3-TQ51LO8pU-U&callback=initMap"></script> */}

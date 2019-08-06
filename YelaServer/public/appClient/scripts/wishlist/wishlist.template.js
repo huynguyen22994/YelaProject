@@ -2,7 +2,9 @@
     'use strict';
     angular
         .module('YelaAppClient.Wishlist')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('wishlist.html',
                 `               
                     <section>
@@ -26,5 +28,5 @@
                     </section>
                 `
             );
-        });
+        };
 })();

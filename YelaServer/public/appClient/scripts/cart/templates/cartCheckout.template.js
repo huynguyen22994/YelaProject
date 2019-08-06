@@ -2,7 +2,9 @@
     'use strict';
     angular
         .module('YelaAppClient.CartApp')
-        .run(function ($templateCache) {
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
             $templateCache.put('cartCheckout.html',
                 `   
                 <section id="cart_items" class="cart-wrapper">
@@ -74,5 +76,5 @@
 
                 `
             );
-        });
+        };
 })();
