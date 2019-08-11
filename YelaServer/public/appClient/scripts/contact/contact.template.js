@@ -50,7 +50,7 @@
                                     <address>
                                         <p>Điện thoại: 0933800024</p>
                                         </br>
-                                        <p>Địa chỉ: 11/3a Bis, Đường ĐHT 19, KP 1, Phường Đông Hưng Thuận, Quận 12, TP Hồ Chí Minh</p>
+                                        <p>Địa chỉ: 11/3, Đường ĐHT 19, KP 1, Phường Đông Hưng Thuận, Quận 12, TP Hồ Chí Minh</p>
                                         </br>
                                         <p>Email: foodtechshopvn@gmail.com</p>
                                     </address>
@@ -76,6 +76,10 @@
                             <div class="col-md-12">
                             <div id="g-recapcha"> 
                         </div>  
+                        <div>
+                            <h2 class="title text-center">Bản Đồ</h2>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.5133002287935!2d106.63502221474963!3d10.848508992272633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529538fc2d845%3A0xb2417d39b6a0d6d2!2zRm9vZFRlY2hTaG9wIC0gTcOsIFThu49pICYgQ8ahbSBWw7I!5e0!3m2!1sen!2s!4v1565451551532!5m2!1sen!2s" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
                             </div>
                         </div>  
                     </div>	

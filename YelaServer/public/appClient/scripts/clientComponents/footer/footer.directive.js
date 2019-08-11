@@ -20,15 +20,20 @@
         return directive;
 
     }
-    ControllerController.$inject = ['$scope', '$i18next'];
+    ControllerController.$inject = ['$scope', '$i18next', 'ModalService'];
     /* @ngInject */
-    function ControllerController ($scope, $i18next) {
+    function ControllerController ($scope, $i18next, ModalService) {
         var vm = this;
         vm.changeLanguage = changeLanguage;
+        vm.openMapDialog = openMapDialog;
 
         ///////////////////////////////
         function changeLanguage(key) {
             $i18next.changeLanguage(key);
+        };
+
+        function openMapDialog() {
+            ModalService.Open('foodtech-map-dialog');
         };
     }
 })();

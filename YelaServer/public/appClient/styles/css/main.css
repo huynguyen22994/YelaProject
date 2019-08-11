@@ -573,6 +573,12 @@ ul.sub-menu {
   padding-bottom: 45px;
 }
 
+#slider .container {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: 100%;
+}
+
 .carousel-indicators li {
   background: #C4C4BE;
 }
@@ -598,9 +604,8 @@ ul.sub-menu {
 
 .item h1 {
   color: #B4B1AB;
-  font-family: abel;
-  font-size: 48px;
-  margin-top: 115px;
+  font-family: initial;
+  font-size: 40px;
 }
 
 .item h1 span {
@@ -2536,6 +2541,10 @@ h2.title {
   line-height: 25px;
 }
 
+#contact-page iframe {
+  width: 100%
+}
+
 .social-networks{
   overflow: hidden;
   text-align: center;
@@ -2671,6 +2680,10 @@ h2.title {
   width: 40% !important;
   margin-left: 30% !important;
   padding: 0px !important;
+}
+
+#all-products img {
+  height: 180px;
 }
 
 /* On screens that are 600px or less, set the background color to olive */

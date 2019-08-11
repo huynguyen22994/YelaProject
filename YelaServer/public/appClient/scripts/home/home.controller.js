@@ -7,7 +7,7 @@
 
     ControllerController.$inject = ['HomeService', 'clientConstant', '$route', '$rootScope', 'ngMeta'];
     function ControllerController(HomeService, clientConstant, $route, $rootScope, ngMeta) {
-        ngMeta.setTitle('FoodTech Shop - Mì Tỏi & Cơm Vò');
+        ngMeta.setTitle('FoodTech Shop - Mì Tỏi');
         ngMeta.setTag('description', 'Chúng tôi luôn khát khao, cố gắng cải thiện từng ngày để mang đến những sản phẩm thức ăn nhanh và một dịch vụ tốt nhất cho cộng đồng.');
         ngMeta.setTag('image', 'https://foodtechserver.herokuapp.com/images/home/foodtech_slide_3.jpg');
         
@@ -108,12 +108,12 @@
 
         async function activate() {
             detectActiveAccount();
-            await loadBrands();
-            await loadCategories();
-            await loadProductMains(vm.FeatureProduct.offset, vm.FeatureProduct.limit);
-            await loadProductFreatures(vm.FeatureProduct.offset, vm.FeatureProduct.limit);
-            await loadProductNews(vm.NewProduct.offset, vm.NewProduct.limit);
-            await loadProductBestsellers(vm.RecommendProduct.offset, vm.RecommendProduct.limit);
+            loadBrands();
+            loadCategories();
+            loadProductMains(vm.FeatureProduct.offset, vm.FeatureProduct.limit);
+            loadProductFreatures(vm.FeatureProduct.offset, vm.FeatureProduct.limit);
+            loadProductNews(vm.NewProduct.offset, vm.NewProduct.limit);
+            loadProductBestsellers(vm.RecommendProduct.offset, vm.RecommendProduct.limit);
          };
 
         function detectActiveAccount() {

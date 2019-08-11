@@ -8,7 +8,7 @@
     ControllerController.$inject = ['$i18next', '$timeout', '$rootScope', 'Cart', '$scope', 'LoginService', 'Customer', '$location', 'ModalService', 'Product', 'toastr', '$window', 'ShopService', 'clientConstant', 'ngMeta'];
     function ControllerController($i18next, $timeout, $rootScope, Cart, $scope, LoginService, Customer, $location, ModalService, Product, toastr, $window, ShopService, clientConstant, ngMeta) {
         var vm = this;
-        var TIME_OUT = 1000;
+        var TIME_OUT = 500;
         var customerToken = window.localStorage.getItem('customerToken');
         // this is root cart
         $rootScope.Cart = new Cart();

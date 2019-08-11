@@ -13,7 +13,7 @@
         ngMetaProvider.useTitleSuffix(true);
         // On /home, the title would change to
         // 'Home Page | Best Website on the Internet!'
-        ngMetaProvider.setDefaultTitle('FoodTech Shop - Mì Tỏi & Cơm Vò');
+        ngMetaProvider.setDefaultTitle('FoodTech Shop - Mì Tỏi');
         ngMetaProvider.setDefaultTitleSuffix(' | FoodTech Shop');
         ngMetaProvider.setDefaultTag('author', 'FoodTech Team');
     }

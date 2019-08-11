@@ -21,6 +21,7 @@
         'YelaAppClient.ngEnter',
         'YelaAppClient.Modal',
         'YelaAppClient.errorSrc',
+        'YelaAppClient.Introduce',
         'YelaChatBox',
         'Brand',
         'Category',

@@ -13,7 +13,7 @@
                                 <div class="col-sm-3">
                                     <sidebar brand-data="vm.brands" category-data="vm.categories"></sidebar>
                                 </div>
-                                <div class="col-sm-9 padding-right">
+                                <div class="col-sm-9 padding-right" id="all-products">
                                     <div class="features_items">
                                         <div ng-if="vm.isLoading">
                                             <div class="foodtech-loader"></div>

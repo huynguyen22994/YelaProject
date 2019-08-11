@@ -115,7 +115,7 @@
             headerBottom: {
                 left: [
                     {id: 'home', label: 'home', href: function () { return '/'; }, isChoosen: false, subItems: [
-                        { id: 'introduce', label: 'introduce', href: function () { return '#/about'; }},
+                        { id: 'introduce', label: 'introduce', href: function () { return '#/introduce'; }},
                         { id: 'contact', label: 'contact', href: function () { return '#/contact'; }},
                         { id: 'recruitment', label: 'recruitment', href: function () { return '#/recruitment'; }}
                     ] },
