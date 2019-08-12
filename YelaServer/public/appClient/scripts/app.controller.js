@@ -46,7 +46,7 @@
         function activate() { 
             getCustomer(customerToken);
             initCartFirst();
-            //openMainBenner();
+            openMainBenner();
         };
 
         function getCustomer(token) {
@@ -132,7 +132,7 @@
         function openMainBenner() {
             setTimeout(function() {
                 openModal('main-banner-dialog');
-            }, 3000);
+            }, 5000);
         }
 
         function setMetaTag(title, description, image) {
