@@ -26,20 +26,23 @@
                 <div class="carousel-inner">
                     <div class="item active">
                         <div class="col-sm-4">
-                            <h1><span>Mì Tỏi |</span> Từng những sợi mì thơm ngon kết hợp với vị Tỏi đặc trưng tạo nên hương vị lạ mà quen.</h1>
-                            <button type="button" class="btn btn-default get textSlideShow" ng-click="vm.viewProduct('mitoi')">Xem Ngay</button>
+                            <h1><span>Mua 1 Tặng 1</span></h1>
+                            <h1>Mì Tỏi Xá Xíu </br>
+                            Mì Tỏi Gà </br>
+                            Mì Tỏi Bò</h1>
+                            <button type="button" class="btn btn-default get textSlideShow" style="margin-top: 0px" ng-click="vm.viewProduct('mitoi')">Xem Ngay</button>
                         </div>
                         <div class="col-sm-8">
-                            <img src="images/home/foodtech_slide_3.jpg" class="girl img-responsive"/>
+                            <img src="images/home/foodtech_slide_4.jpg" class="girl img-responsive" alt="" />
                         </div>
                     </div>
                     <div class="item">
                         <div class="col-sm-4">
-                            <h1><span>F </span>| Food Tech</h1>
-                            <p></p>
+                            <h1><span>Mì Tỏi |</span> Từ những sợi mì thơm ngon kết hợp với vị Tỏi đặc trưng tạo nên hương vị lạ mà quen.</h1>
+                            <button type="button" class="btn btn-default get textSlideShow" style="margin-top: 0px" ng-click="vm.viewProduct('mitoi')">Xem Ngay</button>
                         </div>
                         <div class="col-sm-8">
-                            <img src="images/home/foodtech_slide_1.jpg" class="girl img-responsive" alt="" />
+                            <img src="images/home/foodtech_slide_3.jpg" class="girl img-responsive"/>
                         </div>
                     </div>      
                     <!--<div class="item">
