@@ -202,51 +202,53 @@
                 <ol class="carousel-indicators" style="width: 69%">
                     <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
                     <li data-target="#slider-carousel" data-slide-to="1"></li>
-                    <li data-target="#slider-carousel" data-slide-to="2"></li>
+                    <!--<li data-target="#slider-carousel" data-slide-to="2"></li>-->
                 </ol>
                 
                 <div class="carousel-inner">
                     <div class="item active">
                         <div class="col-sm-4">
-                            <h1><span>F </span>| Food Tech</h1>
-                            <p>Chúng tôi luôn khát khao, cố gắng cải thiện từng ngày để mang đến những sản phẩm và một dịch vụ tốt nhất cho cộng đồng. </p>
+                            <h1><span>Mua 1 Tặng 1</span></h1>
+                            <h1>Mì Tỏi Xá Xíu </br>
+                            Mì Tỏi Gà </br>
+                            Mì Tỏi Bò</h1>
+                            <button type="button" class="btn btn-default get textSlideShow" style="margin-top: 0px" ng-click="vm.viewProduct('mitoi')">Xem Ngay</button>
                         </div>
                         <div class="col-sm-8">
-                            <img src="images/home/foodtech_slide_1.jpg" class="girl img-responsive" alt="" />
+                            <img src="images/home/foodtech_slide_4.jpg" class="girl img-responsive" alt="" />
                         </div>
                     </div>
                     <div class="item">
-
-                        <!--<div class="col-sm-12 pull-right">
-                            <h2 class="brandSlideShow">Free E-Commerce Template</h2>
-                            <p class="textSlideShow">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                            <button type="button" class="btn btn-default get textSlideShow">Get it now</button>
-                            <div class="textSlideShow">Caption Three</div>
-                            <img src="images/home/foodtech_slide_2.jpg" class="girl img-responsive" alt="" />
-                        </div>-->
-
                         <div class="col-sm-4">
-                            <h1><span>Food |</span> Mì Tỏi</h1>
-                            <p>Chúng tôi luôn khát khao, cố gắng cải thiện từng ngày để mang đến những sản phẩm và một dịch vụ tốt nhất cho cộng đồng. </p>
+                            <h1><span>Mì Tỏi |</span> Từ những sợi mì thơm ngon kết hợp với vị Tỏi đặc trưng tạo nên hương vị lạ mà quen.</h1>
+                            <button type="button" class="btn btn-default get textSlideShow" style="margin-top: 0px" ng-click="vm.viewProduct('mitoi')">Xem Ngay</button>
                         </div>
                         <div class="col-sm-8">
                             <img src="images/home/foodtech_slide_3.jpg" class="girl img-responsive"/>
                         </div>
                     </div>      
-                    <div class="item">
+                    <!--<div class="item">
+
+                    <div class="col-sm-12 pull-right">
+                        <h2 class="brandSlideShow">Free E-Commerce Template</h2>
+                        <p class="textSlideShow">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                        <button type="button" class="btn btn-default get textSlideShow">Get it now</button>
+                        <div class="textSlideShow">Caption Three</div>
+                        <img src="images/home/foodtech_slide_2.jpg" class="girl img-responsive" alt="" />
+                    </div>
+
                         <div class="col-sm-4">
                             <h1><span>Food |</span> Cơm Vò</h1>
-                            <p>Chúng tôi luôn khát khao, cố gắng cải thiện từng ngày để mang đến những sản phẩm và một dịch vụ tốt nhất cho cộng đồng. </p>
                         </div>
                         <div class="col-sm-8">
                             <img src="images/home/foodtech_slide_2.jpg" class="girl img-responsive"/>
                         </div>
-                    </div>  
+                    </div> --> 
                 </div>
-                <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev" style="margin-left: 8%">
+                <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev" style="margin-left: 5%">
                     <i class="fa fa-angle-left"></i>
                 </a>
-                <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next" style="margin-right: 3%">
                     <i class="fa fa-angle-right"></i>
                 </a>
             </div>
@@ -255,10 +257,17 @@
         return directive;
 
     }
-    ControllerController.$inject = ['$scope'];
+    ControllerController.$inject = ['$scope', '$location'];
     /* @ngInject */
-    function ControllerController ($scope) {
+    function ControllerController ($scope, $location) {
         // config.data = [];
+        var vm = this;
+        vm.viewProduct = viewProduct;
+
+        /////////////////////////////
+        function viewProduct(key) {
+            $location.path('/detail/ee2a4ff0-a647-11e9-8d8d-85dfb713e4df');
+        }
     }
 })();
 /*
@@ -568,7 +577,7 @@
             headerBottom: {
                 left: [
                     {id: 'home', label: 'home', href: function () { return '/'; }, isChoosen: false, subItems: [
-                        { id: 'introduce', label: 'introduce', href: function () { return '#/about'; }},
+                        { id: 'introduce', label: 'introduce', href: function () { return '#/introduce'; }},
                         { id: 'contact', label: 'contact', href: function () { return '#/contact'; }},
                         { id: 'recruitment', label: 'recruitment', href: function () { return '#/recruitment'; }}
                     ] },
@@ -673,15 +682,20 @@
         return directive;
 
     }
-    ControllerController.$inject = ['$scope', '$i18next'];
+    ControllerController.$inject = ['$scope', '$i18next', 'ModalService'];
     /* @ngInject */
-    function ControllerController ($scope, $i18next) {
+    function ControllerController ($scope, $i18next, ModalService) {
         var vm = this;
         vm.changeLanguage = changeLanguage;
+        vm.openMapDialog = openMapDialog;
 
         ///////////////////////////////
         function changeLanguage(key) {
             $i18next.changeLanguage(key);
+        };
+
+        function openMapDialog() {
+            ModalService.Open('foodtech-map-dialog');
         };
     }
 })();
