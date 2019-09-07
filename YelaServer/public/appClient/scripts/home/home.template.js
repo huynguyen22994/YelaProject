@@ -24,6 +24,10 @@
                                     <sidebar brand-data="vm.brands" category-data="vm.categories"></sidebar>
                                 </div>
                                 <div class="col-sm-9 padding-right">
+                                    <div ng-show="vm.mainLoading">
+                                        <div class="foodtech-loader"></div>
+                                        <div class="foodtech-loader-backdrop main"></div>
+                                    </div>
                                     <features-item array-data="vm.productMains" config="vm.mainProductConfig"></features-item>  
                                     <features-item array-data="vm.productFreatures" config="vm.featureProductConfig"></features-item>    
                                     <recommend-product array-data="vm.productBestsellers" config="vm.recommendProductConfig"></recommend-product>

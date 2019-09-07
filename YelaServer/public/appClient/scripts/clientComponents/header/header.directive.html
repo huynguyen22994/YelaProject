@@ -57,8 +57,8 @@
                     </ul>
                 </div>
                 <div ng-if="$root.isSmallScreen">
-                    <div class="dropdown pull-right" style="display: inline-flex">
-                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">{{ 'cart' | i18next }}
+                    <div class="dropdown pull-right" style="display: inline-flex; padding-right: 40px">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="border-color: #fff">{{ 'cart' | i18next }}
                         <span class="caret"></span></button>
                         <ul class="dropdown-menu nav navbar-nav">
                             <li ng-repeat="rightItemMiddle in vm.config.headerMiddle.right" ng-hide="rightItemMiddle.hide()">

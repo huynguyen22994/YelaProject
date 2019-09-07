@@ -19,7 +19,7 @@
             },
             //templateUrl: '/components/recommendedItem/recommendedItem.directive.html'
             template: `
-                <div class="recommended_items"><!--recommended_items-->
+                <div class="recommended_items" style="position: relative"><!--recommended_items-->
                     <div ng-if="config.isLoading">
                         <div class="foodtech-loader"></div>
                         <div class="foodtech-loader-backdrop"></div>

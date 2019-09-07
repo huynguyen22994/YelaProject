@@ -77,6 +77,7 @@
         };
 
         function loadFoodType(offset, limit, productType, isLoadNew) {
+            vm.isLoading = true;
             return new Promise((resolve, reject) => {
                 FoodTypeService.getFoodByType(offset, limit, productType)
                     .then(function (products) {
@@ -111,7 +112,7 @@
             vm.currentPage = currentPage;
             change(offset, limit);
             async function change(offset, limit) {
-                await loadProducts(offset, limit);
+                await loadFoodType(offset, limit, productTypeId);
             };
         };
     }

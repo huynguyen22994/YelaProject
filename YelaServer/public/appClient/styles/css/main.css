@@ -2583,13 +2583,14 @@ h2.title {
 /* food spinner */
 .foodtech-loader {
   position: absolute;
-  margin-left: 40%;
+  margin-top: 10%;
+  margin-left: 47%;
   z-index: 1000;
-  border: 16px solid #f3f3f3;
+  border: 7px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 16px solid #ff8080;
-  width: 80px;
-  height: 80px;
+  border-top: 7px solid #ff8080;
+  width: 40px;
+  height: 40px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
 }
@@ -2613,7 +2614,12 @@ h2.title {
   left: 0;
   top: 0;
   right: 0;
-  bottom: 0
+  bottom: 0;
+  opacity: 0.8;
+}
+
+.foodtech-loader-backdrop.main {
+  opacity: 1;
 }
 
 #map {

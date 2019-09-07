@@ -63,6 +63,7 @@
         };
 
         function loadFoods(offset, limit, isLoadNew) {
+            vm.isLoading = true;
             return new Promise((resolve, reject) => {
                 FormFoodsService.getMainFoods(offset, limit, foodForm)
                     .then(function (products) {

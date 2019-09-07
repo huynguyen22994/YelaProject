@@ -63,6 +63,7 @@
         };
 
         function loadMaterials(offset, limit, isLoadNew) {
+            vm.isLoading = true;
             return new Promise((resolve, reject) => {
                 MaterialsService.getMaterials(offset, limit, foodType)
                     .then(function (products) {

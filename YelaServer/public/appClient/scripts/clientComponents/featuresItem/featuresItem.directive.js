@@ -19,7 +19,7 @@
             },
             //templateUrl: '/components/featuresItem/featuresItem.directive.html'
             template: `
-            <div class="features_items">
+            <div class="features_items" style="position: relative">
                 <div ng-if="config.isLoading">
                     <div class="foodtech-loader"></div>
                     <div class="foodtech-loader-backdrop"></div>
@@ -27,7 +27,7 @@
                 <h2 class="title text-center">{{ config.title | i18next }}</h2>
                 <product-item ng-repeat="data in arrayData" data="data" config="vm.productItemConfig"></product-item>
             </div>
-            <div class="pagination-area">
+            <div ng-show="!config.isLoading" class="pagination-area">
                 <ul class="pagination">
                     <li ng-class="{disabled:vm.pageTotal === 1}">
                         <a ng-click="config.changePage(0, config.limit, 1)"><i class="fa fa-angle-double-left"></i></a>

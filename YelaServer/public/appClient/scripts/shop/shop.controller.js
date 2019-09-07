@@ -62,6 +62,7 @@
         };
 
         function loadProducts(offset, limit, isLoadNew) {
+            vm.isLoading = true;
             return new Promise((resolve, reject) => {
                 ShopService.getProducts(offset, limit)
                     .then(function (products) {

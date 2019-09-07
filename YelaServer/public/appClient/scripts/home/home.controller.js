@@ -79,6 +79,7 @@
             currentPage: 1,
             limit: vm.FeatureProduct.limit,
             changePage: function (offset, limit, currentPage) {
+                vm.featureProductConfig.isLoading = true;
                 this.currentPage = currentPage;
                 change(offset, limit);
                 async function change(offset, limit) {
@@ -89,11 +90,12 @@
 
         vm.mainProductConfig = {
             title: 'mainFood',
-            isLoading: false,
+            isLoading: true,
             totalItems: 0,
             currentPage: 1,
             limit: vm.FeatureProduct.limit,
             changePage: function (offset, limit, currentPage) {
+                vm.mainProductConfig.isLoading = true;
                 this.currentPage = currentPage;
                 change(offset, limit);
                 async function change(offset, limit) {
@@ -107,10 +109,13 @@
         ////////////////
 
         async function activate() {
+            vm.mainLoading = true;
             detectActiveAccount();
             loadBrands();
             loadCategories();
-            loadProductMains(vm.FeatureProduct.offset, vm.FeatureProduct.limit);
+            loadProductMains(vm.FeatureProduct.offset, vm.FeatureProduct.limit).then(function() {
+                vm.mainLoading = false;
+            })
             loadProductFreatures(vm.FeatureProduct.offset, vm.FeatureProduct.limit);
             loadProductNews(vm.NewProduct.offset, vm.NewProduct.limit);
             loadProductBestsellers(vm.RecommendProduct.offset, vm.RecommendProduct.limit);
@@ -164,6 +169,7 @@
                         vm.mainProductConfig.totalItems = productMains.data.count;
                         vm.MainProduct.total = productMains.data.count;
                         vm.productMains = productMains.data.rows;
+                        vm.mainProductConfig.isLoading = false;
                         resolve(vm.productMains);
                     }).catch(function (err) {
                         console.log(err);
@@ -179,7 +185,7 @@
                         vm.featureProductConfig.totalItems = productFreatures.data.count;
                         vm.FeatureProduct.total = productFreatures.data.count;
                         vm.productFreatures = productFreatures.data.rows;
-                        vm.recommendProductConfig.isLoading = false;
+                        vm.featureProductConfig.isLoading = false;
                         resolve(productFreatures.data);
                     }).catch(function (err) {
                         console.log(err);
@@ -189,6 +195,7 @@
         };
 
         function loadProductNews(offset, limit) {
+            vm.newProductConfig.isLoading = true;
             return new Promise((resolve, reject) => {
                 HomeService.getProductNews(offset, limit)
                     .then(function (productNews) {
@@ -200,7 +207,9 @@
                     }).catch(function (err) {
                         console.log(err);
                         reject(err);
-                    });
+                    }).finally(function() {
+                        vm.newProductConfig.isLoading = false;
+                    })
             });
         };
 
@@ -246,13 +255,16 @@
         };
 
         function changeProductBestsellers(offset, limit) {
+            vm.recommendProductConfig.isLoading = true;
             HomeService.getProductBestsellers(offset, limit)
                 .then(function (productBestsellers) {
                     vm.productBestsellers = productBestsellers.data.rows;
                 }).catch(function (err) {
                     console.log(err);
                     reject(err);
-                });
+                }).finally(function() {
+                    vm.recommendProductConfig.isLoading = false;
+                })
         };
         
     }

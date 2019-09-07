@@ -13,7 +13,7 @@
                                 <div class="col-sm-3">
                                     <sidebar brand-data="vm.brands" category-data="vm.categories"></sidebar>
                                 </div>
-                                <div class="col-sm-9 padding-right">
+                                <div class="col-sm-9 padding-right" id="all-products">
 					                <div class="features_items">
                                         <h2 class="title text-center">{{ vm.productType.name }}</h2>
                                         <div ng-if="vm.isLoading">
@@ -22,7 +22,7 @@
                                         </div>
                                         <product-item ng-repeat="data in vm.products" data="data" config="vm.productItemConfig" ></product-item>
                                     </div>
-                                    <div class="pagination-area">
+                                    <div ng-show="!vm.isLoading" class="pagination-area">
                                         <ul class="pagination">
                                             <li ng-class="{disabled:vm.pageTotal === 1}">
                                                 <a ng-click="vm.changePage(0, vm.Product.limit, 1)"><i class="fa fa-angle-double-left"></i></a>

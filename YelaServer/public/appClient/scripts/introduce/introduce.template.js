@@ -12,7 +12,7 @@
                         <div class="row">  	
                             <div class="col-sm-12">
                                 <div class="contact-form">
-                                    <h2 class="title text-center">Để Lại Lời Nhắn Cho Chúng Tôi</h2>
+                                    <h2 class="title text-center">Giới Thiệu</h2>
                                     
 
                                     
