@@ -259,6 +259,7 @@
         'YelaAppClient.ngEnter',
         'YelaAppClient.Modal',
         'YelaAppClient.errorSrc',
+        'YelaAppClient.Introduce',
         'YelaChatBox',
         'Brand',
         'Category',
@@ -300,7 +301,7 @@
         ngMetaProvider.useTitleSuffix(true);
         // On /home, the title would change to
         // 'Home Page | Best Website on the Internet!'
-        ngMetaProvider.setDefaultTitle('FoodTech Shop - Mì Tỏi & Cơm Vò');
+        ngMetaProvider.setDefaultTitle('FoodTech Shop - Mì Tỏi');
         ngMetaProvider.setDefaultTitleSuffix(' | FoodTech Shop');
         ngMetaProvider.setDefaultTag('author', 'FoodTech Team');
     }
@@ -361,7 +362,7 @@
     ControllerController.$inject = ['$i18next', '$timeout', '$rootScope', 'Cart', '$scope', 'LoginService', 'Customer', '$location', 'ModalService', 'Product', 'toastr', '$window', 'ShopService', 'clientConstant', 'ngMeta'];
     function ControllerController($i18next, $timeout, $rootScope, Cart, $scope, LoginService, Customer, $location, ModalService, Product, toastr, $window, ShopService, clientConstant, ngMeta) {
         var vm = this;
-        var TIME_OUT = 1000;
+        var TIME_OUT = 500;
         var customerToken = window.localStorage.getItem('customerToken');
         // this is root cart
         $rootScope.Cart = new Cart();
@@ -399,7 +400,7 @@
         function activate() { 
             getCustomer(customerToken);
             initCartFirst();
-            //openMainBenner();
+            openMainBenner();
         };
 
         function getCustomer(token) {
@@ -485,7 +486,7 @@
         function openMainBenner() {
             setTimeout(function() {
                 openModal('main-banner-dialog');
-            }, 3000);
+            }, 5000);
         }
 
         function setMetaTag(title, description, image) {
@@ -710,8 +711,8 @@
                 appId: 'home',
                 data: {
                     meta: {
-                        'title': 'FoodTech Shop - Mì Tỏi & Cơm Vò',
-                        'og:title': 'FoodTech Shop - Mì Tỏi & Cơm Vò',
+                        'title': 'FoodTech Shop - Mì Tỏi',
+                        'og:title': 'FoodTech Shop - Mì Tỏi',
                         'description': 'Chúng tôi luôn khát khao, cố gắng cải thiện từng ngày để mang đến những sản phẩm thức ăn nhanh và một dịch vụ tốt nhất cho cộng đồng.',
                         'og:description': 'Chúng tôi luôn khát khao, cố gắng cải thiện từng ngày để mang đến những sản phẩm thức ăn nhanh và một dịch vụ tốt nhất cho cộng đồng.',
                         'og:image': 'https://foodtechserver.herokuapp.com/images/home/foodtech_slide_3.jpg'
@@ -739,7 +740,7 @@
 
     ControllerController.$inject = ['HomeService', 'clientConstant', '$route', '$rootScope', 'ngMeta'];
     function ControllerController(HomeService, clientConstant, $route, $rootScope, ngMeta) {
-        ngMeta.setTitle('FoodTech Shop - Mì Tỏi & Cơm Vò');
+        ngMeta.setTitle('FoodTech Shop - Mì Tỏi');
         ngMeta.setTag('description', 'Chúng tôi luôn khát khao, cố gắng cải thiện từng ngày để mang đến những sản phẩm thức ăn nhanh và một dịch vụ tốt nhất cho cộng đồng.');
         ngMeta.setTag('image', 'https://foodtechserver.herokuapp.com/images/home/foodtech_slide_3.jpg');
         
@@ -840,12 +841,12 @@
 
         async function activate() {
             detectActiveAccount();
-            await loadBrands();
-            await loadCategories();
-            await loadProductMains(vm.FeatureProduct.offset, vm.FeatureProduct.limit);
-            await loadProductFreatures(vm.FeatureProduct.offset, vm.FeatureProduct.limit);
-            await loadProductNews(vm.NewProduct.offset, vm.NewProduct.limit);
-            await loadProductBestsellers(vm.RecommendProduct.offset, vm.RecommendProduct.limit);
+            loadBrands();
+            loadCategories();
+            loadProductMains(vm.FeatureProduct.offset, vm.FeatureProduct.limit);
+            loadProductFreatures(vm.FeatureProduct.offset, vm.FeatureProduct.limit);
+            loadProductNews(vm.NewProduct.offset, vm.NewProduct.limit);
+            loadProductBestsellers(vm.RecommendProduct.offset, vm.RecommendProduct.limit);
          };
 
         function detectActiveAccount() {
@@ -1079,7 +1080,7 @@
                                 <div class="col-sm-3">
                                     <sidebar brand-data="vm.brands" category-data="vm.categories"></sidebar>
                                 </div>
-                                <div class="col-sm-9 padding-right">
+                                <div class="col-sm-9 padding-right" id="all-products">
                                     <div class="features_items">
                                         <div ng-if="vm.isLoading">
                                             <div class="foodtech-loader"></div>
@@ -3998,7 +3999,7 @@
                                     <address>
                                         <p>Điện thoại: 0933800024</p>
                                         </br>
-                                        <p>Địa chỉ: 11/3a Bis, Đường ĐHT 19, KP 1, Phường Đông Hưng Thuận, Quận 12, TP Hồ Chí Minh</p>
+                                        <p>Địa chỉ: 11/3, Đường ĐHT 19, KP 1, Phường Đông Hưng Thuận, Quận 12, TP Hồ Chí Minh</p>
                                         </br>
                                         <p>Email: foodtechshopvn@gmail.com</p>
                                     </address>
@@ -4024,6 +4025,10 @@
                             <div class="col-md-12">
                             <div id="g-recapcha"> 
                         </div>  
+                        <div>
+                            <h2 class="title text-center">Bản Đồ</h2>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.5133002287935!2d106.63502221474963!3d10.848508992272633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529538fc2d845%3A0xb2417d39b6a0d6d2!2zRm9vZFRlY2hTaG9wIC0gTcOsIFThu49pICYgQ8ahbSBWw7I!5e0!3m2!1sen!2s!4v1565451551532!5m2!1sen!2s" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
                             </div>
                         </div>  
                     </div>	
@@ -5025,4 +5030,72 @@
             return (vm.products && angular.isArray(vm.products) && vm.products.length > 0 );
         }
     }
+})();
+(function() {
+    'use strict';
+
+    angular.module('YelaAppClient.Introduce', [
+        'ngRoute'
+    ]);
+})();
+(function() {
+    'use strict';
+    angular
+        .module('YelaAppClient.Introduce')
+        .run(runFunction);
+        runFunction.$inject = ['$templateCache'];
+        function runFunction($templateCache) {
+            $templateCache.put('introduce.html',
+                `               
+                <div id="contact-page" class="container">
+                    <div class="bg">   	
+                        <div class="row">  	
+                            <div class="col-sm-12">
+                                <div class="contact-form">
+                                    <h2 class="title text-center">Để Lại Lời Nhắn Cho Chúng Tôi</h2>
+                                    
+
+                                    
+                                </div>
+                            </div>  
+                            </div>
+                        </div>  
+                    </div>	
+                </div><!--/#contact-page-->
+                `
+            );
+        };
+})();
+(function() {
+    'use strict';
+
+    angular
+        .module('YelaAppClient.Introduce')
+        .controller('IntroduceController', ControllerController);
+
+    ControllerController.$inject = [];
+    function ControllerController() {
+        var vm = this;
+    }
+})();
+(function () {
+    'use strict';
+
+    angular
+        .module('YelaAppClient.Introduce')
+        .config(configFunction);
+
+    configFunction.$inject = ['$routeProvider', '$locationProvider'];
+    function configFunction($routeProvider, $locationProvider) {
+        //let urlParams = productMgmtConstant.appUrl.productMgmt.routeUrl + '/:route';
+
+        $routeProvider
+            .when('/introduce', {
+                templateUrl: 'introduce.html',
+                controller: 'IntroduceController',
+                controllerAs: 'vm',
+                appId: 'introduce'
+            });
+        //$locationProvider.html5Mode(true);
+    };
 })();
