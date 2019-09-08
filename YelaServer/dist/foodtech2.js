@@ -676,6 +676,10 @@
                                     <sidebar brand-data="vm.brands" category-data="vm.categories"></sidebar>
                                 </div>
                                 <div class="col-sm-9 padding-right">
+                                    <div ng-show="vm.mainLoading">
+                                        <div class="foodtech-loader"></div>
+                                        <div class="foodtech-loader-backdrop main"></div>
+                                    </div>
                                     <features-item array-data="vm.productMains" config="vm.mainProductConfig"></features-item>  
                                     <features-item array-data="vm.productFreatures" config="vm.featureProductConfig"></features-item>    
                                     <recommend-product array-data="vm.productBestsellers" config="vm.recommendProductConfig"></recommend-product>
@@ -812,6 +816,7 @@
             currentPage: 1,
             limit: vm.FeatureProduct.limit,
             changePage: function (offset, limit, currentPage) {
+                vm.featureProductConfig.isLoading = true;
                 this.currentPage = currentPage;
                 change(offset, limit);
                 async function change(offset, limit) {
@@ -822,11 +827,12 @@
 
         vm.mainProductConfig = {
             title: 'mainFood',
-            isLoading: false,
+            isLoading: true,
             totalItems: 0,
             currentPage: 1,
             limit: vm.FeatureProduct.limit,
             changePage: function (offset, limit, currentPage) {
+                vm.mainProductConfig.isLoading = true;
                 this.currentPage = currentPage;
                 change(offset, limit);
                 async function change(offset, limit) {
@@ -840,10 +846,13 @@
         ////////////////
 
         async function activate() {
+            vm.mainLoading = true;
             detectActiveAccount();
             loadBrands();
             loadCategories();
-            loadProductMains(vm.FeatureProduct.offset, vm.FeatureProduct.limit);
+            loadProductMains(vm.FeatureProduct.offset, vm.FeatureProduct.limit).then(function() {
+                vm.mainLoading = false;
+            })
             loadProductFreatures(vm.FeatureProduct.offset, vm.FeatureProduct.limit);
             loadProductNews(vm.NewProduct.offset, vm.NewProduct.limit);
             loadProductBestsellers(vm.RecommendProduct.offset, vm.RecommendProduct.limit);
@@ -897,6 +906,7 @@
                         vm.mainProductConfig.totalItems = productMains.data.count;
                         vm.MainProduct.total = productMains.data.count;
                         vm.productMains = productMains.data.rows;
+                        vm.mainProductConfig.isLoading = false;
                         resolve(vm.productMains);
                     }).catch(function (err) {
                         console.log(err);
@@ -912,7 +922,7 @@
                         vm.featureProductConfig.totalItems = productFreatures.data.count;
                         vm.FeatureProduct.total = productFreatures.data.count;
                         vm.productFreatures = productFreatures.data.rows;
-                        vm.recommendProductConfig.isLoading = false;
+                        vm.featureProductConfig.isLoading = false;
                         resolve(productFreatures.data);
                     }).catch(function (err) {
                         console.log(err);
@@ -922,6 +932,7 @@
         };
 
         function loadProductNews(offset, limit) {
+            vm.newProductConfig.isLoading = true;
             return new Promise((resolve, reject) => {
                 HomeService.getProductNews(offset, limit)
                     .then(function (productNews) {
@@ -933,7 +944,9 @@
                     }).catch(function (err) {
                         console.log(err);
                         reject(err);
-                    });
+                    }).finally(function() {
+                        vm.newProductConfig.isLoading = false;
+                    })
             });
         };
 
@@ -979,13 +992,16 @@
         };
 
         function changeProductBestsellers(offset, limit) {
+            vm.recommendProductConfig.isLoading = true;
             HomeService.getProductBestsellers(offset, limit)
                 .then(function (productBestsellers) {
                     vm.productBestsellers = productBestsellers.data.rows;
                 }).catch(function (err) {
                     console.log(err);
                     reject(err);
-                });
+                }).finally(function() {
+                    vm.recommendProductConfig.isLoading = false;
+                })
         };
         
     }
@@ -1089,7 +1105,7 @@
 						                <h2 class="title text-center">Tất Cả Sản Phẩm</h2>
                                         <product-item ng-repeat="data in vm.products" data="data" config="vm.productItemConfig" ></product-item>
                                     </div>
-                                    <div class="pagination-area">
+                                    <div ng-show="!vm.isLoading" class="pagination-area">
                                         <ul class="pagination">
                                             <li ng-class="{disabled:vm.pageTotal === 1}">
                                                 <a ng-click="vm.changePage(0, vm.Product.limit, 1)"><i class="fa fa-angle-double-left"></i></a>
@@ -1195,6 +1211,7 @@
         };
 
         function loadProducts(offset, limit, isLoadNew) {
+            vm.isLoading = true;
             return new Promise((resolve, reject) => {
                 ShopService.getProducts(offset, limit)
                     .then(function (products) {
@@ -1254,6 +1271,7 @@
             getBrands: getBrands,
             getCategories: getCategories,
             getProductById: getProductById,
+            getProductMains: getProductMains,
             getProductBestsellers: getProductBestsellers
         };
         
@@ -1311,6 +1329,21 @@
             });
         };
 
+        function getProductMains(offset, limit) {
+            return $http({
+                url: '/api/productmains',
+                method: 'GET',
+                params: {
+                    offset: offset,
+                    limit: limit
+                }
+            }).then(function (res) {
+                return res;
+            }).catch(function (err) {
+                return err;
+            });
+        };
+
     }
 })();
 (function() {
@@ -1329,6 +1362,10 @@
                                     <sidebar brand-data="vm.brands" category-data="vm.categories"></sidebar>
                                 </div>
                                 <div class="col-sm-9 padding-right">
+                                    <div ng-if="vm.isLoading">
+                                        <div class="foodtech-loader"></div>
+                                        <div class="foodtech-loader-backdrop"></div>
+                                    </div>
                                     <h2 class="title text-center">{{ 'productDetail' | i18next }}</h2>
                                     <div class="product-details content-left"><!--product-details-->
                                         <div class="col-sm-5">
@@ -1393,9 +1430,8 @@
                                             </div>
                                         </div>
                                     </div><!--/category-tab-->
-
+                                    <features-item array-data="vm.productMains" config="vm.mainProductConfig"></features-item> 
                                     <recommend-product array-data="vm.productBestsellers" config="vm.recommendProductConfig"></recommend-product>  
-
                                 </div>
                             </div>
                         </div>
@@ -1440,7 +1476,14 @@
             limit: 4,
             total: 0
         };
+        vm.MainProduct = {
+            offset: 0,
+            limit: 8,
+            total: 0
+        };
         vm.recommendProductConfig = {
+            title: 'setCombo',
+            isLoading: false,
             disableLeftButton: function () {
                 return (vm.RecommendProduct.offset === 0) ? true : false;
             },
@@ -1456,6 +1499,21 @@
                 changeProductBestsellers(vm.RecommendProduct.offset, vm.RecommendProduct.limit);
             }
         };
+        vm.mainProductConfig = {
+            title: 'mainFood',
+            isLoading: true,
+            totalItems: 0,
+            currentPage: 1,
+            limit: vm.MainProduct.limit,
+            changePage: function (offset, limit, currentPage) {
+                vm.mainProductConfig.isLoading = true;
+                this.currentPage = currentPage;
+                change(offset, limit);
+                async function change(offset, limit) {
+                    await loadProductMains(offset, limit);
+                };
+            }
+        };
         vm.quantity = 1;
         vm.addToCart = addToCart; 
         vm.formatPrice = formatPrice;   
@@ -1466,10 +1524,11 @@
 
         async function activate() { 
             //let productId = _.get($route, 'current.params.id');
-            await loadBrands();
-            await loadCategories();
+            loadBrands();
+            loadCategories();
             await loadProductDetail(productId);
-            await loadProductBestsellers(vm.RecommendProduct.offset, vm.RecommendProduct.limit);
+            loadProductBestsellers(vm.RecommendProduct.offset, vm.RecommendProduct.limit);
+            loadProductMains(vm.MainProduct.offset, vm.MainProduct.limit);
         };
 
         function loadBrands(brands) {
@@ -1499,6 +1558,7 @@
         };
 
         function loadProductDetail(id) {
+            vm.isLoading = true;
             return new Promise((resolve, reject) => {
                 DetailService.getProductById(id)
                     .then(function (product) {
@@ -1509,7 +1569,9 @@
                     }).catch(function (err) {
                         console.log(err);
                         reject(err);
-                    });
+                    }).finally(function() {
+                        vm.isLoading = false;
+                    })
             });
         };
 
@@ -1526,7 +1588,24 @@
                     .then(function (productBestsellers) {
                         vm.RecommendProduct.total = productBestsellers.data.count;
                         vm.productBestsellers = productBestsellers.data.rows;
+                        vm.recommendProductConfig.isLoading = false;
                         resolve(productBestsellers.data);
+                    }).catch(function (err) {
+                        console.log(err);
+                        reject(err);
+                    });
+            });
+        };
+
+        function loadProductMains(offset, limit) {
+            return new Promise((resolve, reject) => {
+                DetailService.getProductMains(offset, limit)
+                    .then(function (productMains) {
+                        vm.mainProductConfig.totalItems = productMains.data.count;
+                        vm.MainProduct.total = productMains.data.count;
+                        vm.productMains = productMains.data.rows;
+                        vm.mainProductConfig.isLoading = false;
+                        resolve(vm.productMains);
                     }).catch(function (err) {
                         console.log(err);
                         reject(err);
@@ -1660,7 +1739,7 @@
                                 <div class="col-sm-3">
                                     <sidebar brand-data="vm.brands" category-data="vm.categories"></sidebar>
                                 </div>
-                                <div class="col-sm-9 padding-right">
+                                <div class="col-sm-9 padding-right" id="all-products">
 					                <div class="features_items">
                                         <h2 class="title text-center">{{ vm.productType.name }}</h2>
                                         <div ng-if="vm.isLoading">
@@ -1669,7 +1748,7 @@
                                         </div>
                                         <product-item ng-repeat="data in vm.products" data="data" config="vm.productItemConfig" ></product-item>
                                     </div>
-                                    <div class="pagination-area">
+                                    <div ng-show="!vm.isLoading" class="pagination-area">
                                         <ul class="pagination">
                                             <li ng-class="{disabled:vm.pageTotal === 1}">
                                                 <a ng-click="vm.changePage(0, vm.Product.limit, 1)"><i class="fa fa-angle-double-left"></i></a>
@@ -1789,6 +1868,7 @@
         };
 
         function loadFoodType(offset, limit, productType, isLoadNew) {
+            vm.isLoading = true;
             return new Promise((resolve, reject) => {
                 FoodTypeService.getFoodByType(offset, limit, productType)
                     .then(function (products) {
@@ -1823,7 +1903,7 @@
             vm.currentPage = currentPage;
             change(offset, limit);
             async function change(offset, limit) {
-                await loadProducts(offset, limit);
+                await loadFoodType(offset, limit, productTypeId);
             };
         };
     }
@@ -2102,7 +2182,7 @@
 						                <h2 class="title text-center">{{ 'materials' | i18next }}</h2>
                                         <product-item ng-repeat="data in vm.products" data="data" config="vm.productItemConfig" ></product-item>
                                     </div>
-                                    <div class="pagination-area">
+                                    <div ng-show="!vm.isLoading" class="pagination-area">
                                         <ul class="pagination">
                                             <li ng-class="{disabled:vm.pageTotal === 1}">
                                                 <a ng-click="vm.changePage(0, vm.Product.limit, 1)"><i class="fa fa-angle-double-left"></i></a>
@@ -2209,6 +2289,7 @@
         };
 
         function loadMaterials(offset, limit, isLoadNew) {
+            vm.isLoading = true;
             return new Promise((resolve, reject) => {
                 MaterialsService.getMaterials(offset, limit, foodType)
                     .then(function (products) {
@@ -4499,7 +4580,7 @@
 						                <h2 class="title text-center">{{ 'foods' | i18next }}</h2>
                                         <product-item ng-repeat="data in vm.products" data="data" config="vm.productItemConfig" ></product-item>
                                     </div>
-                                    <div class="pagination-area">
+                                    <div ng-show="!vm.isLoading" class="pagination-area">
                                         <ul class="pagination">
                                             <li ng-class="{disabled:vm.pageTotal === 1}">
                                                 <a ng-click="vm.changePage(0, vm.Product.limit, 1)"><i class="fa fa-angle-double-left"></i></a>
@@ -4606,6 +4687,7 @@
         };
 
         function loadFoods(offset, limit, isLoadNew) {
+            vm.isLoading = true;
             return new Promise((resolve, reject) => {
                 FormFoodsService.getMainFoods(offset, limit, foodForm)
                     .then(function (products) {
@@ -5052,7 +5134,7 @@
                         <div class="row">  	
                             <div class="col-sm-12">
                                 <div class="contact-form">
-                                    <h2 class="title text-center">Để Lại Lời Nhắn Cho Chúng Tôi</h2>
+                                    <h2 class="title text-center">Giới Thiệu</h2>
                                     
 
                                     

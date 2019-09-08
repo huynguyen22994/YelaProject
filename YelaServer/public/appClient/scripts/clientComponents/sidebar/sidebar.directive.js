@@ -23,7 +23,7 @@
                     <category category-data="categoryData"></category>
                     <brand brand-data="brandData"></brand> 
                     <div style="padding-top: 3px">
-                        <a href ng-click="vm.openMenuDialog()">Xem Menu</a>
+                        <a href ng-click="vm.openMenuDialog()">Xem Menu Ăn Tại Quán</a>
                     </div>           
                     <div ng-if="!$root.isSmallScreen" class="shipping text-center"><!--shipping-->
                         <img src="images/home/banner_1.jpg" alt="" />
