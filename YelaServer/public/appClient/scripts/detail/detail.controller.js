@@ -14,7 +14,14 @@
             limit: 4,
             total: 0
         };
+        vm.MainProduct = {
+            offset: 0,
+            limit: 8,
+            total: 0
+        };
         vm.recommendProductConfig = {
+            title: 'setCombo',
+            isLoading: false,
             disableLeftButton: function () {
                 return (vm.RecommendProduct.offset === 0) ? true : false;
             },
@@ -30,6 +37,21 @@
                 changeProductBestsellers(vm.RecommendProduct.offset, vm.RecommendProduct.limit);
             }
         };
+        vm.mainProductConfig = {
+            title: 'mainFood',
+            isLoading: true,
+            totalItems: 0,
+            currentPage: 1,
+            limit: vm.MainProduct.limit,
+            changePage: function (offset, limit, currentPage) {
+                vm.mainProductConfig.isLoading = true;
+                this.currentPage = currentPage;
+                change(offset, limit);
+                async function change(offset, limit) {
+                    await loadProductMains(offset, limit);
+                };
+            }
+        };
         vm.quantity = 1;
         vm.addToCart = addToCart; 
         vm.formatPrice = formatPrice;   
@@ -40,10 +62,11 @@
 
         async function activate() { 
             //let productId = _.get($route, 'current.params.id');
-            await loadBrands();
-            await loadCategories();
+            loadBrands();
+            loadCategories();
             await loadProductDetail(productId);
-            await loadProductBestsellers(vm.RecommendProduct.offset, vm.RecommendProduct.limit);
+            loadProductBestsellers(vm.RecommendProduct.offset, vm.RecommendProduct.limit);
+            loadProductMains(vm.MainProduct.offset, vm.MainProduct.limit);
         };
 
         function loadBrands(brands) {
@@ -73,6 +96,7 @@
         };
 
         function loadProductDetail(id) {
+            vm.isLoading = true;
             return new Promise((resolve, reject) => {
                 DetailService.getProductById(id)
                     .then(function (product) {
@@ -83,7 +107,9 @@
                     }).catch(function (err) {
                         console.log(err);
                         reject(err);
-                    });
+                    }).finally(function() {
+                        vm.isLoading = false;
+                    })
             });
         };
 
@@ -100,7 +126,24 @@
                     .then(function (productBestsellers) {
                         vm.RecommendProduct.total = productBestsellers.data.count;
                         vm.productBestsellers = productBestsellers.data.rows;
+                        vm.recommendProductConfig.isLoading = false;
                         resolve(productBestsellers.data);
+                    }).catch(function (err) {
+                        console.log(err);
+                        reject(err);
+                    });
+            });
+        };
+
+        function loadProductMains(offset, limit) {
+            return new Promise((resolve, reject) => {
+                DetailService.getProductMains(offset, limit)
+                    .then(function (productMains) {
+                        vm.mainProductConfig.totalItems = productMains.data.count;
+                        vm.MainProduct.total = productMains.data.count;
+                        vm.productMains = productMains.data.rows;
+                        vm.mainProductConfig.isLoading = false;
+                        resolve(vm.productMains);
                     }).catch(function (err) {
                         console.log(err);
                         reject(err);

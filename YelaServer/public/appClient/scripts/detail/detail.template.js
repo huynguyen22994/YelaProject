@@ -14,6 +14,10 @@
                                     <sidebar brand-data="vm.brands" category-data="vm.categories"></sidebar>
                                 </div>
                                 <div class="col-sm-9 padding-right">
+                                    <div ng-if="vm.isLoading">
+                                        <div class="foodtech-loader"></div>
+                                        <div class="foodtech-loader-backdrop"></div>
+                                    </div>
                                     <h2 class="title text-center">{{ 'productDetail' | i18next }}</h2>
                                     <div class="product-details content-left"><!--product-details-->
                                         <div class="col-sm-5">
@@ -78,9 +82,8 @@
                                             </div>
                                         </div>
                                     </div><!--/category-tab-->
-
+                                    <features-item array-data="vm.productMains" config="vm.mainProductConfig"></features-item> 
                                     <recommend-product array-data="vm.productBestsellers" config="vm.recommendProductConfig"></recommend-product>  
-
                                 </div>
                             </div>
                         </div>

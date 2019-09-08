@@ -11,6 +11,7 @@
             getBrands: getBrands,
             getCategories: getCategories,
             getProductById: getProductById,
+            getProductMains: getProductMains,
             getProductBestsellers: getProductBestsellers
         };
         
@@ -56,6 +57,21 @@
         function getProductBestsellers(offset, limit) {
             return $http({
                 url: '/api/productbestseller',
+                method: 'GET',
+                params: {
+                    offset: offset,
+                    limit: limit
+                }
+            }).then(function (res) {
+                return res;
+            }).catch(function (err) {
+                return err;
+            });
+        };
+
+        function getProductMains(offset, limit) {
+            return $http({
+                url: '/api/productmains',
                 method: 'GET',
                 params: {
                     offset: offset,
