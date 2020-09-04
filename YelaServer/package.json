@@ -23,7 +23,7 @@
     "pg-hstore": "^2.3.2",
     "postgresql": "0.0.1",
     "psql": "0.0.1",
-    "sequelize": "^3.30.4",
+    "sequelize": "^6.3.5",
     "socket.io": "^2.0.3",
     "swagger-tools": "^0.10.1",
     "underscore": "^1.8.3"
